@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:car_rental_for_customer/commons/constants/constants.dart';
+import 'package:car_rental_for_customer/commons/constants/authentication.dart';
+import 'package:car_rental_for_customer/commons/constants/networks.dart';
 import 'package:car_rental_for_customer/commons/extensions.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/authentication_result.dart';

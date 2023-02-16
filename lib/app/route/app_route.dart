@@ -4,6 +4,7 @@ import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/profile/profile.dart';
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
+import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,13 +29,13 @@ class AppRoute {
         path: '/login',
         name: RouteName.login,
         builder: (context, state) => const LoginPage(),
-        // routes: [
-        //   GoRoute(
-        //     path: 'sign-up',
-        //     name: RouteName.signUp,
-        //     builder: (context, state) => const SignUpPage(),
-        //   ),
-        // ],
+        routes: [
+          GoRoute(
+            path: 'sign-up',
+            name: RouteName.signUp,
+            builder: (context, state) => const SignUpPage(),
+          ),
+        ],
       ),
       ShellRoute(
         navigatorKey: shellNavigatorKey,
