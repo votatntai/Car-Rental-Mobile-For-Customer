@@ -21,17 +21,40 @@ class ScaffoldWithNavBar extends StatelessWidget {
         unselectedItemColor: CustomColors.silver,
         items: const [
           BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(
-                Icons.home_outlined,
-              ),
-              activeIcon: Icon(Icons.home)),
+            label: 'Home',
+            icon: Icon(
+              Icons.home_outlined,
+            ),
+            activeIcon: Icon(Icons.home),
+          ),
           BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(
-                Icons.person_outline,
-              ),
-              activeIcon: Icon(Icons.person)),
+            label: 'Activity',
+            icon: Icon(
+              Icons.receipt_long_outlined,
+            ),
+            activeIcon: Icon(Icons.receipt_long),
+          ),
+          BottomNavigationBarItem(
+            label: 'Wallet',
+            icon: Icon(
+              Icons.wallet_outlined,
+            ),
+            activeIcon: Icon(Icons.wallet),
+          ),
+          BottomNavigationBarItem(
+            label: 'Notification',
+            icon: Icon(
+              Icons.notifications_outlined,
+            ),
+            activeIcon: Icon(Icons.notifications),
+          ),
+          BottomNavigationBarItem(
+            label: 'Profile',
+            icon: Icon(
+              Icons.person_outline,
+            ),
+            activeIcon: Icon(Icons.person),
+          ),
         ],
         currentIndex: _calculateSelectedIndex(context),
         onTap: (int idx) => _onItemTapped(idx, context),
@@ -44,9 +67,20 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith('/home')) {
       return 0;
     }
-    if (location.startsWith('/profile')) {
+    if (location.startsWith('/activity')) {
       return 1;
     }
+    if (location.startsWith('/wallet')) {
+      return 2;
+    }
+    if (location.startsWith('/notification')) {
+      return 3;
+    }
+
+    if (location.startsWith('/profile')) {
+      return 4;
+    }
+
     return 0;
   }
 
@@ -56,6 +90,15 @@ class ScaffoldWithNavBar extends StatelessWidget {
         context.goNamed(RouteName.home);
         break;
       case 1:
+        context.goNamed(RouteName.activity);
+        break;
+      case 2:
+        context.goNamed(RouteName.wallet);
+        break;
+      case 3:
+        context.goNamed(RouteName.notification);
+        break;
+      case 4:
         context.goNamed(RouteName.profile);
         break;
     }

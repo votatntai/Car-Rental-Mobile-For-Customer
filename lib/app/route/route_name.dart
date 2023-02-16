@@ -5,4 +5,7 @@ mixin RouteName {
   static const home = 'home';
   static const dashboard = 'dashboard';
   static const profile = 'profile';
+  static const activity = 'activity';
+  static const notification = 'notification';
+  static const wallet = 'wallet';
 }

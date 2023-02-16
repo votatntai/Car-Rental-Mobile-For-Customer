@@ -1,11 +1,14 @@
 import 'package:car_rental_for_customer/app/route/observers.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
+import 'package:car_rental_for_customer/pages/activity/activity.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
+import 'package:car_rental_for_customer/pages/notification/notification.dart';
 import 'package:car_rental_for_customer/pages/profile/profile.dart';
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
 import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
+import 'package:car_rental_for_customer/pages/wallet/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -55,6 +58,30 @@ class AppRoute {
             pageBuilder: (context, state) => FadeTransitionPage(
               key: _shellNavigationKey,
               child: const ProfilePage(),
+            ),
+          ),
+          GoRoute(
+            path: '/wallet',
+            name: RouteName.wallet,
+            pageBuilder: (context, state) => FadeTransitionPage(
+              key: _shellNavigationKey,
+              child: const WalletPage(),
+            ),
+          ),
+          GoRoute(
+            path: '/notification',
+            name: RouteName.notification,
+            pageBuilder: (context, state) => FadeTransitionPage(
+              key: _shellNavigationKey,
+              child: const NotificationPage(),
+            ),
+          ),
+          GoRoute(
+            path: '/activity',
+            name: RouteName.activity,
+            pageBuilder: (context, state) => FadeTransitionPage(
+              key: _shellNavigationKey,
+              child: const ActivityPage(),
             ),
           ),
         ],
