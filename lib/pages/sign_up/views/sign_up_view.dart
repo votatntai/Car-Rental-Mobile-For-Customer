@@ -1,12 +1,10 @@
 import 'package:car_rental_for_customer/app/route/route_name.dart';
-import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/constants/theme.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
-import 'package:car_rental_for_customer/models/enums/gender.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -26,16 +24,18 @@ class _SignUpViewState extends State<SignUpView> {
   TextEditingController? _nameController;
   TextEditingController? _dateOfBirthController;
   TextEditingController? _phoneNumberController;
+  TextEditingController? _confirmPasswordController;
 
   FocusNode focusEmail = FocusNode();
   FocusNode focusPassword = FocusNode();
   FocusNode focusName = FocusNode();
   FocusNode focusDateOfBirth = FocusNode();
   FocusNode focusPhoneNumber = FocusNode();
+  FocusNode focusConfirmPassword = FocusNode();
 
   bool isIconTrue = false;
   DateTime? selectedDate;
-  Gender _gender = Gender.male;
+  // Gender _gender = Gender.male;
 
   @override
   void initState() {
@@ -67,7 +67,7 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: appAppBar(context),
       body: SingleChildScrollView(
         child: Container(
@@ -128,13 +128,61 @@ class _SignUpViewState extends State<SignUpView> {
                     return null;
                   },
                   onFieldSubmitted: (v) {
-                    focusName.unfocus();
-                    FocusScope.of(context).requestFocus(focusName);
+                    focusPassword.unfocus();
+                    FocusScope.of(context).requestFocus(focusConfirmPassword);
                   },
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.lock,
                     hintText: "Password",
+                    suffixIcon: Theme(
+                      data: ThemeData(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                      ),
+                      child: IconButton(
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          setState(() {
+                            isIconTrue = !isIconTrue;
+                          });
+                        },
+                        icon: Icon(
+                          (isIconTrue)
+                              ? Icons.visibility_rounded
+                              : Icons.visibility_off,
+                          size: 16,
+                          color: gray,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  autofocus: false,
+                  focusNode: focusConfirmPassword,
+                  controller: _confirmPasswordController,
+                  obscureText: isIconTrue,
+                  validator: (value) {
+                    if (value == null) return null;
+                    if (value.length < 8) {
+                      return 'password must be more than 8 character';
+                    } else if (value.length > 16) {
+                      return 'password must be  less than 16 character';
+                    } else if (value.isEmpty) {
+                      return 'Please enter password';
+                    }
+                    return null;
+                  },
+                  onFieldSubmitted: (v) {
+                    focusConfirmPassword.unfocus();
+                    FocusScope.of(context).requestFocus(focusName);
+                  },
+                  decoration: inputDecoration(
+                    context,
+                    prefixIcon: Icons.lock,
+                    hintText: "Confirm Password",
                     suffixIcon: Theme(
                       data: ThemeData(
                           splashColor: Colors.transparent,
@@ -192,11 +240,6 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     hintText: "Date of Birth",
-                    // suffixIcon: const Icon(
-                    //   Icons.calendar_month_rounded,
-                    //   size: 16,
-                    //   color: gray,
-                    // ),
                     prefixIcon: Icons.date_range_rounded,
                   ),
                 ),
@@ -217,48 +260,43 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     hintText: "Phone Number",
-                    // suffixIcon: const Icon(
-                    //   Icons.calendar_month_rounded,
-                    //   size: 16,
-                    //   color: gray,
-                    // ),
                     prefixIcon: Icons.phone,
                   ),
                 ),
-                const SizedBox(height: s16),
-                Container(
-                  decoration: boxDecorationWithRoundedCorners(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(defaultRadius),
-                    ),
-                    backgroundColor: CustomColors.editTextBgColor,
-                  ),
-                  padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-                  child: DropdownButton<Gender>(
-                    value: _gender,
-                    elevation: 16,
-                    style: primaryTextStyle(),
-                    hint: Text('Gender', style: primaryTextStyle()),
-                    isExpanded: true,
-                    underline: Container(
-                      height: 0,
-                      color: Colors.deepPurpleAccent,
-                    ),
-                    onChanged: (newValue) {
-                      if (newValue == null) return;
-                      setState(() {
-                        _gender = newValue;
-                      });
-                    },
-                    items: Gender.values
-                        .map<DropdownMenuItem<Gender>>((Gender value) {
-                      return DropdownMenuItem<Gender>(
-                        value: value,
-                        child: Text(value.name),
-                      );
-                    }).toList(),
-                  ),
-                ),
+                // const SizedBox(height: s16),
+                // Container(
+                //   decoration: boxDecorationWithRoundedCorners(
+                //     borderRadius: BorderRadius.all(
+                //       Radius.circular(defaultRadius),
+                //     ),
+                //     backgroundColor: CustomColors.editTextBgColor,
+                //   ),
+                //   padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+                //   child: DropdownButton<Gender>(
+                //     value: _gender,
+                //     elevation: 16,
+                //     style: primaryTextStyle(),
+                //     hint: Text('Gender', style: primaryTextStyle()),
+                //     isExpanded: true,
+                //     underline: Container(
+                //       height: 0,
+                //       color: Colors.deepPurpleAccent,
+                //     ),
+                //     onChanged: (newValue) {
+                //       if (newValue == null) return;
+                //       setState(() {
+                //         _gender = newValue;
+                //       });
+                //     },
+                //     items: Gender.values
+                //         .map<DropdownMenuItem<Gender>>((Gender value) {
+                //       return DropdownMenuItem<Gender>(
+                //         value: value,
+                //         child: Text(value.name),
+                //       );
+                //     }).toList(),
+                //   ),
+                // ),
                 const SizedBox(height: s32),
                 GestureDetector(
                   onTap: () => submit(),

@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
 import 'package:car_rental_for_customer/pages/profile/profile.dart';
+import 'package:car_rental_for_customer/pages/profile_detail/profile_detail.dart';
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
 import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
@@ -59,6 +60,14 @@ class AppRoute {
               key: _shellNavigationKey,
               child: const ProfilePage(),
             ),
+            routes: [
+              GoRoute(
+                path: 'profile-detail',
+                parentNavigatorKey: rootNavigatorKey,
+                name: RouteName.profileDetail,
+                builder: (context, state) => const ProfileDetailPage(),
+              ),
+            ],
           ),
           GoRoute(
             path: '/wallet',

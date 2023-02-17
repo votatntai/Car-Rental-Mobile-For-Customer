@@ -8,4 +8,5 @@ mixin RouteName {
   static const activity = 'activity';
   static const notification = 'notification';
   static const wallet = 'wallet';
+  static const profileDetail = 'profile-detail';
 }
