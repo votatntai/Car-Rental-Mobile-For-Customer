@@ -45,13 +45,19 @@ class _ProfileViewState extends State<ProfileView> {
                   bottom: 0,
                   child: Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(s08),
+                    padding: const EdgeInsets.all(s04),
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      border: Border.all(color: Colors.black.withOpacity(0.3)),
-                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      borderRadius: BorderRadius.circular(s08),
                     ),
-                    child: const Icon(Icons.edit, color: white, size: 16),
+                    child: const Icon(
+                      Icons.edit,
+                      color: white,
+                      size: s16,
+                    ),
                   ).onTap(() {
                     context.goNamed(RouteName.profileDetail);
                   }),
@@ -79,15 +85,20 @@ class _ProfileViewState extends State<ProfileView> {
               ),
             ),
             SettingItemWidget(
-              leading:
-                  Icon(Icons.location_on_outlined, color: context.iconColor),
+              leading: Icon(
+                Icons.location_on_outlined,
+                color: context.iconColor,
+              ),
               title: "Address",
               titleTextStyle: boldTextStyle(),
               onTap: () {
                 //
               },
-              trailing: Icon(Icons.arrow_forward_ios_rounded,
-                  size: 18, color: context.iconColor),
+              trailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 18,
+                color: context.iconColor,
+              ),
             ),
             SettingItemWidget(
               leading: Icon(Icons.notifications_active_outlined,

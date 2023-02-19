@@ -1,6 +1,7 @@
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
 import 'package:flutter/material.dart';
@@ -104,15 +105,7 @@ class _LoginViewState extends State<LoginView> {
                     obscureText: isIconTrue,
                     focusNode: f2,
                     validator: (value) {
-                      if (value == null) return null;
-                      if (value.length < 8) {
-                        return 'password must be more than 8 character';
-                      } else if (value.length > 16) {
-                        return 'password must be  less than 16 character';
-                      } else if (value.isEmpty) {
-                        return 'Please enter password';
-                      }
-                      return null;
+                      return passwordValidator(value);
                     },
                     onFieldSubmitted: (v) {
                       f2.unfocus();
@@ -178,7 +171,9 @@ class _LoginViewState extends State<LoginView> {
                         style: secondaryTextStyle(),
                         children: [
                           TextSpan(
-                              text: ' Sign up', style: boldTextStyle(size: 14)),
+                            text: ' Sign up',
+                            style: boldTextStyle(size: 14),
+                          ),
                         ],
                       ),
                     ),
