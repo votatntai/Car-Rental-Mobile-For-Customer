@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 
 extension ApiErrorX on DioError {
   ApiResponse<T> getErrorMessage<T>() {
-    return ApiResponse.error(error: toString());
+    print(this);
+    return ApiResponse.error(error: response?.data['title'] ?? 'Unknown error');
   }
 }

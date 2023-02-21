@@ -1,10 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 enum Gender {
-  @JsonValue('Male')
+  // @JsonValue('Male')
   male,
-  @JsonValue('Female')
+  // @JsonValue('Female')
   female,
-  @JsonValue('Other')
+  // @JsonValue('Other')
   other,
 }

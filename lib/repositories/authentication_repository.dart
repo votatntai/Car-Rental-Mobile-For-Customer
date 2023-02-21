@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/commons/constants/networks.dart';
 import 'package:car_rental_for_customer/commons/extensions.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/authentication_result.dart';
+import 'package:car_rental_for_customer/models/enums/gender.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,22 +37,21 @@ class AuthenticationRepository {
   Future<ApiResponse<bool>> login(String username, String password) async {
     try {
       final result = await dio.post<Map<String, dynamic>>(
-        '/auth/login',
+        '/api/auth/customers',
         data: {
           'username': username.toLowerCase().trim(),
           'password': password.toLowerCase().trim(),
         },
       );
-
       if (result.data != null && result.statusCode == StatusCodes.status200OK) {
         final auth = AuthenticationResult.fromJson(result.data!);
 
         // save token
         await sharedPreferences.setString(accessTokenRefs, auth.token);
-        await sharedPreferences.setString(
-          refreshTokenRefs,
-          auth.refreshToken,
-        );
+        // await sharedPreferences.setString(
+        //   refreshTokenRefs,
+        //   auth.refreshToken,
+        // );
 
         // update auth status
         _authenticationController.add(AuthenticationStatus.authenticated);
@@ -66,40 +66,29 @@ class AuthenticationRepository {
   }
 
   Future<ApiResponse<bool>> signUp({
-    required String email,
+    required String username,
     required String password,
-    required String firstName,
-    required String lastName,
-    String? phoneNumber,
+    required String name,
+    required String phone,
+    required Gender gender,
     String? address,
   }) async {
     try {
       final result = await dio.post<Map<String, dynamic>>(
-        '/auth/register',
+        '/api/customers',
         data: {
-          'firstName': firstName.trim(),
-          'lastName': lastName.trim(),
-          'email': email.toLowerCase().trim(),
+          'username': username.toLowerCase().trim(),
           'password': password.toLowerCase().trim(),
-          'phoneNumber': phoneNumber?.toLowerCase().trim(),
-          'address': address?.trim()
+          'name': name,
+          'phone': phone,
+          'gender': gender.name,
+          'address': address,
         },
       );
 
-      if (result.data != null && result.statusCode == StatusCodes.status200OK) {
-        final auth = AuthenticationResult.fromJson(result.data!);
-
-        // save token
-        await sharedPreferences.setString(accessTokenRefs, auth.token);
-        await sharedPreferences.setString(
-          refreshTokenRefs,
-          auth.refreshToken,
-        );
-
-        // update auth status
-        _authenticationController.add(AuthenticationStatus.authenticated);
-
-        return const ApiResponse.success(true);
+      if (result.data != null &&
+          result.statusCode == StatusCodes.status201Created) {
+        return await login(username, password);
       }
 
       return const ApiError(error: 'Unknown error');
@@ -108,40 +97,41 @@ class AuthenticationRepository {
     }
   }
 
-  Future<ApiResponse<bool>> changePassword({
-    required String currentPassword,
-    required String newPassword,
-  }) async {
-    try {
-      final result = await dio.put<dynamic>(
-        '/auth/change-password',
-        data: {
-          'password': currentPassword,
-          'newPassword': newPassword,
-        },
-      );
-      if (result.data != null &&
-          result.statusCode == StatusCodes.status204NoContent) {
-        return const ApiResponse.success(true);
-      }
-
-      return const ApiError(error: 'Unknown error');
-    } on DioError catch (e) {
-      if (e.response?.statusCode == StatusCodes.status400BadRequest) {
-        return const ApiResponse.error(error: 'Invalid password');
-      } else {
-        return e.getErrorMessage();
-      }
-    }
-  }
+  // Future<ApiResponse<bool>> changePassword({
+  //   required String currentPassword,
+  //   required String newPassword,
+  // }) async {
+  //   try {
+  //     final result = await dio.put<dynamic>(
+  //       '/auth/change-password',
+  //       data: {
+  //         'password': currentPassword,
+  //         'newPassword': newPassword,
+  //       },
+  //     );
+  //     if (result.data != null &&
+  //         result.statusCode == StatusCodes.status204NoContent) {
+  //       return const ApiResponse.success(true);
+  //     }
+  //
+  //     return const ApiError(error: 'Unknown error');
+  //   } on DioError catch (e) {
+  //     if (e.response?.statusCode == StatusCodes.status400BadRequest) {
+  //       return const ApiResponse.error(error: 'Invalid password');
+  //     } else {
+  //       return e.getErrorMessage();
+  //     }
+  //   }
+  // }
 
   Future<void> logOut() async {
+    _authenticationController.add(AuthenticationStatus.unauthenticated);
+
     await sharedPreferences.setString(accessTokenRefs, '');
     await sharedPreferences.setString(
       refreshTokenRefs,
       '',
     );
-    _authenticationController.add(AuthenticationStatus.unauthenticated);
   }
 
   Future<void> dispose() async {

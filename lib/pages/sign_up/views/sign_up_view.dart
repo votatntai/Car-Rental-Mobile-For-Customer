@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
@@ -6,7 +8,11 @@ import 'package:car_rental_for_customer/commons/constants/theme.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
+import 'package:car_rental_for_customer/commons/widgets/message_dialog.dart';
+import 'package:car_rental_for_customer/di.dart';
+import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/enums/gender.dart';
+import 'package:car_rental_for_customer/repositories/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -27,6 +33,7 @@ class _SignUpViewState extends State<SignUpView> {
   TextEditingController? _dateOfBirthController;
   TextEditingController? _phoneNumberController;
   TextEditingController? _confirmPasswordController;
+  TextEditingController? _addressController;
 
   FocusNode focusEmail = FocusNode();
   FocusNode focusPassword = FocusNode();
@@ -34,8 +41,9 @@ class _SignUpViewState extends State<SignUpView> {
   FocusNode focusDateOfBirth = FocusNode();
   FocusNode focusPhoneNumber = FocusNode();
   FocusNode focusConfirmPassword = FocusNode();
+  FocusNode focusAddress = FocusNode();
 
-  bool isIconTrue = false;
+  bool isIconTrue = true;
   DateTime? selectedDate;
   Gender _gender = Gender.male;
 
@@ -46,6 +54,9 @@ class _SignUpViewState extends State<SignUpView> {
     _nameController = TextEditingController();
     _dateOfBirthController = TextEditingController();
     _phoneNumberController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
+    _addressController = TextEditingController();
+
     super.initState();
   }
 
@@ -56,12 +67,16 @@ class _SignUpViewState extends State<SignUpView> {
     _nameController?.dispose();
     _dateOfBirthController?.dispose();
     _phoneNumberController?.dispose();
+    _confirmPasswordController?.dispose();
+    _addressController?.dispose();
 
     focusDateOfBirth.dispose();
     focusEmail.dispose();
     focusName.dispose();
     focusPassword.dispose();
     focusPhoneNumber.dispose();
+    focusConfirmPassword.dispose();
+    focusAddress.dispose();
 
     super.dispose();
   }
@@ -94,9 +109,9 @@ class _SignUpViewState extends State<SignUpView> {
                 TextFormField(
                   autofocus: false,
                   validator: (value) {
-                    if (!value!.contains('@') || !value.endsWith(".com")) {
-                      return 'Please enter the correct email';
-                    }
+                    // if (!value!.contains('@') || !value.endsWith(".com")) {
+                    //   return 'Please enter the correct email';
+                    // }
                     return null;
                   },
                   focusNode: focusEmail,
@@ -109,7 +124,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.mail_rounded,
-                    hintText: "Email",
+                    hintText: "Username",
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -162,6 +177,7 @@ class _SignUpViewState extends State<SignUpView> {
                     if (value != _passwordController?.text) {
                       return "Password does not match";
                     }
+                    return null;
                   },
                   onFieldSubmitted: (v) {
                     focusConfirmPassword.unfocus();
@@ -205,7 +221,7 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   onFieldSubmitted: (v) {
                     focusName.unfocus();
-                    FocusScope.of(context).requestFocus(focusDateOfBirth);
+                    FocusScope.of(context).requestFocus(focusPhoneNumber);
                   },
                   decoration: inputDecoration(
                     context,
@@ -213,24 +229,24 @@ class _SignUpViewState extends State<SignUpView> {
                     prefixIcon: Icons.person,
                   ),
                 ),
-                const SizedBox(height: s16),
-                TextFormField(
-                  controller: _dateOfBirthController,
-                  focusNode: focusDateOfBirth,
-                  readOnly: true,
-                  onTap: () {
-                    selectDateAndTime(context);
-                  },
-                  onFieldSubmitted: (v) {
-                    focusDateOfBirth.unfocus();
-                    FocusScope.of(context).requestFocus(focusPhoneNumber);
-                  },
-                  decoration: inputDecoration(
-                    context,
-                    hintText: "Date of Birth",
-                    prefixIcon: Icons.date_range_rounded,
-                  ),
-                ),
+                // const SizedBox(height: s16),
+                // TextFormField(
+                //   controller: _dateOfBirthController,
+                //   focusNode: focusDateOfBirth,
+                //   readOnly: true,
+                //   onTap: () {
+                //     selectDateAndTime(context);
+                //   },
+                //   onFieldSubmitted: (v) {
+                //     focusDateOfBirth.unfocus();
+                //     FocusScope.of(context).requestFocus(focusPhoneNumber);
+                //   },
+                //   decoration: inputDecoration(
+                //     context,
+                //     hintText: "Date of Birth",
+                //     prefixIcon: Icons.date_range_rounded,
+                //   ),
+                // ),
                 const SizedBox(height: s16),
                 TextFormField(
                   controller: _phoneNumberController,
@@ -243,12 +259,30 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   onFieldSubmitted: (v) {
                     focusPhoneNumber.unfocus();
+                    FocusScope.of(context).requestFocus(focusAddress);
                   },
                   keyboardType: TextInputType.number,
                   decoration: inputDecoration(
                     context,
                     hintText: "Phone Number",
                     prefixIcon: Icons.phone,
+                  ),
+                ),
+
+                const SizedBox(height: s16),
+                TextFormField(
+                  controller: _addressController,
+                  focusNode: focusAddress,
+                  validator: (value) {
+                    return null;
+                  },
+                  onFieldSubmitted: (v) {
+                    focusAddress.unfocus();
+                  },
+                  decoration: inputDecoration(
+                    context,
+                    hintText: "Address",
+                    prefixIcon: Icons.person,
                   ),
                 ),
                 const SizedBox(height: s16),
@@ -345,11 +379,21 @@ class _SignUpViewState extends State<SignUpView> {
     });
   }
 
-  void submit() {
+  FutureOr<void> submit() async {
     if (_formKey.currentState!.validate()) {
-      //TODO: sign up
+      var result = await getIt.get<AuthenticationRepository>().signUp(
+            username: _emailController?.text ?? "",
+            password: _passwordController?.text ?? "",
+            name: _nameController?.text ?? "",
+            phone: _phoneNumberController?.text ?? "",
+            gender: _gender,
+            address: _addressController?.text ?? "",
+          );
 
-      context.goNamed(RouteName.home);
+      if (result is ApiError) {
+        var message = (result as ApiError).error;
+        showMessageDialog('Alert', message ?? "");
+      }
     }
   }
 }

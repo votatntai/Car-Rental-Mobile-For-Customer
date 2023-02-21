@@ -3,6 +3,7 @@ import 'package:car_rental_for_customer/app/route/app_route.dart';
 import 'package:car_rental_for_customer/commons/constants/networks.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/repositories/repositories.dart';
+import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +15,7 @@ Future<void> configDI() async {
     baseUrl: baseUrl,
     connectTimeout: const Duration(milliseconds: connectTimeout),
     receiveTimeout: const Duration(milliseconds: receiveTimeout),
+    contentType: Headers.jsonContentType,
   );
   final dio = Dio(dioOptions);
 
@@ -32,5 +34,6 @@ Future<void> configDI() async {
     ..registerSingleton<SharedPreferences>(sharedPreferences)
     ..registerSingleton<Dio>(dio)
     ..registerSingleton<DioHelper>(helper)
-    ..registerSingleton<AuthenticationRepository>(authenticationRepository);
+    ..registerSingleton<AuthenticationRepository>(authenticationRepository)
+    ..registerSingleton<UserRepository>(UserRepository(dio: dio));
 }

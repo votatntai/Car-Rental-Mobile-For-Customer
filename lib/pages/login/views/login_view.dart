@@ -1,9 +1,15 @@
+import 'dart:async';
+
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
+import 'package:car_rental_for_customer/commons/widgets/message_dialog.dart';
+import 'package:car_rental_for_customer/di.dart';
+import 'package:car_rental_for_customer/models/api_response.dart';
+import 'package:car_rental_for_customer/repositories/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -19,7 +25,7 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController? _emailController;
   TextEditingController? _passwordController;
 
-  bool isIconTrue = false;
+  bool isIconTrue = true;
   bool isChecked = false;
 
   FocusNode f1 = FocusNode();
@@ -87,16 +93,16 @@ class _LoginViewState extends State<LoginView> {
                       FocusScope.of(context).requestFocus(f2);
                     },
                     validator: (k) {
-                      if (!k!.contains('@')) {
-                        return 'Please enter the correct email';
-                      }
+                      // if (!k!.contains('@')) {
+                      //   return 'Please enter the correct email';
+                      // }
                       return null;
                     },
                     controller: _emailController,
                     decoration: inputDecoration(
                       context,
                       prefixIcon: Icons.mail_rounded,
-                      hintText: "Email",
+                      hintText: "Username",
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -150,8 +156,7 @@ class _LoginViewState extends State<LoginView> {
                             const BorderRadius.all(Radius.circular(45)),
                         backgroundColor: black,
                       ),
-                      child:
-                          Text('Sign in', style: boldTextStyle(color: white)),
+                      child: Text('Login', style: boldTextStyle(color: white)),
                     ),
                   ),
                   // const SizedBox(height: 10),
@@ -171,7 +176,7 @@ class _LoginViewState extends State<LoginView> {
                         style: secondaryTextStyle(),
                         children: [
                           TextSpan(
-                            text: ' Sign up',
+                            text: 'Sign up',
                             style: boldTextStyle(size: 14),
                           ),
                         ],
@@ -187,11 +192,17 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  void submit() {
+  FutureOr<void> submit() async {
     if (_formKey.currentState!.validate()) {
-      //TODO: login
+      var result = await getIt.get<AuthenticationRepository>().login(
+            _emailController?.text ?? '',
+            _passwordController?.text ?? '',
+          );
 
-      context.goNamed(RouteName.home);
+      if (result is ApiError) {
+        var message = (result as ApiError).error;
+        showMessageDialog('Alert', message ?? "");
+      }
     }
   }
 }

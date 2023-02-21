@@ -1,4 +1,4 @@
-String baseUrl = 'https://api.carea.app/api/v1/';
+String baseUrl = 'http://139.162.55.73';
 const int connectTimeout = 15000;
 const int receiveTimeout = 15000;
 const int sendTimeout = 15000;

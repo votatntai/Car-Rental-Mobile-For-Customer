@@ -15,8 +15,6 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
-  AuthenticationStatus currentAuthStatus = AuthenticationStatus.unknown;
-
   final _router = getIt.get<AppRoute>().router;
 
   @override
@@ -35,16 +33,13 @@ class _AppViewState extends State<AppView> {
       listener: (context, state) {
         switch (state.status) {
           case AuthenticationStatus.authenticated:
-            currentAuthStatus = AuthenticationStatus.authenticated;
             _router.goNamed(RouteName.home);
             break;
           case AuthenticationStatus.unauthenticated:
-            currentAuthStatus = AuthenticationStatus.authenticated;
             _router.goNamed(RouteName.login);
 
             break;
           case AuthenticationStatus.unknown:
-            currentAuthStatus = AuthenticationStatus.authenticated;
             break;
         }
       },

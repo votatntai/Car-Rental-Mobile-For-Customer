@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:car_rental_for_customer/app/dio_helper.dart';
 import 'package:car_rental_for_customer/di.dart';
+import 'package:car_rental_for_customer/models/user.dart';
 import 'package:car_rental_for_customer/repositories/authentication_repository.dart';
+import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authentication_bloc.freezed.dart';
@@ -14,6 +16,7 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
     required this.authenticationRepository,
+    required this.userRepository,
   }) : super(const AuthenticationState(status: AuthenticationStatus.unknown)) {
     on<_StatusChangedEvent>(_onStatusChanged);
 
@@ -24,6 +27,7 @@ class AuthenticationBloc
   }
 
   final AuthenticationRepository authenticationRepository;
+  final UserRepository userRepository;
 
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
@@ -55,29 +59,29 @@ class AuthenticationBloc
         //* config dio
         await getIt.get<DioHelper>().initDioInterceptors();
 
-        // final user = await _tryGetUser();
-        // if (user == null) {
-        //   return emit(
-        //     const AuthenticationState(
-        //       status: AuthenticationStatus.unauthenticated,
-        //     ),
-        //   );
-        // }
-
+        final user = await _tryGetUser();
+        if (user == null) {
+          emit(
+            const AuthenticationState(
+              status: AuthenticationStatus.unauthenticated,
+            ),
+          );
+          return;
+        }
         emit(AuthenticationState(
           status: event.status,
-          // user: user,
+          user: user,
         ));
         break;
     }
   }
 
-// Future<User?> _tryGetUser() async {
-//   try {
-//     final user = await _userRepository.getProfile();
-//     return user;
-//   } catch (_) {
-//     return null;
-//   }
-// }
+  Future<User?> _tryGetUser() async {
+    try {
+      final user = await userRepository.getProfile();
+      return user;
+    } catch (_) {
+      return null;
+    }
+  }
 }
