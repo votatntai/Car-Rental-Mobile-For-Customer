@@ -101,49 +101,40 @@ class _HomeViewState extends State<HomeView> {
                   onPressed: () {},
                 ),
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: SizedBox(
-                  height: 45,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 3,
-                    padding: const EdgeInsets.only(
-                      left: s16,
-                      right: s08,
-                      bottom: s08,
-                      top: s08,
-                    ),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            topDealsIndex = index;
-                          });
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: s16,
-                            vertical: s04,
+              SizedBox(
+                height: 30,
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(left: s08),
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          topDealsIndex = index;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: s16,
+                          vertical: s04,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: CustomColors.primary),
+                          color: topDealsIndex == index ? cardDarkColor : white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Text(
+                          topDeals[index],
+                          style: TextStyle(
+                            color: topDealsIndex == index ? white : black,
                           ),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: CustomColors.primary),
-                            color:
-                                topDealsIndex == index ? cardDarkColor : white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Text(
-                            topDeals[index],
-                            style: TextStyle(
-                              color: topDealsIndex == index ? white : black,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ).paddingRight(8),
-                      );
-                    },
-                  ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ).paddingRight(8),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: s08),
@@ -153,7 +144,7 @@ class _HomeViewState extends State<HomeView> {
                   itemBuilder: (context, index) {
                     return CarCard(
                       onTap: () {
-                        context.goNamed(RouteName.carDetail);
+                        context.pushNamed(RouteName.carDetail);
                       },
                     );
                   },

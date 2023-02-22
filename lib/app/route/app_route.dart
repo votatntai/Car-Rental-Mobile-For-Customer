@@ -1,6 +1,7 @@
 import 'package:car_rental_for_customer/app/route/observers.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
+import 'package:car_rental_for_customer/pages/car_detail/car_detail.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
@@ -94,6 +95,12 @@ class AppRoute {
             ),
           ),
         ],
+      ),
+      GoRoute(
+        path: '/car-detail',
+        name: RouteName.carDetail,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) => const CarDetailPage(),
       ),
     ],
     initialLocation: '/splash',
