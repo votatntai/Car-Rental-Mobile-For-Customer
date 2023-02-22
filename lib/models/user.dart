@@ -15,7 +15,7 @@ class User with _$User {
     required Wallet wallet,
     String? bankAccountNumber,
     String? bankName,
-    String? avartarUrl,
+    String? avatarUrl,
     String? address,
   }) = _User;
 

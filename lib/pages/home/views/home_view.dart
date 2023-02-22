@@ -1,6 +1,9 @@
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
+import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
+import 'package:car_rental_for_customer/pages/home/widgets/car_option.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -13,8 +16,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  FocusNode searchFocus = FocusNode();
-  TextEditingController searchController = TextEditingController();
+  int topDealsIndex = 0;
+  final List<String> topDeals = [
+    "All",
+    "Self Driving Car",
+    "Car With Driver",
+  ];
 
   @override
   void initState() {
@@ -23,8 +30,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void dispose() {
-    searchFocus.dispose();
-    searchController.dispose();
     super.dispose();
   }
 
@@ -69,83 +74,95 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: s08),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: s16,
-                vertical: s08,
+        child: Padding(
+          padding: const EdgeInsets.all(s08),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: s08),
+              Row(
+                children: const [
+                  CarOption(
+                    carImage: Images.selfDrivingCar,
+                    text: "Self Driving Car",
+                  ),
+                  SizedBox(width: s16),
+                  CarOption(
+                    carImage: Images.carWithDriver,
+                    text: "Car With Driver",
+                  ),
+                ],
               ),
-              child: TextFormField(
-                focusNode: searchFocus,
-                controller: searchController,
-                style: primaryTextStyle(),
-                onFieldSubmitted: (val) {
-                  // showSearch(
-                  //   query: searchController.text,
-                  //   context: context,
-                  //   delegate:
-                  //       CustomSearchDelegate.initialize(searchController.text),
-                  // );
-                },
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                  hintText: 'Search',
-                  hintStyle: secondaryTextStyle(),
-                  fillColor: CustomColors.editTextBgColor,
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: radius(defaultRadius),
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 0.0,
+              ListTile(
+                title: Text("Top Deals", style: boldTextStyle(size: 16)),
+                trailing: TextButton(
+                  child: Text('See All', style: primaryTextStyle()),
+                  onPressed: () {},
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: SizedBox(
+                  height: 45,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 3,
+                    padding: const EdgeInsets.only(
+                      left: s16,
+                      right: s08,
+                      bottom: s08,
+                      top: s08,
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: radius(defaultRadius),
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 0.0,
-                    ),
-                  ),
-                  prefixIcon: IconButton(
-                    icon: Icon(
-                      Icons.search,
-                      size: 20,
-                      color: gray.withOpacity(0.5),
-                    ),
-                    onPressed: () {
-                      // showSearch(
-                      //   query: searchController.text,
-                      //   context: context,
-                      //   delegate: CustomSearchDelegate.initialize(
-                      //       searchController.text),
-                      // );
-                    },
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      Icons.filter_alt_outlined,
-                      size: 20,
-                      color: gray.withOpacity(0.5),
-                    ),
-                    onPressed: () {
-                      // showSearch(
-                      //   query: searchController.text,
-                      //   context: context,
-                      //   delegate: CustomSearchDelegate.initialize(
-                      //       searchController.text),
-                      // );
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            topDealsIndex = index;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: s16,
+                            vertical: s04,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: CustomColors.primary),
+                            color:
+                                topDealsIndex == index ? cardDarkColor : white,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(
+                            topDeals[index],
+                            style: TextStyle(
+                              color: topDealsIndex == index ? white : black,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ).paddingRight(8),
+                      );
                     },
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: s08),
+              SizedBox(
+                height: 230,
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return CarCard(
+                      onTap: () {
+                        context.goNamed(RouteName.carDetail);
+                      },
+                    );
+                  },
+                  itemCount: 3,
+                  scrollDirection: Axis.horizontal,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

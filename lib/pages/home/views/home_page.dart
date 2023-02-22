@@ -1,16 +1,16 @@
+import 'package:car_rental_for_customer/pages/home/bloc/home_bloc.dart';
 import 'package:car_rental_for_customer/pages/home/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
-    return const HomeView();
+    return BlocProvider.value(
+      value: HomeBloc()..add(const HomeEvent.started()),
+      child: const HomeView(),
+    );
   }
 }

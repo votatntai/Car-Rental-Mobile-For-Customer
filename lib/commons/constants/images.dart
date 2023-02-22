@@ -5,6 +5,7 @@ mixin Images {
   static const whiteCar = 'assets/white_car.jpg';
   static const whiteCar1 = 'assets/white_car1.jpg';
   static const whiteCar2 = 'assets/white_car2.jpg';
+  static const carExample = 'assets/car_example.jpg';
   static const google = 'assets/google.png';
   static const facebook = 'assets/facebook-logo.png';
   static const apple = 'assets/apple.png';
@@ -23,22 +24,10 @@ mixin Images {
   static const bmw = 'assets/bmw.png';
   static const buggatti = 'assets/buggatti.png';
 
-  static const car0 = 'assets/car.png';
-  static const car1 = 'assets/car1.png';
-  static const car2 = 'assets/car2.png';
-  static const car3 = 'assets/car3.png';
-  static const car4 = 'assets/car4.png';
-  static const car5 = 'assets/car5.png';
-  static const car6 = 'assets/car6.png';
-  static const car7 = 'assets/car7.png';
-  static const car8 = 'assets/car8.png';
-  static const car9 = 'assets/car9.png';
-  static const car10 = 'assets/car10.png';
-  static const car11 = 'assets/car11.png';
-  static const car12 = 'assets/car12.png';
-  static const car13 = 'assets/car13.png';
-
   static const bmwgif = 'assets/bmw.gif';
   static const car_gif = 'assets/car_gif.gif';
   static const wrongkeyword = 'assets/wrongkeyword.png';
+
+  static const selfDrivingCar = 'assets/self_driving_car.png';
+  static const carWithDriver = 'assets/car_with_driver.png';
 }
