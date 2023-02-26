@@ -10,4 +10,5 @@ mixin RouteName {
   static const wallet = 'wallet';
   static const profileDetail = 'profile-detail';
   static const carDetail = 'car-detail';
+  static const carSearch = 'car-search';
 }

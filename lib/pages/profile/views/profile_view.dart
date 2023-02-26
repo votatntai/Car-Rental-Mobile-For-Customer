@@ -22,7 +22,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: appAppBar(
         context,
-        titleText: "Profile",
+        titleText: "Hồ sơ",
         leading: false,
         // actionWidget: IconButton(
         //   onPressed: () {},
@@ -81,7 +81,7 @@ class _ProfileViewState extends State<ProfileView> {
                 const SizedBox(height: s16),
                 SettingItemWidget(
                   leading: Icon(Icons.person_outline, color: context.iconColor),
-                  title: "Edit Profile",
+                  title: "Sửa hồ sơ",
                   titleTextStyle: boldTextStyle(),
                   onTap: () {
                     context.goNamed(RouteName.profileDetail);
@@ -111,7 +111,7 @@ class _ProfileViewState extends State<ProfileView> {
                 SettingItemWidget(
                   leading: Icon(Icons.notifications_active_outlined,
                       color: context.iconColor),
-                  title: "Notification",
+                  title: "Thông báo",
                   titleTextStyle: boldTextStyle(),
                   onTap: () {
                     context.goNamed(RouteName.notification);
@@ -125,7 +125,7 @@ class _ProfileViewState extends State<ProfileView> {
                 SettingItemWidget(
                   leading:
                       Icon(Icons.payment_rounded, color: context.iconColor),
-                  title: "Payment",
+                  title: "Thanh toán",
                   titleTextStyle: boldTextStyle(),
                   onTap: () {
                     //TODO: navigate to payment screen
@@ -135,7 +135,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
                 SettingItemWidget(
                   leading: Icon(Icons.login, color: context.iconColor),
-                  title: "Logout",
+                  title: "Đăng xuất",
                   titleTextStyle: boldTextStyle(),
                   onTap: () {
                     showConfirmDialogCustom(
@@ -145,6 +145,9 @@ class _ProfileViewState extends State<ProfileView> {
                       },
                       dialogType: DialogType.CONFIRMATION,
                       primaryColor: context.primaryColor,
+                      title: "Bạn có muốn đăng xuất không?",
+                      negativeText: "Hủy",
+                      positiveText: "Đồng ý",
                     );
                   },
                   trailing: Icon(

@@ -16,9 +16,10 @@ class CarCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        child: SizedBox(
-          width: 230,
+      child: SizedBox(
+        height: 200,
+        width: 250,
+        child: Card(
           child: Column(
             children: [
               Stack(
@@ -41,7 +42,7 @@ class CarCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: const Text(
-                        'Chip-based ID cards',
+                        'CCCD gắn chip',
                         style: TextStyle(
                           fontSize: 8,
                           fontWeight: FontWeight.w500,
@@ -94,7 +95,7 @@ class CarCard extends StatelessWidget {
                               width: s02,
                             ),
                             Text(
-                              '100+ trips',
+                              '100+ chuyến',
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -116,11 +117,9 @@ class CarCard extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: const [
-                    CarCardTag(text: 'Self Driving'),
+                    CarCardTag(text: 'Xe tự lái'),
                     SizedBox(width: s04),
-                    CarCardTag(text: 'AT'),
-                    SizedBox(width: s04),
-                    CarCardTag(text: 'MT'),
+                    CarCardTag(text: 'Số tự động'),
                     Spacer(),
                     Text(
                       '900K',
@@ -132,7 +131,7 @@ class CarCard extends StatelessWidget {
                       textAlign: TextAlign.end,
                     ),
                     Text(
-                      '/day',
+                      '/ngày',
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
@@ -157,7 +156,7 @@ class CarCard extends StatelessWidget {
                     ),
                     SizedBox(width: 2),
                     Text(
-                      'District 10 Ho Chi Minh',
+                      'Quận 10, Hồ Chí Minh',
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w500,

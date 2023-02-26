@@ -3,6 +3,7 @@ import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/home/widgets/car_option.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,9 +19,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int topDealsIndex = 0;
   final List<String> topDeals = [
-    "All",
-    "Self Driving Car",
-    "Car With Driver",
+    "Tất cả",
+    "Xe tự lái",
+    "Xe có tài xế",
   ];
 
   @override
@@ -44,7 +45,7 @@ class _HomeViewState extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: s02),
-            Text("Good Morning 👋", style: secondaryTextStyle()),
+            Text("Chào buổi sáng 👋", style: secondaryTextStyle()),
             const SizedBox(height: s04),
             Text("Trung Hieu", style: boldTextStyle()),
           ],
@@ -82,24 +83,30 @@ class _HomeViewState extends State<HomeView> {
             children: [
               const SizedBox(height: s08),
               Row(
-                children: const [
+                children: [
                   CarOption(
                     carImage: Images.selfDrivingCar,
-                    text: "Self Driving Car",
+                    text: "Xe tự lái",
+                    onTap: () {
+                      context.goNamed(RouteName.carSearch, queryParams: {
+                        "rental-car-type": RentalCarType.selfDrivingCar.name,
+                      });
+                    },
                   ),
-                  SizedBox(width: s16),
+                  const SizedBox(width: s16),
                   CarOption(
                     carImage: Images.carWithDriver,
-                    text: "Car With Driver",
+                    text: "Xe có tài xế",
+                    onTap: () {
+                      context.goNamed(RouteName.carSearch, queryParams: {
+                        "rental-car-type": RentalCarType.carWithDriver.name,
+                      });
+                    },
                   ),
                 ],
               ),
               ListTile(
-                title: Text("Top Deals", style: boldTextStyle(size: 16)),
-                trailing: TextButton(
-                  child: Text('See All', style: primaryTextStyle()),
-                  onPressed: () {},
-                ),
+                title: Text("Xe nổi bật", style: boldTextStyle(size: 16)),
               ),
               SizedBox(
                 height: 30,
@@ -139,7 +146,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               const SizedBox(height: s08),
               SizedBox(
-                height: 230,
+                height: 250,
                 child: ListView.builder(
                   itemBuilder: (context, index) {
                     return CarCard(

@@ -22,7 +22,9 @@ class AuthenticationBloc
 
     // add subscription
     _authenticationStatusSubscription = authenticationRepository.status.listen(
-      (status) => add(AuthenticationEvent.statusChanged(status: status)),
+      (status) {
+        add(AuthenticationEvent.statusChanged(status: status));
+      },
     );
   }
 

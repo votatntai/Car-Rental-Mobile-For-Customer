@@ -18,11 +18,11 @@ String formatDate(
 String? passwordValidator(String? password) {
   if (password == null) return null;
   if (password.length < 6) {
-    return 'password must be more than 6 character';
+    return 'mật khẩu phải có ít nhất 6 ký tự';
   } else if (password.length > 16) {
-    return 'password must be  less than 16 character';
+    return 'mật khẩu không được quá 16 ký tự';
   } else if (password.isEmpty) {
-    return 'Please enter password';
+    return 'mật khẩu không được để trống';
   }
   return null;
 }

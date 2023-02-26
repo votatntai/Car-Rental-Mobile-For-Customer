@@ -21,35 +21,35 @@ class ScaffoldWithNavBar extends StatelessWidget {
         unselectedItemColor: CustomColors.silver,
         items: const [
           BottomNavigationBarItem(
-            label: 'Home',
+            label: 'Trang chủ',
             icon: Icon(
               Icons.home_outlined,
             ),
             activeIcon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            label: 'Activity',
+            label: 'Hoạt động',
             icon: Icon(
               Icons.receipt_long_outlined,
             ),
             activeIcon: Icon(Icons.receipt_long),
           ),
           BottomNavigationBarItem(
-            label: 'Wallet',
+            label: 'Ví',
             icon: Icon(
               Icons.wallet_outlined,
             ),
             activeIcon: Icon(Icons.wallet),
           ),
           BottomNavigationBarItem(
-            label: 'Notification',
+            label: 'Thông báo',
             icon: Icon(
               Icons.notifications_outlined,
             ),
             activeIcon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(
-            label: 'Profile',
+            label: 'Hồ sơ',
             icon: Icon(
               Icons.person_outline,
             ),
@@ -64,6 +64,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
+
     if (location.startsWith('/home')) {
       return 0;
     }

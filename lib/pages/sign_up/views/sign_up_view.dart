@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/constants/theme.dart';
+import 'package:car_rental_for_customer/commons/loading_dialog_service.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
@@ -104,7 +105,7 @@ class _SignUpViewState extends State<SignUpView> {
                   image: AssetImage(Images.car),
                 ),
                 const SizedBox(height: s16),
-                Text('Create Your Account', style: boldTextStyle(size: 24)),
+                Text('Tạo tài khoản của bạn', style: boldTextStyle(size: 24)),
                 const SizedBox(height: s40),
                 TextFormField(
                   autofocus: false,
@@ -124,7 +125,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.mail_rounded,
-                    hintText: "Username",
+                    hintText: "Tên đăng nhập",
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -143,7 +144,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.lock,
-                    hintText: "Password",
+                    hintText: "Mật khẩu",
                     suffixIcon: Theme(
                       data: ThemeData(
                         splashColor: Colors.transparent,
@@ -175,7 +176,7 @@ class _SignUpViewState extends State<SignUpView> {
                   obscureText: isIconTrue,
                   validator: (value) {
                     if (value != _passwordController?.text) {
-                      return "Password does not match";
+                      return "Mật khẩu không khớp";
                     }
                     return null;
                   },
@@ -186,7 +187,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.lock,
-                    hintText: "Confirm Password",
+                    hintText: "Nhập lại mật khẩu",
                     suffixIcon: Theme(
                       data: ThemeData(
                           splashColor: Colors.transparent,
@@ -215,7 +216,7 @@ class _SignUpViewState extends State<SignUpView> {
                   focusNode: focusName,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Please enter user name';
+                      return 'Nhập tên của bạn';
                     }
                     return null;
                   },
@@ -225,7 +226,7 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   decoration: inputDecoration(
                     context,
-                    hintText: "Full name",
+                    hintText: "Tên của bạn",
                     prefixIcon: Icons.person,
                   ),
                 ),
@@ -253,7 +254,7 @@ class _SignUpViewState extends State<SignUpView> {
                   focusNode: focusPhoneNumber,
                   validator: (value) {
                     if (int.tryParse(value!) == null) {
-                      return 'Only Number are allowed';
+                      return 'Xin nhập số điện thoại';
                     }
                     return null;
                   },
@@ -264,7 +265,7 @@ class _SignUpViewState extends State<SignUpView> {
                   keyboardType: TextInputType.number,
                   decoration: inputDecoration(
                     context,
-                    hintText: "Phone Number",
+                    hintText: "Số điện thoại",
                     prefixIcon: Icons.phone,
                   ),
                 ),
@@ -281,7 +282,7 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   decoration: inputDecoration(
                     context,
-                    hintText: "Address",
+                    hintText: "Địa chỉ",
                     prefixIcon: Icons.person,
                   ),
                 ),
@@ -298,7 +299,7 @@ class _SignUpViewState extends State<SignUpView> {
                     value: _gender,
                     elevation: 16,
                     style: primaryTextStyle(),
-                    hint: Text('Gender', style: primaryTextStyle()),
+                    hint: Text('Giới tính', style: primaryTextStyle()),
                     isExpanded: true,
                     underline: Container(
                       height: 0,
@@ -314,7 +315,7 @@ class _SignUpViewState extends State<SignUpView> {
                         .map<DropdownMenuItem<Gender>>((Gender value) {
                       return DropdownMenuItem<Gender>(
                         value: value,
-                        child: Text(value.name),
+                        child: Text(value.getDisplayName()),
                       );
                     }).toList(),
                   ),
@@ -381,6 +382,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   FutureOr<void> submit() async {
     if (_formKey.currentState!.validate()) {
+      LoadingDialogService.load();
       var result = await getIt.get<AuthenticationRepository>().signUp(
             username: _emailController?.text ?? "",
             password: _passwordController?.text ?? "",
@@ -390,9 +392,11 @@ class _SignUpViewState extends State<SignUpView> {
             address: _addressController?.text ?? "",
           );
 
+      LoadingDialogService.dispose();
+
       if (result is ApiError) {
         var message = (result as ApiError).error;
-        showMessageDialog('Alert', message ?? "");
+        showMessageDialog('Thông báo', message ?? "");
       }
     }
   }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/loading_dialog_service.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
@@ -80,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   const SizedBox(height: s16),
                   Text(
-                    'Login to Your Account',
+                    'Đăng nhập vào tai khoản',
                     style: boldTextStyle(
                       size: 24,
                     ),
@@ -102,7 +103,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: inputDecoration(
                       context,
                       prefixIcon: Icons.mail_rounded,
-                      hintText: "Username",
+                      hintText: "Tên đăng nhập",
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -120,7 +121,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: inputDecoration(
                       context,
                       prefixIcon: Icons.lock,
-                      hintText: "Password",
+                      hintText: "Mật khẩu",
                       suffixIcon: Theme(
                         data: ThemeData(
                             splashColor: Colors.transparent,
@@ -156,7 +157,8 @@ class _LoginViewState extends State<LoginView> {
                             const BorderRadius.all(Radius.circular(45)),
                         backgroundColor: black,
                       ),
-                      child: Text('Login', style: boldTextStyle(color: white)),
+                      child:
+                          Text('Đăng nhập', style: boldTextStyle(color: white)),
                     ),
                   ),
                   // const SizedBox(height: 10),
@@ -172,11 +174,11 @@ class _LoginViewState extends State<LoginView> {
                     },
                     child: Text.rich(
                       TextSpan(
-                        text: "Already have an account? ",
+                        text: "Không có tài khoản? ",
                         style: secondaryTextStyle(),
                         children: [
                           TextSpan(
-                            text: 'Sign up',
+                            text: 'Đăng ký',
                             style: boldTextStyle(size: 14),
                           ),
                         ],
@@ -194,14 +196,19 @@ class _LoginViewState extends State<LoginView> {
 
   FutureOr<void> submit() async {
     if (_formKey.currentState!.validate()) {
+      // show loading dialog
+      LoadingDialogService.load();
+
       var result = await getIt.get<AuthenticationRepository>().login(
             _emailController?.text ?? '',
             _passwordController?.text ?? '',
           );
 
+      LoadingDialogService.dispose();
+
       if (result is ApiError) {
         var message = (result as ApiError).error;
-        showMessageDialog('Alert', message ?? "");
+        showMessageDialog('Thông báo', message ?? "");
       }
     }
   }

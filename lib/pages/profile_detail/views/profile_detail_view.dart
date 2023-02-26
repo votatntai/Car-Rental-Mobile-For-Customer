@@ -59,7 +59,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
       child: Scaffold(
         appBar: appAppBar(
           context,
-          titleText: "Your Profile",
+          titleText: "Hồ sơ của bạn",
         ),
         body: SingleChildScrollView(
           child: BlocConsumer<ProfileDetailBloc, ProfileDetailState>(
@@ -163,7 +163,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               focusNode: _nameFocus,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter user name';
+                                  return 'Xin vui lòng nhập tên đầy đủ';
                                 }
                                 return null;
                               },
@@ -172,8 +172,10 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                 FocusScope.of(context)
                                     .requestFocus(_phoneNumberFocus);
                               },
-                              decoration: inputDecoration(context,
-                                  hintText: "Full name"),
+                              decoration: inputDecoration(
+                                context,
+                                hintText: "Tên đầy đủ",
+                              ),
                             ),
                             const SizedBox(height: s16),
                             TextFormField(
@@ -181,7 +183,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               focusNode: _phoneNumberFocus,
                               validator: (value) {
                                 if (int.tryParse(value!) == null) {
-                                  return 'Only Number are allowed';
+                                  return 'Xin vui lòng nhập số điện thoại';
                                 }
                                 return null;
                               },
@@ -193,7 +195,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               keyboardType: TextInputType.number,
                               decoration: inputDecoration(
                                 context,
-                                hintText: "Phone Number",
+                                hintText: "Số điện thoại",
                               ),
                             ),
                             const SizedBox(height: s16),
@@ -206,7 +208,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               keyboardType: TextInputType.number,
                               decoration: inputDecoration(
                                 context,
-                                hintText: "Address",
+                                hintText: "Địa chỉ",
                               ),
                             ),
                             const SizedBox(height: s16),
@@ -223,7 +225,10 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                 value: _gender,
                                 elevation: 16,
                                 style: primaryTextStyle(),
-                                hint: Text('Gender', style: primaryTextStyle()),
+                                hint: Text(
+                                  'Giới tính',
+                                  style: primaryTextStyle(),
+                                ),
                                 isExpanded: true,
                                 underline: Container(
                                   height: 0,
@@ -240,7 +245,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                         (Gender value) {
                                   return DropdownMenuItem<Gender>(
                                     value: value,
-                                    child: Text(value.name),
+                                    child: Text(value.getDisplayName()),
                                   );
                                 }).toList(),
                               ),
@@ -258,8 +263,10 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(45),
                                 ),
-                                child: Text('Save',
-                                    style: boldTextStyle(color: white)),
+                                child: Text(
+                                  'Lưu',
+                                  style: boldTextStyle(color: white),
+                                ),
                               ),
                             ),
                             const SizedBox(height: s08),

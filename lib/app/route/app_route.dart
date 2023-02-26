@@ -1,7 +1,9 @@
 import 'package:car_rental_for_customer/app/route/observers.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
 import 'package:car_rental_for_customer/pages/car_detail/car_detail.dart';
+import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
@@ -47,13 +49,26 @@ class AppRoute {
         builder: (context, state, child) => ScaffoldWithNavBar(child: child),
         routes: [
           GoRoute(
-            path: '/home',
-            name: RouteName.home,
-            pageBuilder: (context, state) => FadeTransitionPage(
-              key: _shellNavigationKey,
-              child: const HomePage(),
-            ),
-          ),
+              path: '/home',
+              name: RouteName.home,
+              pageBuilder: (context, state) => FadeTransitionPage(
+                    key: _shellNavigationKey,
+                    child: const HomePage(),
+                  ),
+              routes: [
+                GoRoute(
+                  path: 'car-search',
+                  name: RouteName.carSearch,
+                  builder: (context, state) => CarSearchPage(
+                    rentalCarType: RentalCarType.values.firstWhere(
+                      (element) =>
+                          element.toString() ==
+                          state.queryParams['rental-car-type'],
+                      orElse: () => RentalCarType.selfDrivingCar,
+                    ),
+                  ),
+                )
+              ]),
           GoRoute(
             path: '/profile',
             name: RouteName.profile,
