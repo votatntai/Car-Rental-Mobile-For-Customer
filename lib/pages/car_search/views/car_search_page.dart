@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarSearchPage extends StatelessWidget {
-  const CarSearchPage({Key? key, required this.rentalCarType})
-      : super(key: key);
+  const CarSearchPage({
+    Key? key,
+    required this.rentalCarType,
+    this.location,
+  }) : super(key: key);
 
   final RentalCarType rentalCarType;
+  final String? location;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +21,7 @@ class CarSearchPage extends StatelessWidget {
         ..add(
           CarSearchEvent.started(
             rentalCarType: rentalCarType,
+            location: location,
           ),
         ),
       child: const CarSearchView(),

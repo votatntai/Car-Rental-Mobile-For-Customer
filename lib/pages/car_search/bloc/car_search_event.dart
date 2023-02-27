@@ -4,5 +4,6 @@ part of 'car_search_bloc.dart';
 class CarSearchEvent with _$CarSearchEvent {
   const factory CarSearchEvent.started({
     required RentalCarType rentalCarType,
+    String? location,
   }) = _Started;
 }

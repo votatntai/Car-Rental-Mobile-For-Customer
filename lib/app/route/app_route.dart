@@ -49,26 +49,28 @@ class AppRoute {
         builder: (context, state, child) => ScaffoldWithNavBar(child: child),
         routes: [
           GoRoute(
-              path: '/home',
-              name: RouteName.home,
-              pageBuilder: (context, state) => FadeTransitionPage(
-                    key: _shellNavigationKey,
-                    child: const HomePage(),
+            path: '/home',
+            name: RouteName.home,
+            pageBuilder: (context, state) => FadeTransitionPage(
+              key: _shellNavigationKey,
+              child: const HomePage(),
+            ),
+            routes: [
+              GoRoute(
+                path: 'car-search',
+                name: RouteName.carSearch,
+                builder: (context, state) => CarSearchPage(
+                  rentalCarType: RentalCarType.values.firstWhere(
+                    (element) =>
+                        element.toString() ==
+                        state.queryParams['rental-car-type'],
+                    orElse: () => RentalCarType.selfDrivingCar,
                   ),
-              routes: [
-                GoRoute(
-                  path: 'car-search',
-                  name: RouteName.carSearch,
-                  builder: (context, state) => CarSearchPage(
-                    rentalCarType: RentalCarType.values.firstWhere(
-                      (element) =>
-                          element.toString() ==
-                          state.queryParams['rental-car-type'],
-                      orElse: () => RentalCarType.selfDrivingCar,
-                    ),
-                  ),
-                )
-              ]),
+                  location: state.queryParams['location'],
+                ),
+              ),
+            ],
+          ),
           GoRoute(
             path: '/profile',
             name: RouteName.profile,

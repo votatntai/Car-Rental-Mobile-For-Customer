@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_search/bloc/car_search_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/car_search_input.dart';
+import 'package:car_rental_for_customer/pages/location_search/location_search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -39,7 +40,12 @@ class CarSearchView extends StatelessWidget {
                         label: 'ĐỊA ĐIỂM',
                         leadingIcon: Icons.location_on_outlined,
                         text: 'Nhập địa điểm bạn muốn thuê xe',
-                        onTap: () {},
+                        onTap: () {
+                          showSearch(
+                            context: context,
+                            delegate: LocationSearchDelegate(),
+                          );
+                        },
                       ),
                       const SizedBox(
                         height: s08,
