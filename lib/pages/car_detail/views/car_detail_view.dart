@@ -20,14 +20,14 @@ class CarDetailView extends StatefulWidget {
 class _CarDetailViewState extends State<CarDetailView> {
   PageController pageController = PageController(viewportFraction: 1);
   List carname = [
-    "Mercedes",
-    "Tesla",
-    "BMW",
-    "Honda",
-    "Toyata",
-    "Volvo",
-    "Bugatti",
-    "More"
+    'Mercedes',
+    'Tesla',
+    'BMW',
+    'Honda',
+    'Toyata',
+    'Volvo',
+    'Bugatti',
+    'More'
   ];
 
   @override
@@ -41,7 +41,7 @@ class _CarDetailViewState extends State<CarDetailView> {
     return Scaffold(
       appBar: appAppBar(
         context,
-        titleText: "VINFAST FADIL 2020",
+        titleText: 'VINFAST FADIL 2020',
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -107,7 +107,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                     Row(
                       children: [
                         Text(
-                          "VINFAST FADIL 2020",
+                          'VINFAST FADIL 2020',
                           style: boldTextStyle(size: 18),
                         ),
                         const Spacer(),
@@ -198,26 +198,26 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Characteristic",
+                  label: 'Characteristic',
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       VerticalIcon(
                         icon: Icons.airline_seat_recline_extra_outlined,
-                        label: "4 seats",
+                        label: '4 seats',
                       ),
                       VerticalIcon(
                         icon: Icons.memory_outlined,
-                        label: "Automatic Transmission",
+                        label: 'Automatic Transmission',
                       ),
                       VerticalIcon(
                         icon: Icons.oil_barrel_outlined,
-                        label: "Gasoline",
+                        label: 'Gasoline',
                       ),
                       VerticalIcon(
                         icon: Icons.local_gas_station_outlined,
-                        label: "Consumption 5.3 liters/100km",
+                        label: 'Consumption 5.3 liters/100km',
                       ),
                     ],
                   ),
@@ -236,9 +236,9 @@ class _CarDetailViewState extends State<CarDetailView> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Description",
+                  label: 'Description',
                   child: Text(
-                    "Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...",
+                    'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -260,7 +260,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Utilities",
+                  label: 'Utilities',
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -269,19 +269,19 @@ class _CarDetailViewState extends State<CarDetailView> {
                           children: const [
                             HorizontalIcon(
                               icon: Icons.bluetooth_outlined,
-                              label: "Bluetooth",
+                              label: 'Bluetooth',
                             ),
                             HorizontalIcon(
                               icon: Icons.warehouse_outlined,
-                              label: "Speed warning",
+                              label: 'Speed warning',
                             ),
                             HorizontalIcon(
                               icon: Icons.usb_outlined,
-                              label: "Usb slot",
+                              label: 'Usb slot',
                             ),
                             HorizontalIcon(
                               icon: Icons.toll_outlined,
-                              label: "Non-stop toll road",
+                              label: 'Non-stop toll road',
                             ),
                           ],
                         ),
@@ -291,11 +291,11 @@ class _CarDetailViewState extends State<CarDetailView> {
                           children: const [
                             HorizontalIcon(
                               icon: Icons.camera_alt_outlined,
-                              label: "Camera",
+                              label: 'Camera',
                             ),
                             HorizontalIcon(
                               icon: Icons.gps_fixed_outlined,
-                              label: "GPS",
+                              label: 'GPS',
                             ),
                           ],
                         ),
@@ -317,7 +317,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Car rental documents",
+                  label: 'Car rental documents',
                   child: Container(),
                 ),
               ),
@@ -334,9 +334,9 @@ class _CarDetailViewState extends State<CarDetailView> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Collateral",
+                  label: 'Collateral',
                   child: Text(
-                    "15 triệu (tiền mặt/chuyển khoản cho chủ xe khi nhận xe) hoặc Xe máy (kèm cà vẹt gốc) giá trị 15 triệu",
+                    '15 triệu (tiền mặt/chuyển khoản cho chủ xe khi nhận xe) hoặc Xe máy (kèm cà vẹt gốc) giá trị 15 triệu',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -358,9 +358,9 @@ class _CarDetailViewState extends State<CarDetailView> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Rules",
+                  label: 'Rules',
                   child: Text(
-                    "Quy định khác:\n◦ Sử dụng xe đúng mục đích.\n◦ Không sử dụng xe thuê vào mục đích phi pháp, trái pháp luật.\n◦ Không sử dụng xe thuê để cầm cố, thế chấp.\n◦ Không hút thuốc, nhả kẹo cao su, xả rác trong xe.\n◦ Không chở hàng quốc cấm dễ cháy nổ.\n◦ Không chở hoa quả, thực phẩm nặng mùi trong xe.\n◦ Khi trả xe, nếu xe bẩn hoặc có mùi trong xe, khách hàng vui lòng vệ sinh xe sạch sẽ hoặc gửi phụ thu phí vệ sinh xe.\nTrân trọng cảm ơn, chúc quý khách hàng có những chuyến đi tuyệt vời !",
+                    'Quy định khác:\n◦ Sử dụng xe đúng mục đích.\n◦ Không sử dụng xe thuê vào mục đích phi pháp, trái pháp luật.\n◦ Không sử dụng xe thuê để cầm cố, thế chấp.\n◦ Không hút thuốc, nhả kẹo cao su, xả rác trong xe.\n◦ Không chở hàng quốc cấm dễ cháy nổ.\n◦ Không chở hoa quả, thực phẩm nặng mùi trong xe.\n◦ Khi trả xe, nếu xe bẩn hoặc có mùi trong xe, khách hàng vui lòng vệ sinh xe sạch sẽ hoặc gửi phụ thu phí vệ sinh xe.\nTrân trọng cảm ơn, chúc quý khách hàng có những chuyến đi tuyệt vời !',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -382,7 +382,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Car location",
+                  label: 'Car location',
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
@@ -416,7 +416,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: "Car owner",
+                  label: 'Car owner',
                   child: Container(),
                 ),
               ),

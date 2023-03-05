@@ -4,6 +4,6 @@ part of 'car_search_bloc.dart';
 class CarSearchState with _$CarSearchState {
   const factory CarSearchState({
     RentalCarType? carRentalType,
-    String? location,
+    String? address,
   }) = _CarSearchState;
 }

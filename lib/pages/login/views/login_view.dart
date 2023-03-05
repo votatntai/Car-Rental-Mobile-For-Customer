@@ -195,6 +195,8 @@ class _LoginViewState extends State<LoginView> {
   }
 
   FutureOr<void> submit() async {
+    f1.unfocus();
+    f2.unfocus();
     if (_formKey.currentState!.validate()) {
       // show loading dialog
       LoadingDialogService.load();
@@ -207,8 +209,9 @@ class _LoginViewState extends State<LoginView> {
       LoadingDialogService.dispose();
 
       if (result is ApiError) {
-        var message = (result as ApiError).error;
-        showMessageDialog(message: message);
+        // var message = (result as ApiError).error;
+        // showMessageDialog(message: message);
+        showMessageDialog(message: 'Tên đăng nhập hoặc mật khẩu không đúng');
       }
     }
   }

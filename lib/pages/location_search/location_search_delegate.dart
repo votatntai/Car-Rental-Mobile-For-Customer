@@ -1,15 +1,24 @@
-import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/pages/location_search/bloc/location_search_bloc.dart';
+import 'package:car_rental_for_customer/pages/location_search/position_result.dart';
 import 'package:car_rental_for_customer/pages/location_search/search_result.dart';
+import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class LocationSearchDelegate extends SearchDelegate {
+class LocationSearchDelegate extends SearchDelegate<PositionResult> {
   LocationSearchDelegate() {
-    bloc = LocationSearchBloc();
+    bloc = LocationSearchBloc(
+      submit: onSubmit,
+      userRepository: getIt.get<UserRepository>(),
+    );
   }
   late final LocationSearchBloc bloc;
+
+  void onSubmit(BuildContext context, PositionResult positionResult) {
+    close(context, positionResult);
+  }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -24,7 +33,7 @@ class LocationSearchDelegate extends SearchDelegate {
   }
 
   @override
-  String? get searchFieldLabel => "Nhập địa chỉ";
+  String? get searchFieldLabel => 'Nhập địa chỉ';
 
   @override
   TextStyle? get searchFieldStyle => const TextStyle(fontSize: 16);
@@ -34,13 +43,14 @@ class LocationSearchDelegate extends SearchDelegate {
     return IconButton(
       icon: Icon(Icons.arrow_back, color: context.iconColor),
       onPressed: () {
-        close(context, null);
+        close(context, PositionResult());
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+    bloc.add(LocationSearchEvent.contextChanged(context));
     return BlocProvider.value(
       value: bloc,
       child: const SearchResult(),
@@ -49,37 +59,8 @@ class LocationSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    bloc.add(LocationSearchEvent.contextChanged(context));
     bloc.add(LocationSearchEvent.locationChanged(query));
-    if (query.isEmpty) {
-      return Column(
-        children: [
-          ListTile(
-            title: const Text(
-              "Vị trí hiện tại",
-              style: TextStyle(fontSize: 14),
-            ),
-            leading: const Icon(Icons.location_on_outlined),
-            minLeadingWidth: s12,
-            onTap: () {
-              //TODO: get current location
-            },
-          ),
-          const Divider(),
-          ListTile(
-            title: const Text(
-              "Địa chỉ của tôi",
-              style: TextStyle(fontSize: 14),
-            ),
-            leading: const Icon(Icons.bookmark_outline),
-            minLeadingWidth: s12,
-            onTap: () {
-              //TODO: get address of user
-            },
-          ),
-        ],
-      );
-    }
-
     return BlocProvider.value(
       value: bloc,
       child: const SearchResult(),

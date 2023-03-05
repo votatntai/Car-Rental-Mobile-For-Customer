@@ -22,7 +22,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     _Started event,
     Emitter<ProfileState> emit,
   ) async {
-    var user = await userRepository.getProfile();
+    final user = await userRepository.getProfile();
     emit(ProfileState(user: user));
   }
 }

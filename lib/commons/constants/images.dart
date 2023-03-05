@@ -18,14 +18,14 @@ mixin Images {
   static const honda = 'assets/honda.png';
   static const mersedis = 'assets/mersades.png';
   static const more = 'assets/more.png';
-  static const tesla = "assets/tesla.png";
+  static const tesla = 'assets/tesla.png';
   static const toyata = 'assets/Toyota.png';
   static const volvo = 'assets/volvo.png';
   static const bmw = 'assets/bmw.png';
   static const buggatti = 'assets/buggatti.png';
 
   static const bmwgif = 'assets/bmw.gif';
-  static const car_gif = 'assets/car_gif.gif';
+  static const carGif = 'assets/car_gif.gif';
   static const wrongkeyword = 'assets/wrongkeyword.png';
 
   static const selfDrivingCar = 'assets/self_driving_car.png';

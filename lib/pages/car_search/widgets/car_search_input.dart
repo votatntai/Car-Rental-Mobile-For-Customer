@@ -59,6 +59,8 @@ class CarSearchInput extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 13,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const Divider(
                       color: CustomColors.silver,

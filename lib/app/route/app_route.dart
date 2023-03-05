@@ -59,15 +59,15 @@ class AppRoute {
               GoRoute(
                 path: 'car-search',
                 name: RouteName.carSearch,
-                builder: (context, state) => CarSearchPage(
-                  rentalCarType: RentalCarType.values.firstWhere(
-                    (element) =>
-                        element.toString() ==
-                        state.queryParams['rental-car-type'],
-                    orElse: () => RentalCarType.selfDrivingCar,
-                  ),
-                  location: state.queryParams['location'],
-                ),
+                builder: (context, state) {
+                  return CarSearchPage(
+                    rentalCarType: RentalCarType.values.firstWhere(
+                      (element) =>
+                          element.name == state.queryParams['rental-car-type'],
+                      orElse: () => RentalCarType.selfDrivingCar,
+                    ),
+                  );
+                },
               ),
             ],
           ),

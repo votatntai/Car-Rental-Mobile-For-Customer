@@ -6,6 +6,7 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_search/bloc/car_search_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/car_search_input.dart';
 import 'package:car_rental_for_customer/pages/location_search/location_search_delegate.dart';
+import 'package:car_rental_for_customer/pages/location_search/position_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -39,12 +40,30 @@ class CarSearchView extends StatelessWidget {
                       CarSearchInput(
                         label: 'ĐỊA ĐIỂM',
                         leadingIcon: Icons.location_on_outlined,
-                        text: 'Nhập địa điểm bạn muốn thuê xe',
-                        onTap: () {
-                          showSearch(
+                        text: state.address ?? 'Nhập địa điểm bạn muốn thuê xe',
+                        onTap: () async {
+                          final bloc = context.read<CarSearchBloc>();
+                          final positionResult =
+                              await showSearch<PositionResult>(
                             context: context,
                             delegate: LocationSearchDelegate(),
                           );
+
+                          if (positionResult?.position != null) {
+                            bloc.add(
+                              CarSearchEvent.positionChanged(
+                                position: positionResult!.position,
+                              ),
+                            );
+                          }
+
+                          if (positionResult?.address != null) {
+                            bloc.add(
+                              CarSearchEvent.addressChanged(
+                                address: positionResult!.address,
+                              ),
+                            );
+                          }
                         },
                       ),
                       const SizedBox(
@@ -64,7 +83,7 @@ class CarSearchView extends StatelessWidget {
                           Expanded(
                             child: ElevatedButton(
                               onPressed: () {},
-                              child: const Text("Tìm xe ngay"),
+                              child: const Text('Tìm xe ngay'),
                             ),
                           ),
                         ],

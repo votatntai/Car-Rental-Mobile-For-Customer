@@ -11,7 +11,7 @@ InputDecoration inputDecoration(
   String? hintText,
 }) {
   return InputDecoration(
-    counterText: "",
+    counterText: '',
     contentPadding:
         const EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
     labelText: labelText,
