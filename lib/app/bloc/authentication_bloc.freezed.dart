@@ -224,6 +224,7 @@ abstract class _StatusChangedEvent implements AuthenticationEvent {
 /// @nodoc
 mixin _$AuthenticationState {
   AuthenticationStatus get status => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthenticationStateCopyWith<AuthenticationState> get copyWith =>
@@ -236,7 +237,9 @@ abstract class $AuthenticationStateCopyWith<$Res> {
           AuthenticationState value, $Res Function(AuthenticationState) then) =
       _$AuthenticationStateCopyWithImpl<$Res, AuthenticationState>;
   @useResult
-  $Res call({AuthenticationStatus status});
+  $Res call({AuthenticationStatus status, User? user});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -253,13 +256,30 @@ class _$AuthenticationStateCopyWithImpl<$Res, $Val extends AuthenticationState>
   @override
   $Res call({
     Object? status = null,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -271,7 +291,10 @@ abstract class _$$_AuthenticationStateCopyWith<$Res>
       __$$_AuthenticationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthenticationStatus status});
+  $Res call({AuthenticationStatus status, User? user});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -286,12 +309,17 @@ class __$$_AuthenticationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? user = freezed,
   }) {
     return _then(_$_AuthenticationState(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 }
@@ -299,14 +327,16 @@ class __$$_AuthenticationStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthenticationState implements _AuthenticationState {
-  const _$_AuthenticationState({required this.status});
+  const _$_AuthenticationState({required this.status, this.user});
 
   @override
   final AuthenticationStatus status;
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'AuthenticationState(status: $status)';
+    return 'AuthenticationState(status: $status, user: $user)';
   }
 
   @override
@@ -314,11 +344,12 @@ class _$_AuthenticationState implements _AuthenticationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthenticationState &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, status, user);
 
   @JsonKey(ignore: true)
   @override
@@ -330,10 +361,13 @@ class _$_AuthenticationState implements _AuthenticationState {
 
 abstract class _AuthenticationState implements AuthenticationState {
   const factory _AuthenticationState(
-      {required final AuthenticationStatus status}) = _$_AuthenticationState;
+      {required final AuthenticationStatus status,
+      final User? user}) = _$_AuthenticationState;
 
   @override
   AuthenticationStatus get status;
+  @override
+  User? get user;
   @override
   @JsonKey(ignore: true)
   _$$_AuthenticationStateCopyWith<_$_AuthenticationState> get copyWith =>
