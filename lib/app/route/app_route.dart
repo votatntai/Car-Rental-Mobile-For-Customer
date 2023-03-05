@@ -74,10 +74,12 @@ class AppRoute {
           GoRoute(
             path: '/profile',
             name: RouteName.profile,
-            pageBuilder: (context, state) => FadeTransitionPage(
-              key: _shellNavigationKey,
-              child: const ProfilePage(),
-            ),
+            pageBuilder: (context, state) {
+              return FadeTransitionPage(
+                key: _shellNavigationKey,
+                child: ProfilePage(),
+              );
+            },
             routes: [
               GoRoute(
                 path: 'profile-detail',

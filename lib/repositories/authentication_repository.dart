@@ -37,12 +37,13 @@ class AuthenticationRepository {
   Future<ApiResponse<bool>> login(String username, String password) async {
     try {
       final result = await dio.post<Map<String, dynamic>>(
-        '/api/auth/customers',
+        'auth/customers',
         data: {
           'username': username.toLowerCase().trim(),
           'password': password.toLowerCase().trim(),
         },
       );
+
       if (result.data != null && result.statusCode == StatusCodes.status200OK) {
         final auth = AuthenticationResult.fromJson(result.data!);
 
@@ -75,7 +76,7 @@ class AuthenticationRepository {
   }) async {
     try {
       final result = await dio.post<Map<String, dynamic>>(
-        '/api/customers',
+        'customers',
         data: {
           'username': username.toLowerCase().trim(),
           'password': password.toLowerCase().trim(),

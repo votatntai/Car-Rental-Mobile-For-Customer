@@ -3,10 +3,10 @@ import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:flutter/material.dart';
 
-Future<dynamic> showMessageDialog(
-  String title,
-  String message,
-) async {
+Future<dynamic> showMessageDialog({
+  String? title,
+  String? message,
+}) async {
   final context = getIt.get<AppRoute>().rootNavigatorKey.currentContext;
   if (context == null) return null;
   return showDialog<String>(
@@ -14,7 +14,7 @@ Future<dynamic> showMessageDialog(
     builder: (context) {
       return AlertDialog(
         title: Text(
-          title,
+          title ?? 'Thông báo',
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
@@ -22,7 +22,7 @@ Future<dynamic> showMessageDialog(
           ),
         ),
         content: Text(
-          message,
+          message ?? '',
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,

@@ -125,7 +125,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.mail_rounded,
-                    hintText: "Tên đăng nhập",
+                    hintText: 'Tên đăng nhập',
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -144,7 +144,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.lock,
-                    hintText: "Mật khẩu",
+                    hintText: 'Mật khẩu',
                     suffixIcon: Theme(
                       data: ThemeData(
                         splashColor: Colors.transparent,
@@ -176,7 +176,7 @@ class _SignUpViewState extends State<SignUpView> {
                   obscureText: isIconTrue,
                   validator: (value) {
                     if (value != _passwordController?.text) {
-                      return "Mật khẩu không khớp";
+                      return 'Mật khẩu không khớp';
                     }
                     return null;
                   },
@@ -187,7 +187,7 @@ class _SignUpViewState extends State<SignUpView> {
                   decoration: inputDecoration(
                     context,
                     prefixIcon: Icons.lock,
-                    hintText: "Nhập lại mật khẩu",
+                    hintText: 'Nhập lại mật khẩu',
                     suffixIcon: Theme(
                       data: ThemeData(
                           splashColor: Colors.transparent,
@@ -226,7 +226,7 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   decoration: inputDecoration(
                     context,
-                    hintText: "Tên của bạn",
+                    hintText: 'Tên của bạn',
                     prefixIcon: Icons.person,
                   ),
                 ),
@@ -265,7 +265,7 @@ class _SignUpViewState extends State<SignUpView> {
                   keyboardType: TextInputType.number,
                   decoration: inputDecoration(
                     context,
-                    hintText: "Số điện thoại",
+                    hintText: 'Số điện thoại',
                     prefixIcon: Icons.phone,
                   ),
                 ),
@@ -282,7 +282,7 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   decoration: inputDecoration(
                     context,
-                    hintText: "Địa chỉ",
+                    hintText: 'Địa chỉ',
                     prefixIcon: Icons.person,
                   ),
                 ),
@@ -332,7 +332,7 @@ class _SignUpViewState extends State<SignUpView> {
                           const BorderRadius.all(Radius.circular(s40)),
                       backgroundColor: black,
                     ),
-                    child: Text('Sign Up', style: boldTextStyle(color: white)),
+                    child: Text('Đăng ký', style: boldTextStyle(color: white)),
                   ),
                 ),
                 const SizedBox(height: s16),
@@ -342,10 +342,10 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   child: Text.rich(
                     TextSpan(
-                      text: "Already have account? ",
+                      text: 'Đã có tài khoản? ',
                       style: secondaryTextStyle(),
                       children: [
-                        TextSpan(text: 'Login', style: boldTextStyle()),
+                        TextSpan(text: 'Đăng nhập', style: boldTextStyle()),
                       ],
                     ),
                   ),
@@ -384,19 +384,19 @@ class _SignUpViewState extends State<SignUpView> {
     if (_formKey.currentState!.validate()) {
       LoadingDialogService.load();
       var result = await getIt.get<AuthenticationRepository>().signUp(
-            username: _emailController?.text ?? "",
-            password: _passwordController?.text ?? "",
-            name: _nameController?.text ?? "",
-            phone: _phoneNumberController?.text ?? "",
+            username: _emailController?.text ?? '',
+            password: _passwordController?.text ?? '',
+            name: _nameController?.text ?? '',
+            phone: _phoneNumberController?.text ?? '',
             gender: _gender,
-            address: _addressController?.text ?? "",
+            address: _addressController?.text ?? '',
           );
 
       LoadingDialogService.dispose();
 
       if (result is ApiError) {
         var message = (result as ApiError).error;
-        showMessageDialog('Thông báo', message ?? "");
+        showMessageDialog(message: message);
       }
     }
   }

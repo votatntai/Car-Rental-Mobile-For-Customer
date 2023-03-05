@@ -103,7 +103,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: inputDecoration(
                       context,
                       prefixIcon: Icons.mail_rounded,
-                      hintText: "Tên đăng nhập",
+                      hintText: 'Tên đăng nhập',
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -121,7 +121,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: inputDecoration(
                       context,
                       prefixIcon: Icons.lock,
-                      hintText: "Mật khẩu",
+                      hintText: 'Mật khẩu',
                       suffixIcon: Theme(
                         data: ThemeData(
                             splashColor: Colors.transparent,
@@ -174,7 +174,7 @@ class _LoginViewState extends State<LoginView> {
                     },
                     child: Text.rich(
                       TextSpan(
-                        text: "Không có tài khoản? ",
+                        text: 'Không có tài khoản? ',
                         style: secondaryTextStyle(),
                         children: [
                           TextSpan(
@@ -208,7 +208,7 @@ class _LoginViewState extends State<LoginView> {
 
       if (result is ApiError) {
         var message = (result as ApiError).error;
-        showMessageDialog('Thông báo', message ?? "");
+        showMessageDialog(message: message);
       }
     }
   }

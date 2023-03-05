@@ -20,12 +20,10 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
-  final TextEditingController _genderController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
 
   final FocusNode _nameFocus = FocusNode();
   final FocusNode _phoneNumberFocus = FocusNode();
-  final FocusNode _genderFocus = FocusNode();
   final FocusNode _addressFocus = FocusNode();
 
   Gender _gender = Gender.male;
@@ -39,14 +37,18 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
   void dispose() {
     _nameController.dispose();
     _phoneNumberController.dispose();
-    _genderController.dispose();
     _addressController.dispose();
 
     _nameFocus.dispose();
     _phoneNumberFocus.dispose();
-    _genderFocus.dispose();
     _addressFocus.dispose();
     super.dispose();
+  }
+
+  void unfocus() {
+    _nameFocus.unfocus();
+    _phoneNumberFocus.unfocus();
+    _addressFocus.unfocus();
   }
 
   @override
@@ -59,7 +61,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
       child: Scaffold(
         appBar: appAppBar(
           context,
-          titleText: "Hồ sơ của bạn",
+          titleText: 'Hồ sơ của bạn',
         ),
         body: SingleChildScrollView(
           child: BlocConsumer<ProfileDetailBloc, ProfileDetailState>(
@@ -113,7 +115,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                   //   width: 100,
                                   // ).cornerRadiusWithClipRRect(60),
                                   child: Image.asset(
-                                    "assets/userImage.jpg",
+                                    'assets/userImage.jpg',
                                     fit: BoxFit.cover,
                                     height: 100,
                                     width: 100,
@@ -174,7 +176,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               },
                               decoration: inputDecoration(
                                 context,
-                                hintText: "Tên đầy đủ",
+                                hintText: 'Tên đầy đủ',
                               ),
                             ),
                             const SizedBox(height: s16),
@@ -195,7 +197,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               keyboardType: TextInputType.number,
                               decoration: inputDecoration(
                                 context,
-                                hintText: "Số điện thoại",
+                                hintText: 'Số ring thoại',
                               ),
                             ),
                             const SizedBox(height: s16),
@@ -205,10 +207,10 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               onFieldSubmitted: (v) {
                                 _addressFocus.unfocus();
                               },
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.text,
                               decoration: inputDecoration(
                                 context,
-                                hintText: "Địa chỉ",
+                                hintText: 'Địa chỉ',
                               ),
                             ),
                             const SizedBox(height: s16),
@@ -253,7 +255,20 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                             const SizedBox(height: s32),
                             GestureDetector(
                               onTap: () {
-                                //TODO: save profile
+                                unfocus();
+                                var name = _nameController.text;
+                                var phone = _phoneNumberController.text;
+                                var address = _addressController.text;
+                                var gender = _gender;
+
+                                context.read<ProfileDetailBloc>().add(
+                                      ProfileDetailEvent.saved(
+                                        name: name,
+                                        phone: phone,
+                                        address: address,
+                                        gender: gender,
+                                      ),
+                                    );
                               },
                               child: Container(
                                 alignment: Alignment.center,
