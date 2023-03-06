@@ -32,6 +32,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
       //* configure
       await configDI();
+      configureTimeago();
 
       return runApp(await builder());
     },

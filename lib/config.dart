@@ -6,6 +6,7 @@ import 'package:car_rental_for_customer/repositories/repositories.dart';
 import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 Future<void> configDI() async {
   final appRoute = AppRoute();
@@ -36,4 +37,8 @@ Future<void> configDI() async {
     ..registerSingleton<DioHelper>(helper)
     ..registerSingleton<AuthenticationRepository>(authenticationRepository)
     ..registerSingleton<UserRepository>(UserRepository(dio: dio));
+}
+
+void configureTimeago() {
+  timeago.setLocaleMessages('vi', timeago.ViMessages());
 }
