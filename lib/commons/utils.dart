@@ -26,3 +26,13 @@ String? passwordValidator(String? password) {
   }
   return null;
 }
+
+String dateRangeToString(DateTime startDate, DateTime endDate) {
+  final startTime = DateFormat.jm().format(startDate);
+  final endTime = DateFormat.jm().format(endDate);
+
+  final startDateString = DateFormat('dd/MM').format(startDate);
+  final endDateString = DateFormat('dd/MM').format(endDate);
+
+  return '$startTime, $startDateString - $endTime, $endDateString';
+}

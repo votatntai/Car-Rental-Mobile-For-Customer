@@ -4,6 +4,7 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
 import 'package:car_rental_for_customer/pages/car_detail/car_detail.dart';
 import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/car_search_result.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
@@ -14,6 +15,7 @@ import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
 import 'package:car_rental_for_customer/pages/wallet/wallet.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoute {
@@ -57,18 +59,50 @@ class AppRoute {
             ),
             routes: [
               GoRoute(
-                path: 'car-search',
-                name: RouteName.carSearch,
-                builder: (context, state) {
-                  return CarSearchPage(
-                    rentalCarType: RentalCarType.values.firstWhere(
-                      (element) =>
-                          element.name == state.queryParams['rental-car-type'],
-                      orElse: () => RentalCarType.selfDrivingCar,
-                    ),
-                  );
-                },
-              ),
+                  path: 'car-search',
+                  name: RouteName.carSearch,
+                  builder: (context, state) {
+                    return CarSearchPage(
+                      rentalCarType: RentalCarType.values.firstWhere(
+                        (element) =>
+                            element.name ==
+                            state.queryParams['rental-car-type'],
+                        orElse: () => RentalCarType.selfDrivingCar,
+                      ),
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'car-search-result',
+                      name: RouteName.carSearchResult,
+                      builder: (context, state) {
+                        final rentalCarType = RentalCarType.values.firstWhere(
+                          (element) =>
+                              element.name ==
+                              state.queryParams['rental-car-type'],
+                          orElse: () => RentalCarType.selfDrivingCar,
+                        );
+                        final startDate = DateTime.tryParse(
+                          state.queryParams['start-date'] ?? '',
+                        );
+                        final endDate = DateTime.tryParse(
+                          state.queryParams['end-date'] ?? '',
+                        );
+
+                        final position = state.extra as Position?;
+
+                        final address = state.queryParams['address'] ?? '';
+
+                        return CarSearchResultPage(
+                          address: address,
+                          rentalCarType: rentalCarType,
+                          endDate: endDate!,
+                          startDate: startDate!,
+                          position: position,
+                        );
+                      },
+                    )
+                  ]),
             ],
           ),
           GoRoute(

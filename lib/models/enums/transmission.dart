@@ -1,0 +1,4 @@
+enum Transmission {
+  automatic,
+  manual,
+}

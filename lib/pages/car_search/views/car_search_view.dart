@@ -1,5 +1,6 @@
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
@@ -18,17 +19,17 @@ class CarSearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CarSearchBloc, CarSearchState>(
       builder: (context, state) {
-        if (state.carRentalType == null) {
+        if (state.rentalCarType == null) {
           return const Scaffold(
             body: Center(
-              child: Text('Tìm kiếm xe'),
+              child: CircularProgressIndicator(),
             ),
           );
         }
         return Scaffold(
           appBar: appAppBar(
             context,
-            titleText: state.carRentalType!.getDisplayName(),
+            titleText: state.rentalCarType!.getDisplayName(),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -72,7 +73,10 @@ class CarSearchView extends StatelessWidget {
                       CarSearchInput(
                         label: 'THỜI GIAN',
                         leadingIcon: Icons.access_time,
-                        text: '21h00 ngày 20/10/2021 - 21h00 ngày 21/10/2021',
+                        text: dateRangeToString(
+                          state.startDate!,
+                          state.endDate!,
+                        ),
                         onTap: () {},
                       ),
                       const SizedBox(
@@ -82,7 +86,23 @@ class CarSearchView extends StatelessWidget {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: state.address == null
+                                  ? null
+                                  : () {
+                                      context.goNamed(
+                                        RouteName.carSearchResult,
+                                        extra: state.position,
+                                        queryParams: {
+                                          'rental-car-type':
+                                              state.rentalCarType?.name ?? '',
+                                          'address': state.address ?? '',
+                                          'start-date':
+                                              state.startDate?.toString() ?? '',
+                                          'end-date':
+                                              state.endDate?.toString() ?? '',
+                                        },
+                                      );
+                                    },
                               child: const Text('Tìm xe ngay'),
                             ),
                           ),

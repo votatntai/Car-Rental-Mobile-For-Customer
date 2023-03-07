@@ -121,7 +121,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                           textAlign: TextAlign.end,
                         ),
                         const Text(
-                          '/day',
+                          '/ngày',
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
@@ -160,7 +160,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                           width: s02,
                         ),
                         Text(
-                          '100+ trips',
+                          '100+ chuyến',
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w500,
@@ -175,11 +175,9 @@ class _CarDetailViewState extends State<CarDetailView> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: const [
-                        CarCardTag(text: 'Self Driving'),
+                        CarCardTag(text: 'Xe tự lái'),
                         SizedBox(width: s04),
-                        CarCardTag(text: 'AT'),
-                        SizedBox(width: s04),
-                        CarCardTag(text: 'MT'),
+                        CarCardTag(text: 'Số tự động'),
                       ],
                     ),
                   ],
@@ -198,26 +196,26 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Characteristic',
+                  label: 'Đặc điểm',
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       VerticalIcon(
                         icon: Icons.airline_seat_recline_extra_outlined,
-                        label: '4 seats',
+                        label: '4 chỗ',
                       ),
                       VerticalIcon(
                         icon: Icons.memory_outlined,
-                        label: 'Automatic Transmission',
+                        label: 'Số tự động',
                       ),
                       VerticalIcon(
                         icon: Icons.oil_barrel_outlined,
-                        label: 'Gasoline',
+                        label: 'Xăng',
                       ),
                       VerticalIcon(
                         icon: Icons.local_gas_station_outlined,
-                        label: 'Consumption 5.3 liters/100km',
+                        label: 'Tiêu thụ 7L/100km',
                       ),
                     ],
                   ),
@@ -236,7 +234,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Description',
+                  label: 'Mô tả',
                   child: Text(
                     'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',
                     style: TextStyle(
@@ -260,7 +258,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Utilities',
+                  label: 'Tiện ích',
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -273,15 +271,15 @@ class _CarDetailViewState extends State<CarDetailView> {
                             ),
                             HorizontalIcon(
                               icon: Icons.warehouse_outlined,
-                              label: 'Speed warning',
+                              label: 'Cảnh báo tốc độ',
                             ),
                             HorizontalIcon(
                               icon: Icons.usb_outlined,
-                              label: 'Usb slot',
+                              label: 'Khe cắm USB',
                             ),
                             HorizontalIcon(
                               icon: Icons.toll_outlined,
-                              label: 'Non-stop toll road',
+                              label: 'Phu phí không dừng',
                             ),
                           ],
                         ),
@@ -291,7 +289,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                           children: const [
                             HorizontalIcon(
                               icon: Icons.camera_alt_outlined,
-                              label: 'Camera',
+                              label: 'Camera hành trình',
                             ),
                             HorizontalIcon(
                               icon: Icons.gps_fixed_outlined,
@@ -317,7 +315,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Car rental documents',
+                  label: 'Giấy tờ thuê xe',
                   child: Container(),
                 ),
               ),
@@ -334,7 +332,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Collateral',
+                  label: 'Tài sản thế chấp',
                   child: Text(
                     '15 triệu (tiền mặt/chuyển khoản cho chủ xe khi nhận xe) hoặc Xe máy (kèm cà vẹt gốc) giá trị 15 triệu',
                     style: TextStyle(
@@ -358,7 +356,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Rules',
+                  label: 'Điều khoản',
                   child: Text(
                     'Quy định khác:\n◦ Sử dụng xe đúng mục đích.\n◦ Không sử dụng xe thuê vào mục đích phi pháp, trái pháp luật.\n◦ Không sử dụng xe thuê để cầm cố, thế chấp.\n◦ Không hút thuốc, nhả kẹo cao su, xả rác trong xe.\n◦ Không chở hàng quốc cấm dễ cháy nổ.\n◦ Không chở hoa quả, thực phẩm nặng mùi trong xe.\n◦ Khi trả xe, nếu xe bẩn hoặc có mùi trong xe, khách hàng vui lòng vệ sinh xe sạch sẽ hoặc gửi phụ thu phí vệ sinh xe.\nTrân trọng cảm ơn, chúc quý khách hàng có những chuyến đi tuyệt vời !',
                     style: TextStyle(
@@ -382,7 +380,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Car location',
+                  label: 'Vị trí xe',
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
@@ -392,7 +390,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                       ),
                       SizedBox(width: 2),
                       Text(
-                        'District 10 Ho Chi Minh',
+                        'Quận 10, Hồ Chí Minh',
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
@@ -416,7 +414,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: s16),
                 child: ContainerWithLabel(
-                  label: 'Car owner',
+                  label: 'Chủ xe',
                   child: Container(),
                 ),
               ),

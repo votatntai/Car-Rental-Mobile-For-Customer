@@ -21,7 +21,13 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     _Started event,
     Emitter<CarSearchState> emit,
   ) {
-    emit(state.copyWith(carRentalType: event.rentalCarType));
+    emit(
+      state.copyWith(
+        rentalCarType: event.rentalCarType,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 1)),
+      ),
+    );
   }
 
   FutureOr<void> _onPositionChanged(
@@ -30,7 +36,12 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
   ) async {
     if (event.position != null) {
       final address = await currentLocation(event.position!);
-      emit(state.copyWith(address: address));
+      emit(
+        state.copyWith(
+          address: address,
+          position: event.position,
+        ),
+      );
     }
   }
 
