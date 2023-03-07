@@ -16,44 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CarSearchEvent {
-  RentalCarType get rentalCarType => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RentalCarType rentalCarType, String? location)
-        started,
+    required TResult Function(RentalCarType rentalCarType) started,
+    required TResult Function(Position? position) positionChanged,
+    required TResult Function(String? address) addressChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RentalCarType rentalCarType, String? location)? started,
+    TResult? Function(RentalCarType rentalCarType)? started,
+    TResult? Function(Position? position)? positionChanged,
+    TResult? Function(String? address)? addressChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RentalCarType rentalCarType, String? location)? started,
+    TResult Function(RentalCarType rentalCarType)? started,
+    TResult Function(Position? position)? positionChanged,
+    TResult Function(String? address)? addressChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_PositionChanged value) positionChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_PositionChanged value)? positionChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_PositionChanged value)? positionChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CarSearchEventCopyWith<CarSearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +67,6 @@ abstract class $CarSearchEventCopyWith<$Res> {
   factory $CarSearchEventCopyWith(
           CarSearchEvent value, $Res Function(CarSearchEvent) then) =
       _$CarSearchEventCopyWithImpl<$Res, CarSearchEvent>;
-  @useResult
-  $Res call({RentalCarType rentalCarType, String? location});
 }
 
 /// @nodoc
@@ -75,35 +78,15 @@ class _$CarSearchEventCopyWithImpl<$Res, $Val extends CarSearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? rentalCarType = null,
-    Object? location = freezed,
-  }) {
-    return _then(_value.copyWith(
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res>
-    implements $CarSearchEventCopyWith<$Res> {
+abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({RentalCarType rentalCarType, String? location});
+  $Res call({RentalCarType rentalCarType});
 }
 
 /// @nodoc
@@ -117,17 +100,12 @@ class __$$_StartedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rentalCarType = null,
-    Object? location = freezed,
   }) {
     return _then(_$_Started(
       rentalCarType: null == rentalCarType
           ? _value.rentalCarType
           : rentalCarType // ignore: cast_nullable_to_non_nullable
               as RentalCarType,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -135,16 +113,14 @@ class __$$_StartedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Started implements _Started {
-  const _$_Started({required this.rentalCarType, this.location});
+  const _$_Started({required this.rentalCarType});
 
   @override
   final RentalCarType rentalCarType;
-  @override
-  final String? location;
 
   @override
   String toString() {
-    return 'CarSearchEvent.started(rentalCarType: $rentalCarType, location: $location)';
+    return 'CarSearchEvent.started(rentalCarType: $rentalCarType)';
   }
 
   @override
@@ -153,13 +129,11 @@ class _$_Started implements _Started {
         (other.runtimeType == runtimeType &&
             other is _$_Started &&
             (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
-            (identical(other.location, location) ||
-                other.location == location));
+                other.rentalCarType == rentalCarType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rentalCarType, location);
+  int get hashCode => Object.hash(runtimeType, rentalCarType);
 
   @JsonKey(ignore: true)
   @override
@@ -170,28 +144,33 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RentalCarType rentalCarType, String? location)
-        started,
+    required TResult Function(RentalCarType rentalCarType) started,
+    required TResult Function(Position? position) positionChanged,
+    required TResult Function(String? address) addressChanged,
   }) {
-    return started(rentalCarType, location);
+    return started(rentalCarType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RentalCarType rentalCarType, String? location)? started,
+    TResult? Function(RentalCarType rentalCarType)? started,
+    TResult? Function(Position? position)? positionChanged,
+    TResult? Function(String? address)? addressChanged,
   }) {
-    return started?.call(rentalCarType, location);
+    return started?.call(rentalCarType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RentalCarType rentalCarType, String? location)? started,
+    TResult Function(RentalCarType rentalCarType)? started,
+    TResult Function(Position? position)? positionChanged,
+    TResult Function(String? address)? addressChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(rentalCarType, location);
+      return started(rentalCarType);
     }
     return orElse();
   }
@@ -200,6 +179,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_PositionChanged value) positionChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
   }) {
     return started(this);
   }
@@ -208,6 +189,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_PositionChanged value)? positionChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
   }) {
     return started?.call(this);
   }
@@ -216,6 +199,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_PositionChanged value)? positionChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -226,24 +211,302 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements CarSearchEvent {
-  const factory _Started(
-      {required final RentalCarType rentalCarType,
-      final String? location}) = _$_Started;
+  const factory _Started({required final RentalCarType rentalCarType}) =
+      _$_Started;
 
-  @override
   RentalCarType get rentalCarType;
-  @override
-  String? get location;
-  @override
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$$_PositionChangedCopyWith<$Res> {
+  factory _$$_PositionChangedCopyWith(
+          _$_PositionChanged value, $Res Function(_$_PositionChanged) then) =
+      __$$_PositionChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Position? position});
+}
+
+/// @nodoc
+class __$$_PositionChangedCopyWithImpl<$Res>
+    extends _$CarSearchEventCopyWithImpl<$Res, _$_PositionChanged>
+    implements _$$_PositionChangedCopyWith<$Res> {
+  __$$_PositionChangedCopyWithImpl(
+      _$_PositionChanged _value, $Res Function(_$_PositionChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? position = freezed,
+  }) {
+    return _then(_$_PositionChanged(
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Position?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PositionChanged implements _PositionChanged {
+  const _$_PositionChanged({this.position});
+
+  @override
+  final Position? position;
+
+  @override
+  String toString() {
+    return 'CarSearchEvent.positionChanged(position: $position)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PositionChanged &&
+            (identical(other.position, position) ||
+                other.position == position));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, position);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PositionChangedCopyWith<_$_PositionChanged> get copyWith =>
+      __$$_PositionChangedCopyWithImpl<_$_PositionChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RentalCarType rentalCarType) started,
+    required TResult Function(Position? position) positionChanged,
+    required TResult Function(String? address) addressChanged,
+  }) {
+    return positionChanged(position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RentalCarType rentalCarType)? started,
+    TResult? Function(Position? position)? positionChanged,
+    TResult? Function(String? address)? addressChanged,
+  }) {
+    return positionChanged?.call(position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RentalCarType rentalCarType)? started,
+    TResult Function(Position? position)? positionChanged,
+    TResult Function(String? address)? addressChanged,
+    required TResult orElse(),
+  }) {
+    if (positionChanged != null) {
+      return positionChanged(position);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PositionChanged value) positionChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+  }) {
+    return positionChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PositionChanged value)? positionChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+  }) {
+    return positionChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PositionChanged value)? positionChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    required TResult orElse(),
+  }) {
+    if (positionChanged != null) {
+      return positionChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PositionChanged implements CarSearchEvent {
+  const factory _PositionChanged({final Position? position}) =
+      _$_PositionChanged;
+
+  Position? get position;
+  @JsonKey(ignore: true)
+  _$$_PositionChangedCopyWith<_$_PositionChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AddressChangedCopyWith<$Res> {
+  factory _$$_AddressChangedCopyWith(
+          _$_AddressChanged value, $Res Function(_$_AddressChanged) then) =
+      __$$_AddressChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? address});
+}
+
+/// @nodoc
+class __$$_AddressChangedCopyWithImpl<$Res>
+    extends _$CarSearchEventCopyWithImpl<$Res, _$_AddressChanged>
+    implements _$$_AddressChangedCopyWith<$Res> {
+  __$$_AddressChangedCopyWithImpl(
+      _$_AddressChanged _value, $Res Function(_$_AddressChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = freezed,
+  }) {
+    return _then(_$_AddressChanged(
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddressChanged implements _AddressChanged {
+  const _$_AddressChanged({this.address});
+
+  @override
+  final String? address;
+
+  @override
+  String toString() {
+    return 'CarSearchEvent.addressChanged(address: $address)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddressChanged &&
+            (identical(other.address, address) || other.address == address));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, address);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddressChangedCopyWith<_$_AddressChanged> get copyWith =>
+      __$$_AddressChangedCopyWithImpl<_$_AddressChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RentalCarType rentalCarType) started,
+    required TResult Function(Position? position) positionChanged,
+    required TResult Function(String? address) addressChanged,
+  }) {
+    return addressChanged(address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RentalCarType rentalCarType)? started,
+    TResult? Function(Position? position)? positionChanged,
+    TResult? Function(String? address)? addressChanged,
+  }) {
+    return addressChanged?.call(address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RentalCarType rentalCarType)? started,
+    TResult Function(Position? position)? positionChanged,
+    TResult Function(String? address)? addressChanged,
+    required TResult orElse(),
+  }) {
+    if (addressChanged != null) {
+      return addressChanged(address);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PositionChanged value) positionChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+  }) {
+    return addressChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PositionChanged value)? positionChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+  }) {
+    return addressChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PositionChanged value)? positionChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    required TResult orElse(),
+  }) {
+    if (addressChanged != null) {
+      return addressChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddressChanged implements CarSearchEvent {
+  const factory _AddressChanged({final String? address}) = _$_AddressChanged;
+
+  String? get address;
+  @JsonKey(ignore: true)
+  _$$_AddressChangedCopyWith<_$_AddressChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CarSearchState {
-  RentalCarType? get carRentalType => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
+  RentalCarType? get rentalCarType => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  Position? get position => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CarSearchStateCopyWith<CarSearchState> get copyWith =>
@@ -256,7 +519,12 @@ abstract class $CarSearchStateCopyWith<$Res> {
           CarSearchState value, $Res Function(CarSearchState) then) =
       _$CarSearchStateCopyWithImpl<$Res, CarSearchState>;
   @useResult
-  $Res call({RentalCarType? carRentalType, String? location});
+  $Res call(
+      {RentalCarType? rentalCarType,
+      String? address,
+      Position? position,
+      DateTime? startDate,
+      DateTime? endDate});
 }
 
 /// @nodoc
@@ -272,18 +540,33 @@ class _$CarSearchStateCopyWithImpl<$Res, $Val extends CarSearchState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? carRentalType = freezed,
-    Object? location = freezed,
+    Object? rentalCarType = freezed,
+    Object? address = freezed,
+    Object? position = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
   }) {
     return _then(_value.copyWith(
-      carRentalType: freezed == carRentalType
-          ? _value.carRentalType
-          : carRentalType // ignore: cast_nullable_to_non_nullable
+      rentalCarType: freezed == rentalCarType
+          ? _value.rentalCarType
+          : rentalCarType // ignore: cast_nullable_to_non_nullable
               as RentalCarType?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Position?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -296,7 +579,12 @@ abstract class _$$_CarSearchStateCopyWith<$Res>
       __$$_CarSearchStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RentalCarType? carRentalType, String? location});
+  $Res call(
+      {RentalCarType? rentalCarType,
+      String? address,
+      Position? position,
+      DateTime? startDate,
+      DateTime? endDate});
 }
 
 /// @nodoc
@@ -310,18 +598,33 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? carRentalType = freezed,
-    Object? location = freezed,
+    Object? rentalCarType = freezed,
+    Object? address = freezed,
+    Object? position = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
   }) {
     return _then(_$_CarSearchState(
-      carRentalType: freezed == carRentalType
-          ? _value.carRentalType
-          : carRentalType // ignore: cast_nullable_to_non_nullable
+      rentalCarType: freezed == rentalCarType
+          ? _value.rentalCarType
+          : rentalCarType // ignore: cast_nullable_to_non_nullable
               as RentalCarType?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Position?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -329,16 +632,27 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CarSearchState implements _CarSearchState {
-  const _$_CarSearchState({this.carRentalType, this.location});
+  const _$_CarSearchState(
+      {this.rentalCarType,
+      this.address,
+      this.position,
+      this.startDate,
+      this.endDate});
 
   @override
-  final RentalCarType? carRentalType;
+  final RentalCarType? rentalCarType;
   @override
-  final String? location;
+  final String? address;
+  @override
+  final Position? position;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
 
   @override
   String toString() {
-    return 'CarSearchState(carRentalType: $carRentalType, location: $location)';
+    return 'CarSearchState(rentalCarType: $rentalCarType, address: $address, position: $position, startDate: $startDate, endDate: $endDate)';
   }
 
   @override
@@ -346,14 +660,19 @@ class _$_CarSearchState implements _CarSearchState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CarSearchState &&
-            (identical(other.carRentalType, carRentalType) ||
-                other.carRentalType == carRentalType) &&
-            (identical(other.location, location) ||
-                other.location == location));
+            (identical(other.rentalCarType, rentalCarType) ||
+                other.rentalCarType == rentalCarType) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, carRentalType, location);
+  int get hashCode => Object.hash(
+      runtimeType, rentalCarType, address, position, startDate, endDate);
 
   @JsonKey(ignore: true)
   @override
@@ -364,13 +683,22 @@ class _$_CarSearchState implements _CarSearchState {
 
 abstract class _CarSearchState implements CarSearchState {
   const factory _CarSearchState(
-      {final RentalCarType? carRentalType,
-      final String? location}) = _$_CarSearchState;
+      {final RentalCarType? rentalCarType,
+      final String? address,
+      final Position? position,
+      final DateTime? startDate,
+      final DateTime? endDate}) = _$_CarSearchState;
 
   @override
-  RentalCarType? get carRentalType;
+  RentalCarType? get rentalCarType;
   @override
-  String? get location;
+  String? get address;
+  @override
+  Position? get position;
+  @override
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
   @override
   @JsonKey(ignore: true)
   _$$_CarSearchStateCopyWith<_$_CarSearchState> get copyWith =>

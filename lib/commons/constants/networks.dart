@@ -1,5 +1,4 @@
-String baseUrl =
-    'https://e002-2001-ee0-4f40-1d60-c4b0-84fb-12e7-196d.ap.ngrok.io/api/';
+String baseUrl = 'https://a492-2a09-bac1-7a80-10-00-1f1-19e.ap.ngrok.io/api/';
 const int connectTimeout = 15000;
 const int receiveTimeout = 15000;
 const int sendTimeout = 15000;
