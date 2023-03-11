@@ -18,4 +18,9 @@ class CarSearchEvent with _$CarSearchEvent {
   const factory CarSearchEvent.addressChanged({
     String? address,
   }) = _AddressChanged;
+
+  const factory CarSearchEvent.dateRangeChanged({
+    required DateTime startDate,
+    required DateTime endDate,
+  }) = _DateRangeChanged;
 }

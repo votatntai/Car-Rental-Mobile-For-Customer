@@ -28,6 +28,8 @@ mixin _$CarSearchEvent {
         started,
     required TResult Function(Position? position) positionChanged,
     required TResult Function(String? address) addressChanged,
+    required TResult Function(DateTime startDate, DateTime endDate)
+        dateRangeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +44,7 @@ mixin _$CarSearchEvent {
         started,
     TResult? Function(Position? position)? positionChanged,
     TResult? Function(String? address)? addressChanged,
+    TResult? Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +59,7 @@ mixin _$CarSearchEvent {
         started,
     TResult Function(Position? position)? positionChanged,
     TResult Function(String? address)? addressChanged,
+    TResult Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +68,7 @@ mixin _$CarSearchEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionChanged value) positionChanged,
     required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_DateRangeChanged value) dateRangeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +76,7 @@ mixin _$CarSearchEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_PositionChanged value)? positionChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_DateRangeChanged value)? dateRangeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +84,7 @@ mixin _$CarSearchEvent {
     TResult Function(_Started value)? started,
     TResult Function(_PositionChanged value)? positionChanged,
     TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_DateRangeChanged value)? dateRangeChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -231,6 +238,8 @@ class _$_Started implements _Started {
         started,
     required TResult Function(Position? position) positionChanged,
     required TResult Function(String? address) addressChanged,
+    required TResult Function(DateTime startDate, DateTime endDate)
+        dateRangeChanged,
   }) {
     return started(
         rentalCarType, longitude, latitude, startDate, endDate, address);
@@ -249,6 +258,7 @@ class _$_Started implements _Started {
         started,
     TResult? Function(Position? position)? positionChanged,
     TResult? Function(String? address)? addressChanged,
+    TResult? Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
   }) {
     return started?.call(
         rentalCarType, longitude, latitude, startDate, endDate, address);
@@ -267,6 +277,7 @@ class _$_Started implements _Started {
         started,
     TResult Function(Position? position)? positionChanged,
     TResult Function(String? address)? addressChanged,
+    TResult Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -282,6 +293,7 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionChanged value) positionChanged,
     required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_DateRangeChanged value) dateRangeChanged,
   }) {
     return started(this);
   }
@@ -292,6 +304,7 @@ class _$_Started implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_PositionChanged value)? positionChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_DateRangeChanged value)? dateRangeChanged,
   }) {
     return started?.call(this);
   }
@@ -302,6 +315,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_PositionChanged value)? positionChanged,
     TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_DateRangeChanged value)? dateRangeChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -406,6 +420,8 @@ class _$_PositionChanged implements _PositionChanged {
         started,
     required TResult Function(Position? position) positionChanged,
     required TResult Function(String? address) addressChanged,
+    required TResult Function(DateTime startDate, DateTime endDate)
+        dateRangeChanged,
   }) {
     return positionChanged(position);
   }
@@ -423,6 +439,7 @@ class _$_PositionChanged implements _PositionChanged {
         started,
     TResult? Function(Position? position)? positionChanged,
     TResult? Function(String? address)? addressChanged,
+    TResult? Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
   }) {
     return positionChanged?.call(position);
   }
@@ -440,6 +457,7 @@ class _$_PositionChanged implements _PositionChanged {
         started,
     TResult Function(Position? position)? positionChanged,
     TResult Function(String? address)? addressChanged,
+    TResult Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
     required TResult orElse(),
   }) {
     if (positionChanged != null) {
@@ -454,6 +472,7 @@ class _$_PositionChanged implements _PositionChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionChanged value) positionChanged,
     required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_DateRangeChanged value) dateRangeChanged,
   }) {
     return positionChanged(this);
   }
@@ -464,6 +483,7 @@ class _$_PositionChanged implements _PositionChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_PositionChanged value)? positionChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_DateRangeChanged value)? dateRangeChanged,
   }) {
     return positionChanged?.call(this);
   }
@@ -474,6 +494,7 @@ class _$_PositionChanged implements _PositionChanged {
     TResult Function(_Started value)? started,
     TResult Function(_PositionChanged value)? positionChanged,
     TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_DateRangeChanged value)? dateRangeChanged,
     required TResult orElse(),
   }) {
     if (positionChanged != null) {
@@ -567,6 +588,8 @@ class _$_AddressChanged implements _AddressChanged {
         started,
     required TResult Function(Position? position) positionChanged,
     required TResult Function(String? address) addressChanged,
+    required TResult Function(DateTime startDate, DateTime endDate)
+        dateRangeChanged,
   }) {
     return addressChanged(address);
   }
@@ -584,6 +607,7 @@ class _$_AddressChanged implements _AddressChanged {
         started,
     TResult? Function(Position? position)? positionChanged,
     TResult? Function(String? address)? addressChanged,
+    TResult? Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
   }) {
     return addressChanged?.call(address);
   }
@@ -601,6 +625,7 @@ class _$_AddressChanged implements _AddressChanged {
         started,
     TResult Function(Position? position)? positionChanged,
     TResult Function(String? address)? addressChanged,
+    TResult Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
     required TResult orElse(),
   }) {
     if (addressChanged != null) {
@@ -615,6 +640,7 @@ class _$_AddressChanged implements _AddressChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionChanged value) positionChanged,
     required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_DateRangeChanged value) dateRangeChanged,
   }) {
     return addressChanged(this);
   }
@@ -625,6 +651,7 @@ class _$_AddressChanged implements _AddressChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_PositionChanged value)? positionChanged,
     TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_DateRangeChanged value)? dateRangeChanged,
   }) {
     return addressChanged?.call(this);
   }
@@ -635,6 +662,7 @@ class _$_AddressChanged implements _AddressChanged {
     TResult Function(_Started value)? started,
     TResult Function(_PositionChanged value)? positionChanged,
     TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_DateRangeChanged value)? dateRangeChanged,
     required TResult orElse(),
   }) {
     if (addressChanged != null) {
@@ -650,6 +678,185 @@ abstract class _AddressChanged implements CarSearchEvent {
   String? get address;
   @JsonKey(ignore: true)
   _$$_AddressChangedCopyWith<_$_AddressChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_DateRangeChangedCopyWith<$Res> {
+  factory _$$_DateRangeChangedCopyWith(
+          _$_DateRangeChanged value, $Res Function(_$_DateRangeChanged) then) =
+      __$$_DateRangeChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime startDate, DateTime endDate});
+}
+
+/// @nodoc
+class __$$_DateRangeChangedCopyWithImpl<$Res>
+    extends _$CarSearchEventCopyWithImpl<$Res, _$_DateRangeChanged>
+    implements _$$_DateRangeChangedCopyWith<$Res> {
+  __$$_DateRangeChangedCopyWithImpl(
+      _$_DateRangeChanged _value, $Res Function(_$_DateRangeChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+    Object? endDate = null,
+  }) {
+    return _then(_$_DateRangeChanged(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DateRangeChanged implements _DateRangeChanged {
+  const _$_DateRangeChanged({required this.startDate, required this.endDate});
+
+  @override
+  final DateTime startDate;
+  @override
+  final DateTime endDate;
+
+  @override
+  String toString() {
+    return 'CarSearchEvent.dateRangeChanged(startDate: $startDate, endDate: $endDate)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DateRangeChanged &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, startDate, endDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DateRangeChangedCopyWith<_$_DateRangeChanged> get copyWith =>
+      __$$_DateRangeChangedCopyWithImpl<_$_DateRangeChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            RentalCarType rentalCarType,
+            double? longitude,
+            double? latitude,
+            DateTime? startDate,
+            DateTime? endDate,
+            String? address)
+        started,
+    required TResult Function(Position? position) positionChanged,
+    required TResult Function(String? address) addressChanged,
+    required TResult Function(DateTime startDate, DateTime endDate)
+        dateRangeChanged,
+  }) {
+    return dateRangeChanged(startDate, endDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            RentalCarType rentalCarType,
+            double? longitude,
+            double? latitude,
+            DateTime? startDate,
+            DateTime? endDate,
+            String? address)?
+        started,
+    TResult? Function(Position? position)? positionChanged,
+    TResult? Function(String? address)? addressChanged,
+    TResult? Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
+  }) {
+    return dateRangeChanged?.call(startDate, endDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            RentalCarType rentalCarType,
+            double? longitude,
+            double? latitude,
+            DateTime? startDate,
+            DateTime? endDate,
+            String? address)?
+        started,
+    TResult Function(Position? position)? positionChanged,
+    TResult Function(String? address)? addressChanged,
+    TResult Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
+    required TResult orElse(),
+  }) {
+    if (dateRangeChanged != null) {
+      return dateRangeChanged(startDate, endDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PositionChanged value) positionChanged,
+    required TResult Function(_AddressChanged value) addressChanged,
+    required TResult Function(_DateRangeChanged value) dateRangeChanged,
+  }) {
+    return dateRangeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PositionChanged value)? positionChanged,
+    TResult? Function(_AddressChanged value)? addressChanged,
+    TResult? Function(_DateRangeChanged value)? dateRangeChanged,
+  }) {
+    return dateRangeChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PositionChanged value)? positionChanged,
+    TResult Function(_AddressChanged value)? addressChanged,
+    TResult Function(_DateRangeChanged value)? dateRangeChanged,
+    required TResult orElse(),
+  }) {
+    if (dateRangeChanged != null) {
+      return dateRangeChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DateRangeChanged implements CarSearchEvent {
+  const factory _DateRangeChanged(
+      {required final DateTime startDate,
+      required final DateTime endDate}) = _$_DateRangeChanged;
+
+  DateTime get startDate;
+  DateTime get endDate;
+  @JsonKey(ignore: true)
+  _$$_DateRangeChangedCopyWith<_$_DateRangeChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

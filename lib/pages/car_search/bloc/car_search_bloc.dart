@@ -15,6 +15,7 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     on<_Started>(_onStarted);
     on<_PositionChanged>(_onPositionChanged);
     on<_AddressChanged>(_onAddressChanged);
+    on<_DateRangeChanged>(_onDateRangeChanged);
   }
 
   FutureOr<void> _onStarted(
@@ -57,6 +58,7 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
         longitude: event.position!.longitude,
         latitude: event.position!.latitude,
       );
+
       emit(
         state.copyWith(
           address: address,
@@ -74,6 +76,18 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     if (event.address != null) {
       emit(state.copyWith(address: event.address));
     }
+  }
+
+  FutureOr<void> _onDateRangeChanged(
+    _DateRangeChanged event,
+    Emitter<CarSearchState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        startDate: event.startDate,
+        endDate: event.endDate,
+      ),
+    );
   }
 
   Future<Placemark> getAddressFromLatLng({

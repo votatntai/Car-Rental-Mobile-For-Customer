@@ -27,6 +27,7 @@ class CarSearchView extends StatelessWidget {
             ),
           );
         }
+
         return Scaffold(
           appBar: appAppBar(
             context,
@@ -79,7 +80,8 @@ class CarSearchView extends StatelessWidget {
                           state.endDate!,
                         ),
                         onTap: () async {
-                        final result =  await  showDialog(
+                          final bloc = context.read<CarSearchBloc>();
+                          final result = await showDialog(
                             context: context,
                             builder: (context) {
                               return DateTimeRangePicker(
@@ -89,7 +91,12 @@ class CarSearchView extends StatelessWidget {
                             },
                           );
 
-                        print(result);
+                          bloc.add(
+                            CarSearchEvent.dateRangeChanged(
+                              startDate: result['startDate'],
+                              endDate: result['endDate'],
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(
