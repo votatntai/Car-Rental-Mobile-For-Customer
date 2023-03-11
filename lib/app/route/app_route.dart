@@ -15,7 +15,6 @@ import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
 import 'package:car_rental_for_customer/pages/wallet/wallet.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoute {
@@ -62,13 +61,33 @@ class AppRoute {
                   path: 'car-search',
                   name: RouteName.carSearch,
                   builder: (context, state) {
+                    final rentalCarType = RentalCarType.values.firstWhere(
+                      (element) =>
+                          element.name == state.queryParams['rental-car-type'],
+                      orElse: () => RentalCarType.selfDrivingCar,
+                    );
+
+                    final longitude = double.tryParse(
+                      state.queryParams['longitude'] ?? '',
+                    );
+                    final latitude = double.tryParse(
+                      state.queryParams['latitude'] ?? '',
+                    );
+                    final startDate = DateTime.tryParse(
+                      state.queryParams['start-date'] ?? '',
+                    );
+                    final endDate = DateTime.tryParse(
+                      state.queryParams['end-date'] ?? '',
+                    );
+                    final address = state.queryParams['address'] ?? '';
+
                     return CarSearchPage(
-                      rentalCarType: RentalCarType.values.firstWhere(
-                        (element) =>
-                            element.name ==
-                            state.queryParams['rental-car-type'],
-                        orElse: () => RentalCarType.selfDrivingCar,
-                      ),
+                      rentalCarType: rentalCarType,
+                      longitude: longitude,
+                      latitude: latitude,
+                      startDate: startDate,
+                      endDate: endDate,
+                      address: address,
                     );
                   },
                   routes: [
@@ -89,16 +108,23 @@ class AppRoute {
                           state.queryParams['end-date'] ?? '',
                         );
 
-                        final position = state.extra as Position?;
-
                         final address = state.queryParams['address'] ?? '';
+
+                        final latitude = double.tryParse(
+                          state.queryParams['latitude'] ?? '',
+                        );
+
+                        final longitude = double.tryParse(
+                          state.queryParams['longitude'] ?? '',
+                        );
 
                         return CarSearchResultPage(
                           address: address,
                           rentalCarType: rentalCarType,
                           endDate: endDate!,
                           startDate: startDate!,
-                          position: position,
+                          latitude: latitude!,
+                          longitude: longitude!,
                         );
                       },
                     )

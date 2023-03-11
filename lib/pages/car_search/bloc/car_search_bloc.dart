@@ -20,12 +20,30 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
   FutureOr<void> _onStarted(
     _Started event,
     Emitter<CarSearchState> emit,
-  ) {
+  ) async {
     emit(
       state.copyWith(
         rentalCarType: event.rentalCarType,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 1)),
+      ),
+    );
+    final position = await _determinePosition();
+
+    emit(
+      state.copyWith(
+        rentalCarType: event.rentalCarType,
+        startDate: event.startDate ?? DateTime.now(),
+        endDate: event.endDate ?? DateTime.now().add(const Duration(days: 1)),
+        longitude: event.longitude ?? position?.longitude,
+        latitude: event.latitude ?? position?.latitude,
+        address: event.address ??
+            (position != null
+                ? await currentLocation(
+                    longitude: position.longitude,
+                    latitude: position.latitude,
+                  )
+                : null),
       ),
     );
   }
@@ -35,11 +53,15 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     Emitter<CarSearchState> emit,
   ) async {
     if (event.position != null) {
-      final address = await currentLocation(event.position!);
+      final address = await currentLocation(
+        longitude: event.position!.longitude,
+        latitude: event.position!.latitude,
+      );
       emit(
         state.copyWith(
           address: address,
-          position: event.position,
+          longitude: event.position!.longitude,
+          latitude: event.position!.latitude,
         ),
       );
     }
@@ -54,19 +76,58 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     }
   }
 
-  Future<Placemark> getAddressFromLatLng(Position position) async {
+  Future<Placemark> getAddressFromLatLng({
+    required double longitude,
+    required double latitude,
+  }) async {
     final placemarks = await placemarkFromCoordinates(
-      position.latitude,
-      position.longitude,
+      latitude,
+      longitude,
       localeIdentifier: 'vi',
     );
     final placemark = placemarks.first;
     return placemark;
   }
 
-  Future<String?> currentLocation(Position position) async {
-    final placemark = await getAddressFromLatLng(position);
+  Future<String?> currentLocation({
+    required double longitude,
+    required double latitude,
+  }) async {
+    final placemark = await getAddressFromLatLng(
+      longitude: longitude,
+      latitude: latitude,
+    );
     // ignore: lines_longer_than_80_chars
     return '${placemark.street}, ${placemark.subAdministrativeArea}, ${placemark.administrativeArea}';
+  }
+
+  Future<Position?> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // return Future.error('Location services are disabled.');
+
+      return null;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // return Future.error('Location permissions are denied');
+        return null;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // return Future.error(
+      //     'Location permissions are permanently denied, we cannot request permissions.');
+
+      return null;
+    }
+
+    return await Geolocator.getCurrentPosition();
   }
 }

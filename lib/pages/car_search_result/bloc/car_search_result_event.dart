@@ -4,10 +4,11 @@ part of 'car_search_result_bloc.dart';
 class CarSearchResultEvent with _$CarSearchResultEvent {
   const factory CarSearchResultEvent.started({
     required String address,
-    Position? position,
     required DateTime startDate,
     required DateTime endDate,
     required RentalCarType rentalCarType,
+    required double longitude,
+    required double latitude,
   }) = _Started;
 
   const factory CarSearchResultEvent.pageRequested({

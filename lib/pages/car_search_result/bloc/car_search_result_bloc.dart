@@ -6,7 +6,6 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/scroll_pagination.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 
 part 'car_search_result_bloc.freezed.dart';
 part 'car_search_result_event.dart';
@@ -20,10 +19,11 @@ class CarSearchResultBloc
   }
 
   late String address;
-  late Position? position;
   late DateTime startDate;
   late DateTime endDate;
   late RentalCarType rentalCarType;
+  late double latitude;
+  late double longitude;
   final pageSize = 10;
 
   FutureOr<void> _onStarted(
@@ -33,10 +33,11 @@ class CarSearchResultBloc
     emit(const CarSearchResultState.loading());
 
     address = event.address;
-    position = event.position;
     startDate = event.startDate;
     endDate = event.endDate;
     rentalCarType = event.rentalCarType;
+    latitude = event.latitude;
+    longitude = event.longitude;
 
     emit(
       CarSearchResultState.success(
@@ -45,7 +46,8 @@ class CarSearchResultBloc
         endDate: endDate,
         startDate: startDate,
         rentalCarType: rentalCarType,
-        position: position,
+        latitude: latitude,
+        longitude: longitude,
       ),
     );
   }

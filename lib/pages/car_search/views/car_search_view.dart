@@ -6,6 +6,7 @@ import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_search/bloc/car_search_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/car_search_input.dart';
+import 'package:car_rental_for_customer/pages/car_search/widgets/datetime_range_picker.dart';
 import 'package:car_rental_for_customer/pages/location_search/location_search_delegate.dart';
 import 'package:car_rental_for_customer/pages/location_search/position_result.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,19 @@ class CarSearchView extends StatelessWidget {
                           state.startDate!,
                           state.endDate!,
                         ),
-                        onTap: () {},
+                        onTap: () async {
+                        final result =  await  showDialog(
+                            context: context,
+                            builder: (context) {
+                              return DateTimeRangePicker(
+                                startDate: state.startDate!,
+                                endDate: state.endDate!,
+                              );
+                            },
+                          );
+
+                        print(result);
+                        },
                       ),
                       const SizedBox(
                         height: s08,
@@ -91,15 +104,17 @@ class CarSearchView extends StatelessWidget {
                                   : () {
                                       context.goNamed(
                                         RouteName.carSearchResult,
-                                        extra: state.position,
                                         queryParams: {
                                           'rental-car-type':
-                                              state.rentalCarType?.name ?? '',
+                                              state.rentalCarType!.name,
                                           'address': state.address ?? '',
                                           'start-date':
-                                              state.startDate?.toString() ?? '',
-                                          'end-date':
-                                              state.endDate?.toString() ?? '',
+                                              state.startDate!.toString(),
+                                          'end-date': state.endDate!.toString(),
+                                          'longitude':
+                                              state.longitude!.toString(),
+                                          'latitude':
+                                              state.latitude!.toString(),
                                         },
                                       );
                                     },

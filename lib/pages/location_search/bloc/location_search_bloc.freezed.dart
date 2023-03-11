@@ -16,42 +16,56 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LocationSearchEvent {
-  String get location => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) contextChanged,
     required TResult Function(String location) locationChanged,
+    required TResult Function() currentLocationSelected,
+    required TResult Function() myAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? contextChanged,
     TResult? Function(String location)? locationChanged,
+    TResult? Function()? currentLocationSelected,
+    TResult? Function()? myAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? contextChanged,
     TResult Function(String location)? locationChanged,
+    TResult Function()? currentLocationSelected,
+    TResult Function()? myAddressSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ContextChanged value) contextChanged,
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_CurrentLocationSelected value)
+        currentLocationSelected,
+    required TResult Function(_MyAddressSelected value) myAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ContextChanged value)? contextChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult? Function(_MyAddressSelected value)? myAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ContextChanged value)? contextChanged,
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult Function(_MyAddressSelected value)? myAddressSelected,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LocationSearchEventCopyWith<LocationSearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +74,6 @@ abstract class $LocationSearchEventCopyWith<$Res> {
   factory $LocationSearchEventCopyWith(
           LocationSearchEvent value, $Res Function(LocationSearchEvent) then) =
       _$LocationSearchEventCopyWithImpl<$Res, LocationSearchEvent>;
-  @useResult
-  $Res call({String location});
 }
 
 /// @nodoc
@@ -73,28 +85,159 @@ class _$LocationSearchEventCopyWithImpl<$Res, $Val extends LocationSearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_ContextChangedCopyWith<$Res> {
+  factory _$$_ContextChangedCopyWith(
+          _$_ContextChanged value, $Res Function(_$_ContextChanged) then) =
+      __$$_ContextChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
+}
+
+/// @nodoc
+class __$$_ContextChangedCopyWithImpl<$Res>
+    extends _$LocationSearchEventCopyWithImpl<$Res, _$_ContextChanged>
+    implements _$$_ContextChangedCopyWith<$Res> {
+  __$$_ContextChangedCopyWithImpl(
+      _$_ContextChanged _value, $Res Function(_$_ContextChanged) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? location = null,
+    Object? context = null,
   }) {
-    return _then(_value.copyWith(
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(_$_ContextChanged(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$_LocationChangedCopyWith<$Res>
-    implements $LocationSearchEventCopyWith<$Res> {
+
+class _$_ContextChanged implements _ContextChanged {
+  const _$_ContextChanged(this.context);
+
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'LocationSearchEvent.contextChanged(context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ContextChanged &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ContextChangedCopyWith<_$_ContextChanged> get copyWith =>
+      __$$_ContextChangedCopyWithImpl<_$_ContextChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) contextChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function() currentLocationSelected,
+    required TResult Function() myAddressSelected,
+  }) {
+    return contextChanged(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? contextChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function()? currentLocationSelected,
+    TResult? Function()? myAddressSelected,
+  }) {
+    return contextChanged?.call(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? contextChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function()? currentLocationSelected,
+    TResult Function()? myAddressSelected,
+    required TResult orElse(),
+  }) {
+    if (contextChanged != null) {
+      return contextChanged(context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ContextChanged value) contextChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_CurrentLocationSelected value)
+        currentLocationSelected,
+    required TResult Function(_MyAddressSelected value) myAddressSelected,
+  }) {
+    return contextChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ContextChanged value)? contextChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult? Function(_MyAddressSelected value)? myAddressSelected,
+  }) {
+    return contextChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ContextChanged value)? contextChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult Function(_MyAddressSelected value)? myAddressSelected,
+    required TResult orElse(),
+  }) {
+    if (contextChanged != null) {
+      return contextChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ContextChanged implements LocationSearchEvent {
+  const factory _ContextChanged(final BuildContext context) = _$_ContextChanged;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$_ContextChangedCopyWith<_$_ContextChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LocationChangedCopyWith<$Res> {
   factory _$$_LocationChangedCopyWith(
           _$_LocationChanged value, $Res Function(_$_LocationChanged) then) =
       __$$_LocationChangedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String location});
 }
@@ -155,7 +298,10 @@ class _$_LocationChanged implements _LocationChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) contextChanged,
     required TResult Function(String location) locationChanged,
+    required TResult Function() currentLocationSelected,
+    required TResult Function() myAddressSelected,
   }) {
     return locationChanged(location);
   }
@@ -163,7 +309,10 @@ class _$_LocationChanged implements _LocationChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? contextChanged,
     TResult? Function(String location)? locationChanged,
+    TResult? Function()? currentLocationSelected,
+    TResult? Function()? myAddressSelected,
   }) {
     return locationChanged?.call(location);
   }
@@ -171,7 +320,10 @@ class _$_LocationChanged implements _LocationChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? contextChanged,
     TResult Function(String location)? locationChanged,
+    TResult Function()? currentLocationSelected,
+    TResult Function()? myAddressSelected,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -183,7 +335,11 @@ class _$_LocationChanged implements _LocationChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ContextChanged value) contextChanged,
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_CurrentLocationSelected value)
+        currentLocationSelected,
+    required TResult Function(_MyAddressSelected value) myAddressSelected,
   }) {
     return locationChanged(this);
   }
@@ -191,7 +347,10 @@ class _$_LocationChanged implements _LocationChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ContextChanged value)? contextChanged,
     TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult? Function(_MyAddressSelected value)? myAddressSelected,
   }) {
     return locationChanged?.call(this);
   }
@@ -199,7 +358,10 @@ class _$_LocationChanged implements _LocationChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ContextChanged value)? contextChanged,
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult Function(_MyAddressSelected value)? myAddressSelected,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -212,12 +374,241 @@ class _$_LocationChanged implements _LocationChanged {
 abstract class _LocationChanged implements LocationSearchEvent {
   const factory _LocationChanged(final String location) = _$_LocationChanged;
 
-  @override
   String get location;
-  @override
   @JsonKey(ignore: true)
   _$$_LocationChangedCopyWith<_$_LocationChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CurrentLocationSelectedCopyWith<$Res> {
+  factory _$$_CurrentLocationSelectedCopyWith(_$_CurrentLocationSelected value,
+          $Res Function(_$_CurrentLocationSelected) then) =
+      __$$_CurrentLocationSelectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CurrentLocationSelectedCopyWithImpl<$Res>
+    extends _$LocationSearchEventCopyWithImpl<$Res, _$_CurrentLocationSelected>
+    implements _$$_CurrentLocationSelectedCopyWith<$Res> {
+  __$$_CurrentLocationSelectedCopyWithImpl(_$_CurrentLocationSelected _value,
+      $Res Function(_$_CurrentLocationSelected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CurrentLocationSelected implements _CurrentLocationSelected {
+  const _$_CurrentLocationSelected();
+
+  @override
+  String toString() {
+    return 'LocationSearchEvent.currentLocationSelected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CurrentLocationSelected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) contextChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function() currentLocationSelected,
+    required TResult Function() myAddressSelected,
+  }) {
+    return currentLocationSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? contextChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function()? currentLocationSelected,
+    TResult? Function()? myAddressSelected,
+  }) {
+    return currentLocationSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? contextChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function()? currentLocationSelected,
+    TResult Function()? myAddressSelected,
+    required TResult orElse(),
+  }) {
+    if (currentLocationSelected != null) {
+      return currentLocationSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ContextChanged value) contextChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_CurrentLocationSelected value)
+        currentLocationSelected,
+    required TResult Function(_MyAddressSelected value) myAddressSelected,
+  }) {
+    return currentLocationSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ContextChanged value)? contextChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult? Function(_MyAddressSelected value)? myAddressSelected,
+  }) {
+    return currentLocationSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ContextChanged value)? contextChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult Function(_MyAddressSelected value)? myAddressSelected,
+    required TResult orElse(),
+  }) {
+    if (currentLocationSelected != null) {
+      return currentLocationSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CurrentLocationSelected implements LocationSearchEvent {
+  const factory _CurrentLocationSelected() = _$_CurrentLocationSelected;
+}
+
+/// @nodoc
+abstract class _$$_MyAddressSelectedCopyWith<$Res> {
+  factory _$$_MyAddressSelectedCopyWith(_$_MyAddressSelected value,
+          $Res Function(_$_MyAddressSelected) then) =
+      __$$_MyAddressSelectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_MyAddressSelectedCopyWithImpl<$Res>
+    extends _$LocationSearchEventCopyWithImpl<$Res, _$_MyAddressSelected>
+    implements _$$_MyAddressSelectedCopyWith<$Res> {
+  __$$_MyAddressSelectedCopyWithImpl(
+      _$_MyAddressSelected _value, $Res Function(_$_MyAddressSelected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_MyAddressSelected implements _MyAddressSelected {
+  const _$_MyAddressSelected();
+
+  @override
+  String toString() {
+    return 'LocationSearchEvent.myAddressSelected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_MyAddressSelected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) contextChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function() currentLocationSelected,
+    required TResult Function() myAddressSelected,
+  }) {
+    return myAddressSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? contextChanged,
+    TResult? Function(String location)? locationChanged,
+    TResult? Function()? currentLocationSelected,
+    TResult? Function()? myAddressSelected,
+  }) {
+    return myAddressSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? contextChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function()? currentLocationSelected,
+    TResult Function()? myAddressSelected,
+    required TResult orElse(),
+  }) {
+    if (myAddressSelected != null) {
+      return myAddressSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ContextChanged value) contextChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_CurrentLocationSelected value)
+        currentLocationSelected,
+    required TResult Function(_MyAddressSelected value) myAddressSelected,
+  }) {
+    return myAddressSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ContextChanged value)? contextChanged,
+    TResult? Function(_LocationChanged value)? locationChanged,
+    TResult? Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult? Function(_MyAddressSelected value)? myAddressSelected,
+  }) {
+    return myAddressSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ContextChanged value)? contextChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_CurrentLocationSelected value)? currentLocationSelected,
+    TResult Function(_MyAddressSelected value)? myAddressSelected,
+    required TResult orElse(),
+  }) {
+    if (myAddressSelected != null) {
+      return myAddressSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MyAddressSelected implements LocationSearchEvent {
+  const factory _MyAddressSelected() = _$_MyAddressSelected;
 }
 
 /// @nodoc

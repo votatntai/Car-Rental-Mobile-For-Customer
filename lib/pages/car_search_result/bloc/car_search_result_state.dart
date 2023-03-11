@@ -7,10 +7,11 @@ class CarSearchResultState with _$CarSearchResultState {
   const factory CarSearchResultState.success({
     required List<Car> cars,
     required String address,
-    Position? position,
     required DateTime startDate,
     required DateTime endDate,
     required RentalCarType rentalCarType,
+    required double latitude,
+    required double longitude,
     ScrollPagination<Car>? scrollPagination,
   }) = _Success;
   const factory CarSearchResultState.failure({String? message}) = _Failure;

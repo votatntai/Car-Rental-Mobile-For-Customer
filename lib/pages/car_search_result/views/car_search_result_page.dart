@@ -3,23 +3,24 @@ import 'package:car_rental_for_customer/pages/car_search_result/bloc/car_search_
 import 'package:car_rental_for_customer/pages/car_search_result/views/car_search_result_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 
 class CarSearchResultPage extends StatelessWidget {
   const CarSearchResultPage({
     Key? key,
-    this.position,
     required this.startDate,
     required this.endDate,
     required this.address,
     required this.rentalCarType,
+    required this.longitude,
+    required this.latitude,
   }) : super(key: key);
 
-  final Position? position;
   final DateTime startDate;
   final DateTime endDate;
   final String address;
   final RentalCarType rentalCarType;
+  final double longitude;
+  final double latitude;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,12 @@ class CarSearchResultPage extends StatelessWidget {
       value: CarSearchResultBloc()
         ..add(
           CarSearchResultEvent.started(
-            position: position,
             address: address,
             startDate: startDate,
             endDate: endDate,
             rentalCarType: rentalCarType,
+            longitude: longitude,
+            latitude: latitude,
           ),
         ),
       child: const CarSearchResultView(),

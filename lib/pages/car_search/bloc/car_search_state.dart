@@ -5,8 +5,9 @@ class CarSearchState with _$CarSearchState {
   const factory CarSearchState({
     RentalCarType? rentalCarType,
     String? address,
-    Position? position,
     DateTime? startDate,
     DateTime? endDate,
+    double? longitude,
+    double? latitude,
   }) = _CarSearchState;
 }

@@ -2,3 +2,4 @@
 
 # TODO
 1. Config geolocator for IOS
+2. Config GoogleMaps for IOS

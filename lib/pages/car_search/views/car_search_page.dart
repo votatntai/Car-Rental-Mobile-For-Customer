@@ -8,9 +8,19 @@ class CarSearchPage extends StatelessWidget {
   const CarSearchPage({
     Key? key,
     required this.rentalCarType,
+    this.longitude,
+    this.latitude,
+    this.startDate,
+    this.endDate,
+    this.address,
   }) : super(key: key);
 
   final RentalCarType rentalCarType;
+  final double? longitude;
+  final double? latitude;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final String? address;
 
   @override
   Widget build(BuildContext context) {
