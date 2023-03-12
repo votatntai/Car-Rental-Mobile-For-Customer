@@ -2,16 +2,18 @@ import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/pages/location_search/bloc/location_search_bloc.dart';
 import 'package:car_rental_for_customer/pages/location_search/position_result.dart';
 import 'package:car_rental_for_customer/pages/location_search/search_result.dart';
+import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class LocationSearchDelegate extends SearchDelegate<PositionResult> {
+class LocationSearchDelegate extends SearchDelegate<PositionResult?> {
   LocationSearchDelegate() {
     bloc = LocationSearchBloc(
       submit: onSubmit,
       userRepository: getIt.get<UserRepository>(),
+      mapsRepository: getIt.get<MapsRepository>(),
     );
   }
   late final LocationSearchBloc bloc;
@@ -43,14 +45,15 @@ class LocationSearchDelegate extends SearchDelegate<PositionResult> {
     return IconButton(
       icon: Icon(Icons.arrow_back, color: context.iconColor),
       onPressed: () {
-        close(context, PositionResult());
+        close(context, null);
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    bloc.add(LocationSearchEvent.contextChanged(context));
+    bloc.add(LocationSearchEvent.locationChanged(query, context));
+
     return BlocProvider.value(
       value: bloc,
       child: const SearchResult(),
@@ -59,8 +62,8 @@ class LocationSearchDelegate extends SearchDelegate<PositionResult> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    bloc.add(LocationSearchEvent.contextChanged(context));
-    bloc.add(LocationSearchEvent.locationChanged(query));
+    bloc.add(LocationSearchEvent.locationChanged(query, context));
+
     return BlocProvider.value(
       value: bloc,
       child: const SearchResult(),

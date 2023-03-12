@@ -2,11 +2,19 @@ part of 'location_search_bloc.dart';
 
 @freezed
 class LocationSearchEvent with _$LocationSearchEvent {
-  const factory LocationSearchEvent.contextChanged(BuildContext context) =
-      _ContextChanged;
-  const factory LocationSearchEvent.locationChanged(String location) =
-      _LocationChanged;
-  const factory LocationSearchEvent.currentLocationSelected() =
-      _CurrentLocationSelected;
-  const factory LocationSearchEvent.myAddressSelected() = _MyAddressSelected;
+  const factory LocationSearchEvent.locationChanged(
+    String location,
+    BuildContext context,
+  ) = _LocationChanged;
+  const factory LocationSearchEvent.currentLocationSelected(
+      BuildContext context) = _CurrentLocationSelected;
+  const factory LocationSearchEvent.myAddressSelected(BuildContext context) =
+      _MyAddressSelected;
+  const factory LocationSearchEvent.addressSearched(
+    String query,
+  ) = _AddressSearched;
+  const factory LocationSearchEvent.addressSelected(
+    Place place,
+    BuildContext context,
+  ) = _AddressSelected;
 }

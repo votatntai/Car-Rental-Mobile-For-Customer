@@ -11,12 +11,10 @@ class CarSearchEvent with _$CarSearchEvent {
     String? address,
   }) = _Started;
 
-  const factory CarSearchEvent.positionChanged({
-    Position? position,
-  }) = _PositionChanged;
-
   const factory CarSearchEvent.addressChanged({
-    String? address,
+    required String address,
+    required double longitude,
+    required double latitude,
   }) = _AddressChanged;
 
   const factory CarSearchEvent.dateRangeChanged({

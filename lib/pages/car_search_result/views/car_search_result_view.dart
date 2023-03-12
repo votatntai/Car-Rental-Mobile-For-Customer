@@ -79,7 +79,11 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                   ),
                   const SizedBox(height: s04),
                   Text(
-                    dateRangeToString(value.startDate, value.endDate),
+                    dateRangeToString(
+                      value.startDate,
+                      value.endDate,
+                      hasYear: false,
+                    ),
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

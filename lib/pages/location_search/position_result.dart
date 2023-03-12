@@ -1,8 +1,11 @@
-import 'package:geolocator/geolocator.dart';
-
 class PositionResult {
-  final Position? position;
-  final String? address;
+  final double lng;
+  final double lat;
+  final String address;
 
-  PositionResult({this.position, this.address});
+  PositionResult({
+    required this.lng,
+    required this.lat,
+    required this.address,
+  });
 }

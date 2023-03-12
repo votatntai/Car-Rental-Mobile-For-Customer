@@ -41,34 +41,28 @@ class CarSearchView extends StatelessWidget {
                   child: Column(
                     children: [
                       CarSearchInput(
-                        label: 'ĐỊA ĐIỂM',
-                        leadingIcon: Icons.location_on_outlined,
-                        text: state.address ?? 'Nhập địa điểm bạn muốn thuê xe',
-                        onTap: () async {
-                          final bloc = context.read<CarSearchBloc>();
-                          final positionResult =
-                              await showSearch<PositionResult>(
-                            context: context,
-                            delegate: LocationSearchDelegate(),
-                          );
-
-                          if (positionResult?.position != null) {
-                            bloc.add(
-                              CarSearchEvent.positionChanged(
-                                position: positionResult!.position,
-                              ),
+                          label: 'ĐỊA ĐIỂM',
+                          leadingIcon: Icons.location_on_outlined,
+                          text:
+                              state.address ?? 'Nhập địa điểm bạn muốn thuê xe',
+                          onTap: () async {
+                            final bloc = context.read<CarSearchBloc>();
+                            final positionResult =
+                                await showSearch<PositionResult?>(
+                              context: context,
+                              delegate: LocationSearchDelegate(),
                             );
-                          }
 
-                          if (positionResult?.address != null) {
-                            bloc.add(
-                              CarSearchEvent.addressChanged(
-                                address: positionResult!.address,
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                            if (positionResult != null) {
+                              bloc.add(
+                                CarSearchEvent.addressChanged(
+                                  address: positionResult.address,
+                                  latitude: positionResult.lat,
+                                  longitude: positionResult.lng,
+                                ),
+                              );
+                            }
+                          }),
                       const SizedBox(
                         height: s08,
                       ),
