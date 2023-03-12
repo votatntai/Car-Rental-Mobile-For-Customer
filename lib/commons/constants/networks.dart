@@ -1,5 +1,6 @@
-String baseUrl =
-    'https://b0c4-2001-ee0-4f01-8d50-d3e-7046-b704-1dd0.ap.ngrok.io/api/';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+String baseUrl = dotenv.env['BASE_URL'] ?? '';
 const int connectTimeout = 15000;
 const int receiveTimeout = 15000;
 const int sendTimeout = 15000;
