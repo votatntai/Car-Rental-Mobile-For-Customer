@@ -72,7 +72,7 @@ class CarItem extends StatelessWidget {
                         Text(
                           car.name,
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: CustomColors.white,
                           ),

@@ -7,6 +7,7 @@ import 'package:car_rental_for_customer/commons/widgets/failure_widget.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/bloc/car_search_result_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_item.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_type_widget.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/choice_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +40,17 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
   void dispose() {
     _pagingController.dispose();
     super.dispose();
+  }
+
+  void _onCarTypeFilterTap() {
+    final bloc = BlocProvider.of<CarSearchResultBloc>(context);
+
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return CarTypeWidget(bloc: bloc);
+      },
+    );
   }
 
   @override
@@ -115,40 +127,37 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                 children: [
                   SizedBox(
                     height: 50,
-                    // child: ListView.builder(
-                    //   itemBuilder: (context, index) {
-                    //     return Text('hello');
-                    //   },
-                    //   itemCount: 4,
-                    //   scrollDirection: Axis.horizontal,
-                    // ),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        children: [
                           ChoiceChipWidget(
                             label: 'Loại xe',
                             selected: true,
                             icon: Icons.drive_eta_outlined,
+                            onTap: _onCarTypeFilterTap,
                           ),
-                          SizedBox(width: s08),
+                          const SizedBox(width: s08),
                           ChoiceChipWidget(
                             label: 'Hãng xe',
                             selected: true,
                             icon: Icons.drive_eta_outlined,
+                            onTap: () {},
                           ),
-                          SizedBox(width: s08),
+                          const SizedBox(width: s08),
                           ChoiceChipWidget(
                             label: 'Truyền động',
                             selected: false,
                             icon: Icons.memory_outlined,
+                            onTap: () {},
                           ),
-                          SizedBox(width: s08),
+                          const SizedBox(width: s08),
                           ChoiceChipWidget(
                             label: 'Xe giảm giá',
                             selected: false,
                             icon: Icons.percent_outlined,
+                            onTap: () {},
                           ),
                         ],
                       ),

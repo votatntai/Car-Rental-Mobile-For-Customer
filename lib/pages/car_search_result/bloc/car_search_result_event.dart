@@ -14,4 +14,8 @@ class CarSearchResultEvent with _$CarSearchResultEvent {
   const factory CarSearchResultEvent.pageRequested({
     @Default(0) int pageKey,
   }) = _PageRequested;
+
+  const factory CarSearchResultEvent.carTypeFilterChanged({
+    required CarSearchFilter filter,
+  }) = _CarTypeFilterChanged;
 }

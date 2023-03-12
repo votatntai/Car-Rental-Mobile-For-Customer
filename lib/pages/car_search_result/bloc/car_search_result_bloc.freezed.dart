@@ -27,6 +27,7 @@ mixin _$CarSearchResultEvent {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
+    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +36,7 @@ mixin _$CarSearchResultEvent {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +45,7 @@ mixin _$CarSearchResultEvent {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
+    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,18 +53,21 @@ mixin _$CarSearchResultEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -215,6 +221,7 @@ class _$_Started implements _Started {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
+    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
   }) {
     return started(
         address, startDate, endDate, rentalCarType, longitude, latitude);
@@ -227,6 +234,7 @@ class _$_Started implements _Started {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
   }) {
     return started?.call(
         address, startDate, endDate, rentalCarType, longitude, latitude);
@@ -239,6 +247,7 @@ class _$_Started implements _Started {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
+    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -253,6 +262,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
   }) {
     return started(this);
   }
@@ -262,6 +272,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
   }) {
     return started?.call(this);
   }
@@ -271,6 +282,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -374,6 +386,7 @@ class _$_PageRequested implements _PageRequested {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
+    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
   }) {
     return pageRequested(pageKey);
   }
@@ -385,6 +398,7 @@ class _$_PageRequested implements _PageRequested {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
   }) {
     return pageRequested?.call(pageKey);
   }
@@ -396,6 +410,7 @@ class _$_PageRequested implements _PageRequested {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
+    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
     required TResult orElse(),
   }) {
     if (pageRequested != null) {
@@ -409,6 +424,7 @@ class _$_PageRequested implements _PageRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
   }) {
     return pageRequested(this);
   }
@@ -418,6 +434,7 @@ class _$_PageRequested implements _PageRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
   }) {
     return pageRequested?.call(this);
   }
@@ -427,6 +444,7 @@ class _$_PageRequested implements _PageRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
     required TResult orElse(),
   }) {
     if (pageRequested != null) {
@@ -446,6 +464,168 @@ abstract class _PageRequested implements CarSearchResultEvent {
 }
 
 /// @nodoc
+abstract class _$$_CarTypeFilterChangedCopyWith<$Res> {
+  factory _$$_CarTypeFilterChangedCopyWith(_$_CarTypeFilterChanged value,
+          $Res Function(_$_CarTypeFilterChanged) then) =
+      __$$_CarTypeFilterChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CarSearchFilter filter});
+
+  $CarSearchFilterCopyWith<$Res> get filter;
+}
+
+/// @nodoc
+class __$$_CarTypeFilterChangedCopyWithImpl<$Res>
+    extends _$CarSearchResultEventCopyWithImpl<$Res, _$_CarTypeFilterChanged>
+    implements _$$_CarTypeFilterChangedCopyWith<$Res> {
+  __$$_CarTypeFilterChangedCopyWithImpl(_$_CarTypeFilterChanged _value,
+      $Res Function(_$_CarTypeFilterChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$_CarTypeFilterChanged(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as CarSearchFilter,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CarSearchFilterCopyWith<$Res> get filter {
+    return $CarSearchFilterCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
+  const _$_CarTypeFilterChanged({required this.filter});
+
+  @override
+  final CarSearchFilter filter;
+
+  @override
+  String toString() {
+    return 'CarSearchResultEvent.carTypeFilterChanged(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CarTypeFilterChanged &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CarTypeFilterChangedCopyWith<_$_CarTypeFilterChanged> get copyWith =>
+      __$$_CarTypeFilterChangedCopyWithImpl<_$_CarTypeFilterChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String address,
+            DateTime startDate,
+            DateTime endDate,
+            RentalCarType rentalCarType,
+            double longitude,
+            double latitude)
+        started,
+    required TResult Function(int pageKey) pageRequested,
+    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
+  }) {
+    return carTypeFilterChanged(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String address, DateTime startDate, DateTime endDate,
+            RentalCarType rentalCarType, double longitude, double latitude)?
+        started,
+    TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
+  }) {
+    return carTypeFilterChanged?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String address, DateTime startDate, DateTime endDate,
+            RentalCarType rentalCarType, double longitude, double latitude)?
+        started,
+    TResult Function(int pageKey)? pageRequested,
+    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (carTypeFilterChanged != null) {
+      return carTypeFilterChanged(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+  }) {
+    return carTypeFilterChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+  }) {
+    return carTypeFilterChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (carTypeFilterChanged != null) {
+      return carTypeFilterChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CarTypeFilterChanged implements CarSearchResultEvent {
+  const factory _CarTypeFilterChanged({required final CarSearchFilter filter}) =
+      _$_CarTypeFilterChanged;
+
+  CarSearchFilter get filter;
+  @JsonKey(ignore: true)
+  _$$_CarTypeFilterChangedCopyWith<_$_CarTypeFilterChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CarSearchResultState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -459,7 +639,8 @@ mixin _$CarSearchResultState {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)
         success,
     required TResult Function(String? message) failure,
   }) =>
@@ -476,7 +657,8 @@ mixin _$CarSearchResultState {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult? Function(String? message)? failure,
   }) =>
@@ -493,7 +675,8 @@ mixin _$CarSearchResultState {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
@@ -592,7 +775,8 @@ class _$_Initial implements _Initial {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)
         success,
     required TResult Function(String? message) failure,
   }) {
@@ -612,7 +796,8 @@ class _$_Initial implements _Initial {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult? Function(String? message)? failure,
   }) {
@@ -632,7 +817,8 @@ class _$_Initial implements _Initial {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
@@ -732,7 +918,8 @@ class _$_Loading implements _Loading {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)
         success,
     required TResult Function(String? message) failure,
   }) {
@@ -752,7 +939,8 @@ class _$_Loading implements _Loading {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult? Function(String? message)? failure,
   }) {
@@ -772,7 +960,8 @@ class _$_Loading implements _Loading {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
@@ -839,9 +1028,11 @@ abstract class _$$_SuccessCopyWith<$Res> {
       RentalCarType rentalCarType,
       double latitude,
       double longitude,
-      ScrollPagination<Car>? scrollPagination});
+      ScrollPagination<Car>? scrollPagination,
+      CarSearchFilter carSearchFilter});
 
   $ScrollPaginationCopyWith<Car, $Res>? get scrollPagination;
+  $CarSearchFilterCopyWith<$Res> get carSearchFilter;
 }
 
 /// @nodoc
@@ -862,6 +1053,7 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? latitude = null,
     Object? longitude = null,
     Object? scrollPagination = freezed,
+    Object? carSearchFilter = null,
   }) {
     return _then(_$_Success(
       cars: null == cars
@@ -896,6 +1088,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.scrollPagination
           : scrollPagination // ignore: cast_nullable_to_non_nullable
               as ScrollPagination<Car>?,
+      carSearchFilter: null == carSearchFilter
+          ? _value.carSearchFilter
+          : carSearchFilter // ignore: cast_nullable_to_non_nullable
+              as CarSearchFilter,
     ));
   }
 
@@ -911,6 +1107,14 @@ class __$$_SuccessCopyWithImpl<$Res>
       return _then(_value.copyWith(scrollPagination: value));
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CarSearchFilterCopyWith<$Res> get carSearchFilter {
+    return $CarSearchFilterCopyWith<$Res>(_value.carSearchFilter, (value) {
+      return _then(_value.copyWith(carSearchFilter: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -924,7 +1128,8 @@ class _$_Success implements _Success {
       required this.rentalCarType,
       required this.latitude,
       required this.longitude,
-      this.scrollPagination})
+      this.scrollPagination,
+      required this.carSearchFilter})
       : _cars = cars;
 
   final List<Car> _cars;
@@ -949,10 +1154,12 @@ class _$_Success implements _Success {
   final double longitude;
   @override
   final ScrollPagination<Car>? scrollPagination;
+  @override
+  final CarSearchFilter carSearchFilter;
 
   @override
   String toString() {
-    return 'CarSearchResultState.success(cars: $cars, address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination)';
+    return 'CarSearchResultState.success(cars: $cars, address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter)';
   }
 
   @override
@@ -972,7 +1179,9 @@ class _$_Success implements _Success {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.scrollPagination, scrollPagination) ||
-                other.scrollPagination == scrollPagination));
+                other.scrollPagination == scrollPagination) &&
+            (identical(other.carSearchFilter, carSearchFilter) ||
+                other.carSearchFilter == carSearchFilter));
   }
 
   @override
@@ -985,7 +1194,8 @@ class _$_Success implements _Success {
       rentalCarType,
       latitude,
       longitude,
-      scrollPagination);
+      scrollPagination,
+      carSearchFilter);
 
   @JsonKey(ignore: true)
   @override
@@ -1006,12 +1216,13 @@ class _$_Success implements _Success {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)
         success,
     required TResult Function(String? message) failure,
   }) {
     return success(cars, address, startDate, endDate, rentalCarType, latitude,
-        longitude, scrollPagination);
+        longitude, scrollPagination, carSearchFilter);
   }
 
   @override
@@ -1027,12 +1238,13 @@ class _$_Success implements _Success {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult? Function(String? message)? failure,
   }) {
     return success?.call(cars, address, startDate, endDate, rentalCarType,
-        latitude, longitude, scrollPagination);
+        latitude, longitude, scrollPagination, carSearchFilter);
   }
 
   @override
@@ -1048,14 +1260,15 @@ class _$_Success implements _Success {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
       return success(cars, address, startDate, endDate, rentalCarType, latitude,
-          longitude, scrollPagination);
+          longitude, scrollPagination, carSearchFilter);
     }
     return orElse();
   }
@@ -1107,7 +1320,8 @@ abstract class _Success implements CarSearchResultState {
       required final RentalCarType rentalCarType,
       required final double latitude,
       required final double longitude,
-      final ScrollPagination<Car>? scrollPagination}) = _$_Success;
+      final ScrollPagination<Car>? scrollPagination,
+      required final CarSearchFilter carSearchFilter}) = _$_Success;
 
   List<Car> get cars;
   String get address;
@@ -1117,6 +1331,7 @@ abstract class _Success implements CarSearchResultState {
   double get latitude;
   double get longitude;
   ScrollPagination<Car>? get scrollPagination;
+  CarSearchFilter get carSearchFilter;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1195,7 +1410,8 @@ class _$_Failure implements _Failure {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)
         success,
     required TResult Function(String? message) failure,
   }) {
@@ -1215,7 +1431,8 @@ class _$_Failure implements _Failure {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult? Function(String? message)? failure,
   }) {
@@ -1235,7 +1452,8 @@ class _$_Failure implements _Failure {
             RentalCarType rentalCarType,
             double latitude,
             double longitude,
-            ScrollPagination<Car>? scrollPagination)?
+            ScrollPagination<Car>? scrollPagination,
+            CarSearchFilter carSearchFilter)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),

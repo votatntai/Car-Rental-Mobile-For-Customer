@@ -13,6 +13,7 @@ class CarSearchResultState with _$CarSearchResultState {
     required double latitude,
     required double longitude,
     ScrollPagination<Car>? scrollPagination,
+    required CarSearchFilter carSearchFilter,
   }) = _Success;
   const factory CarSearchResultState.failure({String? message}) = _Failure;
 }

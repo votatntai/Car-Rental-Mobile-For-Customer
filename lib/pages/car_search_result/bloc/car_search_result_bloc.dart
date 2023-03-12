@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/scroll_pagination.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/models/car_search_filter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'car_search_result_bloc.freezed.dart';
@@ -16,6 +17,7 @@ class CarSearchResultBloc
   CarSearchResultBloc() : super(const CarSearchResultState.initial()) {
     on<_Started>(_onStarted);
     on<_PageRequested>(_onPageRequested);
+    on<_CarTypeFilterChanged>(_onCarTypeFilterChanged);
   }
 
   late String address;
@@ -48,6 +50,9 @@ class CarSearchResultBloc
         rentalCarType: rentalCarType,
         latitude: latitude,
         longitude: longitude,
+        carSearchFilter: const CarSearchFilter(
+          carTypes: [],
+        ),
       ),
     );
   }
@@ -80,6 +85,18 @@ class CarSearchResultBloc
         cars,
         event.pageKey,
       ),
+    ));
+  }
+
+  FutureOr<void> _onCarTypeFilterChanged(
+    _CarTypeFilterChanged event,
+    Emitter<CarSearchResultState> emit,
+  ) async {
+    if (state is! _Success) return;
+
+    final currentState = state as _Success;
+    emit(currentState.copyWith(
+      carSearchFilter: event.filter,
     ));
   }
 
