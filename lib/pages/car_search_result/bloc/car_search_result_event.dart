@@ -16,6 +16,13 @@ class CarSearchResultEvent with _$CarSearchResultEvent {
   }) = _PageRequested;
 
   const factory CarSearchResultEvent.carTypeFilterChanged({
-    required CarSearchFilter filter,
+    required List<CarType> carTypes,
   }) = _CarTypeFilterChanged;
+
+  const factory CarSearchResultEvent.transmissionFilterChanged({
+    Transmission? transmission,
+  }) = _TransmissionFilterChanged;
+
+  const factory CarSearchResultEvent.isDiscountedFilterChanged() =
+      _IsDiscountedFilterChanged;
 }

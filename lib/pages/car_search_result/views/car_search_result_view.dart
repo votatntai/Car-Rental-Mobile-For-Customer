@@ -9,6 +9,7 @@ import 'package:car_rental_for_customer/pages/car_search_result/bloc/car_search_
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_item.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_type_widget.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/choice_chip_widget.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/widgets/transmission_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -50,6 +51,25 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
       builder: (BuildContext context) {
         return CarTypeWidget(bloc: bloc);
       },
+    );
+  }
+
+  void _onTransmissionFilterTap() {
+    final bloc = BlocProvider.of<CarSearchResultBloc>(context);
+
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return TransmissionWidget(bloc: bloc);
+      },
+    );
+  }
+
+  void _onDiscountFilterTap() {
+    final bloc = BlocProvider.of<CarSearchResultBloc>(context);
+
+    bloc.add(
+      const CarSearchResultEvent.isDiscountedFilterChanged(),
     );
   }
 
@@ -134,30 +154,24 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                         children: [
                           ChoiceChipWidget(
                             label: 'Loại xe',
-                            selected: true,
+                            selected: value.carSearchFilter.carTypes.isNotEmpty,
                             icon: Icons.drive_eta_outlined,
                             onTap: _onCarTypeFilterTap,
                           ),
                           const SizedBox(width: s08),
                           ChoiceChipWidget(
-                            label: 'Hãng xe',
-                            selected: true,
-                            icon: Icons.drive_eta_outlined,
-                            onTap: () {},
-                          ),
-                          const SizedBox(width: s08),
-                          ChoiceChipWidget(
                             label: 'Truyền động',
-                            selected: false,
+                            selected:
+                                value.carSearchFilter.transmission != null,
                             icon: Icons.memory_outlined,
-                            onTap: () {},
+                            onTap: _onTransmissionFilterTap,
                           ),
                           const SizedBox(width: s08),
                           ChoiceChipWidget(
                             label: 'Xe giảm giá',
-                            selected: false,
+                            selected: value.carSearchFilter.isDiscounted,
                             icon: Icons.percent_outlined,
-                            onTap: () {},
+                            onTap: _onDiscountFilterTap,
                           ),
                         ],
                       ),

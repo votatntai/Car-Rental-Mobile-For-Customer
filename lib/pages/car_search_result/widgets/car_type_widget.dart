@@ -132,9 +132,8 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const SizedBox(width: 26),
                         carType(
                           imageUrl: 'assets/mf-pickup.png',
                           title: 'Bán tải',
@@ -146,6 +145,12 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                             filter,
                             selected,
                           ),
+                        ),
+                        const SizedBox(
+                          width: 70,
+                        ),
+                        const SizedBox(
+                          width: 70,
                         ),
                       ],
                     ),
@@ -197,9 +202,7 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
 
     context.read<CarSearchResultBloc>().add(
           CarSearchResultEvent.carTypeFilterChanged(
-            filter: filter.copyWith(
-              carTypes: carTypes,
-            ),
+            carTypes: carTypes,
           ),
         );
   }

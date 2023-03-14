@@ -16,7 +16,7 @@ final carMock = [
     price: 1234,
     carType: CarType.sedan,
     brand: 'Toyota',
-    transmission: Transmission.automatic,
+    transmission: Transmission.auto,
     fuel: Fuel.gasoline,
     description:
         'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',
@@ -49,7 +49,7 @@ final carMock = [
     price: 1234,
     carType: CarType.sedan,
     brand: 'Toyota',
-    transmission: Transmission.automatic,
+    transmission: Transmission.auto,
     fuel: Fuel.gasoline,
     description:
         'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',
@@ -82,7 +82,7 @@ final carMock = [
     price: 1234,
     carType: CarType.sedan,
     brand: 'Toyota',
-    transmission: Transmission.automatic,
+    transmission: Transmission.auto,
     fuel: Fuel.gasoline,
     description:
         'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',
@@ -115,7 +115,7 @@ final carMock = [
       price: 1234,
       carType: CarType.sedan,
       brand: 'Toyota',
-      transmission: Transmission.automatic,
+      transmission: Transmission.auto,
       fuel: Fuel.gasoline,
       description:
           'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',

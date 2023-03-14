@@ -27,7 +27,10 @@ mixin _$CarSearchResultEvent {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
+    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
+    required TResult Function(Transmission? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,7 +39,9 @@ mixin _$CarSearchResultEvent {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,7 +50,9 @@ mixin _$CarSearchResultEvent {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +61,10 @@ mixin _$CarSearchResultEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
     required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +72,10 @@ mixin _$CarSearchResultEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
     TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +83,10 @@ mixin _$CarSearchResultEvent {
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
     TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -221,7 +240,10 @@ class _$_Started implements _Started {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
+    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
+    required TResult Function(Transmission? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
   }) {
     return started(
         address, startDate, endDate, rentalCarType, longitude, latitude);
@@ -234,7 +256,9 @@ class _$_Started implements _Started {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
   }) {
     return started?.call(
         address, startDate, endDate, rentalCarType, longitude, latitude);
@@ -247,7 +271,9 @@ class _$_Started implements _Started {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -263,6 +289,10 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
     required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
   }) {
     return started(this);
   }
@@ -273,6 +303,10 @@ class _$_Started implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
     TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
   }) {
     return started?.call(this);
   }
@@ -283,6 +317,10 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
     TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -386,7 +424,10 @@ class _$_PageRequested implements _PageRequested {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
+    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
+    required TResult Function(Transmission? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
   }) {
     return pageRequested(pageKey);
   }
@@ -398,7 +439,9 @@ class _$_PageRequested implements _PageRequested {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
   }) {
     return pageRequested?.call(pageKey);
   }
@@ -410,7 +453,9 @@ class _$_PageRequested implements _PageRequested {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (pageRequested != null) {
@@ -425,6 +470,10 @@ class _$_PageRequested implements _PageRequested {
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
     required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
   }) {
     return pageRequested(this);
   }
@@ -435,6 +484,10 @@ class _$_PageRequested implements _PageRequested {
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
     TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
   }) {
     return pageRequested?.call(this);
   }
@@ -445,6 +498,10 @@ class _$_PageRequested implements _PageRequested {
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
     TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (pageRequested != null) {
@@ -469,9 +526,7 @@ abstract class _$$_CarTypeFilterChangedCopyWith<$Res> {
           $Res Function(_$_CarTypeFilterChanged) then) =
       __$$_CarTypeFilterChangedCopyWithImpl<$Res>;
   @useResult
-  $Res call({CarSearchFilter filter});
-
-  $CarSearchFilterCopyWith<$Res> get filter;
+  $Res call({List<CarType> carTypes});
 }
 
 /// @nodoc
@@ -485,36 +540,34 @@ class __$$_CarTypeFilterChangedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filter = null,
+    Object? carTypes = null,
   }) {
     return _then(_$_CarTypeFilterChanged(
-      filter: null == filter
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as CarSearchFilter,
+      carTypes: null == carTypes
+          ? _value._carTypes
+          : carTypes // ignore: cast_nullable_to_non_nullable
+              as List<CarType>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CarSearchFilterCopyWith<$Res> get filter {
-    return $CarSearchFilterCopyWith<$Res>(_value.filter, (value) {
-      return _then(_value.copyWith(filter: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
-  const _$_CarTypeFilterChanged({required this.filter});
+  const _$_CarTypeFilterChanged({required final List<CarType> carTypes})
+      : _carTypes = carTypes;
 
+  final List<CarType> _carTypes;
   @override
-  final CarSearchFilter filter;
+  List<CarType> get carTypes {
+    if (_carTypes is EqualUnmodifiableListView) return _carTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_carTypes);
+  }
 
   @override
   String toString() {
-    return 'CarSearchResultEvent.carTypeFilterChanged(filter: $filter)';
+    return 'CarSearchResultEvent.carTypeFilterChanged(carTypes: $carTypes)';
   }
 
   @override
@@ -522,11 +575,12 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CarTypeFilterChanged &&
-            (identical(other.filter, filter) || other.filter == filter));
+            const DeepCollectionEquality().equals(other._carTypes, _carTypes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filter);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_carTypes));
 
   @JsonKey(ignore: true)
   @override
@@ -547,9 +601,12 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(CarSearchFilter filter) carTypeFilterChanged,
+    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
+    required TResult Function(Transmission? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
   }) {
-    return carTypeFilterChanged(filter);
+    return carTypeFilterChanged(carTypes);
   }
 
   @override
@@ -559,9 +616,11 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
   }) {
-    return carTypeFilterChanged?.call(filter);
+    return carTypeFilterChanged?.call(carTypes);
   }
 
   @override
@@ -571,11 +630,13 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(CarSearchFilter filter)? carTypeFilterChanged,
+    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (carTypeFilterChanged != null) {
-      return carTypeFilterChanged(filter);
+      return carTypeFilterChanged(carTypes);
     }
     return orElse();
   }
@@ -586,6 +647,10 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_PageRequested value) pageRequested,
     required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
   }) {
     return carTypeFilterChanged(this);
   }
@@ -596,6 +661,10 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_PageRequested value)? pageRequested,
     TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
   }) {
     return carTypeFilterChanged?.call(this);
   }
@@ -606,6 +675,10 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     TResult Function(_Started value)? started,
     TResult Function(_PageRequested value)? pageRequested,
     TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (carTypeFilterChanged != null) {
@@ -616,13 +689,330 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
 }
 
 abstract class _CarTypeFilterChanged implements CarSearchResultEvent {
-  const factory _CarTypeFilterChanged({required final CarSearchFilter filter}) =
+  const factory _CarTypeFilterChanged({required final List<CarType> carTypes}) =
       _$_CarTypeFilterChanged;
 
-  CarSearchFilter get filter;
+  List<CarType> get carTypes;
   @JsonKey(ignore: true)
   _$$_CarTypeFilterChangedCopyWith<_$_CarTypeFilterChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_TransmissionFilterChangedCopyWith<$Res> {
+  factory _$$_TransmissionFilterChangedCopyWith(
+          _$_TransmissionFilterChanged value,
+          $Res Function(_$_TransmissionFilterChanged) then) =
+      __$$_TransmissionFilterChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Transmission? transmission});
+}
+
+/// @nodoc
+class __$$_TransmissionFilterChangedCopyWithImpl<$Res>
+    extends _$CarSearchResultEventCopyWithImpl<$Res,
+        _$_TransmissionFilterChanged>
+    implements _$$_TransmissionFilterChangedCopyWith<$Res> {
+  __$$_TransmissionFilterChangedCopyWithImpl(
+      _$_TransmissionFilterChanged _value,
+      $Res Function(_$_TransmissionFilterChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transmission = freezed,
+  }) {
+    return _then(_$_TransmissionFilterChanged(
+      transmission: freezed == transmission
+          ? _value.transmission
+          : transmission // ignore: cast_nullable_to_non_nullable
+              as Transmission?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
+  const _$_TransmissionFilterChanged({this.transmission});
+
+  @override
+  final Transmission? transmission;
+
+  @override
+  String toString() {
+    return 'CarSearchResultEvent.transmissionFilterChanged(transmission: $transmission)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TransmissionFilterChanged &&
+            (identical(other.transmission, transmission) ||
+                other.transmission == transmission));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, transmission);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TransmissionFilterChangedCopyWith<_$_TransmissionFilterChanged>
+      get copyWith => __$$_TransmissionFilterChangedCopyWithImpl<
+          _$_TransmissionFilterChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String address,
+            DateTime startDate,
+            DateTime endDate,
+            RentalCarType rentalCarType,
+            double longitude,
+            double latitude)
+        started,
+    required TResult Function(int pageKey) pageRequested,
+    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
+    required TResult Function(Transmission? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
+  }) {
+    return transmissionFilterChanged(transmission);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String address, DateTime startDate, DateTime endDate,
+            RentalCarType rentalCarType, double longitude, double latitude)?
+        started,
+    TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
+  }) {
+    return transmissionFilterChanged?.call(transmission);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String address, DateTime startDate, DateTime endDate,
+            RentalCarType rentalCarType, double longitude, double latitude)?
+        started,
+    TResult Function(int pageKey)? pageRequested,
+    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (transmissionFilterChanged != null) {
+      return transmissionFilterChanged(transmission);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
+  }) {
+    return transmissionFilterChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
+  }) {
+    return transmissionFilterChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (transmissionFilterChanged != null) {
+      return transmissionFilterChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TransmissionFilterChanged implements CarSearchResultEvent {
+  const factory _TransmissionFilterChanged({final Transmission? transmission}) =
+      _$_TransmissionFilterChanged;
+
+  Transmission? get transmission;
+  @JsonKey(ignore: true)
+  _$$_TransmissionFilterChangedCopyWith<_$_TransmissionFilterChanged>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_IsDiscountedFilterChangedCopyWith<$Res> {
+  factory _$$_IsDiscountedFilterChangedCopyWith(
+          _$_IsDiscountedFilterChanged value,
+          $Res Function(_$_IsDiscountedFilterChanged) then) =
+      __$$_IsDiscountedFilterChangedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_IsDiscountedFilterChangedCopyWithImpl<$Res>
+    extends _$CarSearchResultEventCopyWithImpl<$Res,
+        _$_IsDiscountedFilterChanged>
+    implements _$$_IsDiscountedFilterChangedCopyWith<$Res> {
+  __$$_IsDiscountedFilterChangedCopyWithImpl(
+      _$_IsDiscountedFilterChanged _value,
+      $Res Function(_$_IsDiscountedFilterChanged) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
+  const _$_IsDiscountedFilterChanged();
+
+  @override
+  String toString() {
+    return 'CarSearchResultEvent.isDiscountedFilterChanged()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IsDiscountedFilterChanged);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String address,
+            DateTime startDate,
+            DateTime endDate,
+            RentalCarType rentalCarType,
+            double longitude,
+            double latitude)
+        started,
+    required TResult Function(int pageKey) pageRequested,
+    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
+    required TResult Function(Transmission? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
+  }) {
+    return isDiscountedFilterChanged();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String address, DateTime startDate, DateTime endDate,
+            RentalCarType rentalCarType, double longitude, double latitude)?
+        started,
+    TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
+  }) {
+    return isDiscountedFilterChanged?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String address, DateTime startDate, DateTime endDate,
+            RentalCarType rentalCarType, double longitude, double latitude)?
+        started,
+    TResult Function(int pageKey)? pageRequested,
+    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
+    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (isDiscountedFilterChanged != null) {
+      return isDiscountedFilterChanged();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
+  }) {
+    return isDiscountedFilterChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
+  }) {
+    return isDiscountedFilterChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (isDiscountedFilterChanged != null) {
+      return isDiscountedFilterChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsDiscountedFilterChanged implements CarSearchResultEvent {
+  const factory _IsDiscountedFilterChanged() = _$_IsDiscountedFilterChanged;
 }
 
 /// @nodoc

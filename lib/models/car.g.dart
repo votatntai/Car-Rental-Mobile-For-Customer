@@ -58,7 +58,7 @@ const _$CarTypeEnumMap = {
 };
 
 const _$TransmissionEnumMap = {
-  Transmission.automatic: 'automatic',
+  Transmission.auto: 'auto',
   Transmission.manual: 'manual',
 };
 

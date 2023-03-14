@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:car_rental_for_customer/models/car.dart';
+import 'package:car_rental_for_customer/models/enums/car_type.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/models/enums/transmission.dart';
 import 'package:car_rental_for_customer/models/scroll_pagination.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/models/car_search_filter.dart';
@@ -18,6 +20,8 @@ class CarSearchResultBloc
     on<_Started>(_onStarted);
     on<_PageRequested>(_onPageRequested);
     on<_CarTypeFilterChanged>(_onCarTypeFilterChanged);
+    on<_TransmissionFilterChanged>(_onTransmissionFilterChanged);
+    on<_IsDiscountedFilterChanged>(_onIsDiscountedFilterChanged);
   }
 
   late String address;
@@ -95,9 +99,43 @@ class CarSearchResultBloc
     if (state is! _Success) return;
 
     final currentState = state as _Success;
-    emit(currentState.copyWith(
-      carSearchFilter: event.filter,
-    ));
+    emit(
+      currentState.copyWith(
+        carSearchFilter: currentState.carSearchFilter.copyWith(
+          carTypes: event.carTypes,
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onTransmissionFilterChanged(
+    _TransmissionFilterChanged event,
+    Emitter<CarSearchResultState> emit,
+  ) async {
+    if (state is! _Success) return;
+    final currentState = state as _Success;
+    emit(
+      currentState.copyWith(
+        carSearchFilter: currentState.carSearchFilter.copyWith(
+          transmission: event.transmission,
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onIsDiscountedFilterChanged(
+    _IsDiscountedFilterChanged event,
+    Emitter<CarSearchResultState> emit,
+  ) async {
+    if (state is! _Success) return;
+    final currentState = state as _Success;
+    emit(
+      currentState.copyWith(
+        carSearchFilter: currentState.carSearchFilter.copyWith(
+          isDiscounted: !currentState.carSearchFilter.isDiscounted,
+        ),
+      ),
+    );
   }
 
   ScrollPagination<Car> _calculateScrollPagination(
