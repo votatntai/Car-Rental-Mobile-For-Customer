@@ -190,7 +190,25 @@ class _HomeViewState extends State<HomeView> {
                       itemBuilder: (context, index) {
                         return LocationCard(
                           type: LocationCardType.values[index],
-                          onTap: () {},
+                          onTap: () {
+                            context.pushNamed(RouteName.carSearchResult,
+                                queryParams: {
+                                  'rentalCarType':
+                                      RentalCarType.selfDrivingCar.name,
+                                  'start-date': DateTime.now().toString(),
+                                  'end-date': DateTime.now()
+                                      .add(const Duration(days: 1))
+                                      .toString(),
+                                  'address': getLocationName(
+                                      LocationCardType.values[index]),
+                                  'latitude': getLocationLatitude(
+                                          LocationCardType.values[index])
+                                      .toString(),
+                                  'longitude': getLocationLongitude(
+                                          LocationCardType.values[index])
+                                      .toString(),
+                                });
+                          },
                         );
                       },
                       itemCount: LocationCardType.values.length,
@@ -209,7 +227,25 @@ class _HomeViewState extends State<HomeView> {
                       itemBuilder: (context, index) {
                         return LocationCard(
                           type: LocationCardType.values[index],
-                          onTap: () {},
+                          onTap: () {
+                            context.pushNamed(RouteName.carSearchResult,
+                                queryParams: {
+                                  'rentalCarType':
+                                      RentalCarType.carWithDriver.name,
+                                  'start-date': DateTime.now().toString(),
+                                  'end-date': DateTime.now()
+                                      .add(const Duration(days: 1))
+                                      .toString(),
+                                  'address': getLocationName(
+                                      LocationCardType.values[index]),
+                                  'latitude': getLocationLatitude(
+                                          LocationCardType.values[index])
+                                      .toString(),
+                                  'longitude': getLocationLongitude(
+                                          LocationCardType.values[index])
+                                      .toString(),
+                                });
+                          },
                         );
                       },
                       itemCount: LocationCardType.values.length,
