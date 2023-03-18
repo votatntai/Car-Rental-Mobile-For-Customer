@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/place.dart';
@@ -34,7 +35,7 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
         endDate: DateTime.now().add(const Duration(days: 1)),
       ),
     );
-    final position = await _determinePosition();
+    final position = await determineCurrentPosition();
 
     emit(
       state.copyWith(
@@ -89,36 +90,6 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
         endDate: event.endDate,
       ),
     );
-  }
-
-  Future<Position?> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // return Future.error('Location services are disabled.');
-
-      return null;
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        // return Future.error('Location permissions are denied');
-        return null;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // return Future.error(
-      //     'Location permissions are permanently denied, we cannot request permissions.');
-
-      return null;
-    }
-
-    return await Geolocator.getCurrentPosition();
   }
 
   // Future<Placemark> getAddressFromLatLng({

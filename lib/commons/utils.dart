@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -47,4 +49,48 @@ String dateToString(DateTime date) {
   final dateString = DateFormat('dd/MM/yyyy').format(date);
 
   return '$time, $dateString';
+}
+
+String formatTimeOfDay(TimeOfDay timeOfDay) {
+  final format = NumberFormat('00');
+  return '${format.format(timeOfDay.hour)}:${format.format(timeOfDay.minute)}';
+}
+
+String formatCurrency(double price) {
+  return NumberFormat.currency(locale: 'vi', symbol: 'đ').format(price);
+}
+
+Future<Position?> determineCurrentPosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    // return Future.error('Location services are disabled.');
+
+    return null;
+  }
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      // return Future.error('Location permissions are denied');
+      return null;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    // return Future.error(
+    //     'Location permissions are permanently denied, we cannot request permissions.');
+
+    return null;
+  }
+
+  return await Geolocator.getCurrentPosition();
+}
+
+int calculateDays(DateTime startDate, DateTime endDate) {
+  final difference = endDate.difference(startDate);
+  return (difference.inMinutes / 60 / 24).ceil();
 }

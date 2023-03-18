@@ -179,7 +179,39 @@ class AppRoute {
         path: '/car-detail',
         name: RouteName.carDetail,
         parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) => const CarDetailPage(),
+        builder: (context, state) {
+          final String carId = state.queryParams['car-id'] ?? '';
+
+          final rentalCarType = RentalCarType.values.firstWhere(
+            (element) => element.name == state.queryParams['rental-car-type'],
+            orElse: () => RentalCarType.selfDrivingCar,
+          );
+          final startDate = DateTime.tryParse(
+            state.queryParams['start-date'] ?? '',
+          );
+          final endDate = DateTime.tryParse(
+            state.queryParams['end-date'] ?? '',
+          );
+
+          final address = state.queryParams['address'];
+
+          final latitude = double.tryParse(
+            state.queryParams['latitude'] ?? '',
+          );
+
+          final longitude = double.tryParse(
+            state.queryParams['longitude'] ?? '',
+          );
+          return CarDetailPage(
+            carId: carId,
+            rentalCarType: rentalCarType,
+            address: address,
+            endDate: endDate,
+            startDate: startDate,
+            latitude: latitude,
+            longitude: longitude,
+          );
+        },
       ),
     ],
     initialLocation: '/splash',

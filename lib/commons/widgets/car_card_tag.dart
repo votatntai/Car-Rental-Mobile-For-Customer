@@ -18,7 +18,7 @@ class CarCardTag extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            fontSize: 8,
+            fontSize: 10,
           ),
         ),
       ),

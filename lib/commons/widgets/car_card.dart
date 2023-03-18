@@ -2,20 +2,23 @@ import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
+import 'package:car_rental_for_customer/models/car.dart';
 import 'package:flutter/material.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({
     Key? key,
+    required this.car,
     required this.onTap,
   }) : super(key: key);
 
-  final VoidCallback onTap;
+  final Car car;
+  final Function(String id) onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap('1'),
       child: SizedBox(
         height: 200,
         width: 250,

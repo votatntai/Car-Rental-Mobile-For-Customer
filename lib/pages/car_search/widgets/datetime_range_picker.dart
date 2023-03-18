@@ -37,12 +37,14 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
     Future<DateTime?> pickDatetime({
       required BuildContext context,
       DateTime? firstDate,
+      DateTime? lastDate,
     }) async {
       final date = await showDatePicker(
         context: context,
         initialDate: startDate,
         firstDate: firstDate ?? DateTime.now(),
-        lastDate: firstDate?.add(
+        lastDate: lastDate ??
+            firstDate?.add(
               const Duration(
                 days: 365,
               ),
@@ -117,7 +119,10 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
                 ),
               ),
               onTap: () {
-                pickDatetime(context: context).then((value) {
+                pickDatetime(
+                  context: context,
+                  // lastDate: endDate,
+                ).then((value) {
                   if (value != null) {
                     setState(() {
                       startDate = value;

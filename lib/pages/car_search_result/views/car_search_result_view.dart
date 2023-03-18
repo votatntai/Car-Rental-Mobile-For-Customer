@@ -184,10 +184,18 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                         animateTransitions: true,
                         itemBuilder: (context, item, index) => CarItem(
                           onTap: (id) {
-                            context
-                                .pushNamed(RouteName.carDetail, queryParams: {
-                              'id': id,
-                            });
+                            context.pushNamed(
+                              RouteName.carDetail,
+                              queryParams: {
+                                'car-id': id,
+                                'rental-car-type': value.rentalCarType.name,
+                                'address': value.address,
+                                'start-date': value.startDate.toString(),
+                                'end-date': value.endDate.toString(),
+                                'longitude': value.longitude.toString(),
+                                'latitude': value.latitude.toString(),
+                              },
+                            );
                           },
                           car: item,
                         ),

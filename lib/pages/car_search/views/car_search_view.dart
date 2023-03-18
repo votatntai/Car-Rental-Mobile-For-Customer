@@ -7,6 +7,7 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_search/bloc/car_search_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/car_search_input.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/datetime_range_picker.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/location_search/location_search_delegate.dart';
 import 'package:car_rental_for_customer/pages/location_search/position_result.dart';
 import 'package:flutter/material.dart';
@@ -154,8 +155,21 @@ class CarSearchView extends StatelessWidget {
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return CarCard(
-                              onTap: () {
-                                context.pushNamed(RouteName.carDetail);
+                              car: carMock[index],
+                              onTap: (id) {
+                                context.pushNamed(
+                                  RouteName.carDetail,
+                                  queryParams: {
+                                    'car-id': id,
+                                    'rental-car-type':
+                                        state.rentalCarType?.name,
+                                    'address': state.address,
+                                    'start-date': state.startDate?.toString(),
+                                    'end-date': state.endDate?.toString(),
+                                    'longitude': state.longitude?.toString(),
+                                    'latitude': state.latitude?.toString(),
+                                  },
+                                );
                               },
                             );
                           },
@@ -191,8 +205,21 @@ class CarSearchView extends StatelessWidget {
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return CarCard(
-                              onTap: () {
-                                context.pushNamed(RouteName.carDetail);
+                              car: carMock[index],
+                              onTap: (id) {
+                                context.pushNamed(
+                                  RouteName.carDetail,
+                                  queryParams: {
+                                    'car-id': id,
+                                    'rental-car-type':
+                                        state.rentalCarType!.name,
+                                    'address': state.address ?? '',
+                                    'start-date': state.startDate!.toString(),
+                                    'end-date': state.endDate!.toString(),
+                                    'longitude': state.longitude!.toString(),
+                                    'latitude': state.latitude!.toString(),
+                                  },
+                                );
                               },
                             );
                           },

@@ -4,6 +4,7 @@ import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/home/bloc/home_bloc.dart';
 import 'package:car_rental_for_customer/pages/home/widgets/car_option.dart';
 import 'package:car_rental_for_customer/pages/home/widgets/location_card.dart';
@@ -171,8 +172,16 @@ class _HomeViewState extends State<HomeView> {
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return CarCard(
-                          onTap: () {
-                            context.pushNamed(RouteName.carDetail);
+                          car: carMock[index],
+                          onTap: (id) {
+                            context.pushNamed(
+                              RouteName.carDetail,
+                              queryParams: {
+                                'car-id': id,
+                                'rental-car-type':
+                                    carMock[index].rentalCarType.name,
+                              },
+                            );
                           },
                         );
                       },
