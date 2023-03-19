@@ -13,4 +13,5 @@ mixin RouteName {
   static const carSearch = 'car-search';
   static const carSearchResult = 'car-search-result';
   static const carBookingConfirmation = 'car-booking-confirmation';
+  static const orderInformation = 'order-information';
 }

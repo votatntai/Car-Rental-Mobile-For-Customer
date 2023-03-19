@@ -7,7 +7,6 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/place.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 
 part 'car_search_bloc.freezed.dart';
 part 'car_search_event.dart';

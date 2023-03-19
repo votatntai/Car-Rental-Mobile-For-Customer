@@ -9,6 +9,7 @@ import 'package:car_rental_for_customer/pages/car_search_result/car_search_resul
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
+import 'package:car_rental_for_customer/pages/order_information/views/order_information_page.dart';
 import 'package:car_rental_for_customer/pages/profile/profile.dart';
 import 'package:car_rental_for_customer/pages/profile_detail/profile_detail.dart';
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
@@ -253,6 +254,18 @@ class AppRoute {
             longitude: longitude,
             promotionId: promotionId,
             carDeliveryCost: carDeliveryCost,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/order-information',
+        name: RouteName.orderInformation,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final orderId = state.queryParams['order-id'];
+
+          return OrderInformationPage(
+            orderId: orderId,
           );
         },
       ),

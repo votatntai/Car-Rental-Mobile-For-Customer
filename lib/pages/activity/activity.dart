@@ -1,1 +1,1 @@
-export 'views/booking_page.dart';
+export 'views/activity_page.dart';

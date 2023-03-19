@@ -1,4 +1,3 @@
-import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -8,25 +7,22 @@ import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
 import 'package:car_rental_for_customer/models/car.dart';
-import 'package:car_rental_for_customer/pages/car_booking_confirmation/bloc/car_booking_confirmation_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
+import 'package:car_rental_for_customer/pages/order_information/bloc/order_information_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class CarBookingConfirmationView extends StatefulWidget {
-  const CarBookingConfirmationView({Key? key}) : super(key: key);
+class OrderInformationView extends StatefulWidget {
+  const OrderInformationView({Key? key}) : super(key: key);
 
   @override
-  State<CarBookingConfirmationView> createState() =>
-      _CarBookingConfirmationViewState();
+  State<OrderInformationView> createState() => _OrderInformationViewState();
 }
 
-class _CarBookingConfirmationViewState
-    extends State<CarBookingConfirmationView> {
+class _OrderInformationViewState extends State<OrderInformationView> {
   PageController pageController = PageController(viewportFraction: 1);
   TextEditingController textarea = TextEditingController();
 
@@ -63,9 +59,62 @@ class _CarBookingConfirmationViewState
     ],
   );
 
+  List<Step> steps(int currStep) {
+    return [
+      Step(
+        state: currStep == 0 ? StepState.complete : StepState.indexed,
+        title: Text(
+          'Duyệt yêu cầu',
+          style: boldTextStyle(
+            color: CustomColors.darkGreen,
+            size: 13,
+          ),
+        ),
+        isActive: true,
+        content: const SizedBox(),
+      ),
+      Step(
+        state: currStep == 1 ? StepState.complete : StepState.indexed,
+        title: Text(
+          'Thanh toán cọc',
+          style: boldTextStyle(
+            color: CustomColors.darkGreen,
+            size: 13,
+          ),
+        ),
+        isActive: false,
+        content: const SizedBox(),
+      ),
+      Step(
+        state: currStep == 2 ? StepState.complete : StepState.indexed,
+        title: Text(
+          'Khởi hành',
+          style: boldTextStyle(
+            color: CustomColors.darkGreen,
+            size: 13,
+          ),
+        ),
+        isActive: false,
+        content: const SizedBox(),
+      ),
+      Step(
+        state: currStep == 3 ? StepState.complete : StepState.indexed,
+        title: Text(
+          'Kết thúc',
+          style: boldTextStyle(
+            color: CustomColors.darkGreen,
+            size: 13,
+          ),
+        ),
+        isActive: false,
+        content: const SizedBox(),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CarBookingConfirmationBloc, CarBookingConfirmationState>(
+    return BlocBuilder<OrderInformationBloc, OrderInformationState>(
       builder: (context, state) {
         final successState = state.mapOrNull(success: (state) => state);
 
@@ -76,28 +125,47 @@ class _CarBookingConfirmationViewState
         }
 
         final rentCost = calculateDays(
-              successState.startDate,
-              successState.endDate,
+              successState.order.startDate,
+              successState.order.endDate,
             ) *
-            successState.car.price;
+            successState.order.rentalUnitPrice;
 
         //TODO: Calculate promotion cost
-        const promotionCost = 0.0;
+        final promotionCost = successState.order.promotionDiscount;
 
-        const carDeliveryCost = 12000.0;
+        final carDeliveryCost = successState.order.deliveryCost;
 
         final totalCost = rentCost + carDeliveryCost - promotionCost;
-        final deposit = totalCost * 0.3;
+        final deposit = successState.order.deposit;
         final remaining = totalCost - deposit;
-
         return Scaffold(
-          appBar: appAppBar(context, titleText: 'Xác nhận đặt xe'),
+          appBar: appAppBar(context, titleText: 'Thông tin chuyến'),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                carImage(context, successState.car),
-                carTitle(context, successState.car),
+                carImage(context, successState.order.car),
+                carTitle(context, successState.order.car),
+                divider,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s16),
+                  child: ContainerWithLabel(
+                    label: 'Trạng thái chuyến',
+                    child: Stepper(
+                      controlsBuilder: (context, details) {
+                        return Row(
+                          children: const [
+                            SizedBox(),
+                          ],
+                        );
+                      },
+                      steps: steps(0),
+                      physics: const BouncingScrollPhysics(),
+                      type: StepperType.vertical,
+                      currentStep: 0,
+                    ),
+                  ),
+                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -118,7 +186,7 @@ class _CarBookingConfirmationViewState
                               children: [
                                 Text(
                                   DateFormat('HH:mm E, dd/MM/yyyy').format(
-                                    successState.startDate,
+                                    successState.order.startDate,
                                   ),
                                   style: const TextStyle(
                                     fontSize: 12,
@@ -126,7 +194,7 @@ class _CarBookingConfirmationViewState
                                 ),
                                 Text(
                                   DateFormat('HH:mm E, dd/MM/yyyy').format(
-                                    successState.endDate,
+                                    successState.order.endDate,
                                   ),
                                   style: const TextStyle(
                                     fontSize: 12,
@@ -153,7 +221,7 @@ class _CarBookingConfirmationViewState
                                   ),
                                   const Spacer(),
                                   Text(
-                                    '${formatTimeOfDay(successState.car.startPickUpTime)}-${formatTimeOfDay(successState.car.endPickUpTime)}',
+                                    '${formatTimeOfDay(successState.order.car.startPickUpTime)}-${formatTimeOfDay(successState.order.car.endPickUpTime)}',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
@@ -169,7 +237,7 @@ class _CarBookingConfirmationViewState
                                   ),
                                   const Spacer(),
                                   Text(
-                                    '${formatTimeOfDay(successState.car.startReturnTime)}-${formatTimeOfDay(successState.car.endReturnTime)}',
+                                    '${formatTimeOfDay(successState.order.car.startReturnTime)}-${formatTimeOfDay(successState.order.car.endReturnTime)}',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
@@ -200,7 +268,7 @@ class _CarBookingConfirmationViewState
                             SizedBox(
                               width: context.width() * 0.8,
                               child: Text(
-                                successState.address,
+                                successState.order.address,
                                 style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -225,7 +293,7 @@ class _CarBookingConfirmationViewState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${successState.car.distanceLimit} km/ngày',
+                          '${successState.order.car.distanceLimit} km/ngày',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -235,7 +303,7 @@ class _CarBookingConfirmationViewState
                           height: s04,
                         ),
                         Text(
-                          'Phí: ${formatCurrency(successState.car.overDistancePrice)}/km vượt qua giới hạn',
+                          'Phí: ${formatCurrency(successState.order.car.overDistancePrice)}/km vượt qua giới hạn',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
@@ -296,7 +364,7 @@ class _CarBookingConfirmationViewState
                   padding: const EdgeInsets.symmetric(horizontal: s16),
                   child: ContainerWithLabel(
                     label: 'Chủ xe',
-                    child: CarOwnerWidget(car: successState.car),
+                    child: CarOwnerWidget(car: successState.order.car),
                   ),
                 ),
                 divider,
@@ -307,6 +375,7 @@ class _CarBookingConfirmationViewState
                     child: TextField(
                       controller: textarea,
                       keyboardType: TextInputType.multiline,
+                      readOnly: true,
                       maxLines: 4,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -330,7 +399,7 @@ class _CarBookingConfirmationViewState
                             ),
                             const Spacer(),
                             Text(
-                              '${formatCurrency(successState.car.price)}/ngày',
+                              '${formatCurrency(successState.order.rentalUnitPrice)}/ngày',
                               style: const TextStyle(fontSize: 12),
                             ),
                           ],
@@ -344,16 +413,15 @@ class _CarBookingConfirmationViewState
                             ),
                             const Spacer(),
                             Text(
-                              '${formatCurrency(successState.car.price)} x ${calculateDays(
-                                successState.startDate,
-                                successState.endDate,
+                              '${formatCurrency(successState.order.rentalUnitPrice)} x ${calculateDays(
+                                successState.order.startDate,
+                                successState.order.endDate,
                               )} ngày',
                               style: const TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
-                        if (successState.carDeliveryCost != null &&
-                            successState.carDeliveryCost! > 0)
+                        if (carDeliveryCost > 0)
                           Column(
                             children: [
                               const SizedBox(
@@ -482,17 +550,11 @@ class _CarBookingConfirmationViewState
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: s12),
+                            backgroundColor: CustomColors.tomato,
                           ),
-                          onPressed: () {
-                            context.pushNamed(
-                              RouteName.orderInformation,
-                              queryParams: {
-                                'order-id': '1',
-                              },
-                            );
-                          },
+                          onPressed: () {},
                           child: const Text(
-                            'Đặt xe',
+                            'Huỷ chuyến',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
