@@ -1,3 +1,4 @@
+import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -5,6 +6,7 @@ import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
+import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
 import 'package:car_rental_for_customer/commons/widgets/horizontal_icon.dart';
 import 'package:car_rental_for_customer/commons/widgets/vertical_icon.dart';
@@ -15,6 +17,7 @@ import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.
 import 'package:car_rental_for_customer/pages/car_detail/widgets/surcharge_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -80,6 +83,10 @@ class _CarDetailViewState extends State<CarDetailView> {
 
         //TODO: Calculate promotion cost
         const promotionCost = 0.0;
+
+        const carDeliveryCost = 12000.0;
+
+        final totalCost = rentCost + carDeliveryCost - promotionCost;
 
         return Scaffold(
           appBar: appAppBar(
@@ -430,11 +437,33 @@ class _CarDetailViewState extends State<CarDetailView> {
                                     '${formatCurrency(successState.car.price)} x ${calculateDays(
                                       successState.startDate,
                                       successState.endDate,
-                                    )}',
+                                    )} ngày',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
                               ),
+                              if (successState.carAddressType ==
+                                  CarAddressType.customer)
+                                Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: s04,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Phí giao nhận xe:',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          formatCurrency(carDeliveryCost),
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               const SizedBox(
                                 height: s04,
                               ),
@@ -458,15 +487,15 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   const Text(
                                     'Tổng cộng:',
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   const Spacer(),
                                   Text(
-                                    formatCurrency(rentCost - promotionCost),
+                                    formatCurrency(totalCost),
                                     style: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -647,7 +676,9 @@ class _CarDetailViewState extends State<CarDetailView> {
                         padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(
                           label: 'Chủ xe',
-                          child: Container(),
+                          child: CarOwnerWidget(
+                            car: successState.car,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -670,7 +701,24 @@ class _CarDetailViewState extends State<CarDetailView> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: s12),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              context.pushNamed(
+                                RouteName.carBookingConfirmation,
+                                queryParams: {
+                                  'car-id': successState.car.id,
+                                  'start-date':
+                                      successState.startDate.toString(),
+                                  'end-date': successState.endDate.toString(),
+                                  'address': successState.address,
+                                  'latitude': successState.latitude.toString(),
+                                  'longitude':
+                                      successState.longitude.toString(),
+                                  'promotion-id': successState.promotion?.id,
+                                  'car-delivery-cost':
+                                      carDeliveryCost.toString(),
+                                },
+                              );
+                            },
                             child: const Text(
                               'Đặt xe',
                               style: TextStyle(

@@ -2,6 +2,7 @@ import 'package:car_rental_for_customer/app/route/observers.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
+import 'package:car_rental_for_customer/pages/car_booking_confirmation/views/car_booking_confirmation_page.dart';
 import 'package:car_rental_for_customer/pages/car_detail/car_detail.dart';
 import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/car_search_result.dart';
@@ -210,6 +211,48 @@ class AppRoute {
             startDate: startDate,
             latitude: latitude,
             longitude: longitude,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/car-booking-confirmation',
+        name: RouteName.carBookingConfirmation,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final carId = state.queryParams['car-id'];
+
+          final startDate = DateTime.tryParse(
+            state.queryParams['start-date'] ?? '',
+          );
+          final endDate = DateTime.tryParse(
+            state.queryParams['end-date'] ?? '',
+          );
+
+          final address = state.queryParams['address'];
+
+          final latitude = double.tryParse(
+            state.queryParams['latitude'] ?? '',
+          );
+
+          final longitude = double.tryParse(
+            state.queryParams['longitude'] ?? '',
+          );
+
+          final promotionId = state.queryParams['promotion-id'];
+
+          final carDeliveryCost = double.tryParse(
+            state.queryParams['car-delivery-cost'] ?? '',
+          );
+
+          return CarBookingConfirmationPage(
+            carId: carId,
+            address: address,
+            endDate: endDate,
+            startDate: startDate,
+            latitude: latitude,
+            longitude: longitude,
+            promotionId: promotionId,
+            carDeliveryCost: carDeliveryCost,
           );
         },
       ),

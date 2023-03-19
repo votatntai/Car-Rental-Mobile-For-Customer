@@ -13,7 +13,7 @@ class ContainerWithLabel extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          label,
+          label.toUpperCase(),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 14,

@@ -6,6 +6,7 @@ import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/place.dart';
+import 'package:car_rental_for_customer/models/promotion.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
