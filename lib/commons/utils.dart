@@ -92,6 +92,5 @@ Future<Position?> determineCurrentPosition() async {
 
 int calculateDays(DateTime startDate, DateTime endDate) {
   final difference = endDate.difference(startDate);
-  print(difference.inMinutes);
   return (difference.inMinutes / 60 / 24).ceil();
 }

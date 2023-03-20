@@ -8,16 +8,20 @@ import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
+import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/horizontal_icon.dart';
 import 'package:car_rental_for_customer/commons/widgets/vertical_icon.dart';
+import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/transmission.dart';
 import 'package:car_rental_for_customer/pages/car_detail/bloc/car_detail_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
 import 'package:car_rental_for_customer/pages/car_detail/widgets/surcharge_item.dart';
+import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -651,21 +655,32 @@ class _CarDetailViewState extends State<CarDetailView> {
                         padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(
                           label: 'Vị trí xe',
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: const [
-                              Icon(
-                                Icons.location_on_outlined,
-                                size: 15,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Icon(
+                                    Icons.location_on_outlined,
+                                    size: 15,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  SizedBox(
+                                    width: context.width() * 0.8,
+                                    child: Text(
+                                      successState.car.location,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w500,
+                                        color: CustomColors.jetBlack,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(width: 2),
-                              Text(
-                                'Quận 10, Hồ Chí Minh',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                  color: CustomColors.jetBlack,
-                                ),
+                              GoogleMapWidget(
+                                address: successState.car.location,
+                                mapsRepository: getIt.get<MapsRepository>(),
                               ),
                             ],
                           ),
@@ -709,7 +724,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   'start-date':
                                       successState.startDate.toString(),
                                   'end-date': successState.endDate.toString(),
-                                  'address': successState.address,
+                                  'address': successState.deliveryAddress,
                                   'latitude': successState.latitude.toString(),
                                   'longitude':
                                       successState.longitude.toString(),

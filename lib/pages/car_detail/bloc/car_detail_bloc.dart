@@ -102,6 +102,11 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
       latitude: latitude,
       longitude: longitude,
       carAddressType: carAddressType,
+      deliveryAddress: getDeliveryAddress(
+        carAddressType,
+        car.location,
+        address,
+      ),
     ));
   }
 
@@ -110,8 +115,22 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
     Emitter<CarDetailState> emit,
   ) async {
     if (state is! _Success) return;
-    emit((state as _Success).copyWith(
+    final currentState = state as _Success;
+    emit(currentState.copyWith(
       carAddressType: event.carAddressType,
+      deliveryAddress: getDeliveryAddress(
+        event.carAddressType,
+        currentState.car.location,
+        currentState.address,
+      ),
     ));
+  }
+
+  String getDeliveryAddress(
+    CarAddressType carAddressType,
+    String carAddress,
+    String customerAddress,
+  ) {
+    return carAddressType == CarAddressType.car ? carAddress : customerAddress;
   }
 }

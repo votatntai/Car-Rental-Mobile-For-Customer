@@ -512,6 +512,7 @@ mixin _$CarDetailState {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)
         success,
     required TResult Function(String? message) failure,
@@ -530,6 +531,7 @@ mixin _$CarDetailState {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult? Function(String? message)? failure,
@@ -548,6 +550,7 @@ mixin _$CarDetailState {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult Function(String? message)? failure,
@@ -647,6 +650,7 @@ class _$_Initial implements _Initial {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)
         success,
     required TResult Function(String? message) failure,
@@ -668,6 +672,7 @@ class _$_Initial implements _Initial {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult? Function(String? message)? failure,
@@ -689,6 +694,7 @@ class _$_Initial implements _Initial {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult Function(String? message)? failure,
@@ -790,6 +796,7 @@ class _$_Loading implements _Loading {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)
         success,
     required TResult Function(String? message) failure,
@@ -811,6 +818,7 @@ class _$_Loading implements _Loading {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult? Function(String? message)? failure,
@@ -832,6 +840,7 @@ class _$_Loading implements _Loading {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult Function(String? message)? failure,
@@ -900,6 +909,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
       double latitude,
       double longitude,
       CarAddressType carAddressType,
+      String deliveryAddress,
       Promotion? promotion});
 
   $CarCopyWith<$Res> get car;
@@ -924,6 +934,7 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? latitude = null,
     Object? longitude = null,
     Object? carAddressType = null,
+    Object? deliveryAddress = null,
     Object? promotion = freezed,
   }) {
     return _then(_$_Success(
@@ -959,6 +970,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.carAddressType
           : carAddressType // ignore: cast_nullable_to_non_nullable
               as CarAddressType,
+      deliveryAddress: null == deliveryAddress
+          ? _value.deliveryAddress
+          : deliveryAddress // ignore: cast_nullable_to_non_nullable
+              as String,
       promotion: freezed == promotion
           ? _value.promotion
           : promotion // ignore: cast_nullable_to_non_nullable
@@ -999,6 +1014,7 @@ class _$_Success implements _Success {
       required this.latitude,
       required this.longitude,
       required this.carAddressType,
+      required this.deliveryAddress,
       this.promotion});
 
   @override
@@ -1018,11 +1034,13 @@ class _$_Success implements _Success {
   @override
   final CarAddressType carAddressType;
   @override
+  final String deliveryAddress;
+  @override
   final Promotion? promotion;
 
   @override
   String toString() {
-    return 'CarDetailState.success(car: $car, address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, carAddressType: $carAddressType, promotion: $promotion)';
+    return 'CarDetailState.success(car: $car, address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, carAddressType: $carAddressType, deliveryAddress: $deliveryAddress, promotion: $promotion)';
   }
 
   @override
@@ -1043,13 +1061,25 @@ class _$_Success implements _Success {
                 other.longitude == longitude) &&
             (identical(other.carAddressType, carAddressType) ||
                 other.carAddressType == carAddressType) &&
+            (identical(other.deliveryAddress, deliveryAddress) ||
+                other.deliveryAddress == deliveryAddress) &&
             (identical(other.promotion, promotion) ||
                 other.promotion == promotion));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, car, address, startDate, endDate,
-      rentalCarType, latitude, longitude, carAddressType, promotion);
+  int get hashCode => Object.hash(
+      runtimeType,
+      car,
+      address,
+      startDate,
+      endDate,
+      rentalCarType,
+      latitude,
+      longitude,
+      carAddressType,
+      deliveryAddress,
+      promotion);
 
   @JsonKey(ignore: true)
   @override
@@ -1071,12 +1101,13 @@ class _$_Success implements _Success {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)
         success,
     required TResult Function(String? message) failure,
   }) {
     return success(car, address, startDate, endDate, rentalCarType, latitude,
-        longitude, carAddressType, promotion);
+        longitude, carAddressType, deliveryAddress, promotion);
   }
 
   @override
@@ -1093,12 +1124,13 @@ class _$_Success implements _Success {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult? Function(String? message)? failure,
   }) {
     return success?.call(car, address, startDate, endDate, rentalCarType,
-        latitude, longitude, carAddressType, promotion);
+        latitude, longitude, carAddressType, deliveryAddress, promotion);
   }
 
   @override
@@ -1115,6 +1147,7 @@ class _$_Success implements _Success {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult Function(String? message)? failure,
@@ -1122,7 +1155,7 @@ class _$_Success implements _Success {
   }) {
     if (success != null) {
       return success(car, address, startDate, endDate, rentalCarType, latitude,
-          longitude, carAddressType, promotion);
+          longitude, carAddressType, deliveryAddress, promotion);
     }
     return orElse();
   }
@@ -1175,6 +1208,7 @@ abstract class _Success implements CarDetailState {
       required final double latitude,
       required final double longitude,
       required final CarAddressType carAddressType,
+      required final String deliveryAddress,
       final Promotion? promotion}) = _$_Success;
 
   Car get car;
@@ -1185,6 +1219,7 @@ abstract class _Success implements CarDetailState {
   double get latitude;
   double get longitude;
   CarAddressType get carAddressType;
+  String get deliveryAddress;
   Promotion? get promotion;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
@@ -1265,6 +1300,7 @@ class _$_Failure implements _Failure {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)
         success,
     required TResult Function(String? message) failure,
@@ -1286,6 +1322,7 @@ class _$_Failure implements _Failure {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult? Function(String? message)? failure,
@@ -1307,6 +1344,7 @@ class _$_Failure implements _Failure {
             double latitude,
             double longitude,
             CarAddressType carAddressType,
+            String deliveryAddress,
             Promotion? promotion)?
         success,
     TResult Function(String? message)? failure,

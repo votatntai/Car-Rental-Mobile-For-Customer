@@ -7,9 +7,12 @@ import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
+import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
+import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/bloc/car_booking_confirmation_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
+import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -210,8 +213,10 @@ class _CarBookingConfirmationViewState
                             ),
                           ],
                         ),
-
-                        //TODO: map view
+                        GoogleMapWidget(
+                          address: successState.address,
+                          mapsRepository: getIt.get<MapsRepository>(),
+                        ),
                       ],
                     ),
                   ),

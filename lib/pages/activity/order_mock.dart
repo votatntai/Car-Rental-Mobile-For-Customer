@@ -22,7 +22,8 @@ final orderMock = <Order>[
     car: carMock[0],
     startDate: DateTime(2023, 1, 1, 10, 30),
     endDate: DateTime(2023, 2, 2, 10, 0),
-    address: 'Địa chỉ 1',
+    address:
+        '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
   ),
@@ -45,7 +46,8 @@ final orderMock = <Order>[
     car: carMock[1],
     startDate: DateTime(2023, 1, 1, 10, 30),
     endDate: DateTime(2023, 2, 2, 10, 0),
-    address: 'Địa chỉ 1',
+    address:
+        '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
   ),
@@ -68,7 +70,8 @@ final orderMock = <Order>[
     car: carMock[2],
     startDate: DateTime(2023, 1, 1, 10, 30),
     endDate: DateTime(2023, 2, 2, 10, 0),
-    address: 'Địa chỉ 1',
+    address:
+        '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
   ),
@@ -91,7 +94,8 @@ final orderMock = <Order>[
     car: carMock[3],
     startDate: DateTime(2023, 1, 1, 10, 30),
     endDate: DateTime(2023, 2, 2, 10, 0),
-    address: 'Địa chỉ 1',
+    address:
+        '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
   ),
@@ -114,7 +118,8 @@ final orderMock = <Order>[
     car: carMock[3],
     startDate: DateTime(2023, 1, 1, 10, 30),
     endDate: DateTime(2023, 2, 2, 10, 0),
-    address: 'Địa chỉ 1',
+    address:
+        '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
   ),
@@ -137,7 +142,8 @@ final orderMock = <Order>[
     car: carMock[3],
     startDate: DateTime(2023, 1, 1, 10, 30),
     endDate: DateTime(2023, 2, 2, 10, 0),
-    address: 'Địa chỉ 1',
+    address:
+        '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
   ),

@@ -4,6 +4,7 @@ import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({
@@ -158,12 +159,15 @@ class CarCard extends StatelessWidget {
                       size: 15,
                     ),
                     SizedBox(width: 2),
-                    Text(
-                      'Quận 10, Hồ Chí Minh',
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        color: CustomColors.jetBlack,
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        'Quận 10, Hồ Chí Minh',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w500,
+                          color: CustomColors.jetBlack,
+                        ),
                       ),
                     ),
                   ],
