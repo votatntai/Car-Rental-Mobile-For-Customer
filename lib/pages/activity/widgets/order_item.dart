@@ -98,9 +98,7 @@ class OrderItem extends StatelessWidget {
                         height: 15,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Color(
-                            int.parse(order.status.displayColor),
-                          ),
+                          color: order.status.displayColor,
                         ),
                       ),
                       const SizedBox(width: s04),

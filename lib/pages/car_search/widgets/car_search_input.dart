@@ -28,7 +28,7 @@ class CarSearchInput extends StatelessWidget {
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,
-              // color: CustomColors.darkGreen,
+              // color: CustomColors.flamingo,
             ),
           ),
           const SizedBox(
@@ -42,7 +42,7 @@ class CarSearchInput extends StatelessWidget {
                   Icon(
                     leadingIcon,
                     size: 20,
-                    // color: CustomColors.darkGreen,
+                    // color: CustomColors.flamingo,
                   ),
                   const SizedBox(
                     height: s04,

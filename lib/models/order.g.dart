@@ -53,7 +53,6 @@ const _$OrderStatusEnumMap = {
   OrderStatus.accepted: 'accepted',
   OrderStatus.rejected: 'rejected',
   OrderStatus.cancelled: 'cancelled',
-  OrderStatus.deposited: 'deposited',
   OrderStatus.started: 'started',
   OrderStatus.finished: 'finished',
 };

@@ -758,7 +758,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: CustomColors.darkGreen,
+                  color: CustomColors.flamingo,
                 ),
                 textAlign: TextAlign.end,
               ),
@@ -788,7 +788,7 @@ class _CarDetailViewState extends State<CarDetailView> {
               ),
               const Icon(
                 Icons.star,
-                color: CustomColors.darkGreen,
+                color: CustomColors.flamingo,
                 size: 12,
               ),
               const SizedBox(

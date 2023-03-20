@@ -457,7 +457,7 @@ class _CarBookingConfirmationViewState
                                     style: const TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,
-                                      color: CustomColors.darkGreen,
+                                      color: CustomColors.flamingo,
                                     ),
                                   ),
                                 ],

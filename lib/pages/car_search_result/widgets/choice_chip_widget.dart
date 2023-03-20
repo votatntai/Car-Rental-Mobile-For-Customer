@@ -23,17 +23,17 @@ class ChoiceChipWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: s12, vertical: s04),
         decoration: BoxDecoration(
-          color: selected ? CustomColors.darkGreen : CustomColors.white,
+          color: selected ? CustomColors.flamingo : CustomColors.white,
           borderRadius: BorderRadius.circular(s12),
           border: Border.all(
-            color: selected ? CustomColors.darkGreen : CustomColors.silver,
+            color: selected ? CustomColors.flamingo : CustomColors.silver,
           ),
         ),
         child: Row(
           children: [
             Icon(
               icon,
-              color: selected ? CustomColors.white : CustomColors.darkGreen,
+              color: selected ? CustomColors.white : CustomColors.flamingo,
               size: 18,
             ),
             const SizedBox(width: s04),

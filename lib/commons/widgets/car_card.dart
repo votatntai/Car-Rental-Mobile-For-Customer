@@ -41,7 +41,7 @@ class CarCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(s04),
                       decoration: BoxDecoration(
-                        color: CustomColors.darkGreen,
+                        color: CustomColors.flamingo,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: const Text(
@@ -83,7 +83,7 @@ class CarCard extends StatelessWidget {
                             ),
                             Icon(
                               Icons.star,
-                              color: CustomColors.darkGreen,
+                              color: CustomColors.flamingo,
                               size: 12,
                             ),
                             SizedBox(
@@ -129,7 +129,7 @@ class CarCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: CustomColors.darkGreen,
+                        color: CustomColors.flamingo,
                       ),
                       textAlign: TextAlign.end,
                     ),

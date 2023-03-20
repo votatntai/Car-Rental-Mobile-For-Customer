@@ -43,7 +43,7 @@ class CarOwnerWidget extends StatelessWidget {
                 ),
                 const Icon(
                   Icons.star,
-                  color: CustomColors.darkGreen,
+                  color: CustomColors.flamingo,
                   size: 12,
                 ),
               ],

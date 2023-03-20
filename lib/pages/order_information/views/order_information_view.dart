@@ -7,6 +7,7 @@ import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
 import 'package:car_rental_for_customer/models/car.dart';
+import 'package:car_rental_for_customer/models/enums/order_status.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
 import 'package:car_rental_for_customer/pages/order_information/bloc/order_information_bloc.dart';
 import 'package:flutter/material.dart';
@@ -59,57 +60,101 @@ class _OrderInformationViewState extends State<OrderInformationView> {
     ],
   );
 
-  List<Step> steps(int currStep) {
+  List<Step> steps(OrderStatus orderStatus) {
+    if (orderStatus == OrderStatus.cancelled) {
+      return [
+        Step(
+          state: StepState.error,
+          title: Text(
+            OrderStatus.cancelled.displayName,
+            style: boldTextStyle(
+              color: OrderStatus.cancelled.displayColor,
+              size: 13,
+            ),
+          ),
+          isActive: orderStatus.step >= OrderStatus.cancelled.step,
+          content: const SizedBox(),
+        ),
+      ];
+    }
+
     return [
       Step(
-        state: currStep == 0 ? StepState.complete : StepState.indexed,
+        state: orderStatus == OrderStatus.pending
+            ? StepState.complete
+            : StepState.indexed,
         title: Text(
-          'Duyệt yêu cầu',
+          OrderStatus.pending.displayName,
           style: boldTextStyle(
-            color: CustomColors.darkGreen,
+            color: OrderStatus.pending.displayColor,
             size: 13,
           ),
         ),
-        isActive: true,
+        isActive: orderStatus.step >= OrderStatus.pending.step,
         content: const SizedBox(),
       ),
-      Step(
-        state: currStep == 1 ? StepState.complete : StepState.indexed,
-        title: Text(
-          'Thanh toán cọc',
-          style: boldTextStyle(
-            color: CustomColors.darkGreen,
-            size: 13,
+      if (orderStatus == OrderStatus.rejected)
+        Step(
+          state: orderStatus == OrderStatus.rejected
+              ? StepState.error
+              : StepState.indexed,
+          title: Text(
+            OrderStatus.rejected.displayName,
+            style: boldTextStyle(
+              color: OrderStatus.rejected.displayColor,
+              size: 13,
+            ),
           ),
+          isActive: orderStatus.step >= OrderStatus.rejected.step,
+          content: const SizedBox(),
         ),
-        isActive: false,
-        content: const SizedBox(),
-      ),
-      Step(
-        state: currStep == 2 ? StepState.complete : StepState.indexed,
-        title: Text(
-          'Khởi hành',
-          style: boldTextStyle(
-            color: CustomColors.darkGreen,
-            size: 13,
+      if (orderStatus != OrderStatus.rejected)
+        Step(
+          state: orderStatus == OrderStatus.accepted
+              ? StepState.complete
+              : StepState.indexed,
+          title: Text(
+            OrderStatus.accepted.displayName,
+            style: boldTextStyle(
+              color: OrderStatus.accepted.displayColor,
+              size: 13,
+            ),
           ),
+          isActive: orderStatus.step >= OrderStatus.accepted.step,
+          content: const SizedBox(),
         ),
-        isActive: false,
-        content: const SizedBox(),
-      ),
-      Step(
-        state: currStep == 3 ? StepState.complete : StepState.indexed,
-        title: Text(
-          'Kết thúc',
-          style: boldTextStyle(
-            color: CustomColors.darkGreen,
-            size: 13,
+      if (orderStatus != OrderStatus.rejected)
+        Step(
+          state: orderStatus == OrderStatus.started
+              ? StepState.complete
+              : StepState.indexed,
+          title: Text(
+            OrderStatus.started.displayName,
+            style: boldTextStyle(
+              color: OrderStatus.started.displayColor,
+              size: 13,
+            ),
           ),
+          isActive: orderStatus.step >= OrderStatus.started.step,
+          content: const SizedBox(),
         ),
-        isActive: false,
-        content: const SizedBox(),
-      ),
+      if (orderStatus != OrderStatus.rejected)
+        Step(
+          state: orderStatus == OrderStatus.finished
+              ? StepState.complete
+              : StepState.indexed,
+          title: Text(
+            OrderStatus.finished.displayName,
+            style: boldTextStyle(
+              color: OrderStatus.finished.displayColor,
+              size: 13,
+            ),
+          ),
+          isActive: orderStatus.step >= OrderStatus.finished.step,
+          content: const SizedBox(),
+        ),
     ];
+    {}
   }
 
   @override
@@ -159,10 +204,10 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           ],
                         );
                       },
-                      steps: steps(0),
+                      steps: steps(successState.order.status),
                       physics: const BouncingScrollPhysics(),
                       type: StepperType.vertical,
-                      currentStep: 0,
+                      currentStep: successState.order.status.step,
                     ),
                   ),
                 ),
@@ -525,7 +570,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                     style: const TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,
-                                      color: CustomColors.darkGreen,
+                                      color: CustomColors.flamingo,
                                     ),
                                   ),
                                 ],
