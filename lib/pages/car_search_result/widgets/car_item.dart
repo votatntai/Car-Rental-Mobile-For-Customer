@@ -34,9 +34,9 @@ class CarItem extends StatelessWidget {
                           width: double.infinity,
                           imageUrl: car.images[0],
                           fit: BoxFit.fill,
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        )
+                          errorWidget: (context, url, error) {
+                            return const Icon(Icons.error);
+                          })
                       : const Image(
                           height: 220,
                           width: double.infinity,

@@ -22,15 +22,17 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
 
   @override
   void initState() {
-    widget.mapsRepository
-        .addressToCoordinate(address: widget.address)
-        .then((value) {
-      if (value is ApiSuccess<Place?>) {
-        setState(() {
-          place = value.value;
-        });
-      }
-    });
+    if (context.mounted) {
+      widget.mapsRepository
+          .addressToCoordinate(address: widget.address)
+          .then((value) {
+        if (value is ApiSuccess<Place?>) {
+          setState(() {
+            place = value.value;
+          });
+        }
+      });
+    }
 
     super.initState();
   }
