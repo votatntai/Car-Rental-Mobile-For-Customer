@@ -26,6 +26,7 @@ class Order with _$Order {
     required String address,
     required double latitude,
     required double longitude,
+    String? driverId,
   }) = _Order;
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);

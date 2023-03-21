@@ -48,6 +48,7 @@ mixin _$Car {
   double get distanceLimit => throw _privateConstructorUsedError;
   double get overDistancePrice => throw _privateConstructorUsedError;
   double get overTimePrice => throw _privateConstructorUsedError;
+  String get carOwnerId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,7 +84,8 @@ abstract class $CarCopyWith<$Res> {
       double? deliveryDistance,
       double distanceLimit,
       double overDistancePrice,
-      double overTimePrice});
+      double overTimePrice,
+      String carOwnerId});
 }
 
 /// @nodoc
@@ -122,6 +124,7 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
     Object? distanceLimit = null,
     Object? overDistancePrice = null,
     Object? overTimePrice = null,
+    Object? carOwnerId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -220,6 +223,10 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
           ? _value.overTimePrice
           : overTimePrice // ignore: cast_nullable_to_non_nullable
               as double,
+      carOwnerId: null == carOwnerId
+          ? _value.carOwnerId
+          : carOwnerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -254,7 +261,8 @@ abstract class _$$_CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       double? deliveryDistance,
       double distanceLimit,
       double overDistancePrice,
-      double overTimePrice});
+      double overTimePrice,
+      String carOwnerId});
 }
 
 /// @nodoc
@@ -290,6 +298,7 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
     Object? distanceLimit = null,
     Object? overDistancePrice = null,
     Object? overTimePrice = null,
+    Object? carOwnerId = null,
   }) {
     return _then(_$_Car(
       id: null == id
@@ -388,6 +397,10 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
           ? _value.overTimePrice
           : overTimePrice // ignore: cast_nullable_to_non_nullable
               as double,
+      carOwnerId: null == carOwnerId
+          ? _value.carOwnerId
+          : carOwnerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -419,7 +432,8 @@ class _$_Car implements _Car {
       this.deliveryDistance,
       required this.distanceLimit,
       required this.overDistancePrice,
-      required this.overTimePrice})
+      required this.overTimePrice,
+      required this.carOwnerId})
       : _images = images,
         _carFeatures = carFeatures;
 
@@ -490,10 +504,12 @@ class _$_Car implements _Car {
   final double overDistancePrice;
   @override
   final double overTimePrice;
+  @override
+  final String carOwnerId;
 
   @override
   String toString() {
-    return 'Car(id: $id, name: $name, images: $images, price: $price, carType: $carType, brand: $brand, transmission: $transmission, fuel: $fuel, description: $description, carFeatures: $carFeatures, collateral: $collateral, rules: $rules, location: $location, rate: $rate, rentalCarType: $rentalCarType, numberTrip: $numberTrip, startPickUpTime: $startPickUpTime, endPickUpTime: $endPickUpTime, startReturnTime: $startReturnTime, endReturnTime: $endReturnTime, deliveryDistance: $deliveryDistance, distanceLimit: $distanceLimit, overDistancePrice: $overDistancePrice, overTimePrice: $overTimePrice)';
+    return 'Car(id: $id, name: $name, images: $images, price: $price, carType: $carType, brand: $brand, transmission: $transmission, fuel: $fuel, description: $description, carFeatures: $carFeatures, collateral: $collateral, rules: $rules, location: $location, rate: $rate, rentalCarType: $rentalCarType, numberTrip: $numberTrip, startPickUpTime: $startPickUpTime, endPickUpTime: $endPickUpTime, startReturnTime: $startReturnTime, endReturnTime: $endReturnTime, deliveryDistance: $deliveryDistance, distanceLimit: $distanceLimit, overDistancePrice: $overDistancePrice, overTimePrice: $overTimePrice, carOwnerId: $carOwnerId)';
   }
 
   @override
@@ -539,7 +555,9 @@ class _$_Car implements _Car {
             (identical(other.overDistancePrice, overDistancePrice) ||
                 other.overDistancePrice == overDistancePrice) &&
             (identical(other.overTimePrice, overTimePrice) ||
-                other.overTimePrice == overTimePrice));
+                other.overTimePrice == overTimePrice) &&
+            (identical(other.carOwnerId, carOwnerId) ||
+                other.carOwnerId == carOwnerId));
   }
 
   @JsonKey(ignore: true)
@@ -569,7 +587,8 @@ class _$_Car implements _Car {
         deliveryDistance,
         distanceLimit,
         overDistancePrice,
-        overTimePrice
+        overTimePrice,
+        carOwnerId
       ]);
 
   @JsonKey(ignore: true)
@@ -611,7 +630,8 @@ abstract class _Car implements Car {
       final double? deliveryDistance,
       required final double distanceLimit,
       required final double overDistancePrice,
-      required final double overTimePrice}) = _$_Car;
+      required final double overTimePrice,
+      required final String carOwnerId}) = _$_Car;
 
   factory _Car.fromJson(Map<String, dynamic> json) = _$_Car.fromJson;
 
@@ -667,6 +687,8 @@ abstract class _Car implements Car {
   double get overDistancePrice;
   @override
   double get overTimePrice;
+  @override
+  String get carOwnerId;
   @override
   @JsonKey(ignore: true)
   _$$_CarCopyWith<_$_Car> get copyWith => throw _privateConstructorUsedError;

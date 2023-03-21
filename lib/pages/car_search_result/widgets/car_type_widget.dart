@@ -221,8 +221,8 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
         child: Column(
           children: [
             Container(
-                width: 70,
-                height: 70,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100.0),
                   color: selected ? Colors.transparent : CustomColors.gainsboro,
@@ -242,7 +242,7 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
               title,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
             )

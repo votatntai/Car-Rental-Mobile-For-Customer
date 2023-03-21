@@ -38,6 +38,7 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       distanceLimit: (json['distanceLimit'] as num).toDouble(),
       overDistancePrice: (json['overDistancePrice'] as num).toDouble(),
       overTimePrice: (json['overTimePrice'] as num).toDouble(),
+      carOwnerId: json['carOwnerId'] as String,
     );
 
 Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
@@ -70,6 +71,7 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'distanceLimit': instance.distanceLimit,
       'overDistancePrice': instance.overDistancePrice,
       'overTimePrice': instance.overTimePrice,
+      'carOwnerId': instance.carOwnerId,
     };
 
 const _$CarTypeEnumMap = {

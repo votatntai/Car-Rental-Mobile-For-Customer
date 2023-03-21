@@ -7,9 +7,10 @@ PreferredSizeWidget appAppBar(
   Widget? actionWidget,
   Widget? actionWidget2,
   bool? leading = true,
+  Color? backgroundColor,
 }) {
   return AppBar(
-    backgroundColor: context.scaffoldBackgroundColor,
+    backgroundColor: backgroundColor ?? context.scaffoldBackgroundColor,
     leading: leading == true
         ? IconButton(
             icon: Icon(Icons.arrow_back, color: context.iconColor),

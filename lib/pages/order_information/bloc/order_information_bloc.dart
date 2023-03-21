@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/models/driver.dart';
 import 'package:car_rental_for_customer/models/order.dart';
 import 'package:car_rental_for_customer/pages/activity/order_mock.dart';
+import 'package:car_rental_for_customer/pages/order_information/driver_mock.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_information_event.dart';
@@ -28,6 +30,18 @@ class OrderInformationBloc
 
     final order =
         orderMock.firstWhere((element) => element.id == event.orderId);
+
+    if (order.driverId != null) {
+      final driver =
+          driverMock.where((element) => element.id == order.driverId);
+      emit(
+        OrderInformationState.success(
+          order: order,
+          driver: driver.isNotEmpty ? driver.first : null,
+        ),
+      );
+      return;
+    }
 
     emit(
       OrderInformationState.success(order: order),

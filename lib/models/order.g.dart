@@ -25,6 +25,7 @@ _$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
       address: json['address'] as String,
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
+      driverId: json['driverId'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'address': instance.address,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
+      'driverId': instance.driverId,
     };
 
 const _$OrderStatusEnumMap = {

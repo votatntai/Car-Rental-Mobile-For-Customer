@@ -30,4 +30,7 @@ mixin Images {
 
   static const selfDrivingCar = 'assets/self_driving_car.png';
   static const carWithDriver = 'assets/car_with_driver.png';
+
+  // card
+  static const card2 = 'assets/card2.jpeg';
 }

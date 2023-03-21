@@ -38,6 +38,7 @@ mixin _$Order {
   String get address => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
+  String? get driverId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -67,7 +68,8 @@ abstract class $OrderCopyWith<$Res> {
       DateTime endDate,
       String address,
       double latitude,
-      double longitude});
+      double longitude,
+      String? driverId});
 
   $CarCopyWith<$Res> get car;
 }
@@ -103,6 +105,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? address = null,
     Object? latitude = null,
     Object? longitude = null,
+    Object? driverId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -177,6 +180,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
+      driverId: freezed == driverId
+          ? _value.driverId
+          : driverId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -213,7 +220,8 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       DateTime endDate,
       String address,
       double latitude,
-      double longitude});
+      double longitude,
+      String? driverId});
 
   @override
   $CarCopyWith<$Res> get car;
@@ -246,6 +254,7 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
     Object? address = null,
     Object? latitude = null,
     Object? longitude = null,
+    Object? driverId = freezed,
   }) {
     return _then(_$_Order(
       id: null == id
@@ -320,6 +329,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
+      driverId: freezed == driverId
+          ? _value.driverId
+          : driverId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -345,7 +358,8 @@ class _$_Order implements _Order {
       required this.endDate,
       required this.address,
       required this.latitude,
-      required this.longitude});
+      required this.longitude,
+      this.driverId});
 
   factory _$_Order.fromJson(Map<String, dynamic> json) =>
       _$$_OrderFromJson(json);
@@ -386,10 +400,12 @@ class _$_Order implements _Order {
   final double latitude;
   @override
   final double longitude;
+  @override
+  final String? driverId;
 
   @override
   String toString() {
-    return 'Order(id: $id, customerId: $customerId, rentalTime: $rentalTime, rentalUnitPrice: $rentalUnitPrice, promotionDiscount: $promotionDiscount, deliveryCost: $deliveryCost, deposit: $deposit, amount: $amount, promotionId: $promotionId, isPaid: $isPaid, status: $status, description: $description, car: $car, startDate: $startDate, endDate: $endDate, address: $address, latitude: $latitude, longitude: $longitude)';
+    return 'Order(id: $id, customerId: $customerId, rentalTime: $rentalTime, rentalUnitPrice: $rentalUnitPrice, promotionDiscount: $promotionDiscount, deliveryCost: $deliveryCost, deposit: $deposit, amount: $amount, promotionId: $promotionId, isPaid: $isPaid, status: $status, description: $description, car: $car, startDate: $startDate, endDate: $endDate, address: $address, latitude: $latitude, longitude: $longitude, driverId: $driverId)';
   }
 
   @override
@@ -424,31 +440,35 @@ class _$_Order implements _Order {
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
-                other.longitude == longitude));
+                other.longitude == longitude) &&
+            (identical(other.driverId, driverId) ||
+                other.driverId == driverId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      customerId,
-      rentalTime,
-      rentalUnitPrice,
-      promotionDiscount,
-      deliveryCost,
-      deposit,
-      amount,
-      promotionId,
-      isPaid,
-      status,
-      description,
-      car,
-      startDate,
-      endDate,
-      address,
-      latitude,
-      longitude);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        customerId,
+        rentalTime,
+        rentalUnitPrice,
+        promotionDiscount,
+        deliveryCost,
+        deposit,
+        amount,
+        promotionId,
+        isPaid,
+        status,
+        description,
+        car,
+        startDate,
+        endDate,
+        address,
+        latitude,
+        longitude,
+        driverId
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -483,7 +503,8 @@ abstract class _Order implements Order {
       required final DateTime endDate,
       required final String address,
       required final double latitude,
-      required final double longitude}) = _$_Order;
+      required final double longitude,
+      final String? driverId}) = _$_Order;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
 
@@ -523,6 +544,8 @@ abstract class _Order implements Order {
   double get latitude;
   @override
   double get longitude;
+  @override
+  String? get driverId;
   @override
   @JsonKey(ignore: true)
   _$$_OrderCopyWith<_$_Order> get copyWith =>

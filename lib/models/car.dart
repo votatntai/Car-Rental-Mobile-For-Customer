@@ -38,6 +38,7 @@ class Car with _$Car {
     required double distanceLimit,
     required double overDistancePrice,
     required double overTimePrice,
+    required String carOwnerId,
   }) = _Car;
 
   factory Car.fromJson(Map<String, dynamic> json) => _$CarFromJson(json);

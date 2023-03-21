@@ -49,6 +49,7 @@ final carMock = [
     overDistancePrice: 3000,
     overTimePrice: 80000,
     distanceLimit: 350,
+    carOwnerId: '1',
   ),
   const Car(
     id: '2',
@@ -91,6 +92,7 @@ final carMock = [
     overDistancePrice: 4000,
     overTimePrice: 80000,
     distanceLimit: 400,
+    carOwnerId: '2',
   ),
   const Car(
     id: '3',
@@ -134,6 +136,7 @@ final carMock = [
     overDistancePrice: 10000,
     overTimePrice: 100000,
     distanceLimit: 330,
+    carOwnerId: '3',
   ),
   const Car(
     id: '4',
@@ -177,5 +180,6 @@ final carMock = [
     overDistancePrice: 3000,
     overTimePrice: 80000,
     distanceLimit: 350,
+    carOwnerId: '4',
   ),
 ];

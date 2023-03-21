@@ -74,6 +74,7 @@ final orderMock = <Order>[
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
     longitude: 10.0,
+    driverId: '1',
   ),
   Order(
     id: '4',

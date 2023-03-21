@@ -10,8 +10,10 @@ import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
 import 'package:car_rental_for_customer/pages/order_information/bloc/order_information_bloc.dart';
+import 'package:car_rental_for_customer/pages/order_information/widgets/driver_widget.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -334,6 +336,62 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                     ),
                   ),
                 ),
+                if (successState.order.status != OrderStatus.pending ||
+                    successState.order.status != OrderStatus.rejected ||
+                    successState.order.status != OrderStatus.cancelled)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Thông tin liên hệ',
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Số điện thoại',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: CustomColors.jetBlack,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    successState.order.car.carOwnerId,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                      color: CustomColors.jetBlack,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                if (successState.driver != null)
+                  Column(
+                    children: [
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Tài xế',
+                          child: DriverWidget(
+                            driver: successState.driver!,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),

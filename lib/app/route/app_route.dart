@@ -15,9 +15,12 @@ import 'package:car_rental_for_customer/pages/profile_detail/profile_detail.dart
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
 import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
+import 'package:car_rental_for_customer/pages/transaction_history/views/transaction_history_page.dart';
 import 'package:car_rental_for_customer/pages/wallet/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../pages/transaction_detail/transaction_detail.dart';
 
 class AppRoute {
   final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -152,13 +155,31 @@ class AppRoute {
             ],
           ),
           GoRoute(
-            path: '/wallet',
-            name: RouteName.wallet,
-            pageBuilder: (context, state) => FadeTransitionPage(
-              key: _shellNavigationKey,
-              child: const WalletPage(),
-            ),
-          ),
+              path: '/wallet',
+              name: RouteName.wallet,
+              pageBuilder: (context, state) => FadeTransitionPage(
+                    key: _shellNavigationKey,
+                    child: const WalletPage(),
+                  ),
+              routes: [
+                GoRoute(
+                  path: 'transaction-history',
+                  name: RouteName.transactionHistory,
+                  builder: (context, state) {
+                    return const TransactionHistoryPage();
+                  },
+                ),
+                GoRoute(
+                  path: 'transaction-detail',
+                  name: RouteName.transactionDetail,
+                  builder: (context, state) {
+                    final transactionId = state.queryParams['transaction-id'];
+                    return TransactionDetailPage(
+                      transactionId: transactionId,
+                    );
+                  },
+                ),
+              ]),
           GoRoute(
             path: '/notification',
             name: RouteName.notification,

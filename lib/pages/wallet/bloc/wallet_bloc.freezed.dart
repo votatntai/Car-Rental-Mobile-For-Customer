@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'order_information_bloc.dart';
+part of 'wallet_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,21 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$OrderInformationEvent {
-  String? get orderId => throw _privateConstructorUsedError;
+mixin _$WalletEvent {
+  User get user => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? orderId) started,
+    required TResult Function(User user) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? orderId)? started,
+    TResult? Function(User user)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? orderId)? started,
+    TResult Function(User user)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,24 +51,25 @@ mixin _$OrderInformationEvent {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OrderInformationEventCopyWith<OrderInformationEvent> get copyWith =>
+  $WalletEventCopyWith<WalletEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderInformationEventCopyWith<$Res> {
-  factory $OrderInformationEventCopyWith(OrderInformationEvent value,
-          $Res Function(OrderInformationEvent) then) =
-      _$OrderInformationEventCopyWithImpl<$Res, OrderInformationEvent>;
+abstract class $WalletEventCopyWith<$Res> {
+  factory $WalletEventCopyWith(
+          WalletEvent value, $Res Function(WalletEvent) then) =
+      _$WalletEventCopyWithImpl<$Res, WalletEvent>;
   @useResult
-  $Res call({String? orderId});
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$OrderInformationEventCopyWithImpl<$Res,
-        $Val extends OrderInformationEvent>
-    implements $OrderInformationEventCopyWith<$Res> {
-  _$OrderInformationEventCopyWithImpl(this._value, this._then);
+class _$WalletEventCopyWithImpl<$Res, $Val extends WalletEvent>
+    implements $WalletEventCopyWith<$Res> {
+  _$WalletEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,31 +79,41 @@ class _$OrderInformationEventCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orderId = freezed,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
-      orderId: freezed == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res>
-    implements $OrderInformationEventCopyWith<$Res> {
+abstract class _$$_StartedCopyWith<$Res> implements $WalletEventCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? orderId});
+  $Res call({User user});
+
+  @override
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
 class __$$_StartedCopyWithImpl<$Res>
-    extends _$OrderInformationEventCopyWithImpl<$Res, _$_Started>
+    extends _$WalletEventCopyWithImpl<$Res, _$_Started>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, _then);
@@ -110,13 +121,13 @@ class __$$_StartedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orderId = freezed,
+    Object? user = null,
   }) {
     return _then(_$_Started(
-      orderId: freezed == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
@@ -124,14 +135,14 @@ class __$$_StartedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Started implements _Started {
-  const _$_Started({this.orderId});
+  const _$_Started({required this.user});
 
   @override
-  final String? orderId;
+  final User user;
 
   @override
   String toString() {
-    return 'OrderInformationEvent.started(orderId: $orderId)';
+    return 'WalletEvent.started(user: $user)';
   }
 
   @override
@@ -139,11 +150,11 @@ class _$_Started implements _Started {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Started &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, orderId);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -154,27 +165,27 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? orderId) started,
+    required TResult Function(User user) started,
   }) {
-    return started(orderId);
+    return started(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? orderId)? started,
+    TResult? Function(User user)? started,
   }) {
-    return started?.call(orderId);
+    return started?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? orderId)? started,
+    TResult Function(User user)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(orderId);
+      return started(user);
     }
     return orElse();
   }
@@ -208,11 +219,11 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements OrderInformationEvent {
-  const factory _Started({final String? orderId}) = _$_Started;
+abstract class _Started implements WalletEvent {
+  const factory _Started({required final User user}) = _$_Started;
 
   @override
-  String? get orderId;
+  User get user;
   @override
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
@@ -220,12 +231,14 @@ abstract class _Started implements OrderInformationEvent {
 }
 
 /// @nodoc
-mixin _$OrderInformationState {
+mixin _$WalletState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Order order, Driver? driver) success,
+    required TResult Function(
+            User user, List<Transaction> transactions, double balance)
+        success,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -233,7 +246,9 @@ mixin _$OrderInformationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Order order, Driver? driver)? success,
+    TResult? Function(
+            User user, List<Transaction> transactions, double balance)?
+        success,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -241,7 +256,8 @@ mixin _$OrderInformationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Order order, Driver? driver)? success,
+    TResult Function(User user, List<Transaction> transactions, double balance)?
+        success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -274,17 +290,16 @@ mixin _$OrderInformationState {
 }
 
 /// @nodoc
-abstract class $OrderInformationStateCopyWith<$Res> {
-  factory $OrderInformationStateCopyWith(OrderInformationState value,
-          $Res Function(OrderInformationState) then) =
-      _$OrderInformationStateCopyWithImpl<$Res, OrderInformationState>;
+abstract class $WalletStateCopyWith<$Res> {
+  factory $WalletStateCopyWith(
+          WalletState value, $Res Function(WalletState) then) =
+      _$WalletStateCopyWithImpl<$Res, WalletState>;
 }
 
 /// @nodoc
-class _$OrderInformationStateCopyWithImpl<$Res,
-        $Val extends OrderInformationState>
-    implements $OrderInformationStateCopyWith<$Res> {
-  _$OrderInformationStateCopyWithImpl(this._value, this._then);
+class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
+    implements $WalletStateCopyWith<$Res> {
+  _$WalletStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -301,7 +316,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$OrderInformationStateCopyWithImpl<$Res, _$_Initial>
+    extends _$WalletStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -314,7 +329,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'OrderInformationState.initial()';
+    return 'WalletState.initial()';
   }
 
   @override
@@ -331,7 +346,9 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Order order, Driver? driver) success,
+    required TResult Function(
+            User user, List<Transaction> transactions, double balance)
+        success,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -342,7 +359,9 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Order order, Driver? driver)? success,
+    TResult? Function(
+            User user, List<Transaction> transactions, double balance)?
+        success,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -353,7 +372,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Order order, Driver? driver)? success,
+    TResult Function(User user, List<Transaction> transactions, double balance)?
+        success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -401,7 +421,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements OrderInformationState {
+abstract class _Initial implements WalletState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -414,7 +434,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$OrderInformationStateCopyWithImpl<$Res, _$_Loading>
+    extends _$WalletStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -427,7 +447,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'OrderInformationState.loading()';
+    return 'WalletState.loading()';
   }
 
   @override
@@ -444,7 +464,9 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Order order, Driver? driver) success,
+    required TResult Function(
+            User user, List<Transaction> transactions, double balance)
+        success,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -455,7 +477,9 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Order order, Driver? driver)? success,
+    TResult? Function(
+            User user, List<Transaction> transactions, double balance)?
+        success,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -466,7 +490,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Order order, Driver? driver)? success,
+    TResult Function(User user, List<Transaction> transactions, double balance)?
+        success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -514,7 +539,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements OrderInformationState {
+abstract class _Loading implements WalletState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -524,15 +549,14 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({Order order, Driver? driver});
+  $Res call({User user, List<Transaction> transactions, double balance});
 
-  $OrderCopyWith<$Res> get order;
-  $DriverCopyWith<$Res>? get driver;
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
 class __$$_SuccessCopyWithImpl<$Res>
-    extends _$OrderInformationStateCopyWithImpl<$Res, _$_Success>
+    extends _$WalletStateCopyWithImpl<$Res, _$_Success>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
@@ -540,38 +564,31 @@ class __$$_SuccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? order = null,
-    Object? driver = freezed,
+    Object? user = null,
+    Object? transactions = null,
+    Object? balance = null,
   }) {
     return _then(_$_Success(
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as Order,
-      driver: freezed == driver
-          ? _value.driver
-          : driver // ignore: cast_nullable_to_non_nullable
-              as Driver?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+      balance: null == balance
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OrderCopyWith<$Res> get order {
-    return $OrderCopyWith<$Res>(_value.order, (value) {
-      return _then(_value.copyWith(order: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DriverCopyWith<$Res>? get driver {
-    if (_value.driver == null) {
-      return null;
-    }
-
-    return $DriverCopyWith<$Res>(_value.driver!, (value) {
-      return _then(_value.copyWith(driver: value));
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
@@ -579,16 +596,28 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.order, this.driver});
+  const _$_Success(
+      {required this.user,
+      required final List<Transaction> transactions,
+      required this.balance})
+      : _transactions = transactions;
 
   @override
-  final Order order;
+  final User user;
+  final List<Transaction> _transactions;
   @override
-  final Driver? driver;
+  List<Transaction> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
+
+  @override
+  final double balance;
 
   @override
   String toString() {
-    return 'OrderInformationState.success(order: $order, driver: $driver)';
+    return 'WalletState.success(user: $user, transactions: $transactions, balance: $balance)';
   }
 
   @override
@@ -596,12 +625,15 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            (identical(other.order, order) || other.order == order) &&
-            (identical(other.driver, driver) || other.driver == driver));
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions) &&
+            (identical(other.balance, balance) || other.balance == balance));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, order, driver);
+  int get hashCode => Object.hash(runtimeType, user,
+      const DeepCollectionEquality().hash(_transactions), balance);
 
   @JsonKey(ignore: true)
   @override
@@ -614,10 +646,12 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Order order, Driver? driver) success,
+    required TResult Function(
+            User user, List<Transaction> transactions, double balance)
+        success,
     required TResult Function(String message) failure,
   }) {
-    return success(order, driver);
+    return success(user, transactions, balance);
   }
 
   @override
@@ -625,10 +659,12 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Order order, Driver? driver)? success,
+    TResult? Function(
+            User user, List<Transaction> transactions, double balance)?
+        success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(order, driver);
+    return success?.call(user, transactions, balance);
   }
 
   @override
@@ -636,12 +672,13 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Order order, Driver? driver)? success,
+    TResult Function(User user, List<Transaction> transactions, double balance)?
+        success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(order, driver);
+      return success(user, transactions, balance);
     }
     return orElse();
   }
@@ -684,12 +721,15 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements OrderInformationState {
-  const factory _Success({required final Order order, final Driver? driver}) =
-      _$_Success;
+abstract class _Success implements WalletState {
+  const factory _Success(
+      {required final User user,
+      required final List<Transaction> transactions,
+      required final double balance}) = _$_Success;
 
-  Order get order;
-  Driver? get driver;
+  User get user;
+  List<Transaction> get transactions;
+  double get balance;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -706,7 +746,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<$Res>
-    extends _$OrderInformationStateCopyWithImpl<$Res, _$_Failure>
+    extends _$WalletStateCopyWithImpl<$Res, _$_Failure>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
@@ -735,7 +775,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'OrderInformationState.failure(message: $message)';
+    return 'WalletState.failure(message: $message)';
   }
 
   @override
@@ -760,7 +800,9 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Order order, Driver? driver) success,
+    required TResult Function(
+            User user, List<Transaction> transactions, double balance)
+        success,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -771,7 +813,9 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Order order, Driver? driver)? success,
+    TResult? Function(
+            User user, List<Transaction> transactions, double balance)?
+        success,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -782,7 +826,8 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Order order, Driver? driver)? success,
+    TResult Function(User user, List<Transaction> transactions, double balance)?
+        success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -830,7 +875,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements OrderInformationState {
+abstract class _Failure implements WalletState {
   const factory _Failure({required final String message}) = _$_Failure;
 
   String get message;
