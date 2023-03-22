@@ -6,39 +6,47 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class DriverWidget extends StatelessWidget {
-  const DriverWidget({Key? key, required this.driver}) : super(key: key);
+  const DriverWidget({
+    Key? key,
+    required this.driver,
+    required this.onTap,
+  }) : super(key: key);
 
   final Driver driver;
+  final Function(Driver driver) onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-              onTap: () {},
-              child: Text(
-                driver.name,
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: CustomColors.jetBlack,
+    return InkWell(
+      onTap: () => onTap(driver),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: Text(
+                  driver.name,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColors.jetBlack,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 4),
-          ],
-        ),
-        const Spacer(),
-        Image.asset(
-          'assets/userImage.jpg',
-          height: 60,
-          width: 60,
-          fit: BoxFit.cover,
-        ).cornerRadiusWithClipRRect(60),
-      ],
+              const SizedBox(height: 4),
+            ],
+          ),
+          const Spacer(),
+          Image.asset(
+            'assets/userImage.jpg',
+            height: 60,
+            width: 60,
+            fit: BoxFit.cover,
+          ).cornerRadiusWithClipRRect(60),
+        ],
+      ),
     );
   }
 }

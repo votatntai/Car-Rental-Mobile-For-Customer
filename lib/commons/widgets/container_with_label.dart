@@ -2,8 +2,11 @@ import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class ContainerWithLabel extends StatelessWidget {
-  const ContainerWithLabel({Key? key, required this.label, required this.child})
-      : super(key: key);
+  const ContainerWithLabel({
+    Key? key,
+    required this.label,
+    required this.child,
+  }) : super(key: key);
   final String label;
   final Widget child;
 

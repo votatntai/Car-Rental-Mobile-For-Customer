@@ -63,7 +63,6 @@ class MapsRepository {
     required String address,
   }) async {
     try {
-      print(address);
       final result = await dio.get<JsonObject>(
           'https://maps.googleapis.com/maps/api/place/textsearch/json',
           queryParameters: {
@@ -71,8 +70,6 @@ class MapsRepository {
             'query': address,
             'language': 'vi',
           });
-
-      print(result);
 
       if (result.data != null && result.statusCode == StatusCodes.status200OK) {
         if (result.data!['results'].isEmpty) {

@@ -16,4 +16,6 @@ mixin RouteName {
   static const orderInformation = 'order-information';
   static const transactionHistory = 'transaction-history';
   static const transactionDetail = 'transaction-detail';
+  static const carOwnerDetail = 'car-owner-detail';
+  static const driverDetail = 'driver-detail';
 }

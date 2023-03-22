@@ -4,8 +4,10 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/views/car_booking_confirmation_page.dart';
 import 'package:car_rental_for_customer/pages/car_detail/car_detail.dart';
+import 'package:car_rental_for_customer/pages/car_owner_detail/car_owner_detail.dart';
 import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/car_search_result.dart';
+import 'package:car_rental_for_customer/pages/driver_detail/driver_detail.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
@@ -287,6 +289,30 @@ class AppRoute {
 
           return OrderInformationPage(
             orderId: orderId,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/car-owner-detail',
+        name: RouteName.carOwnerDetail,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final carOwnerId = state.queryParams['car-owner-id'] ?? '';
+
+          return CarOwnerDetailPage(
+            carOwnerId: carOwnerId,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/driver-detail',
+        name: RouteName.driverDetail,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final driverId = state.queryParams['driver-id'] ?? '';
+
+          return DriverDetailPage(
+            driverId: driverId,
           );
         },
       ),

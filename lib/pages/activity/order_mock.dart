@@ -21,7 +21,7 @@ final orderMock = <Order>[
     description: 'Mô tả đơn hàng 1',
     car: carMock[0],
     startDate: DateTime(2023, 1, 1, 10, 30),
-    endDate: DateTime(2023, 2, 2, 10, 0),
+    endDate: DateTime(2023, 1, 2, 10, 40),
     address:
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
@@ -45,7 +45,7 @@ final orderMock = <Order>[
     description: 'Mô tả đơn hàng 2',
     car: carMock[1],
     startDate: DateTime(2023, 1, 1, 10, 30),
-    endDate: DateTime(2023, 2, 2, 10, 0),
+    endDate: DateTime(2023, 1, 2, 10, 0),
     address:
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
@@ -69,7 +69,7 @@ final orderMock = <Order>[
     description: 'Mô tả đơn hàng 3',
     car: carMock[2],
     startDate: DateTime(2023, 1, 1, 10, 30),
-    endDate: DateTime(2023, 2, 2, 10, 0),
+    endDate: DateTime(2023, 1, 2, 10, 0),
     address:
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
@@ -94,7 +94,7 @@ final orderMock = <Order>[
     description: 'Mô tả đơn hàng 4',
     car: carMock[3],
     startDate: DateTime(2023, 1, 1, 10, 30),
-    endDate: DateTime(2023, 2, 2, 10, 0),
+    endDate: DateTime(2023, 1, 2, 10, 0),
     address:
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
@@ -118,7 +118,7 @@ final orderMock = <Order>[
     description: 'Mô tả đơn hàng 5',
     car: carMock[3],
     startDate: DateTime(2023, 1, 1, 10, 30),
-    endDate: DateTime(2023, 2, 2, 10, 0),
+    endDate: DateTime(2023, 1, 2, 10, 40),
     address:
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,
@@ -142,7 +142,7 @@ final orderMock = <Order>[
     description: 'Mô tả đơn hàng 6',
     car: carMock[3],
     startDate: DateTime(2023, 1, 1, 10, 30),
-    endDate: DateTime(2023, 2, 2, 10, 0),
+    endDate: DateTime(2023, 1, 2, 10, 0),
     address:
         '555 Lê Quang Định, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam',
     latitude: 10.0,

@@ -693,6 +693,14 @@ class _CarDetailViewState extends State<CarDetailView> {
                           label: 'Chủ xe',
                           child: CarOwnerWidget(
                             car: successState.car,
+                            onTap: () {
+                              context.pushNamed(
+                                RouteName.carOwnerDetail,
+                                queryParams: {
+                                  'car-owner-id': successState.car.carOwnerId,
+                                },
+                              );
+                            },
                           ),
                         ),
                       ),

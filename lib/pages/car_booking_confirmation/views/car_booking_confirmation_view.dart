@@ -301,7 +301,17 @@ class _CarBookingConfirmationViewState
                   padding: const EdgeInsets.symmetric(horizontal: s16),
                   child: ContainerWithLabel(
                     label: 'Chủ xe',
-                    child: CarOwnerWidget(car: successState.car),
+                    child: CarOwnerWidget(
+                      car: successState.car,
+                      onTap: () {
+                        context.pushNamed(
+                          RouteName.carOwnerDetail,
+                          queryParams: {
+                            'car-owner-id': successState.car.carOwnerId,
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
                 divider,

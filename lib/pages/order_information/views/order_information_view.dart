@@ -1,3 +1,4 @@
+import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -10,13 +11,13 @@ import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
-import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
 import 'package:car_rental_for_customer/pages/order_information/bloc/order_information_bloc.dart';
 import 'package:car_rental_for_customer/pages/order_information/widgets/driver_widget.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -387,6 +388,14 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           label: 'Tài xế',
                           child: DriverWidget(
                             driver: successState.driver!,
+                            onTap: (driver) {
+                              context.pushNamed(
+                                RouteName.driverDetail,
+                                queryParams: {
+                                  'driver-id': driver.id,
+                                },
+                              );
+                            },
                           ),
                         ),
                       ),
@@ -472,7 +481,17 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                   padding: const EdgeInsets.symmetric(horizontal: s16),
                   child: ContainerWithLabel(
                     label: 'Chủ xe',
-                    child: CarOwnerWidget(car: successState.order.car),
+                    child: CarOwnerWidget(
+                      car: successState.order.car,
+                      onTap: () {
+                        context.pushNamed(
+                          RouteName.carOwnerDetail,
+                          queryParams: {
+                            'car-owner-id': successState.order.car.carOwnerId,
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
                 divider,
@@ -615,6 +634,30 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                 ],
                               ),
+                              if (successState.order.status !=
+                                      OrderStatus.cancelled &&
+                                  successState.order.status !=
+                                      OrderStatus.rejected)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: s02,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          'Đã thanh toán tiền cọc',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: CustomColors.dimGray,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               const SizedBox(
                                 height: s08,
                               ),
@@ -637,7 +680,32 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
+                              if (successState.order.status.step > 0 &&
+                                  successState.order.status !=
+                                      OrderStatus.rejected &&
+                                  successState.order.status !=
+                                      OrderStatus.cancelled)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: s02,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          'Đã thanh toán',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: CustomColors.dimGray,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                             ],
                           ),
                         ),

@@ -7,6 +7,8 @@ const driverMock = <Driver>[
     address: '45 chuong duong',
     phone: '0989898989',
     gender: 'male',
+    avatarUrl:
+        'https://n1-astg.mioto.vn/g/2023/01/16/17/6Zhl2LrC3Xu5tBHqVmeMXw.jpg',
   ),
   Driver(
     id: '2',
@@ -14,6 +16,8 @@ const driverMock = <Driver>[
     address: '45 chuong duong',
     phone: '0989898989',
     gender: 'male',
+    avatarUrl:
+        'https://n1-astg.mioto.vn/g/2023/01/16/17/6Zhl2LrC3Xu5tBHqVmeMXw.jpg',
   ),
   Driver(
     id: '3',
@@ -21,6 +25,8 @@ const driverMock = <Driver>[
     address: '45 chuong duong',
     phone: '0989898989',
     gender: 'male',
+    avatarUrl:
+        'https://n1-astg.mioto.vn/g/2023/01/16/17/6Zhl2LrC3Xu5tBHqVmeMXw.jpg',
   ),
   Driver(
     id: '4',
@@ -28,5 +34,7 @@ const driverMock = <Driver>[
     address: '45 chuong duong',
     phone: '0989898989',
     gender: 'male',
+    avatarUrl:
+        'https://n1-astg.mioto.vn/g/2023/01/16/17/6Zhl2LrC3Xu5tBHqVmeMXw.jpg',
   ),
 ];
