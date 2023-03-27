@@ -12,7 +12,7 @@ class User with _$User {
     required String name,
     required String phone,
     required Gender gender,
-    required Wallet wallet,
+    // required Wallet wallet,
     String? bankAccountNumber,
     String? bankName,
     String? avatarUrl,

@@ -3,7 +3,6 @@ import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
-import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/order.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

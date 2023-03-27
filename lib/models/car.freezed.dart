@@ -21,34 +21,35 @@ Car _$CarFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Car {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String get licensePlate => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  CarType get carType => throw _privateConstructorUsedError;
-  String get brand => throw _privateConstructorUsedError;
-  Transmission get transmission => throw _privateConstructorUsedError;
-  Fuel get fuel => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  List<CarFeature> get carFeatures => throw _privateConstructorUsedError;
-  String get collateral => throw _privateConstructorUsedError;
-  String get rules => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
-  double get rate => throw _privateConstructorUsedError;
-  RentalCarType get rentalCarType => throw _privateConstructorUsedError;
-  int get numberTrip => throw _privateConstructorUsedError;
+  double get rented => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  List<ImageModel> get images => throw _privateConstructorUsedError;
+  List<FeedbackModel> get feedback => throw _privateConstructorUsedError;
+  List<CarFeature> get carFeatures =>
+      throw _privateConstructorUsedError; // required List<CarType> carTypes,
+  ProductionCompany get productionCompany => throw _privateConstructorUsedError;
+  CarModel get model => throw _privateConstructorUsedError;
+  CarOwner? get carOwner => throw _privateConstructorUsedError;
+  Driver? get driver => throw _privateConstructorUsedError;
+  CarLocation get location => throw _privateConstructorUsedError;
+  AdditionalCharge get additionalCharge => throw _privateConstructorUsedError;
+  double get start => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay get startPickUpTime => throw _privateConstructorUsedError;
+  TimeOfDay? get startPickUpTime => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay get endPickUpTime => throw _privateConstructorUsedError;
+  TimeOfDay? get endPickUpTime => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay get startReturnTime => throw _privateConstructorUsedError;
+  TimeOfDay? get startReturnTime => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay get endReturnTime => throw _privateConstructorUsedError;
-  double? get deliveryDistance => throw _privateConstructorUsedError;
-  double get distanceLimit => throw _privateConstructorUsedError;
-  double get overDistancePrice => throw _privateConstructorUsedError;
-  double get overTimePrice => throw _privateConstructorUsedError;
-  String get carOwnerId => throw _privateConstructorUsedError;
+  TimeOfDay? get endReturnTime => throw _privateConstructorUsedError;
+  @TimeOfDayConverter()
+  TimeOfDay? get receiveTime => throw _privateConstructorUsedError;
+  @TimeOfDayConverter()
+  TimeOfDay? get returnTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,30 +63,35 @@ abstract class $CarCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String name,
-      List<String> images,
+      String? name,
+      String licensePlate,
       double price,
-      CarType carType,
-      String brand,
-      Transmission transmission,
-      Fuel fuel,
-      String description,
+      double rented,
+      String? description,
+      List<ImageModel> images,
+      List<FeedbackModel> feedback,
       List<CarFeature> carFeatures,
-      String collateral,
-      String rules,
-      String location,
-      double rate,
-      RentalCarType rentalCarType,
-      int numberTrip,
-      @TimeOfDayConverter() TimeOfDay startPickUpTime,
-      @TimeOfDayConverter() TimeOfDay endPickUpTime,
-      @TimeOfDayConverter() TimeOfDay startReturnTime,
-      @TimeOfDayConverter() TimeOfDay endReturnTime,
-      double? deliveryDistance,
-      double distanceLimit,
-      double overDistancePrice,
-      double overTimePrice,
-      String carOwnerId});
+      ProductionCompany productionCompany,
+      CarModel model,
+      CarOwner? carOwner,
+      Driver? driver,
+      CarLocation location,
+      AdditionalCharge additionalCharge,
+      double start,
+      String status,
+      @TimeOfDayConverter() TimeOfDay? startPickUpTime,
+      @TimeOfDayConverter() TimeOfDay? endPickUpTime,
+      @TimeOfDayConverter() TimeOfDay? startReturnTime,
+      @TimeOfDayConverter() TimeOfDay? endReturnTime,
+      @TimeOfDayConverter() TimeOfDay? receiveTime,
+      @TimeOfDayConverter() TimeOfDay? returnTime});
+
+  $ProductionCompanyCopyWith<$Res> get productionCompany;
+  $CarModelCopyWith<$Res> get model;
+  $CarOwnerCopyWith<$Res>? get carOwner;
+  $DriverCopyWith<$Res>? get driver;
+  $CarLocationCopyWith<$Res> get location;
+  $AdditionalChargeCopyWith<$Res> get additionalCharge;
 }
 
 /// @nodoc
@@ -101,133 +107,179 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? images = null,
+    Object? name = freezed,
+    Object? licensePlate = null,
     Object? price = null,
-    Object? carType = null,
-    Object? brand = null,
-    Object? transmission = null,
-    Object? fuel = null,
-    Object? description = null,
+    Object? rented = null,
+    Object? description = freezed,
+    Object? images = null,
+    Object? feedback = null,
     Object? carFeatures = null,
-    Object? collateral = null,
-    Object? rules = null,
+    Object? productionCompany = null,
+    Object? model = null,
+    Object? carOwner = freezed,
+    Object? driver = freezed,
     Object? location = null,
-    Object? rate = null,
-    Object? rentalCarType = null,
-    Object? numberTrip = null,
-    Object? startPickUpTime = null,
-    Object? endPickUpTime = null,
-    Object? startReturnTime = null,
-    Object? endReturnTime = null,
-    Object? deliveryDistance = freezed,
-    Object? distanceLimit = null,
-    Object? overDistancePrice = null,
-    Object? overTimePrice = null,
-    Object? carOwnerId = null,
+    Object? additionalCharge = null,
+    Object? start = null,
+    Object? status = null,
+    Object? startPickUpTime = freezed,
+    Object? endPickUpTime = freezed,
+    Object? startReturnTime = freezed,
+    Object? endReturnTime = freezed,
+    Object? receiveTime = freezed,
+    Object? returnTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      licensePlate: null == licensePlate
+          ? _value.licensePlate
+          : licensePlate // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      carType: null == carType
-          ? _value.carType
-          : carType // ignore: cast_nullable_to_non_nullable
-              as CarType,
-      brand: null == brand
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
-              as String,
-      transmission: null == transmission
-          ? _value.transmission
-          : transmission // ignore: cast_nullable_to_non_nullable
-              as Transmission,
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as Fuel,
-      description: null == description
+      rented: null == rented
+          ? _value.rented
+          : rented // ignore: cast_nullable_to_non_nullable
+              as double,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageModel>,
+      feedback: null == feedback
+          ? _value.feedback
+          : feedback // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>,
       carFeatures: null == carFeatures
           ? _value.carFeatures
           : carFeatures // ignore: cast_nullable_to_non_nullable
               as List<CarFeature>,
-      collateral: null == collateral
-          ? _value.collateral
-          : collateral // ignore: cast_nullable_to_non_nullable
-              as String,
-      rules: null == rules
-          ? _value.rules
-          : rules // ignore: cast_nullable_to_non_nullable
-              as String,
+      productionCompany: null == productionCompany
+          ? _value.productionCompany
+          : productionCompany // ignore: cast_nullable_to_non_nullable
+              as ProductionCompany,
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as CarModel,
+      carOwner: freezed == carOwner
+          ? _value.carOwner
+          : carOwner // ignore: cast_nullable_to_non_nullable
+              as CarOwner?,
+      driver: freezed == driver
+          ? _value.driver
+          : driver // ignore: cast_nullable_to_non_nullable
+              as Driver?,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      rate: null == rate
-          ? _value.rate
-          : rate // ignore: cast_nullable_to_non_nullable
+              as CarLocation,
+      additionalCharge: null == additionalCharge
+          ? _value.additionalCharge
+          : additionalCharge // ignore: cast_nullable_to_non_nullable
+              as AdditionalCharge,
+      start: null == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
               as double,
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
-      numberTrip: null == numberTrip
-          ? _value.numberTrip
-          : numberTrip // ignore: cast_nullable_to_non_nullable
-              as int,
-      startPickUpTime: null == startPickUpTime
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      startPickUpTime: freezed == startPickUpTime
           ? _value.startPickUpTime
           : startPickUpTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      endPickUpTime: null == endPickUpTime
+              as TimeOfDay?,
+      endPickUpTime: freezed == endPickUpTime
           ? _value.endPickUpTime
           : endPickUpTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      startReturnTime: null == startReturnTime
+              as TimeOfDay?,
+      startReturnTime: freezed == startReturnTime
           ? _value.startReturnTime
           : startReturnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      endReturnTime: null == endReturnTime
+              as TimeOfDay?,
+      endReturnTime: freezed == endReturnTime
           ? _value.endReturnTime
           : endReturnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      deliveryDistance: freezed == deliveryDistance
-          ? _value.deliveryDistance
-          : deliveryDistance // ignore: cast_nullable_to_non_nullable
-              as double?,
-      distanceLimit: null == distanceLimit
-          ? _value.distanceLimit
-          : distanceLimit // ignore: cast_nullable_to_non_nullable
-              as double,
-      overDistancePrice: null == overDistancePrice
-          ? _value.overDistancePrice
-          : overDistancePrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      overTimePrice: null == overTimePrice
-          ? _value.overTimePrice
-          : overTimePrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      carOwnerId: null == carOwnerId
-          ? _value.carOwnerId
-          : carOwnerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TimeOfDay?,
+      receiveTime: freezed == receiveTime
+          ? _value.receiveTime
+          : receiveTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      returnTime: freezed == returnTime
+          ? _value.returnTime
+          : returnTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCompanyCopyWith<$Res> get productionCompany {
+    return $ProductionCompanyCopyWith<$Res>(_value.productionCompany, (value) {
+      return _then(_value.copyWith(productionCompany: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CarModelCopyWith<$Res> get model {
+    return $CarModelCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CarOwnerCopyWith<$Res>? get carOwner {
+    if (_value.carOwner == null) {
+      return null;
+    }
+
+    return $CarOwnerCopyWith<$Res>(_value.carOwner!, (value) {
+      return _then(_value.copyWith(carOwner: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DriverCopyWith<$Res>? get driver {
+    if (_value.driver == null) {
+      return null;
+    }
+
+    return $DriverCopyWith<$Res>(_value.driver!, (value) {
+      return _then(_value.copyWith(driver: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CarLocationCopyWith<$Res> get location {
+    return $CarLocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AdditionalChargeCopyWith<$Res> get additionalCharge {
+    return $AdditionalChargeCopyWith<$Res>(_value.additionalCharge, (value) {
+      return _then(_value.copyWith(additionalCharge: value) as $Val);
+    });
   }
 }
 
@@ -239,30 +291,41 @@ abstract class _$$_CarCopyWith<$Res> implements $CarCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String name,
-      List<String> images,
+      String? name,
+      String licensePlate,
       double price,
-      CarType carType,
-      String brand,
-      Transmission transmission,
-      Fuel fuel,
-      String description,
+      double rented,
+      String? description,
+      List<ImageModel> images,
+      List<FeedbackModel> feedback,
       List<CarFeature> carFeatures,
-      String collateral,
-      String rules,
-      String location,
-      double rate,
-      RentalCarType rentalCarType,
-      int numberTrip,
-      @TimeOfDayConverter() TimeOfDay startPickUpTime,
-      @TimeOfDayConverter() TimeOfDay endPickUpTime,
-      @TimeOfDayConverter() TimeOfDay startReturnTime,
-      @TimeOfDayConverter() TimeOfDay endReturnTime,
-      double? deliveryDistance,
-      double distanceLimit,
-      double overDistancePrice,
-      double overTimePrice,
-      String carOwnerId});
+      ProductionCompany productionCompany,
+      CarModel model,
+      CarOwner? carOwner,
+      Driver? driver,
+      CarLocation location,
+      AdditionalCharge additionalCharge,
+      double start,
+      String status,
+      @TimeOfDayConverter() TimeOfDay? startPickUpTime,
+      @TimeOfDayConverter() TimeOfDay? endPickUpTime,
+      @TimeOfDayConverter() TimeOfDay? startReturnTime,
+      @TimeOfDayConverter() TimeOfDay? endReturnTime,
+      @TimeOfDayConverter() TimeOfDay? receiveTime,
+      @TimeOfDayConverter() TimeOfDay? returnTime});
+
+  @override
+  $ProductionCompanyCopyWith<$Res> get productionCompany;
+  @override
+  $CarModelCopyWith<$Res> get model;
+  @override
+  $CarOwnerCopyWith<$Res>? get carOwner;
+  @override
+  $DriverCopyWith<$Res>? get driver;
+  @override
+  $CarLocationCopyWith<$Res> get location;
+  @override
+  $AdditionalChargeCopyWith<$Res> get additionalCharge;
 }
 
 /// @nodoc
@@ -275,132 +338,122 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? images = null,
+    Object? name = freezed,
+    Object? licensePlate = null,
     Object? price = null,
-    Object? carType = null,
-    Object? brand = null,
-    Object? transmission = null,
-    Object? fuel = null,
-    Object? description = null,
+    Object? rented = null,
+    Object? description = freezed,
+    Object? images = null,
+    Object? feedback = null,
     Object? carFeatures = null,
-    Object? collateral = null,
-    Object? rules = null,
+    Object? productionCompany = null,
+    Object? model = null,
+    Object? carOwner = freezed,
+    Object? driver = freezed,
     Object? location = null,
-    Object? rate = null,
-    Object? rentalCarType = null,
-    Object? numberTrip = null,
-    Object? startPickUpTime = null,
-    Object? endPickUpTime = null,
-    Object? startReturnTime = null,
-    Object? endReturnTime = null,
-    Object? deliveryDistance = freezed,
-    Object? distanceLimit = null,
-    Object? overDistancePrice = null,
-    Object? overTimePrice = null,
-    Object? carOwnerId = null,
+    Object? additionalCharge = null,
+    Object? start = null,
+    Object? status = null,
+    Object? startPickUpTime = freezed,
+    Object? endPickUpTime = freezed,
+    Object? startReturnTime = freezed,
+    Object? endReturnTime = freezed,
+    Object? receiveTime = freezed,
+    Object? returnTime = freezed,
   }) {
     return _then(_$_Car(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      licensePlate: null == licensePlate
+          ? _value.licensePlate
+          : licensePlate // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value._images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      carType: null == carType
-          ? _value.carType
-          : carType // ignore: cast_nullable_to_non_nullable
-              as CarType,
-      brand: null == brand
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
-              as String,
-      transmission: null == transmission
-          ? _value.transmission
-          : transmission // ignore: cast_nullable_to_non_nullable
-              as Transmission,
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as Fuel,
-      description: null == description
+      rented: null == rented
+          ? _value.rented
+          : rented // ignore: cast_nullable_to_non_nullable
+              as double,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageModel>,
+      feedback: null == feedback
+          ? _value._feedback
+          : feedback // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>,
       carFeatures: null == carFeatures
           ? _value._carFeatures
           : carFeatures // ignore: cast_nullable_to_non_nullable
               as List<CarFeature>,
-      collateral: null == collateral
-          ? _value.collateral
-          : collateral // ignore: cast_nullable_to_non_nullable
-              as String,
-      rules: null == rules
-          ? _value.rules
-          : rules // ignore: cast_nullable_to_non_nullable
-              as String,
+      productionCompany: null == productionCompany
+          ? _value.productionCompany
+          : productionCompany // ignore: cast_nullable_to_non_nullable
+              as ProductionCompany,
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as CarModel,
+      carOwner: freezed == carOwner
+          ? _value.carOwner
+          : carOwner // ignore: cast_nullable_to_non_nullable
+              as CarOwner?,
+      driver: freezed == driver
+          ? _value.driver
+          : driver // ignore: cast_nullable_to_non_nullable
+              as Driver?,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      rate: null == rate
-          ? _value.rate
-          : rate // ignore: cast_nullable_to_non_nullable
+              as CarLocation,
+      additionalCharge: null == additionalCharge
+          ? _value.additionalCharge
+          : additionalCharge // ignore: cast_nullable_to_non_nullable
+              as AdditionalCharge,
+      start: null == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
               as double,
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
-      numberTrip: null == numberTrip
-          ? _value.numberTrip
-          : numberTrip // ignore: cast_nullable_to_non_nullable
-              as int,
-      startPickUpTime: null == startPickUpTime
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      startPickUpTime: freezed == startPickUpTime
           ? _value.startPickUpTime
           : startPickUpTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      endPickUpTime: null == endPickUpTime
+              as TimeOfDay?,
+      endPickUpTime: freezed == endPickUpTime
           ? _value.endPickUpTime
           : endPickUpTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      startReturnTime: null == startReturnTime
+              as TimeOfDay?,
+      startReturnTime: freezed == startReturnTime
           ? _value.startReturnTime
           : startReturnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      endReturnTime: null == endReturnTime
+              as TimeOfDay?,
+      endReturnTime: freezed == endReturnTime
           ? _value.endReturnTime
           : endReturnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
-      deliveryDistance: freezed == deliveryDistance
-          ? _value.deliveryDistance
-          : deliveryDistance // ignore: cast_nullable_to_non_nullable
-              as double?,
-      distanceLimit: null == distanceLimit
-          ? _value.distanceLimit
-          : distanceLimit // ignore: cast_nullable_to_non_nullable
-              as double,
-      overDistancePrice: null == overDistancePrice
-          ? _value.overDistancePrice
-          : overDistancePrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      overTimePrice: null == overTimePrice
-          ? _value.overTimePrice
-          : overTimePrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      carOwnerId: null == carOwnerId
-          ? _value.carOwnerId
-          : carOwnerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TimeOfDay?,
+      receiveTime: freezed == receiveTime
+          ? _value.receiveTime
+          : receiveTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
+      returnTime: freezed == returnTime
+          ? _value.returnTime
+          : returnTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
     ));
   }
 }
@@ -410,31 +463,30 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
 class _$_Car implements _Car {
   const _$_Car(
       {required this.id,
-      required this.name,
-      required final List<String> images,
+      this.name,
+      required this.licensePlate,
       required this.price,
-      required this.carType,
-      required this.brand,
-      required this.transmission,
-      required this.fuel,
-      required this.description,
+      required this.rented,
+      this.description,
+      required final List<ImageModel> images,
+      required final List<FeedbackModel> feedback,
       required final List<CarFeature> carFeatures,
-      required this.collateral,
-      required this.rules,
+      required this.productionCompany,
+      required this.model,
+      this.carOwner,
+      this.driver,
       required this.location,
-      required this.rate,
-      required this.rentalCarType,
-      this.numberTrip = 0,
-      @TimeOfDayConverter() required this.startPickUpTime,
-      @TimeOfDayConverter() required this.endPickUpTime,
-      @TimeOfDayConverter() required this.startReturnTime,
-      @TimeOfDayConverter() required this.endReturnTime,
-      this.deliveryDistance,
-      required this.distanceLimit,
-      required this.overDistancePrice,
-      required this.overTimePrice,
-      required this.carOwnerId})
+      required this.additionalCharge,
+      required this.start,
+      required this.status,
+      @TimeOfDayConverter() this.startPickUpTime,
+      @TimeOfDayConverter() this.endPickUpTime,
+      @TimeOfDayConverter() this.startReturnTime,
+      @TimeOfDayConverter() this.endReturnTime,
+      @TimeOfDayConverter() this.receiveTime,
+      @TimeOfDayConverter() this.returnTime})
       : _images = images,
+        _feedback = feedback,
         _carFeatures = carFeatures;
 
   factory _$_Car.fromJson(Map<String, dynamic> json) => _$$_CarFromJson(json);
@@ -442,27 +494,31 @@ class _$_Car implements _Car {
   @override
   final String id;
   @override
-  final String name;
-  final List<String> _images;
+  final String? name;
   @override
-  List<String> get images {
+  final String licensePlate;
+  @override
+  final double price;
+  @override
+  final double rented;
+  @override
+  final String? description;
+  final List<ImageModel> _images;
+  @override
+  List<ImageModel> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
 
+  final List<FeedbackModel> _feedback;
   @override
-  final double price;
-  @override
-  final CarType carType;
-  @override
-  final String brand;
-  @override
-  final Transmission transmission;
-  @override
-  final Fuel fuel;
-  @override
-  final String description;
+  List<FeedbackModel> get feedback {
+    if (_feedback is EqualUnmodifiableListView) return _feedback;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_feedback);
+  }
+
   final List<CarFeature> _carFeatures;
   @override
   List<CarFeature> get carFeatures {
@@ -471,45 +527,45 @@ class _$_Car implements _Car {
     return EqualUnmodifiableListView(_carFeatures);
   }
 
+// required List<CarType> carTypes,
   @override
-  final String collateral;
+  final ProductionCompany productionCompany;
   @override
-  final String rules;
+  final CarModel model;
   @override
-  final String location;
+  final CarOwner? carOwner;
   @override
-  final double rate;
+  final Driver? driver;
   @override
-  final RentalCarType rentalCarType;
+  final CarLocation location;
   @override
-  @JsonKey()
-  final int numberTrip;
+  final AdditionalCharge additionalCharge;
   @override
-  @TimeOfDayConverter()
-  final TimeOfDay startPickUpTime;
+  final double start;
   @override
-  @TimeOfDayConverter()
-  final TimeOfDay endPickUpTime;
+  final String status;
   @override
   @TimeOfDayConverter()
-  final TimeOfDay startReturnTime;
+  final TimeOfDay? startPickUpTime;
   @override
   @TimeOfDayConverter()
-  final TimeOfDay endReturnTime;
+  final TimeOfDay? endPickUpTime;
   @override
-  final double? deliveryDistance;
+  @TimeOfDayConverter()
+  final TimeOfDay? startReturnTime;
   @override
-  final double distanceLimit;
+  @TimeOfDayConverter()
+  final TimeOfDay? endReturnTime;
   @override
-  final double overDistancePrice;
+  @TimeOfDayConverter()
+  final TimeOfDay? receiveTime;
   @override
-  final double overTimePrice;
-  @override
-  final String carOwnerId;
+  @TimeOfDayConverter()
+  final TimeOfDay? returnTime;
 
   @override
   String toString() {
-    return 'Car(id: $id, name: $name, images: $images, price: $price, carType: $carType, brand: $brand, transmission: $transmission, fuel: $fuel, description: $description, carFeatures: $carFeatures, collateral: $collateral, rules: $rules, location: $location, rate: $rate, rentalCarType: $rentalCarType, numberTrip: $numberTrip, startPickUpTime: $startPickUpTime, endPickUpTime: $endPickUpTime, startReturnTime: $startReturnTime, endReturnTime: $endReturnTime, deliveryDistance: $deliveryDistance, distanceLimit: $distanceLimit, overDistancePrice: $overDistancePrice, overTimePrice: $overTimePrice, carOwnerId: $carOwnerId)';
+    return 'Car(id: $id, name: $name, licensePlate: $licensePlate, price: $price, rented: $rented, description: $description, images: $images, feedback: $feedback, carFeatures: $carFeatures, productionCompany: $productionCompany, model: $model, carOwner: $carOwner, driver: $driver, location: $location, additionalCharge: $additionalCharge, start: $start, status: $status, startPickUpTime: $startPickUpTime, endPickUpTime: $endPickUpTime, startReturnTime: $startReturnTime, endReturnTime: $endReturnTime, receiveTime: $receiveTime, returnTime: $returnTime)';
   }
 
   @override
@@ -519,27 +575,28 @@ class _$_Car implements _Car {
             other is _$_Car &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._images, _images) &&
+            (identical(other.licensePlate, licensePlate) ||
+                other.licensePlate == licensePlate) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.carType, carType) || other.carType == carType) &&
-            (identical(other.brand, brand) || other.brand == brand) &&
-            (identical(other.transmission, transmission) ||
-                other.transmission == transmission) &&
-            (identical(other.fuel, fuel) || other.fuel == fuel) &&
+            (identical(other.rented, rented) || other.rented == rented) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality().equals(other._feedback, _feedback) &&
             const DeepCollectionEquality()
                 .equals(other._carFeatures, _carFeatures) &&
-            (identical(other.collateral, collateral) ||
-                other.collateral == collateral) &&
-            (identical(other.rules, rules) || other.rules == rules) &&
+            (identical(other.productionCompany, productionCompany) ||
+                other.productionCompany == productionCompany) &&
+            (identical(other.model, model) || other.model == model) &&
+            (identical(other.carOwner, carOwner) ||
+                other.carOwner == carOwner) &&
+            (identical(other.driver, driver) || other.driver == driver) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.rate, rate) || other.rate == rate) &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
-            (identical(other.numberTrip, numberTrip) ||
-                other.numberTrip == numberTrip) &&
+            (identical(other.additionalCharge, additionalCharge) ||
+                other.additionalCharge == additionalCharge) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.startPickUpTime, startPickUpTime) ||
                 other.startPickUpTime == startPickUpTime) &&
             (identical(other.endPickUpTime, endPickUpTime) ||
@@ -548,16 +605,10 @@ class _$_Car implements _Car {
                 other.startReturnTime == startReturnTime) &&
             (identical(other.endReturnTime, endReturnTime) ||
                 other.endReturnTime == endReturnTime) &&
-            (identical(other.deliveryDistance, deliveryDistance) ||
-                other.deliveryDistance == deliveryDistance) &&
-            (identical(other.distanceLimit, distanceLimit) ||
-                other.distanceLimit == distanceLimit) &&
-            (identical(other.overDistancePrice, overDistancePrice) ||
-                other.overDistancePrice == overDistancePrice) &&
-            (identical(other.overTimePrice, overTimePrice) ||
-                other.overTimePrice == overTimePrice) &&
-            (identical(other.carOwnerId, carOwnerId) ||
-                other.carOwnerId == carOwnerId));
+            (identical(other.receiveTime, receiveTime) ||
+                other.receiveTime == receiveTime) &&
+            (identical(other.returnTime, returnTime) ||
+                other.returnTime == returnTime));
   }
 
   @JsonKey(ignore: true)
@@ -566,29 +617,27 @@ class _$_Car implements _Car {
         runtimeType,
         id,
         name,
-        const DeepCollectionEquality().hash(_images),
+        licensePlate,
         price,
-        carType,
-        brand,
-        transmission,
-        fuel,
+        rented,
         description,
+        const DeepCollectionEquality().hash(_images),
+        const DeepCollectionEquality().hash(_feedback),
         const DeepCollectionEquality().hash(_carFeatures),
-        collateral,
-        rules,
+        productionCompany,
+        model,
+        carOwner,
+        driver,
         location,
-        rate,
-        rentalCarType,
-        numberTrip,
+        additionalCharge,
+        start,
+        status,
         startPickUpTime,
         endPickUpTime,
         startReturnTime,
         endReturnTime,
-        deliveryDistance,
-        distanceLimit,
-        overDistancePrice,
-        overTimePrice,
-        carOwnerId
+        receiveTime,
+        returnTime
       ]);
 
   @JsonKey(ignore: true)
@@ -608,87 +657,83 @@ class _$_Car implements _Car {
 abstract class _Car implements Car {
   const factory _Car(
       {required final String id,
-      required final String name,
-      required final List<String> images,
+      final String? name,
+      required final String licensePlate,
       required final double price,
-      required final CarType carType,
-      required final String brand,
-      required final Transmission transmission,
-      required final Fuel fuel,
-      required final String description,
+      required final double rented,
+      final String? description,
+      required final List<ImageModel> images,
+      required final List<FeedbackModel> feedback,
       required final List<CarFeature> carFeatures,
-      required final String collateral,
-      required final String rules,
-      required final String location,
-      required final double rate,
-      required final RentalCarType rentalCarType,
-      final int numberTrip,
-      @TimeOfDayConverter() required final TimeOfDay startPickUpTime,
-      @TimeOfDayConverter() required final TimeOfDay endPickUpTime,
-      @TimeOfDayConverter() required final TimeOfDay startReturnTime,
-      @TimeOfDayConverter() required final TimeOfDay endReturnTime,
-      final double? deliveryDistance,
-      required final double distanceLimit,
-      required final double overDistancePrice,
-      required final double overTimePrice,
-      required final String carOwnerId}) = _$_Car;
+      required final ProductionCompany productionCompany,
+      required final CarModel model,
+      final CarOwner? carOwner,
+      final Driver? driver,
+      required final CarLocation location,
+      required final AdditionalCharge additionalCharge,
+      required final double start,
+      required final String status,
+      @TimeOfDayConverter() final TimeOfDay? startPickUpTime,
+      @TimeOfDayConverter() final TimeOfDay? endPickUpTime,
+      @TimeOfDayConverter() final TimeOfDay? startReturnTime,
+      @TimeOfDayConverter() final TimeOfDay? endReturnTime,
+      @TimeOfDayConverter() final TimeOfDay? receiveTime,
+      @TimeOfDayConverter() final TimeOfDay? returnTime}) = _$_Car;
 
   factory _Car.fromJson(Map<String, dynamic> json) = _$_Car.fromJson;
 
   @override
   String get id;
   @override
-  String get name;
+  String? get name;
   @override
-  List<String> get images;
+  String get licensePlate;
   @override
   double get price;
   @override
-  CarType get carType;
+  double get rented;
   @override
-  String get brand;
+  String? get description;
   @override
-  Transmission get transmission;
+  List<ImageModel> get images;
   @override
-  Fuel get fuel;
-  @override
-  String get description;
+  List<FeedbackModel> get feedback;
   @override
   List<CarFeature> get carFeatures;
+  @override // required List<CarType> carTypes,
+  ProductionCompany get productionCompany;
   @override
-  String get collateral;
+  CarModel get model;
   @override
-  String get rules;
+  CarOwner? get carOwner;
   @override
-  String get location;
+  Driver? get driver;
   @override
-  double get rate;
+  CarLocation get location;
   @override
-  RentalCarType get rentalCarType;
+  AdditionalCharge get additionalCharge;
   @override
-  int get numberTrip;
+  double get start;
   @override
-  @TimeOfDayConverter()
-  TimeOfDay get startPickUpTime;
-  @override
-  @TimeOfDayConverter()
-  TimeOfDay get endPickUpTime;
+  String get status;
   @override
   @TimeOfDayConverter()
-  TimeOfDay get startReturnTime;
+  TimeOfDay? get startPickUpTime;
   @override
   @TimeOfDayConverter()
-  TimeOfDay get endReturnTime;
+  TimeOfDay? get endPickUpTime;
   @override
-  double? get deliveryDistance;
+  @TimeOfDayConverter()
+  TimeOfDay? get startReturnTime;
   @override
-  double get distanceLimit;
+  @TimeOfDayConverter()
+  TimeOfDay? get endReturnTime;
   @override
-  double get overDistancePrice;
+  @TimeOfDayConverter()
+  TimeOfDay? get receiveTime;
   @override
-  double get overTimePrice;
-  @override
-  String get carOwnerId;
+  @TimeOfDayConverter()
+  TimeOfDay? get returnTime;
   @override
   @JsonKey(ignore: true)
   _$$_CarCopyWith<_$_Car> get copyWith => throw _privateConstructorUsedError;

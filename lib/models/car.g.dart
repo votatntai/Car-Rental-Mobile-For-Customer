@@ -8,94 +8,80 @@ part of 'car.dart';
 
 _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       id: json['id'] as String,
-      name: json['name'] as String,
-      images:
-          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      name: json['name'] as String?,
+      licensePlate: json['licensePlate'] as String,
       price: (json['price'] as num).toDouble(),
-      carType: $enumDecode(_$CarTypeEnumMap, json['carType']),
-      brand: json['brand'] as String,
-      transmission: $enumDecode(_$TransmissionEnumMap, json['transmission']),
-      fuel: $enumDecode(_$FuelEnumMap, json['fuel']),
-      description: json['description'] as String,
+      rented: (json['rented'] as num).toDouble(),
+      description: json['description'] as String?,
+      images: (json['images'] as List<dynamic>)
+          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      feedback: (json['feedback'] as List<dynamic>)
+          .map((e) => FeedbackModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       carFeatures: (json['carFeatures'] as List<dynamic>)
           .map((e) => $enumDecode(_$CarFeatureEnumMap, e))
           .toList(),
-      collateral: json['collateral'] as String,
-      rules: json['rules'] as String,
-      location: json['location'] as String,
-      rate: (json['rate'] as num).toDouble(),
-      rentalCarType: $enumDecode(_$RentalCarTypeEnumMap, json['rentalCarType']),
-      numberTrip: json['numberTrip'] as int? ?? 0,
-      startPickUpTime: const TimeOfDayConverter()
-          .fromJson(json['startPickUpTime'] as String),
-      endPickUpTime:
-          const TimeOfDayConverter().fromJson(json['endPickUpTime'] as String),
-      startReturnTime: const TimeOfDayConverter()
-          .fromJson(json['startReturnTime'] as String),
-      endReturnTime:
-          const TimeOfDayConverter().fromJson(json['endReturnTime'] as String),
-      deliveryDistance: (json['deliveryDistance'] as num?)?.toDouble(),
-      distanceLimit: (json['distanceLimit'] as num).toDouble(),
-      overDistancePrice: (json['overDistancePrice'] as num).toDouble(),
-      overTimePrice: (json['overTimePrice'] as num).toDouble(),
-      carOwnerId: json['carOwnerId'] as String,
+      productionCompany: ProductionCompany.fromJson(
+          json['productionCompany'] as Map<String, dynamic>),
+      model: CarModel.fromJson(json['model'] as Map<String, dynamic>),
+      carOwner: json['carOwner'] == null
+          ? null
+          : CarOwner.fromJson(json['carOwner'] as Map<String, dynamic>),
+      driver: json['driver'] == null
+          ? null
+          : Driver.fromJson(json['driver'] as Map<String, dynamic>),
+      location: CarLocation.fromJson(json['location'] as Map<String, dynamic>),
+      additionalCharge: AdditionalCharge.fromJson(
+          json['additionalCharge'] as Map<String, dynamic>),
+      start: (json['start'] as num).toDouble(),
+      status: json['status'] as String,
+      startPickUpTime: _$JsonConverterFromJson<String, TimeOfDay>(
+          json['startPickUpTime'], const TimeOfDayConverter().fromJson),
+      endPickUpTime: _$JsonConverterFromJson<String, TimeOfDay>(
+          json['endPickUpTime'], const TimeOfDayConverter().fromJson),
+      startReturnTime: _$JsonConverterFromJson<String, TimeOfDay>(
+          json['startReturnTime'], const TimeOfDayConverter().fromJson),
+      endReturnTime: _$JsonConverterFromJson<String, TimeOfDay>(
+          json['endReturnTime'], const TimeOfDayConverter().fromJson),
+      receiveTime: _$JsonConverterFromJson<String, TimeOfDay>(
+          json['receiveTime'], const TimeOfDayConverter().fromJson),
+      returnTime: _$JsonConverterFromJson<String, TimeOfDay>(
+          json['returnTime'], const TimeOfDayConverter().fromJson),
     );
 
 Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'images': instance.images,
+      'licensePlate': instance.licensePlate,
       'price': instance.price,
-      'carType': _$CarTypeEnumMap[instance.carType]!,
-      'brand': instance.brand,
-      'transmission': _$TransmissionEnumMap[instance.transmission]!,
-      'fuel': _$FuelEnumMap[instance.fuel]!,
+      'rented': instance.rented,
       'description': instance.description,
+      'images': instance.images,
+      'feedback': instance.feedback,
       'carFeatures':
           instance.carFeatures.map((e) => _$CarFeatureEnumMap[e]!).toList(),
-      'collateral': instance.collateral,
-      'rules': instance.rules,
+      'productionCompany': instance.productionCompany,
+      'model': instance.model,
+      'carOwner': instance.carOwner,
+      'driver': instance.driver,
       'location': instance.location,
-      'rate': instance.rate,
-      'rentalCarType': _$RentalCarTypeEnumMap[instance.rentalCarType]!,
-      'numberTrip': instance.numberTrip,
-      'startPickUpTime':
-          const TimeOfDayConverter().toJson(instance.startPickUpTime),
-      'endPickUpTime':
-          const TimeOfDayConverter().toJson(instance.endPickUpTime),
-      'startReturnTime':
-          const TimeOfDayConverter().toJson(instance.startReturnTime),
-      'endReturnTime':
-          const TimeOfDayConverter().toJson(instance.endReturnTime),
-      'deliveryDistance': instance.deliveryDistance,
-      'distanceLimit': instance.distanceLimit,
-      'overDistancePrice': instance.overDistancePrice,
-      'overTimePrice': instance.overTimePrice,
-      'carOwnerId': instance.carOwnerId,
+      'additionalCharge': instance.additionalCharge,
+      'start': instance.start,
+      'status': instance.status,
+      'startPickUpTime': _$JsonConverterToJson<String, TimeOfDay>(
+          instance.startPickUpTime, const TimeOfDayConverter().toJson),
+      'endPickUpTime': _$JsonConverterToJson<String, TimeOfDay>(
+          instance.endPickUpTime, const TimeOfDayConverter().toJson),
+      'startReturnTime': _$JsonConverterToJson<String, TimeOfDay>(
+          instance.startReturnTime, const TimeOfDayConverter().toJson),
+      'endReturnTime': _$JsonConverterToJson<String, TimeOfDay>(
+          instance.endReturnTime, const TimeOfDayConverter().toJson),
+      'receiveTime': _$JsonConverterToJson<String, TimeOfDay>(
+          instance.receiveTime, const TimeOfDayConverter().toJson),
+      'returnTime': _$JsonConverterToJson<String, TimeOfDay>(
+          instance.returnTime, const TimeOfDayConverter().toJson),
     };
-
-const _$CarTypeEnumMap = {
-  CarType.mini: 'mini',
-  CarType.sedan: 'sedan',
-  CarType.hatchback: 'hatchback',
-  CarType.suv: 'suv',
-  CarType.midsizeSub: 'midsizeSub',
-  CarType.minivan: 'minivan',
-  CarType.pickup: 'pickup',
-  CarType.other: 'other',
-};
-
-const _$TransmissionEnumMap = {
-  Transmission.auto: 'auto',
-  Transmission.manual: 'manual',
-};
-
-const _$FuelEnumMap = {
-  Fuel.gasoline: 'gasoline',
-  Fuel.diesel: 'diesel',
-  Fuel.electric: 'electric',
-  Fuel.other: 'other',
-};
 
 const _$CarFeatureEnumMap = {
   CarFeature.bluetooth: 'bluetooth',
@@ -108,7 +94,14 @@ const _$CarFeatureEnumMap = {
   CarFeature.nonStopTollCollection: 'nonStopTollCollection',
 };
 
-const _$RentalCarTypeEnumMap = {
-  RentalCarType.selfDrivingCar: 'selfDrivingCar',
-  RentalCarType.carWithDriver: 'carWithDriver',
-};
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

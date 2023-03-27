@@ -111,6 +111,7 @@ class DioHelper {
   }
 
   void removeDioInterceptors() {
+    token = '';
     dio.interceptors.clear();
   }
 }

@@ -38,7 +38,7 @@ class CarOwnerWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    car.rate.toString(),
+                    '5',
                     style: const TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,

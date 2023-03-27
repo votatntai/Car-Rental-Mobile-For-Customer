@@ -209,7 +209,7 @@ class _LoginViewState extends State<LoginView> {
       LoadingDialogService.dispose();
 
       if (result is ApiError) {
-        // var message = (result as ApiError).error;
+        // var message = (result as ApiError).error;t
         // showMessageDialog(message: message);
         showMessageDialog(message: 'Tên đăng nhập hoặc mật khẩu không đúng');
       }

@@ -62,6 +62,7 @@ class AuthenticationBloc
         await getIt.get<DioHelper>().initDioInterceptors();
 
         final user = await _tryGetUser();
+
         if (user == null) {
           emit(
             const AuthenticationState(

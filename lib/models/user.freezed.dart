@@ -23,8 +23,8 @@ mixin _$User {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  Gender get gender => throw _privateConstructorUsedError;
-  Wallet get wallet => throw _privateConstructorUsedError;
+  Gender get gender =>
+      throw _privateConstructorUsedError; // required Wallet wallet,
   String? get bankAccountNumber => throw _privateConstructorUsedError;
   String? get bankName => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
@@ -45,13 +45,10 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String phone,
       Gender gender,
-      Wallet wallet,
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
       String? address});
-
-  $WalletCopyWith<$Res> get wallet;
 }
 
 /// @nodoc
@@ -71,7 +68,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? name = null,
     Object? phone = null,
     Object? gender = null,
-    Object? wallet = null,
     Object? bankAccountNumber = freezed,
     Object? bankName = freezed,
     Object? avatarUrl = freezed,
@@ -94,10 +90,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
-      wallet: null == wallet
-          ? _value.wallet
-          : wallet // ignore: cast_nullable_to_non_nullable
-              as Wallet,
       bankAccountNumber: freezed == bankAccountNumber
           ? _value.bankAccountNumber
           : bankAccountNumber // ignore: cast_nullable_to_non_nullable
@@ -116,14 +108,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
               as String?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $WalletCopyWith<$Res> get wallet {
-    return $WalletCopyWith<$Res>(_value.wallet, (value) {
-      return _then(_value.copyWith(wallet: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -137,14 +121,10 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String phone,
       Gender gender,
-      Wallet wallet,
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
       String? address});
-
-  @override
-  $WalletCopyWith<$Res> get wallet;
 }
 
 /// @nodoc
@@ -160,7 +140,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? name = null,
     Object? phone = null,
     Object? gender = null,
-    Object? wallet = null,
     Object? bankAccountNumber = freezed,
     Object? bankName = freezed,
     Object? avatarUrl = freezed,
@@ -183,10 +162,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
-      wallet: null == wallet
-          ? _value.wallet
-          : wallet // ignore: cast_nullable_to_non_nullable
-              as Wallet,
       bankAccountNumber: freezed == bankAccountNumber
           ? _value.bankAccountNumber
           : bankAccountNumber // ignore: cast_nullable_to_non_nullable
@@ -215,7 +190,6 @@ class _$_User implements _User {
       required this.name,
       required this.phone,
       required this.gender,
-      required this.wallet,
       this.bankAccountNumber,
       this.bankName,
       this.avatarUrl,
@@ -231,8 +205,7 @@ class _$_User implements _User {
   final String phone;
   @override
   final Gender gender;
-  @override
-  final Wallet wallet;
+// required Wallet wallet,
   @override
   final String? bankAccountNumber;
   @override
@@ -244,7 +217,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, phone: $phone, gender: $gender, wallet: $wallet, bankAccountNumber: $bankAccountNumber, bankName: $bankName, avatarUrl: $avatarUrl, address: $address)';
+    return 'User(id: $id, name: $name, phone: $phone, gender: $gender, bankAccountNumber: $bankAccountNumber, bankName: $bankName, avatarUrl: $avatarUrl, address: $address)';
   }
 
   @override
@@ -256,7 +229,6 @@ class _$_User implements _User {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.bankAccountNumber, bankAccountNumber) ||
                 other.bankAccountNumber == bankAccountNumber) &&
             (identical(other.bankName, bankName) ||
@@ -268,7 +240,7 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phone, gender, wallet,
+  int get hashCode => Object.hash(runtimeType, id, name, phone, gender,
       bankAccountNumber, bankName, avatarUrl, address);
 
   @JsonKey(ignore: true)
@@ -291,7 +263,6 @@ abstract class _User implements User {
       required final String name,
       required final String phone,
       required final Gender gender,
-      required final Wallet wallet,
       final String? bankAccountNumber,
       final String? bankName,
       final String? avatarUrl,
@@ -307,9 +278,7 @@ abstract class _User implements User {
   String get phone;
   @override
   Gender get gender;
-  @override
-  Wallet get wallet;
-  @override
+  @override // required Wallet wallet,
   String? get bankAccountNumber;
   @override
   String? get bankName;
