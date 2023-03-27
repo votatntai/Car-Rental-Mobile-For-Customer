@@ -1,10 +1,10 @@
-enum CarFeature {
-  bluetooth,
-  camera,
-  speedWarning,
-  gps,
-  usb,
-  collisionSensor,
-  safetyAirbag,
-  nonStopTollCollection,
-}
+// enum CarFeatureEnum {
+//   bluetooth,
+//   camera,
+//   speedWarning,
+//   gps,
+//   usb,
+//   collisionSensor,
+//   safetyAirbag,
+//   nonStopTollCollection,
+// }

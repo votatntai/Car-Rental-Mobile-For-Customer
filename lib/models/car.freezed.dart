@@ -29,7 +29,8 @@ mixin _$Car {
   List<ImageModel> get images => throw _privateConstructorUsedError;
   List<FeedbackModel> get feedback => throw _privateConstructorUsedError;
   List<CarFeature> get carFeatures =>
-      throw _privateConstructorUsedError; // required List<CarType> carTypes,
+      throw _privateConstructorUsedError; // required List<CarFeature> carFeatures,
+  List<CarType> get carTypes => throw _privateConstructorUsedError;
   ProductionCompany get productionCompany => throw _privateConstructorUsedError;
   CarModel get model => throw _privateConstructorUsedError;
   CarOwner? get carOwner => throw _privateConstructorUsedError;
@@ -39,17 +40,13 @@ mixin _$Car {
   double get start => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay? get startPickUpTime => throw _privateConstructorUsedError;
+  TimeOfDay? get receiveStartTime => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay? get endPickUpTime => throw _privateConstructorUsedError;
+  TimeOfDay? get receiveEndTime => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay? get startReturnTime => throw _privateConstructorUsedError;
+  TimeOfDay? get returnStartTime => throw _privateConstructorUsedError;
   @TimeOfDayConverter()
-  TimeOfDay? get endReturnTime => throw _privateConstructorUsedError;
-  @TimeOfDayConverter()
-  TimeOfDay? get receiveTime => throw _privateConstructorUsedError;
-  @TimeOfDayConverter()
-  TimeOfDay? get returnTime => throw _privateConstructorUsedError;
+  TimeOfDay? get returnEndTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,6 +68,7 @@ abstract class $CarCopyWith<$Res> {
       List<ImageModel> images,
       List<FeedbackModel> feedback,
       List<CarFeature> carFeatures,
+      List<CarType> carTypes,
       ProductionCompany productionCompany,
       CarModel model,
       CarOwner? carOwner,
@@ -79,12 +77,10 @@ abstract class $CarCopyWith<$Res> {
       AdditionalCharge additionalCharge,
       double start,
       String status,
-      @TimeOfDayConverter() TimeOfDay? startPickUpTime,
-      @TimeOfDayConverter() TimeOfDay? endPickUpTime,
-      @TimeOfDayConverter() TimeOfDay? startReturnTime,
-      @TimeOfDayConverter() TimeOfDay? endReturnTime,
-      @TimeOfDayConverter() TimeOfDay? receiveTime,
-      @TimeOfDayConverter() TimeOfDay? returnTime});
+      @TimeOfDayConverter() TimeOfDay? receiveStartTime,
+      @TimeOfDayConverter() TimeOfDay? receiveEndTime,
+      @TimeOfDayConverter() TimeOfDay? returnStartTime,
+      @TimeOfDayConverter() TimeOfDay? returnEndTime});
 
   $ProductionCompanyCopyWith<$Res> get productionCompany;
   $CarModelCopyWith<$Res> get model;
@@ -115,6 +111,7 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
     Object? images = null,
     Object? feedback = null,
     Object? carFeatures = null,
+    Object? carTypes = null,
     Object? productionCompany = null,
     Object? model = null,
     Object? carOwner = freezed,
@@ -123,12 +120,10 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
     Object? additionalCharge = null,
     Object? start = null,
     Object? status = null,
-    Object? startPickUpTime = freezed,
-    Object? endPickUpTime = freezed,
-    Object? startReturnTime = freezed,
-    Object? endReturnTime = freezed,
-    Object? receiveTime = freezed,
-    Object? returnTime = freezed,
+    Object? receiveStartTime = freezed,
+    Object? receiveEndTime = freezed,
+    Object? returnStartTime = freezed,
+    Object? returnEndTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -167,6 +162,10 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
           ? _value.carFeatures
           : carFeatures // ignore: cast_nullable_to_non_nullable
               as List<CarFeature>,
+      carTypes: null == carTypes
+          ? _value.carTypes
+          : carTypes // ignore: cast_nullable_to_non_nullable
+              as List<CarType>,
       productionCompany: null == productionCompany
           ? _value.productionCompany
           : productionCompany // ignore: cast_nullable_to_non_nullable
@@ -199,29 +198,21 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      startPickUpTime: freezed == startPickUpTime
-          ? _value.startPickUpTime
-          : startPickUpTime // ignore: cast_nullable_to_non_nullable
+      receiveStartTime: freezed == receiveStartTime
+          ? _value.receiveStartTime
+          : receiveStartTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
-      endPickUpTime: freezed == endPickUpTime
-          ? _value.endPickUpTime
-          : endPickUpTime // ignore: cast_nullable_to_non_nullable
+      receiveEndTime: freezed == receiveEndTime
+          ? _value.receiveEndTime
+          : receiveEndTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
-      startReturnTime: freezed == startReturnTime
-          ? _value.startReturnTime
-          : startReturnTime // ignore: cast_nullable_to_non_nullable
+      returnStartTime: freezed == returnStartTime
+          ? _value.returnStartTime
+          : returnStartTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
-      endReturnTime: freezed == endReturnTime
-          ? _value.endReturnTime
-          : endReturnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      receiveTime: freezed == receiveTime
-          ? _value.receiveTime
-          : receiveTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      returnTime: freezed == returnTime
-          ? _value.returnTime
-          : returnTime // ignore: cast_nullable_to_non_nullable
+      returnEndTime: freezed == returnEndTime
+          ? _value.returnEndTime
+          : returnEndTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
     ) as $Val);
   }
@@ -299,6 +290,7 @@ abstract class _$$_CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       List<ImageModel> images,
       List<FeedbackModel> feedback,
       List<CarFeature> carFeatures,
+      List<CarType> carTypes,
       ProductionCompany productionCompany,
       CarModel model,
       CarOwner? carOwner,
@@ -307,12 +299,10 @@ abstract class _$$_CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       AdditionalCharge additionalCharge,
       double start,
       String status,
-      @TimeOfDayConverter() TimeOfDay? startPickUpTime,
-      @TimeOfDayConverter() TimeOfDay? endPickUpTime,
-      @TimeOfDayConverter() TimeOfDay? startReturnTime,
-      @TimeOfDayConverter() TimeOfDay? endReturnTime,
-      @TimeOfDayConverter() TimeOfDay? receiveTime,
-      @TimeOfDayConverter() TimeOfDay? returnTime});
+      @TimeOfDayConverter() TimeOfDay? receiveStartTime,
+      @TimeOfDayConverter() TimeOfDay? receiveEndTime,
+      @TimeOfDayConverter() TimeOfDay? returnStartTime,
+      @TimeOfDayConverter() TimeOfDay? returnEndTime});
 
   @override
   $ProductionCompanyCopyWith<$Res> get productionCompany;
@@ -346,6 +336,7 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
     Object? images = null,
     Object? feedback = null,
     Object? carFeatures = null,
+    Object? carTypes = null,
     Object? productionCompany = null,
     Object? model = null,
     Object? carOwner = freezed,
@@ -354,12 +345,10 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
     Object? additionalCharge = null,
     Object? start = null,
     Object? status = null,
-    Object? startPickUpTime = freezed,
-    Object? endPickUpTime = freezed,
-    Object? startReturnTime = freezed,
-    Object? endReturnTime = freezed,
-    Object? receiveTime = freezed,
-    Object? returnTime = freezed,
+    Object? receiveStartTime = freezed,
+    Object? receiveEndTime = freezed,
+    Object? returnStartTime = freezed,
+    Object? returnEndTime = freezed,
   }) {
     return _then(_$_Car(
       id: null == id
@@ -398,6 +387,10 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
           ? _value._carFeatures
           : carFeatures // ignore: cast_nullable_to_non_nullable
               as List<CarFeature>,
+      carTypes: null == carTypes
+          ? _value._carTypes
+          : carTypes // ignore: cast_nullable_to_non_nullable
+              as List<CarType>,
       productionCompany: null == productionCompany
           ? _value.productionCompany
           : productionCompany // ignore: cast_nullable_to_non_nullable
@@ -430,29 +423,21 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      startPickUpTime: freezed == startPickUpTime
-          ? _value.startPickUpTime
-          : startPickUpTime // ignore: cast_nullable_to_non_nullable
+      receiveStartTime: freezed == receiveStartTime
+          ? _value.receiveStartTime
+          : receiveStartTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
-      endPickUpTime: freezed == endPickUpTime
-          ? _value.endPickUpTime
-          : endPickUpTime // ignore: cast_nullable_to_non_nullable
+      receiveEndTime: freezed == receiveEndTime
+          ? _value.receiveEndTime
+          : receiveEndTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
-      startReturnTime: freezed == startReturnTime
-          ? _value.startReturnTime
-          : startReturnTime // ignore: cast_nullable_to_non_nullable
+      returnStartTime: freezed == returnStartTime
+          ? _value.returnStartTime
+          : returnStartTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
-      endReturnTime: freezed == endReturnTime
-          ? _value.endReturnTime
-          : endReturnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      receiveTime: freezed == receiveTime
-          ? _value.receiveTime
-          : receiveTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay?,
-      returnTime: freezed == returnTime
-          ? _value.returnTime
-          : returnTime // ignore: cast_nullable_to_non_nullable
+      returnEndTime: freezed == returnEndTime
+          ? _value.returnEndTime
+          : returnEndTime // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
     ));
   }
@@ -460,7 +445,7 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Car implements _Car {
+class _$_Car extends _Car {
   const _$_Car(
       {required this.id,
       this.name,
@@ -471,6 +456,7 @@ class _$_Car implements _Car {
       required final List<ImageModel> images,
       required final List<FeedbackModel> feedback,
       required final List<CarFeature> carFeatures,
+      required final List<CarType> carTypes,
       required this.productionCompany,
       required this.model,
       this.carOwner,
@@ -479,15 +465,15 @@ class _$_Car implements _Car {
       required this.additionalCharge,
       required this.start,
       required this.status,
-      @TimeOfDayConverter() this.startPickUpTime,
-      @TimeOfDayConverter() this.endPickUpTime,
-      @TimeOfDayConverter() this.startReturnTime,
-      @TimeOfDayConverter() this.endReturnTime,
-      @TimeOfDayConverter() this.receiveTime,
-      @TimeOfDayConverter() this.returnTime})
+      @TimeOfDayConverter() this.receiveStartTime,
+      @TimeOfDayConverter() this.receiveEndTime,
+      @TimeOfDayConverter() this.returnStartTime,
+      @TimeOfDayConverter() this.returnEndTime})
       : _images = images,
         _feedback = feedback,
-        _carFeatures = carFeatures;
+        _carFeatures = carFeatures,
+        _carTypes = carTypes,
+        super._();
 
   factory _$_Car.fromJson(Map<String, dynamic> json) => _$$_CarFromJson(json);
 
@@ -527,7 +513,16 @@ class _$_Car implements _Car {
     return EqualUnmodifiableListView(_carFeatures);
   }
 
-// required List<CarType> carTypes,
+// required List<CarFeature> carFeatures,
+  final List<CarType> _carTypes;
+// required List<CarFeature> carFeatures,
+  @override
+  List<CarType> get carTypes {
+    if (_carTypes is EqualUnmodifiableListView) return _carTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_carTypes);
+  }
+
   @override
   final ProductionCompany productionCompany;
   @override
@@ -546,26 +541,20 @@ class _$_Car implements _Car {
   final String status;
   @override
   @TimeOfDayConverter()
-  final TimeOfDay? startPickUpTime;
+  final TimeOfDay? receiveStartTime;
   @override
   @TimeOfDayConverter()
-  final TimeOfDay? endPickUpTime;
+  final TimeOfDay? receiveEndTime;
   @override
   @TimeOfDayConverter()
-  final TimeOfDay? startReturnTime;
+  final TimeOfDay? returnStartTime;
   @override
   @TimeOfDayConverter()
-  final TimeOfDay? endReturnTime;
-  @override
-  @TimeOfDayConverter()
-  final TimeOfDay? receiveTime;
-  @override
-  @TimeOfDayConverter()
-  final TimeOfDay? returnTime;
+  final TimeOfDay? returnEndTime;
 
   @override
   String toString() {
-    return 'Car(id: $id, name: $name, licensePlate: $licensePlate, price: $price, rented: $rented, description: $description, images: $images, feedback: $feedback, carFeatures: $carFeatures, productionCompany: $productionCompany, model: $model, carOwner: $carOwner, driver: $driver, location: $location, additionalCharge: $additionalCharge, start: $start, status: $status, startPickUpTime: $startPickUpTime, endPickUpTime: $endPickUpTime, startReturnTime: $startReturnTime, endReturnTime: $endReturnTime, receiveTime: $receiveTime, returnTime: $returnTime)';
+    return 'Car(id: $id, name: $name, licensePlate: $licensePlate, price: $price, rented: $rented, description: $description, images: $images, feedback: $feedback, carFeatures: $carFeatures, carTypes: $carTypes, productionCompany: $productionCompany, model: $model, carOwner: $carOwner, driver: $driver, location: $location, additionalCharge: $additionalCharge, start: $start, status: $status, receiveStartTime: $receiveStartTime, receiveEndTime: $receiveEndTime, returnStartTime: $returnStartTime, returnEndTime: $returnEndTime)';
   }
 
   @override
@@ -585,6 +574,7 @@ class _$_Car implements _Car {
             const DeepCollectionEquality().equals(other._feedback, _feedback) &&
             const DeepCollectionEquality()
                 .equals(other._carFeatures, _carFeatures) &&
+            const DeepCollectionEquality().equals(other._carTypes, _carTypes) &&
             (identical(other.productionCompany, productionCompany) ||
                 other.productionCompany == productionCompany) &&
             (identical(other.model, model) || other.model == model) &&
@@ -597,18 +587,14 @@ class _$_Car implements _Car {
                 other.additionalCharge == additionalCharge) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.startPickUpTime, startPickUpTime) ||
-                other.startPickUpTime == startPickUpTime) &&
-            (identical(other.endPickUpTime, endPickUpTime) ||
-                other.endPickUpTime == endPickUpTime) &&
-            (identical(other.startReturnTime, startReturnTime) ||
-                other.startReturnTime == startReturnTime) &&
-            (identical(other.endReturnTime, endReturnTime) ||
-                other.endReturnTime == endReturnTime) &&
-            (identical(other.receiveTime, receiveTime) ||
-                other.receiveTime == receiveTime) &&
-            (identical(other.returnTime, returnTime) ||
-                other.returnTime == returnTime));
+            (identical(other.receiveStartTime, receiveStartTime) ||
+                other.receiveStartTime == receiveStartTime) &&
+            (identical(other.receiveEndTime, receiveEndTime) ||
+                other.receiveEndTime == receiveEndTime) &&
+            (identical(other.returnStartTime, returnStartTime) ||
+                other.returnStartTime == returnStartTime) &&
+            (identical(other.returnEndTime, returnEndTime) ||
+                other.returnEndTime == returnEndTime));
   }
 
   @JsonKey(ignore: true)
@@ -624,6 +610,7 @@ class _$_Car implements _Car {
         const DeepCollectionEquality().hash(_images),
         const DeepCollectionEquality().hash(_feedback),
         const DeepCollectionEquality().hash(_carFeatures),
+        const DeepCollectionEquality().hash(_carTypes),
         productionCompany,
         model,
         carOwner,
@@ -632,12 +619,10 @@ class _$_Car implements _Car {
         additionalCharge,
         start,
         status,
-        startPickUpTime,
-        endPickUpTime,
-        startReturnTime,
-        endReturnTime,
-        receiveTime,
-        returnTime
+        receiveStartTime,
+        receiveEndTime,
+        returnStartTime,
+        returnEndTime
       ]);
 
   @JsonKey(ignore: true)
@@ -654,7 +639,7 @@ class _$_Car implements _Car {
   }
 }
 
-abstract class _Car implements Car {
+abstract class _Car extends Car {
   const factory _Car(
       {required final String id,
       final String? name,
@@ -665,6 +650,7 @@ abstract class _Car implements Car {
       required final List<ImageModel> images,
       required final List<FeedbackModel> feedback,
       required final List<CarFeature> carFeatures,
+      required final List<CarType> carTypes,
       required final ProductionCompany productionCompany,
       required final CarModel model,
       final CarOwner? carOwner,
@@ -673,12 +659,11 @@ abstract class _Car implements Car {
       required final AdditionalCharge additionalCharge,
       required final double start,
       required final String status,
-      @TimeOfDayConverter() final TimeOfDay? startPickUpTime,
-      @TimeOfDayConverter() final TimeOfDay? endPickUpTime,
-      @TimeOfDayConverter() final TimeOfDay? startReturnTime,
-      @TimeOfDayConverter() final TimeOfDay? endReturnTime,
-      @TimeOfDayConverter() final TimeOfDay? receiveTime,
-      @TimeOfDayConverter() final TimeOfDay? returnTime}) = _$_Car;
+      @TimeOfDayConverter() final TimeOfDay? receiveStartTime,
+      @TimeOfDayConverter() final TimeOfDay? receiveEndTime,
+      @TimeOfDayConverter() final TimeOfDay? returnStartTime,
+      @TimeOfDayConverter() final TimeOfDay? returnEndTime}) = _$_Car;
+  const _Car._() : super._();
 
   factory _Car.fromJson(Map<String, dynamic> json) = _$_Car.fromJson;
 
@@ -700,7 +685,9 @@ abstract class _Car implements Car {
   List<FeedbackModel> get feedback;
   @override
   List<CarFeature> get carFeatures;
-  @override // required List<CarType> carTypes,
+  @override // required List<CarFeature> carFeatures,
+  List<CarType> get carTypes;
+  @override
   ProductionCompany get productionCompany;
   @override
   CarModel get model;
@@ -718,22 +705,16 @@ abstract class _Car implements Car {
   String get status;
   @override
   @TimeOfDayConverter()
-  TimeOfDay? get startPickUpTime;
+  TimeOfDay? get receiveStartTime;
   @override
   @TimeOfDayConverter()
-  TimeOfDay? get endPickUpTime;
+  TimeOfDay? get receiveEndTime;
   @override
   @TimeOfDayConverter()
-  TimeOfDay? get startReturnTime;
+  TimeOfDay? get returnStartTime;
   @override
   @TimeOfDayConverter()
-  TimeOfDay? get endReturnTime;
-  @override
-  @TimeOfDayConverter()
-  TimeOfDay? get receiveTime;
-  @override
-  @TimeOfDayConverter()
-  TimeOfDay? get returnTime;
+  TimeOfDay? get returnEndTime;
   @override
   @JsonKey(ignore: true)
   _$$_CarCopyWith<_$_Car> get copyWith => throw _privateConstructorUsedError;

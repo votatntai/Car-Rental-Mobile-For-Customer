@@ -1,6 +1,6 @@
-enum Fuel {
-  gasoline,
-  diesel,
-  electric,
-  other,
-}
+// enum Fuel {
+//   gasoline,
+//   diesel,
+//   electric,
+//   other,
+// }

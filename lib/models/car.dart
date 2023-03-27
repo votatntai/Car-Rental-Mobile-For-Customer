@@ -1,10 +1,12 @@
 import 'package:car_rental_for_customer/models/additional_charge.dart';
+import 'package:car_rental_for_customer/models/car_feature.dart';
 import 'package:car_rental_for_customer/models/car_location.dart';
 import 'package:car_rental_for_customer/models/car_model.dart';
 import 'package:car_rental_for_customer/models/car_owner.dart';
+import 'package:car_rental_for_customer/models/car_type.dart';
 import 'package:car_rental_for_customer/models/converters/TimeOfDayConverter.dart';
 import 'package:car_rental_for_customer/models/driver.dart';
-import 'package:car_rental_for_customer/models/enums/car_feature.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/production_company.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,6 +19,8 @@ part 'car.g.dart';
 
 @freezed
 class Car with _$Car {
+  const Car._();
+
   const factory Car({
     required String id,
     String? name,
@@ -27,8 +31,8 @@ class Car with _$Car {
     required List<ImageModel> images,
     required List<FeedbackModel> feedback,
     required List<CarFeature> carFeatures,
-    // required List<CarType> carTypes,
-
+    // required List<CarFeature> carFeatures,
+    required List<CarType> carTypes,
     required ProductionCompany productionCompany,
     required CarModel model,
     CarOwner? carOwner,
@@ -37,13 +41,16 @@ class Car with _$Car {
     required AdditionalCharge additionalCharge,
     required double start,
     required String status,
-    @TimeOfDayConverter() TimeOfDay? startPickUpTime,
-    @TimeOfDayConverter() TimeOfDay? endPickUpTime,
-    @TimeOfDayConverter() TimeOfDay? startReturnTime,
-    @TimeOfDayConverter() TimeOfDay? endReturnTime,
-    @TimeOfDayConverter() TimeOfDay? receiveTime,
-    @TimeOfDayConverter() TimeOfDay? returnTime,
+    @TimeOfDayConverter() TimeOfDay? receiveStartTime,
+    @TimeOfDayConverter() TimeOfDay? receiveEndTime,
+    @TimeOfDayConverter() TimeOfDay? returnStartTime,
+    @TimeOfDayConverter() TimeOfDay? returnEndTime,
   }) = _Car;
 
   factory Car.fromJson(Map<String, dynamic> json) => _$CarFromJson(json);
+
+  RentalCarType get rentalCarType {
+    if (driver == null) return RentalCarType.selfDrivingCar;
+    return RentalCarType.carWithDriver;
+  }
 }
