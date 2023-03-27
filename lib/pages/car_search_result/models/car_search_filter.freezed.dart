@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CarSearchFilter {
-  List<CarType> get carTypes => throw _privateConstructorUsedError;
-  Transmission? get transmission => throw _privateConstructorUsedError;
+  CarTypeEnum? get carType => throw _privateConstructorUsedError;
+  TransmissionEnum? get transmission => throw _privateConstructorUsedError;
   bool get isDiscounted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,9 @@ abstract class $CarSearchFilterCopyWith<$Res> {
       _$CarSearchFilterCopyWithImpl<$Res, CarSearchFilter>;
   @useResult
   $Res call(
-      {List<CarType> carTypes, Transmission? transmission, bool isDiscounted});
+      {CarTypeEnum? carType,
+      TransmissionEnum? transmission,
+      bool isDiscounted});
 }
 
 /// @nodoc
@@ -48,19 +50,19 @@ class _$CarSearchFilterCopyWithImpl<$Res, $Val extends CarSearchFilter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? carTypes = null,
+    Object? carType = freezed,
     Object? transmission = freezed,
     Object? isDiscounted = null,
   }) {
     return _then(_value.copyWith(
-      carTypes: null == carTypes
-          ? _value.carTypes
-          : carTypes // ignore: cast_nullable_to_non_nullable
-              as List<CarType>,
+      carType: freezed == carType
+          ? _value.carType
+          : carType // ignore: cast_nullable_to_non_nullable
+              as CarTypeEnum?,
       transmission: freezed == transmission
           ? _value.transmission
           : transmission // ignore: cast_nullable_to_non_nullable
-              as Transmission?,
+              as TransmissionEnum?,
       isDiscounted: null == isDiscounted
           ? _value.isDiscounted
           : isDiscounted // ignore: cast_nullable_to_non_nullable
@@ -78,7 +80,9 @@ abstract class _$$_CarSearchFilterCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CarType> carTypes, Transmission? transmission, bool isDiscounted});
+      {CarTypeEnum? carType,
+      TransmissionEnum? transmission,
+      bool isDiscounted});
 }
 
 /// @nodoc
@@ -92,19 +96,19 @@ class __$$_CarSearchFilterCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? carTypes = null,
+    Object? carType = freezed,
     Object? transmission = freezed,
     Object? isDiscounted = null,
   }) {
     return _then(_$_CarSearchFilter(
-      carTypes: null == carTypes
-          ? _value._carTypes
-          : carTypes // ignore: cast_nullable_to_non_nullable
-              as List<CarType>,
+      carType: freezed == carType
+          ? _value.carType
+          : carType // ignore: cast_nullable_to_non_nullable
+              as CarTypeEnum?,
       transmission: freezed == transmission
           ? _value.transmission
           : transmission // ignore: cast_nullable_to_non_nullable
-              as Transmission?,
+              as TransmissionEnum?,
       isDiscounted: null == isDiscounted
           ? _value.isDiscounted
           : isDiscounted // ignore: cast_nullable_to_non_nullable
@@ -117,28 +121,19 @@ class __$$_CarSearchFilterCopyWithImpl<$Res>
 
 class _$_CarSearchFilter implements _CarSearchFilter {
   const _$_CarSearchFilter(
-      {required final List<CarType> carTypes,
-      this.transmission,
-      this.isDiscounted = false})
-      : _carTypes = carTypes;
-
-  final List<CarType> _carTypes;
-  @override
-  List<CarType> get carTypes {
-    if (_carTypes is EqualUnmodifiableListView) return _carTypes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_carTypes);
-  }
+      {this.carType, this.transmission, this.isDiscounted = false});
 
   @override
-  final Transmission? transmission;
+  final CarTypeEnum? carType;
+  @override
+  final TransmissionEnum? transmission;
   @override
   @JsonKey()
   final bool isDiscounted;
 
   @override
   String toString() {
-    return 'CarSearchFilter(carTypes: $carTypes, transmission: $transmission, isDiscounted: $isDiscounted)';
+    return 'CarSearchFilter(carType: $carType, transmission: $transmission, isDiscounted: $isDiscounted)';
   }
 
   @override
@@ -146,7 +141,7 @@ class _$_CarSearchFilter implements _CarSearchFilter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CarSearchFilter &&
-            const DeepCollectionEquality().equals(other._carTypes, _carTypes) &&
+            (identical(other.carType, carType) || other.carType == carType) &&
             (identical(other.transmission, transmission) ||
                 other.transmission == transmission) &&
             (identical(other.isDiscounted, isDiscounted) ||
@@ -154,11 +149,8 @@ class _$_CarSearchFilter implements _CarSearchFilter {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_carTypes),
-      transmission,
-      isDiscounted);
+  int get hashCode =>
+      Object.hash(runtimeType, carType, transmission, isDiscounted);
 
   @JsonKey(ignore: true)
   @override
@@ -169,14 +161,14 @@ class _$_CarSearchFilter implements _CarSearchFilter {
 
 abstract class _CarSearchFilter implements CarSearchFilter {
   const factory _CarSearchFilter(
-      {required final List<CarType> carTypes,
-      final Transmission? transmission,
+      {final CarTypeEnum? carType,
+      final TransmissionEnum? transmission,
       final bool isDiscounted}) = _$_CarSearchFilter;
 
   @override
-  List<CarType> get carTypes;
+  CarTypeEnum? get carType;
   @override
-  Transmission? get transmission;
+  TransmissionEnum? get transmission;
   @override
   bool get isDiscounted;
   @override

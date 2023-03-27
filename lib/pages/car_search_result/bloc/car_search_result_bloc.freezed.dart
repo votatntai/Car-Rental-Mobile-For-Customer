@@ -27,8 +27,8 @@ mixin _$CarSearchResultEvent {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
-    required TResult Function(Transmission? transmission)
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) =>
@@ -39,8 +39,9 @@ mixin _$CarSearchResultEvent {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
@@ -50,8 +51,8 @@ mixin _$CarSearchResultEvent {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) =>
@@ -240,8 +241,8 @@ class _$_Started implements _Started {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
-    required TResult Function(Transmission? transmission)
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
@@ -256,8 +257,9 @@ class _$_Started implements _Started {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
     return started?.call(
@@ -271,8 +273,8 @@ class _$_Started implements _Started {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
@@ -424,8 +426,8 @@ class _$_PageRequested implements _PageRequested {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
-    required TResult Function(Transmission? transmission)
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
@@ -439,8 +441,9 @@ class _$_PageRequested implements _PageRequested {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
     return pageRequested?.call(pageKey);
@@ -453,8 +456,8 @@ class _$_PageRequested implements _PageRequested {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
@@ -526,7 +529,7 @@ abstract class _$$_CarTypeFilterChangedCopyWith<$Res> {
           $Res Function(_$_CarTypeFilterChanged) then) =
       __$$_CarTypeFilterChangedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CarType> carTypes});
+  $Res call({CarTypeEnum? carType});
 }
 
 /// @nodoc
@@ -540,13 +543,13 @@ class __$$_CarTypeFilterChangedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? carTypes = null,
+    Object? carType = freezed,
   }) {
     return _then(_$_CarTypeFilterChanged(
-      carTypes: null == carTypes
-          ? _value._carTypes
-          : carTypes // ignore: cast_nullable_to_non_nullable
-              as List<CarType>,
+      carType: freezed == carType
+          ? _value.carType
+          : carType // ignore: cast_nullable_to_non_nullable
+              as CarTypeEnum?,
     ));
   }
 }
@@ -554,20 +557,14 @@ class __$$_CarTypeFilterChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
-  const _$_CarTypeFilterChanged({required final List<CarType> carTypes})
-      : _carTypes = carTypes;
+  const _$_CarTypeFilterChanged({this.carType});
 
-  final List<CarType> _carTypes;
   @override
-  List<CarType> get carTypes {
-    if (_carTypes is EqualUnmodifiableListView) return _carTypes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_carTypes);
-  }
+  final CarTypeEnum? carType;
 
   @override
   String toString() {
-    return 'CarSearchResultEvent.carTypeFilterChanged(carTypes: $carTypes)';
+    return 'CarSearchResultEvent.carTypeFilterChanged(carType: $carType)';
   }
 
   @override
@@ -575,12 +572,11 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CarTypeFilterChanged &&
-            const DeepCollectionEquality().equals(other._carTypes, _carTypes));
+            (identical(other.carType, carType) || other.carType == carType));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_carTypes));
+  int get hashCode => Object.hash(runtimeType, carType);
 
   @JsonKey(ignore: true)
   @override
@@ -601,12 +597,12 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
-    required TResult Function(Transmission? transmission)
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
-    return carTypeFilterChanged(carTypes);
+    return carTypeFilterChanged(carType);
   }
 
   @override
@@ -616,11 +612,12 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
-    return carTypeFilterChanged?.call(carTypes);
+    return carTypeFilterChanged?.call(carType);
   }
 
   @override
@@ -630,13 +627,13 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
     if (carTypeFilterChanged != null) {
-      return carTypeFilterChanged(carTypes);
+      return carTypeFilterChanged(carType);
     }
     return orElse();
   }
@@ -689,10 +686,10 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
 }
 
 abstract class _CarTypeFilterChanged implements CarSearchResultEvent {
-  const factory _CarTypeFilterChanged({required final List<CarType> carTypes}) =
+  const factory _CarTypeFilterChanged({final CarTypeEnum? carType}) =
       _$_CarTypeFilterChanged;
 
-  List<CarType> get carTypes;
+  CarTypeEnum? get carType;
   @JsonKey(ignore: true)
   _$$_CarTypeFilterChangedCopyWith<_$_CarTypeFilterChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -705,7 +702,7 @@ abstract class _$$_TransmissionFilterChangedCopyWith<$Res> {
           $Res Function(_$_TransmissionFilterChanged) then) =
       __$$_TransmissionFilterChangedCopyWithImpl<$Res>;
   @useResult
-  $Res call({Transmission? transmission});
+  $Res call({TransmissionEnum? transmission});
 }
 
 /// @nodoc
@@ -727,7 +724,7 @@ class __$$_TransmissionFilterChangedCopyWithImpl<$Res>
       transmission: freezed == transmission
           ? _value.transmission
           : transmission // ignore: cast_nullable_to_non_nullable
-              as Transmission?,
+              as TransmissionEnum?,
     ));
   }
 }
@@ -738,7 +735,7 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   const _$_TransmissionFilterChanged({this.transmission});
 
   @override
-  final Transmission? transmission;
+  final TransmissionEnum? transmission;
 
   @override
   String toString() {
@@ -776,8 +773,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
-    required TResult Function(Transmission? transmission)
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
@@ -791,8 +788,9 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
     return transmissionFilterChanged?.call(transmission);
@@ -805,8 +803,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
@@ -864,10 +862,10 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
 }
 
 abstract class _TransmissionFilterChanged implements CarSearchResultEvent {
-  const factory _TransmissionFilterChanged({final Transmission? transmission}) =
-      _$_TransmissionFilterChanged;
+  const factory _TransmissionFilterChanged(
+      {final TransmissionEnum? transmission}) = _$_TransmissionFilterChanged;
 
-  Transmission? get transmission;
+  TransmissionEnum? get transmission;
   @JsonKey(ignore: true)
   _$$_TransmissionFilterChangedCopyWith<_$_TransmissionFilterChanged>
       get copyWith => throw _privateConstructorUsedError;
@@ -924,8 +922,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
             double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
-    required TResult Function(List<CarType> carTypes) carTypeFilterChanged,
-    required TResult Function(Transmission? transmission)
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
@@ -939,8 +937,9 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
-    TResult? Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult? Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
     return isDiscountedFilterChanged?.call();
@@ -953,8 +952,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
             RentalCarType rentalCarType, double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
-    TResult Function(List<CarType> carTypes)? carTypeFilterChanged,
-    TResult Function(Transmission? transmission)? transmissionFilterChanged,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
     required TResult orElse(),
   }) {
@@ -1022,7 +1021,6 @@ mixin _$CarSearchResultState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1040,7 +1038,6 @@ mixin _$CarSearchResultState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1058,7 +1055,6 @@ mixin _$CarSearchResultState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1158,7 +1154,6 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1179,7 +1174,6 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1200,7 +1194,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1301,7 +1294,6 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1322,7 +1314,6 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1343,7 +1334,6 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1411,8 +1401,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<Car> cars,
-      String address,
+      {String address,
       DateTime startDate,
       DateTime endDate,
       RentalCarType rentalCarType,
@@ -1435,7 +1424,6 @@ class __$$_SuccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cars = null,
     Object? address = null,
     Object? startDate = null,
     Object? endDate = null,
@@ -1446,10 +1434,6 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? carSearchFilter = null,
   }) {
     return _then(_$_Success(
-      cars: null == cars
-          ? _value._cars
-          : cars // ignore: cast_nullable_to_non_nullable
-              as List<Car>,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -1511,24 +1495,14 @@ class __$$_SuccessCopyWithImpl<$Res>
 
 class _$_Success implements _Success {
   const _$_Success(
-      {required final List<Car> cars,
-      required this.address,
+      {required this.address,
       required this.startDate,
       required this.endDate,
       required this.rentalCarType,
       required this.latitude,
       required this.longitude,
       this.scrollPagination,
-      required this.carSearchFilter})
-      : _cars = cars;
-
-  final List<Car> _cars;
-  @override
-  List<Car> get cars {
-    if (_cars is EqualUnmodifiableListView) return _cars;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cars);
-  }
+      required this.carSearchFilter});
 
   @override
   final String address;
@@ -1549,7 +1523,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'CarSearchResultState.success(cars: $cars, address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter)';
+    return 'CarSearchResultState.success(address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter)';
   }
 
   @override
@@ -1557,7 +1531,6 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other._cars, _cars) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
@@ -1575,17 +1548,8 @@ class _$_Success implements _Success {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_cars),
-      address,
-      startDate,
-      endDate,
-      rentalCarType,
-      latitude,
-      longitude,
-      scrollPagination,
-      carSearchFilter);
+  int get hashCode => Object.hash(runtimeType, address, startDate, endDate,
+      rentalCarType, latitude, longitude, scrollPagination, carSearchFilter);
 
   @JsonKey(ignore: true)
   @override
@@ -1599,7 +1563,6 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1611,7 +1574,7 @@ class _$_Success implements _Success {
         success,
     required TResult Function(String? message) failure,
   }) {
-    return success(cars, address, startDate, endDate, rentalCarType, latitude,
+    return success(address, startDate, endDate, rentalCarType, latitude,
         longitude, scrollPagination, carSearchFilter);
   }
 
@@ -1621,7 +1584,6 @@ class _$_Success implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1633,8 +1595,8 @@ class _$_Success implements _Success {
         success,
     TResult? Function(String? message)? failure,
   }) {
-    return success?.call(cars, address, startDate, endDate, rentalCarType,
-        latitude, longitude, scrollPagination, carSearchFilter);
+    return success?.call(address, startDate, endDate, rentalCarType, latitude,
+        longitude, scrollPagination, carSearchFilter);
   }
 
   @override
@@ -1643,7 +1605,6 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1657,7 +1618,7 @@ class _$_Success implements _Success {
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(cars, address, startDate, endDate, rentalCarType, latitude,
+      return success(address, startDate, endDate, rentalCarType, latitude,
           longitude, scrollPagination, carSearchFilter);
     }
     return orElse();
@@ -1703,8 +1664,7 @@ class _$_Success implements _Success {
 
 abstract class _Success implements CarSearchResultState {
   const factory _Success(
-      {required final List<Car> cars,
-      required final String address,
+      {required final String address,
       required final DateTime startDate,
       required final DateTime endDate,
       required final RentalCarType rentalCarType,
@@ -1713,7 +1673,6 @@ abstract class _Success implements CarSearchResultState {
       final ScrollPagination<Car>? scrollPagination,
       required final CarSearchFilter carSearchFilter}) = _$_Success;
 
-  List<Car> get cars;
   String get address;
   DateTime get startDate;
   DateTime get endDate;
@@ -1793,7 +1752,6 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1814,7 +1772,6 @@ class _$_Failure implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,
@@ -1835,7 +1792,6 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            List<Car> cars,
             String address,
             DateTime startDate,
             DateTime endDate,

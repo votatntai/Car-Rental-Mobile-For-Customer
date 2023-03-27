@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/promotion.dart';
-import 'package:car_rental_for_customer/pages/car_booking_confirmation/promotionMock.dart';
-import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
+import 'package:car_rental_for_customer/repositories/car_repository.dart';
+import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'car_booking_confirmation_event.dart';
@@ -15,10 +16,15 @@ part 'car_booking_confirmation_bloc.freezed.dart';
 
 class CarBookingConfirmationBloc
     extends Bloc<CarBookingConfirmationEvent, CarBookingConfirmationState> {
-  CarBookingConfirmationBloc()
-      : super(const CarBookingConfirmationState.initial()) {
+  CarBookingConfirmationBloc({
+    required this.carRepository,
+    required this.promotionRepository,
+  }) : super(const CarBookingConfirmationState.initial()) {
     on<_Started>(_onStarted);
   }
+
+  final CarRepository carRepository;
+  final PromotionRepository promotionRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -38,20 +44,28 @@ class CarBookingConfirmationBloc
       return;
     }
 
-    final car = carMock.firstWhere((element) => element.id == event.carId);
-    final promotions =
-        promotionMock.where((element) => element.id == event.promotionId);
-    final promotion = promotions.isNotEmpty ? promotions.first : null;
+    final carResult = await carRepository.carById(event.carId!);
+    final promotionResult =
+        await promotionRepository.promotionById(event.promotionId ?? '');
 
-    emit(CarBookingConfirmationState.success(
-      car: car,
-      address: event.address!,
-      startDate: event.startDate!,
-      endDate: event.endDate!,
-      latitude: event.latitude!,
-      longitude: event.longitude!,
-      promotion: promotion,
-      carDeliveryCost: event.carDeliveryCost,
-    ));
+    if (carResult is ApiSuccess) {
+      final car = (carResult as ApiSuccess<Car>).value;
+      Promotion? promotion;
+
+      if (promotionResult is ApiSuccess) {
+        promotion = (promotionResult as ApiSuccess<Promotion>).value;
+      }
+
+      emit(CarBookingConfirmationState.success(
+        car: car,
+        address: event.address!,
+        startDate: event.startDate!,
+        endDate: event.endDate!,
+        latitude: event.latitude!,
+        longitude: event.longitude!,
+        promotion: promotion,
+        carDeliveryCost: event.carDeliveryCost,
+      ));
+    }
   }
 }

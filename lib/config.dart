@@ -3,9 +3,18 @@ import 'package:car_rental_for_customer/app/route/app_route.dart';
 import 'package:car_rental_for_customer/commons/constants/maps.dart';
 import 'package:car_rental_for_customer/commons/constants/networks.dart';
 import 'package:car_rental_for_customer/di.dart';
+import 'package:car_rental_for_customer/models/car_owner.dart';
+import 'package:car_rental_for_customer/repositories/car_owner_repository.dart';
+import 'package:car_rental_for_customer/repositories/car_repository.dart';
+import 'package:car_rental_for_customer/repositories/driver_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
+import 'package:car_rental_for_customer/repositories/notification_repository.dart';
+import 'package:car_rental_for_customer/repositories/order_repository.dart';
+import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:car_rental_for_customer/repositories/repositories.dart';
+import 'package:car_rental_for_customer/repositories/transaction_repository.dart';
 import 'package:car_rental_for_customer/repositories/user_repository.dart';
+import 'package:car_rental_for_customer/repositories/wallet_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -41,7 +50,29 @@ Future<void> configDI() async {
     ..registerSingleton<UserRepository>(UserRepository(dio: dio))
     ..registerSingleton<MapsRepository>(
       MapsRepository(key: mapsApiKey, options: dioOptions),
-    );
+    )
+    ..registerSingleton<CarOwnerRepository>(
+      CarOwnerRepository(dio: dio),
+    )
+    ..registerSingleton<DriverRepository>(
+      DriverRepository(dio: dio),
+    )
+    ..registerSingleton<NotificationRepository>(
+      NotificationRepository(dio: dio),
+    )
+    ..registerSingleton<OrderRepository>(
+      OrderRepository(dio: dio),
+    )
+    ..registerSingleton<PromotionRepository>(
+      PromotionRepository(dio: dio),
+    )
+    ..registerSingleton<TransactionRepository>(
+      TransactionRepository(dio: dio),
+    )
+    ..registerSingleton<WalletRepository>(
+      WalletRepository(dio: dio),
+    )
+    ..registerSingleton<CarRepository>(CarRepository(dio: dio));
 }
 
 void configureTimeago() {

@@ -711,6 +711,7 @@ mixin _$CarSearchState {
   DateTime? get endDate => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
+  List<Car>? get cars => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CarSearchStateCopyWith<CarSearchState> get copyWith =>
@@ -729,7 +730,8 @@ abstract class $CarSearchStateCopyWith<$Res> {
       DateTime? startDate,
       DateTime? endDate,
       double? longitude,
-      double? latitude});
+      double? latitude,
+      List<Car>? cars});
 }
 
 /// @nodoc
@@ -751,6 +753,7 @@ class _$CarSearchStateCopyWithImpl<$Res, $Val extends CarSearchState>
     Object? endDate = freezed,
     Object? longitude = freezed,
     Object? latitude = freezed,
+    Object? cars = freezed,
   }) {
     return _then(_value.copyWith(
       rentalCarType: freezed == rentalCarType
@@ -777,6 +780,10 @@ class _$CarSearchStateCopyWithImpl<$Res, $Val extends CarSearchState>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      cars: freezed == cars
+          ? _value.cars
+          : cars // ignore: cast_nullable_to_non_nullable
+              as List<Car>?,
     ) as $Val);
   }
 }
@@ -795,7 +802,8 @@ abstract class _$$_CarSearchStateCopyWith<$Res>
       DateTime? startDate,
       DateTime? endDate,
       double? longitude,
-      double? latitude});
+      double? latitude,
+      List<Car>? cars});
 }
 
 /// @nodoc
@@ -815,6 +823,7 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
     Object? endDate = freezed,
     Object? longitude = freezed,
     Object? latitude = freezed,
+    Object? cars = freezed,
   }) {
     return _then(_$_CarSearchState(
       rentalCarType: freezed == rentalCarType
@@ -841,6 +850,10 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      cars: freezed == cars
+          ? _value._cars
+          : cars // ignore: cast_nullable_to_non_nullable
+              as List<Car>?,
     ));
   }
 }
@@ -854,7 +867,9 @@ class _$_CarSearchState implements _CarSearchState {
       this.startDate,
       this.endDate,
       this.longitude,
-      this.latitude});
+      this.latitude,
+      final List<Car>? cars})
+      : _cars = cars;
 
   @override
   final RentalCarType? rentalCarType;
@@ -868,10 +883,19 @@ class _$_CarSearchState implements _CarSearchState {
   final double? longitude;
   @override
   final double? latitude;
+  final List<Car>? _cars;
+  @override
+  List<Car>? get cars {
+    final value = _cars;
+    if (value == null) return null;
+    if (_cars is EqualUnmodifiableListView) return _cars;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CarSearchState(rentalCarType: $rentalCarType, address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude)';
+    return 'CarSearchState(rentalCarType: $rentalCarType, address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude, cars: $cars)';
   }
 
   @override
@@ -888,12 +912,20 @@ class _$_CarSearchState implements _CarSearchState {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.latitude, latitude) ||
-                other.latitude == latitude));
+                other.latitude == latitude) &&
+            const DeepCollectionEquality().equals(other._cars, _cars));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rentalCarType, address,
-      startDate, endDate, longitude, latitude);
+  int get hashCode => Object.hash(
+      runtimeType,
+      rentalCarType,
+      address,
+      startDate,
+      endDate,
+      longitude,
+      latitude,
+      const DeepCollectionEquality().hash(_cars));
 
   @JsonKey(ignore: true)
   @override
@@ -909,7 +941,8 @@ abstract class _CarSearchState implements CarSearchState {
       final DateTime? startDate,
       final DateTime? endDate,
       final double? longitude,
-      final double? latitude}) = _$_CarSearchState;
+      final double? latitude,
+      final List<Car>? cars}) = _$_CarSearchState;
 
   @override
   RentalCarType? get rentalCarType;
@@ -923,6 +956,8 @@ abstract class _CarSearchState implements CarSearchState {
   double? get longitude;
   @override
   double? get latitude;
+  @override
+  List<Car>? get cars;
   @override
   @JsonKey(ignore: true)
   _$$_CarSearchStateCopyWith<_$_CarSearchState> get copyWith =>

@@ -7,8 +7,8 @@ part 'car_search_filter.freezed.dart';
 @freezed
 class CarSearchFilter with _$CarSearchFilter {
   const factory CarSearchFilter({
-    required List<CarType> carTypes,
-    Transmission? transmission,
+    CarTypeEnum? carType,
+    TransmissionEnum? transmission,
     @Default(false) bool isDiscounted,
   }) = _CarSearchFilter;
 }

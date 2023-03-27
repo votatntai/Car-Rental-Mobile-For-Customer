@@ -9,9 +9,10 @@ class Notification with _$Notification {
     required String id,
     required String title,
     required String body,
-    required String type,
+    String? link,
     required DateTime createdAt,
     required bool isRead,
+    required String accountId,
   }) = _Notification;
 
   factory Notification.fromJson(Map<String, dynamic> json) =>

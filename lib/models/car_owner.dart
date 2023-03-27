@@ -11,7 +11,7 @@ class CarOwner with _$CarOwner {
     required String name,
     String? address,
     required String phone,
-    required Gender gender,
+    required String gender,
     String? avatarUrl,
     String? bankAccountNumber,
   }) = _CarOwner;

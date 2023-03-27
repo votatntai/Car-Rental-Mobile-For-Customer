@@ -1,14 +1,14 @@
-enum Transmission {
+enum TransmissionEnum {
   auto,
   manual,
 }
 
-extension TransmissionExtension on Transmission {
+extension TransmissionExtension on TransmissionEnum {
   String get displayName {
     switch (this) {
-      case Transmission.auto:
+      case TransmissionEnum.auto:
         return 'Số tự động';
-      case Transmission.manual:
+      case TransmissionEnum.manual:
         return 'Số sàn';
     }
   }

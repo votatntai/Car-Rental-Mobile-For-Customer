@@ -1,45 +1,46 @@
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
-import 'package:car_rental_for_customer/models/api_response.dart';
-import 'package:car_rental_for_customer/models/place.dart';
-import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMapWidget extends StatefulWidget {
-  const GoogleMapWidget(
-      {Key? key, required this.address, required this.mapsRepository})
-      : super(key: key);
+  const GoogleMapWidget({
+    Key? key,
+    required this.longitude,
+    required this.latitude,
+    // required this.mapsRepository,
+  }) : super(key: key);
 
-  final String address;
-  final MapsRepository mapsRepository;
+  final double longitude;
+  final double latitude;
+  // final MapsRepository mapsRepository;
 
   @override
   State<GoogleMapWidget> createState() => _GoogleMapWidgetState();
 }
 
 class _GoogleMapWidgetState extends State<GoogleMapWidget> {
-  Place? place;
+  // Place? place;
 
   @override
   void initState() {
-    if (context.mounted) {
-      widget.mapsRepository
-          .addressToCoordinate(address: widget.address)
-          .then((value) {
-        if (value is ApiSuccess<Place?>) {
-          setState(() {
-            place = value.value;
-          });
-        }
-      });
-    }
+    // if (context.mounted) {
+    //   widget.mapsRepository
+    //       .addressToCoordinate(address: widget.address)
+    //       .then((value) {
+    //     if (value is ApiSuccess<Place?>) {
+    //       setState(() {
+    //         place = value.value;
+    //       });
+    //     }
+    //   });
+    // }
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (place == null) return const SizedBox();
+    // if (place == null) return const SizedBox();
     return Column(
       children: [
         const SizedBox(height: s08),
@@ -51,8 +52,8 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
                 target: LatLng(
-                  place!.geometry.location.lat,
-                  place!.geometry.location.lng,
+                  widget.latitude,
+                  widget.longitude,
                 ),
                 zoom: 14,
               ),
@@ -63,8 +64,8 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
                     DateTime.now().millisecondsSinceEpoch.toString(),
                   ),
                   position: LatLng(
-                    place!.geometry.location.lat,
-                    place!.geometry.location.lng,
+                    widget.latitude,
+                    widget.longitude,
                   ),
                 ),
               },

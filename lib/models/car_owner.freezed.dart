@@ -24,7 +24,7 @@ mixin _$CarOwner {
   String get name => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  Gender get gender => throw _privateConstructorUsedError;
+  String get gender => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get bankAccountNumber => throw _privateConstructorUsedError;
 
@@ -44,7 +44,7 @@ abstract class $CarOwnerCopyWith<$Res> {
       String name,
       String? address,
       String phone,
-      Gender gender,
+      String gender,
       String? avatarUrl,
       String? bankAccountNumber});
 }
@@ -90,7 +90,7 @@ class _$CarOwnerCopyWithImpl<$Res, $Val extends CarOwner>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
+              as String,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -115,7 +115,7 @@ abstract class _$$_CarOwnerCopyWith<$Res> implements $CarOwnerCopyWith<$Res> {
       String name,
       String? address,
       String phone,
-      Gender gender,
+      String gender,
       String? avatarUrl,
       String? bankAccountNumber});
 }
@@ -159,7 +159,7 @@ class __$$_CarOwnerCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
+              as String,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$_CarOwner implements _CarOwner {
   @override
   final String phone;
   @override
-  final Gender gender;
+  final String gender;
   @override
   final String? avatarUrl;
   @override
@@ -248,7 +248,7 @@ abstract class _CarOwner implements CarOwner {
       required final String name,
       final String? address,
       required final String phone,
-      required final Gender gender,
+      required final String gender,
       final String? avatarUrl,
       final String? bankAccountNumber}) = _$_CarOwner;
 
@@ -263,7 +263,7 @@ abstract class _CarOwner implements CarOwner {
   @override
   String get phone;
   @override
-  Gender get gender;
+  String get gender;
   @override
   String? get avatarUrl;
   @override

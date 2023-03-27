@@ -29,7 +29,7 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
               state.mapOrNull(success: (state) => state.carSearchFilter);
           if (filter == null) return const SizedBox();
 
-          final carTypes = filter.carTypes;
+          final carType = filter.carType;
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,11 +52,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-4-mini.png',
                           title: '4 Chỗ\n(Mini)',
-                          carType: CarType.mini,
-                          selected: carTypes.contains(CarType.mini),
+                          carType: CarTypeEnum.mini,
+                          selected: carType == CarTypeEnum.mini,
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -64,11 +64,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                             selected,
                           ),
                         ),
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-4-sedan.png',
                           title: '4 Chỗ\n(Sedan)',
-                          carType: CarType.sedan,
-                          selected: carTypes.contains(CarType.sedan),
+                          carType: CarTypeEnum.sedan,
+                          selected: carType == (CarTypeEnum.sedan),
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -76,11 +76,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                             selected,
                           ),
                         ),
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-4-hatchback.png',
                           title: '4 Chỗ\n(Hatchback)',
-                          carType: CarType.hatchback,
-                          selected: carTypes.contains(CarType.hatchback),
+                          carType: CarTypeEnum.hatchback,
+                          selected: carType == (CarTypeEnum.hatchback),
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -93,11 +93,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-5-suv.png',
                           title: '5 chỗ\n(Gầm cao)',
-                          carType: CarType.suv,
-                          selected: carTypes.contains(CarType.suv),
+                          carType: CarTypeEnum.highChassis5,
+                          selected: carType == (CarTypeEnum.highChassis5),
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -105,11 +105,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                             selected,
                           ),
                         ),
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-7-suv.png',
                           title: '7 Chỗ\n(Gầm cao)',
-                          carType: CarType.midsizeSub,
-                          selected: carTypes.contains(CarType.midsizeSub),
+                          carType: CarTypeEnum.highChassis7,
+                          selected: carType == (CarTypeEnum.highChassis7),
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -117,11 +117,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                             selected,
                           ),
                         ),
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-7-mpv.png',
                           title: '7 Chỗ\n(Gầm thấp)',
-                          carType: CarType.minivan,
-                          selected: carTypes.contains(CarType.minivan),
+                          carType: CarTypeEnum.lowChassis7,
+                          selected: carType == (CarTypeEnum.lowChassis7),
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -134,11 +134,11 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        carType(
+                        carTypeWidget(
                           imageUrl: 'assets/mf-pickup.png',
                           title: 'Bán tải',
-                          carType: CarType.pickup,
-                          selected: carTypes.contains(CarType.pickup),
+                          carType: CarTypeEnum.pickupTruck,
+                          selected: carType == (CarTypeEnum.pickupTruck),
                           onTap: (type, selected) => _handleCarTypeTap(
                             type,
                             context,
@@ -186,33 +186,24 @@ class _CarTypeWidgetState extends State<CarTypeWidget> {
   }
 
   void _handleCarTypeTap(
-    CarType type,
+    CarTypeEnum type,
     BuildContext context,
     CarSearchFilter filter,
     bool selected,
   ) {
-    final carTypes = <CarType>[];
-    if (!selected) {
-      carTypes.addAll(filter.carTypes);
-      carTypes.remove(type);
-    } else {
-      carTypes.addAll(filter.carTypes);
-      carTypes.add(type);
-    }
-
     context.read<CarSearchResultBloc>().add(
           CarSearchResultEvent.carTypeFilterChanged(
-            carTypes: carTypes,
+            carType: selected ? type : null,
           ),
         );
   }
 
-  Widget carType({
+  Widget carTypeWidget({
     required String imageUrl,
     required String title,
-    required CarType carType,
+    required CarTypeEnum carType,
     required bool selected,
-    required Function(CarType type, bool selected) onTap,
+    required Function(CarTypeEnum type, bool selected) onTap,
   }) {
     return GestureDetector(
       onTap: () => onTap(carType, !selected),

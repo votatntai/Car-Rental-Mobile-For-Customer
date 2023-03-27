@@ -8,6 +8,7 @@ import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
 import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
+import 'package:car_rental_for_customer/commons/widgets/location_text.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
@@ -176,13 +177,12 @@ class _OrderInformationViewState extends State<OrderInformationView> {
         }
 
         final rentCost = calculateDays(
-              successState.order.startDate,
-              successState.order.endDate,
+              successState.order.startTime,
+              successState.order.endTime,
             ) *
             successState.order.rentalUnitPrice;
 
-        //TODO: Calculate promotion cost
-        final promotionCost = successState.order.promotionDiscount;
+        final promotionCost = successState.order.promotion?.discount ?? 0;
 
         final carDeliveryCost = successState.order.deliveryCost;
 
@@ -195,8 +195,10 @@ class _OrderInformationViewState extends State<OrderInformationView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                carImage(context, successState.order.car),
-                carTitle(context, successState.order.car),
+                if (successState.order.orderDetail?.car != null)
+                  carImage(context, successState.order.orderDetail!.car),
+                if (successState.order.orderDetail?.car != null)
+                  carTitle(context, successState.order.orderDetail!.car),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -237,7 +239,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                               children: [
                                 Text(
                                   DateFormat('HH:mm E, dd/MM/yyyy').format(
-                                    successState.order.startDate,
+                                    successState.order.startTime,
                                   ),
                                   style: const TextStyle(
                                     fontSize: 12,
@@ -245,7 +247,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                 ),
                                 Text(
                                   DateFormat('HH:mm E, dd/MM/yyyy').format(
-                                    successState.order.endDate,
+                                    successState.order.endTime,
                                   ),
                                   style: const TextStyle(
                                     fontSize: 12,
@@ -264,35 +266,37 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           color: CustomColors.ochre.withOpacity(0.1),
                           child: Column(
                             children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Thời gian nhận xe',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    '${formatTimeOfDay(successState.order.car.startPickUpTime)}-${formatTimeOfDay(successState.order.car.endPickUpTime)}',
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                ],
-                              ),
+                              if (successState.order.orderDetail?.car != null)
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'Thời gian nhận xe',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      '${formatTimeOfDay(successState.order.orderDetail!.car.receiveStartTime)}-${formatTimeOfDay(successState.order.orderDetail!.car.receiveEndTime)}',
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
                               const SizedBox(
                                 height: s04,
                               ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Thời gian trả xe',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    '${formatTimeOfDay(successState.order.car.startReturnTime)}-${formatTimeOfDay(successState.order.car.endReturnTime)}',
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                ],
-                              )
+                              if (successState.order.orderDetail?.car != null)
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'Thời gian trả xe',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      '${formatTimeOfDay(successState.order.orderDetail!.car.returnStartTime)}-${formatTimeOfDay(successState.order.orderDetail!.car.returnEndTime)}',
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                )
                             ],
                           ),
                         ),
@@ -318,20 +322,45 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             const SizedBox(width: 2),
                             SizedBox(
                               width: context.width() * 0.8,
-                              child: Text(
-                                successState.order.address,
+                              child: LocationText(
+                                longitude: successState.order.orderDetail
+                                        ?.deliveryLocation?.longitude ??
+                                    successState.order.orderDetail
+                                        ?.pickupLocation?.longitude ??
+                                    0,
+                                latitude: successState.order.orderDetail
+                                        ?.deliveryLocation?.latitude ??
+                                    successState.order.orderDetail
+                                        ?.pickupLocation?.latitude ??
+                                    0,
                                 style: const TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
                                   color: CustomColors.jetBlack,
                                 ),
                               ),
+                              // child: Text(
+                              //   successState.order.address,
+                              //   style: const TextStyle(
+                              //     fontSize: 13,
+                              //     fontWeight: FontWeight.w500,
+                              //     color: CustomColors.jetBlack,
+                              //   ),
+                              // ),
                             ),
                           ],
                         ),
                         GoogleMapWidget(
-                          address: successState.order.address,
-                          mapsRepository: getIt.get<MapsRepository>(),
+                          latitude: successState.order.orderDetail
+                                  ?.deliveryLocation?.latitude ??
+                              successState.order.orderDetail?.pickupLocation
+                                  ?.latitude ??
+                              0,
+                          longitude: successState.order.orderDetail
+                                  ?.deliveryLocation?.longitude ??
+                              successState.order.orderDetail?.pickupLocation
+                                  ?.longitude ??
+                              0,
                         ),
                       ],
                     ),
@@ -363,7 +392,9 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    successState.order.car.carOwnerId,
+                                    successState.order.orderDetail?.car.carOwner
+                                            ?.id ??
+                                        '',
                                     style: const TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w500,
@@ -410,7 +441,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${successState.order.car.distanceLimit} km/ngày',
+                          '${successState.order.orderDetail?.car.additionalCharge.maximumDistance} km/ngày',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -420,7 +451,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           height: s04,
                         ),
                         Text(
-                          'Phí: ${formatCurrency(successState.order.car.overDistancePrice)}/km vượt qua giới hạn',
+                          'Phí: ${formatCurrency(successState.order.orderDetail?.car.additionalCharge.distanceSurcharge ?? 0)}/km vượt qua giới hạn',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
@@ -477,23 +508,25 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                   ),
                 ),
                 divider,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: s16),
-                  child: ContainerWithLabel(
-                    label: 'Chủ xe',
-                    child: CarOwnerWidget(
-                      car: successState.order.car,
-                      onTap: () {
-                        context.pushNamed(
-                          RouteName.carOwnerDetail,
-                          queryParams: {
-                            'car-owner-id': successState.order.car.carOwnerId,
-                          },
-                        );
-                      },
+                if (successState.order.orderDetail != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: s16),
+                    child: ContainerWithLabel(
+                      label: 'Chủ xe',
+                      child: CarOwnerWidget(
+                        car: successState.order.orderDetail!.car,
+                        onTap: () {
+                          context.pushNamed(
+                            RouteName.carOwnerDetail,
+                            queryParams: {
+                              'car-owner-id': successState
+                                  .order.orderDetail!.car.carOwner!.id,
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -541,8 +574,8 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             const Spacer(),
                             Text(
                               '${formatCurrency(successState.order.rentalUnitPrice)} x ${calculateDays(
-                                successState.order.startDate,
-                                successState.order.endDate,
+                                successState.order.startTime,
+                                successState.order.endTime,
                               )} ngày',
                               style: const TextStyle(fontSize: 12),
                             ),
@@ -907,7 +940,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
           Row(
             children: [
               Text(
-                car.name,
+                car.name ?? '',
                 style: boldTextStyle(size: 18),
               ),
             ],

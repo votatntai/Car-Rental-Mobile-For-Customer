@@ -19,32 +19,38 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(int index) topDealIndexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(int index)? topDealIndexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int index)? topDealIndexChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_TopDealIndexChanged value) topDealIndexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_TopDealIndexChanged value)? topDealIndexChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TopDealIndexChanged value)? topDealIndexChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,6 +111,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(int index) topDealIndexChanged,
   }) {
     return started();
   }
@@ -113,6 +120,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(int index)? topDealIndexChanged,
   }) {
     return started?.call();
   }
@@ -121,6 +129,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int index)? topDealIndexChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -133,6 +142,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_TopDealIndexChanged value) topDealIndexChanged,
   }) {
     return started(this);
   }
@@ -141,6 +151,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_TopDealIndexChanged value)? topDealIndexChanged,
   }) {
     return started?.call(this);
   }
@@ -149,6 +160,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TopDealIndexChanged value)? topDealIndexChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -163,12 +175,147 @@ abstract class _Started implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$_TopDealIndexChangedCopyWith<$Res> {
+  factory _$$_TopDealIndexChangedCopyWith(_$_TopDealIndexChanged value,
+          $Res Function(_$_TopDealIndexChanged) then) =
+      __$$_TopDealIndexChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$_TopDealIndexChangedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_TopDealIndexChanged>
+    implements _$$_TopDealIndexChangedCopyWith<$Res> {
+  __$$_TopDealIndexChangedCopyWithImpl(_$_TopDealIndexChanged _value,
+      $Res Function(_$_TopDealIndexChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$_TopDealIndexChanged(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TopDealIndexChanged implements _TopDealIndexChanged {
+  const _$_TopDealIndexChanged(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'HomeEvent.topDealIndexChanged(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TopDealIndexChanged &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TopDealIndexChangedCopyWith<_$_TopDealIndexChanged> get copyWith =>
+      __$$_TopDealIndexChangedCopyWithImpl<_$_TopDealIndexChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int index) topDealIndexChanged,
+  }) {
+    return topDealIndexChanged(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(int index)? topDealIndexChanged,
+  }) {
+    return topDealIndexChanged?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? topDealIndexChanged,
+    required TResult orElse(),
+  }) {
+    if (topDealIndexChanged != null) {
+      return topDealIndexChanged(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_TopDealIndexChanged value) topDealIndexChanged,
+  }) {
+    return topDealIndexChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_TopDealIndexChanged value)? topDealIndexChanged,
+  }) {
+    return topDealIndexChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TopDealIndexChanged value)? topDealIndexChanged,
+    required TResult orElse(),
+  }) {
+    if (topDealIndexChanged != null) {
+      return topDealIndexChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TopDealIndexChanged implements HomeEvent {
+  const factory _TopDealIndexChanged(final int index) = _$_TopDealIndexChanged;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$_TopDealIndexChangedCopyWith<_$_TopDealIndexChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function(User user, int topDealIndex, List<Car> topDeals)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -176,7 +323,7 @@ mixin _$HomeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? success,
+    TResult? Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -184,7 +331,7 @@ mixin _$HomeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -272,7 +419,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function(User user, int topDealIndex, List<Car> topDeals)
+        success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -283,7 +431,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? success,
+    TResult? Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -294,7 +442,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -385,7 +533,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function(User user, int topDealIndex, List<Car> topDeals)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -396,7 +545,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? success,
+    TResult? Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -407,7 +556,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -465,7 +614,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({User user, int topDealIndex, List<Car> topDeals});
 
   $UserCopyWith<$Res> get user;
 }
@@ -481,12 +630,22 @@ class __$$_SuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
+    Object? topDealIndex = null,
+    Object? topDeals = null,
   }) {
     return _then(_$_Success(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      topDealIndex: null == topDealIndex
+          ? _value.topDealIndex
+          : topDealIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      topDeals: null == topDeals
+          ? _value._topDeals
+          : topDeals // ignore: cast_nullable_to_non_nullable
+              as List<Car>,
     ));
   }
 
@@ -502,14 +661,27 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.user});
+  const _$_Success(
+      {required this.user,
+      required this.topDealIndex,
+      required final List<Car> topDeals})
+      : _topDeals = topDeals;
 
   @override
   final User user;
+  @override
+  final int topDealIndex;
+  final List<Car> _topDeals;
+  @override
+  List<Car> get topDeals {
+    if (_topDeals is EqualUnmodifiableListView) return _topDeals;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topDeals);
+  }
 
   @override
   String toString() {
-    return 'HomeState.success(user: $user)';
+    return 'HomeState.success(user: $user, topDealIndex: $topDealIndex, topDeals: $topDeals)';
   }
 
   @override
@@ -517,11 +689,15 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.topDealIndex, topDealIndex) ||
+                other.topDealIndex == topDealIndex) &&
+            const DeepCollectionEquality().equals(other._topDeals, _topDeals));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, topDealIndex,
+      const DeepCollectionEquality().hash(_topDeals));
 
   @JsonKey(ignore: true)
   @override
@@ -534,10 +710,11 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function(User user, int topDealIndex, List<Car> topDeals)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(user);
+    return success(user, topDealIndex, topDeals);
   }
 
   @override
@@ -545,10 +722,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? success,
+    TResult? Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(user);
+    return success?.call(user, topDealIndex, topDeals);
   }
 
   @override
@@ -556,12 +733,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(user);
+      return success(user, topDealIndex, topDeals);
     }
     return orElse();
   }
@@ -605,9 +782,14 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements HomeState {
-  const factory _Success({required final User user}) = _$_Success;
+  const factory _Success(
+      {required final User user,
+      required final int topDealIndex,
+      required final List<Car> topDeals}) = _$_Success;
 
   User get user;
+  int get topDealIndex;
+  List<Car> get topDeals;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -677,7 +859,8 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) success,
+    required TResult Function(User user, int topDealIndex, List<Car> topDeals)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -688,7 +871,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? success,
+    TResult? Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -699,7 +882,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? success,
+    TResult Function(User user, int topDealIndex, List<Car> topDeals)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

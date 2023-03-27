@@ -7,7 +7,6 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_search/bloc/car_search_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/car_search_input.dart';
 import 'package:car_rental_for_customer/pages/car_search/widgets/datetime_range_picker.dart';
-import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/location_search/location_search_delegate.dart';
 import 'package:car_rental_for_customer/pages/location_search/position_result.dart';
 import 'package:flutter/material.dart';
@@ -152,10 +151,11 @@ class CarSearchView extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 250,
+                        width: double.infinity,
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return CarCard(
-                              car: carMock[index],
+                              car: state.cars![index],
                               onTap: (id) {
                                 context.pushNamed(
                                   RouteName.carDetail,
@@ -174,57 +174,7 @@ class CarSearchView extends StatelessWidget {
                             );
                           },
                           shrinkWrap: true,
-                          itemCount: 3,
-                          scrollDirection: Axis.horizontal,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Divider(
-                  thickness: 4,
-                  height: s16,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(s08),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'XE GIẢM GIÁ',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: s04,
-                      ),
-                      SizedBox(
-                        height: 250,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return CarCard(
-                              car: carMock[index],
-                              onTap: (id) {
-                                context.pushNamed(
-                                  RouteName.carDetail,
-                                  queryParams: {
-                                    'car-id': id,
-                                    'rental-car-type':
-                                        state.rentalCarType!.name,
-                                    'address': state.address ?? '',
-                                    'start-date': state.startDate!.toString(),
-                                    'end-date': state.endDate!.toString(),
-                                    'longitude': state.longitude!.toString(),
-                                    'latitude': state.latitude!.toString(),
-                                  },
-                                );
-                              },
-                            );
-                          },
-                          shrinkWrap: true,
-                          itemCount: 3,
+                          itemCount: state.cars?.length ?? 0,
                           scrollDirection: Axis.horizontal,
                         ),
                       ),

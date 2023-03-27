@@ -4,9 +4,7 @@ import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
-import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/pages/car_owner_detail/bloc/car_owner_detail_bloc.dart';
-import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -215,27 +213,28 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s08),
                   child: Column(
-                    children: carMock
-                        .map(
-                          (e) => CarItem(
-                            onTap: (id) {
-                              context.pushNamed(
-                                RouteName.carDetail,
-                                queryParams: {
-                                  'car-id': id,
-                                  'rental-car-type': e.rentalCarType.name,
-                                  // 'address': value.address,
-                                  // 'start-date': value.startDate.toString(),
-                                  // 'end-date': value.endDate.toString(),
-                                  // 'longitude': value.longitude.toString(),
-                                  // 'latitude': value.latitude.toString(),
-                                },
-                              );
-                            },
-                            car: e,
-                          ),
-                        )
-                        .toList(),
+                    // children: carMock
+                    //     .map(
+                    //       (e) => CarItem(
+                    //         onTap: (id) {
+                    //           context.pushNamed(
+                    //             RouteName.carDetail,
+                    //             queryParams: {
+                    //               'car-id': id,
+                    //               'rental-car-type': e.rentalCarType.name,
+                    //               // 'address': value.address,
+                    //               // 'start-date': value.startDate.toString(),
+                    //               // 'end-date': value.endDate.toString(),
+                    //               // 'longitude': value.longitude.toString(),
+                    //               // 'latitude': value.latitude.toString(),
+                    //             },
+                    //           );
+                    //         },
+                    //         car: e,
+                    //       ),
+                    //     )
+                    //     .toList(),
+                    children: [],
                   ),
                 )
               ],

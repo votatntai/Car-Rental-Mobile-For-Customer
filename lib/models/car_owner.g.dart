@@ -11,7 +11,7 @@ _$_CarOwner _$$_CarOwnerFromJson(Map<String, dynamic> json) => _$_CarOwner(
       name: json['name'] as String,
       address: json['address'] as String?,
       phone: json['phone'] as String,
-      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      gender: json['gender'] as String,
       avatarUrl: json['avatarUrl'] as String?,
       bankAccountNumber: json['bankAccountNumber'] as String?,
     );
@@ -22,13 +22,7 @@ Map<String, dynamic> _$$_CarOwnerToJson(_$_CarOwner instance) =>
       'name': instance.name,
       'address': instance.address,
       'phone': instance.phone,
-      'gender': _$GenderEnumMap[instance.gender]!,
+      'gender': instance.gender,
       'avatarUrl': instance.avatarUrl,
       'bankAccountNumber': instance.bankAccountNumber,
     };
-
-const _$GenderEnumMap = {
-  Gender.male: 'male',
-  Gender.female: 'female',
-  Gender.other: 'other',
-};

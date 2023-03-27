@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
@@ -10,18 +11,15 @@ import 'package:car_rental_for_customer/commons/widgets/car_owner_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/container_with_label.dart';
 import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/horizontal_icon.dart';
+import 'package:car_rental_for_customer/commons/widgets/location_text.dart';
 import 'package:car_rental_for_customer/commons/widgets/vertical_icon.dart';
-import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
-import 'package:car_rental_for_customer/models/enums/transmission.dart';
 import 'package:car_rental_for_customer/pages/car_detail/bloc/car_detail_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
 import 'package:car_rental_for_customer/pages/car_detail/widgets/surcharge_item.dart';
-import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -35,16 +33,6 @@ class CarDetailView extends StatefulWidget {
 
 class _CarDetailViewState extends State<CarDetailView> {
   PageController pageController = PageController(viewportFraction: 1);
-  List carname = [
-    'Mercedes',
-    'Tesla',
-    'BMW',
-    'Honda',
-    'Toyata',
-    'Volvo',
-    'Bugatti',
-    'More'
-  ];
 
   @override
   void dispose() {
@@ -88,14 +76,17 @@ class _CarDetailViewState extends State<CarDetailView> {
         //TODO: Calculate promotion cost
         const promotionCost = 0.0;
 
-        const carDeliveryCost = 12000.0;
+        final carDeliveryCost =
+            successState.carAddressType == CarAddressType.customer
+                ? 12000.0
+                : 0.0;
 
         final totalCost = rentCost + carDeliveryCost - promotionCost;
 
         return Scaffold(
           appBar: appAppBar(
             context,
-            titleText: 'VINFAST FADIL 2020',
+            titleText: successState.car.name ?? '',
           ),
           body: Stack(
             children: [
@@ -167,7 +158,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                                         ),
                                         const Spacer(),
                                         Text(
-                                          '${formatTimeOfDay(successState.car.startPickUpTime)}-${formatTimeOfDay(successState.car.endPickUpTime)}',
+                                          '${formatTimeOfDay(successState.car.receiveStartTime)}-${formatTimeOfDay(successState.car.receiveEndTime)}',
                                           style: const TextStyle(fontSize: 12),
                                         ),
                                       ],
@@ -183,7 +174,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                                         ),
                                         const Spacer(),
                                         Text(
-                                          '${formatTimeOfDay(successState.car.startReturnTime)}-${formatTimeOfDay(successState.car.endReturnTime)}',
+                                          '${formatTimeOfDay(successState.car.returnStartTime)}-${formatTimeOfDay(successState.car.returnEndTime)}',
                                           style: const TextStyle(fontSize: 12),
                                         ),
                                       ],
@@ -206,9 +197,16 @@ class _CarDetailViewState extends State<CarDetailView> {
                               RadioListTile<CarAddressType>(
                                 contentPadding: const EdgeInsets.all(0),
                                 visualDensity: VisualDensity.compact,
-                                title: Text(
-                                  'Vị trí xe - ${successState.car.location}',
+                                // title: Text(
+                                //   'Vị trí xe - ${successState.car.location}',
+                                //   style: const TextStyle(fontSize: 12),
+                                // ),
+                                title: LocationText(
+                                  longitude:
+                                      successState.car.location.longitude,
+                                  latitude: successState.car.location.latitude,
                                   style: const TextStyle(fontSize: 12),
+                                  text: 'Vị trí xe - ',
                                 ),
                                 value: CarAddressType.car,
                                 groupValue: successState.carAddressType,
@@ -222,71 +220,68 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   }
                                 },
                               ),
-                              if (successState.car.deliveryDistance != null)
-                                RadioListTile<CarAddressType>(
-                                  contentPadding: const EdgeInsets.all(0),
-                                  visualDensity: VisualDensity.compact,
-                                  title: Text(
-                                    'Địa chỉ của tôi - ${successState.address}',
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                  value: CarAddressType.customer,
-                                  groupValue: successState.carAddressType,
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      context.read<CarDetailBloc>().add(
-                                            CarDetailEvent.addressTypeChanged(
-                                              carAddressType: value,
-                                            ),
-                                          );
-                                    }
-                                  },
+                              RadioListTile<CarAddressType>(
+                                contentPadding: const EdgeInsets.all(0),
+                                visualDensity: VisualDensity.compact,
+                                title: Text(
+                                  'Địa chỉ của tôi - ${successState.address}',
+                                  style: const TextStyle(fontSize: 12),
                                 ),
-                              if (successState.car.deliveryDistance != null)
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                    top: s04,
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: s08,
-                                    vertical: s04,
-                                  ),
-                                  color: CustomColors.ochre.withOpacity(0.1),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'Giao nhận xe tận nới trong',
-                                            style: TextStyle(fontSize: 12),
+                                value: CarAddressType.customer,
+                                groupValue: successState.carAddressType,
+                                onChanged: (value) {
+                                  if (value != null) {
+                                    context.read<CarDetailBloc>().add(
+                                          CarDetailEvent.addressTypeChanged(
+                                            carAddressType: value,
                                           ),
-                                          const Spacer(),
-                                          Text(
-                                            '${successState.car.deliveryDistance} km',
-                                            style:
-                                                const TextStyle(fontSize: 12),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: s04,
-                                      ),
-                                      Row(
-                                        children: const [
-                                          Text(
-                                            'Phí giao xe 2 chiều',
-                                            style: TextStyle(fontSize: 12),
-                                          ),
-                                          Spacer(),
-                                          Text(
-                                            '20000đ/km',
-                                            style: TextStyle(fontSize: 12),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                                        );
+                                  }
+                                },
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(
+                                  top: s04,
                                 ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: s08,
+                                  vertical: s04,
+                                ),
+                                color: CustomColors.ochre.withOpacity(0.1),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          'Giao nhận xe tận nới trong',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        Spacer(),
+                                        Text(
+                                          '${10} km',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: s04,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Phí giao xe 2 chiều',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          '${formatCurrency(20000)}/km',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -314,7 +309,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                                         ),
                                         const Spacer(),
                                         Text(
-                                          '${successState.car.distanceLimit} km/ngày',
+                                          '${successState.car.additionalCharge.maximumDistance} km/ngày',
                                           style: const TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.bold,
@@ -326,9 +321,9 @@ class _CarDetailViewState extends State<CarDetailView> {
                                       height: s04,
                                     ),
                                     Text(
-                                      'Phí: ${formatCurrency(successState.car.overDistancePrice)}/km vượt qua giới hạn',
+                                      'Phí: ${formatCurrency(successState.car.additionalCharge.distanceSurcharge)}/km vượt qua giới hạn',
                                       style: const TextStyle(fontSize: 12),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -350,7 +345,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                                       height: s04,
                                     ),
                                     Text(
-                                      'Phí: ${formatCurrency(successState.car.overTimePrice)}/giờ. Quá 5 giừo tính bằng giá thuê 1 ngày',
+                                      'Phí: ${formatCurrency(successState.car.additionalCharge.timeSurcharge)}/giờ. Quá 5 giờ tính bằng giá thuê 1 ngày',
                                       style: const TextStyle(fontSize: 12),
                                     )
                                   ],
@@ -517,35 +512,31 @@ class _CarDetailViewState extends State<CarDetailView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               VerticalIcon(
                                 icon: Icons.airline_seat_recline_extra_outlined,
-                                label: '4 chỗ',
+                                label: '${successState.car.model.seater} chỗ',
                               ),
                               VerticalIcon(
                                 icon: Icons.memory_outlined,
-                                label: 'Số tự động',
+                                label: successState.car.model.transmissionType,
                               ),
                               VerticalIcon(
                                 icon: Icons.oil_barrel_outlined,
-                                label: 'Xăng',
-                              ),
-                              VerticalIcon(
-                                icon: Icons.local_gas_station_outlined,
-                                label: 'Tiêu thụ 7L/100km',
+                                label: successState.car.model.fuelType,
                               ),
                             ],
                           ),
                         ),
                       ),
                       divider,
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: s16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(
                           label: 'Mô tả',
                           child: Text(
-                            'Xe Honda Civic số tự động đăng ký tháng 10/2018. Xe gia đình mới đẹp, nội thất nguyên bản, sạch sẽ, bảo dưỡng thường xuyên, rửa xe miễn phí cho khách. Xe rộng rãi, an toàn, tiện nghi, phù hợp gia đình du lịch, dạo phố.\n\nXe trang bị cruise control, hệ thống hỗ trợ đánh lái tự động, đi rất nhẹ và khỏe. Cammera lùi, hệ thống giải trí, AV cùng nhiều tiện ích khác ...',
-                            style: TextStyle(
+                            successState.car.description ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: CustomColors.jetBlack,
@@ -667,43 +658,43 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   const SizedBox(width: 2),
                                   SizedBox(
                                     width: context.width() * 0.8,
-                                    child: Text(
-                                      successState.car.location,
-                                      style: const TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w500,
-                                        color: CustomColors.jetBlack,
-                                      ),
+                                    child: LocationText(
+                                      longitude:
+                                          successState.car.location.longitude,
+                                      latitude:
+                                          successState.car.location.latitude,
                                     ),
                                   ),
                                 ],
                               ),
                               GoogleMapWidget(
-                                address: successState.car.location,
-                                mapsRepository: getIt.get<MapsRepository>(),
+                                longitude: successState.car.location.longitude,
+                                latitude: successState.car.location.latitude,
                               ),
                             ],
                           ),
                         ),
                       ),
                       divider,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: s16),
-                        child: ContainerWithLabel(
-                          label: 'Chủ xe',
-                          child: CarOwnerWidget(
-                            car: successState.car,
-                            onTap: () {
-                              context.pushNamed(
-                                RouteName.carOwnerDetail,
-                                queryParams: {
-                                  'car-owner-id': successState.car.carOwnerId,
-                                },
-                              );
-                            },
+                      if (successState.car.carOwner != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: s16),
+                          child: ContainerWithLabel(
+                            label: 'Chủ xe',
+                            child: CarOwnerWidget(
+                              car: successState.car,
+                              onTap: () {
+                                context.pushNamed(
+                                  RouteName.carOwnerDetail,
+                                  queryParams: {
+                                    'car-owner-id':
+                                        successState.car.carOwner!.id,
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ),
-                      ),
                       const SizedBox(
                         height: s64,
                       )
@@ -772,7 +763,7 @@ class _CarDetailViewState extends State<CarDetailView> {
           Row(
             children: [
               Text(
-                car.name,
+                car.name ?? '',
                 style: boldTextStyle(size: 18),
               ),
               const Spacer(),
@@ -798,8 +789,18 @@ class _CarDetailViewState extends State<CarDetailView> {
           ),
           Row(
             children: [
+              Text(car.licensePlate,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColors.dimGray,
+                  )),
+            ],
+          ),
+          Row(
+            children: [
               Text(
-                car.rate.toString(),
+                car.star.toString(),
                 style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
@@ -824,9 +825,9 @@ class _CarDetailViewState extends State<CarDetailView> {
               const SizedBox(
                 width: s02,
               ),
-              const Text(
-                '100+ chuyến',
-                style: TextStyle(
+              Text(
+                '${car.rented} chuyến',
+                style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
                   color: CustomColors.dimGray,
@@ -840,7 +841,9 @@ class _CarDetailViewState extends State<CarDetailView> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              CarCardTag(text: car.transmission.displayName),
+              CarCardTag(
+                text: car.model.transmissionType,
+              ),
             ],
           ),
         ],
@@ -849,6 +852,14 @@ class _CarDetailViewState extends State<CarDetailView> {
   }
 
   Widget carImage(BuildContext context, Car car) {
+    if (car.images.isEmpty) {
+      return Image.asset(
+        Images.carExample,
+        width: double.infinity,
+        fit: BoxFit.fill,
+        alignment: Alignment.topCenter,
+      );
+    }
     return Stack(
       children: [
         SizedBox(
@@ -856,16 +867,17 @@ class _CarDetailViewState extends State<CarDetailView> {
           height: MediaQuery.of(context).size.width * 0.65,
           child: PageView.builder(
             controller: pageController,
-            itemCount: carname.length,
+            itemCount: car.images.length,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.all(s08),
               alignment: Alignment.center,
-              child: Image.asset(
-                Images.carExample,
-                width: double.infinity,
-                fit: BoxFit.fill,
-                alignment: Alignment.topCenter,
-              ),
+              child: CachedNetworkImage(
+                  width: double.infinity,
+                  imageUrl: car.images[index].url,
+                  fit: BoxFit.fill,
+                  errorWidget: (context, url, error) {
+                    return const Icon(Icons.error);
+                  }),
             ),
           ),
         ),
@@ -876,7 +888,7 @@ class _CarDetailViewState extends State<CarDetailView> {
             alignment: Alignment.bottomCenter,
             child: SmoothPageIndicator(
               controller: pageController,
-              count: carname.length,
+              count: car.images.length,
               effect: CustomizableEffect(
                 spacing: 3,
                 activeDotDecoration: DotDecoration(

@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
+import 'package:car_rental_for_customer/commons/widgets/location_text.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -32,7 +34,7 @@ class CarItem extends StatelessWidget {
                       ? CachedNetworkImage(
                           height: 220,
                           width: double.infinity,
-                          imageUrl: car.images[0],
+                          imageUrl: car.images[0].url,
                           fit: BoxFit.fill,
                           errorWidget: (context, url, error) {
                             return const Icon(Icons.error);
@@ -71,7 +73,7 @@ class CarItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          car.name,
+                          car.name ?? '',
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -81,7 +83,7 @@ class CarItem extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              car.rate.toString(),
+                              car.star.toString(),
                               style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w500,
@@ -108,7 +110,7 @@ class CarItem extends StatelessWidget {
                               width: s02,
                             ),
                             Text(
-                              car.numberTrip.toString(),
+                              car.rented.toString(),
                               style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -129,21 +131,19 @@ class CarItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: s08),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    CarCardTag(text: 'Xe tự lái'),
-                    SizedBox(width: s04),
-                    CarCardTag(text: 'Số tự động'),
-                    Spacer(),
+                  children: [
+                    CarCardTag(text: car.model.transmissionType),
+                    const Spacer(),
                     Text(
-                      '900K',
-                      style: TextStyle(
+                      formatCurrency(car.price),
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: CustomColors.flamingo,
                       ),
                       textAlign: TextAlign.end,
                     ),
-                    Text(
+                    const Text(
                       '/ngày',
                       style: TextStyle(
                         fontSize: 10,
@@ -170,13 +170,9 @@ class CarItem extends StatelessWidget {
                     const SizedBox(width: 2),
                     SizedBox(
                       width: context.width() * 0.8,
-                      child: Text(
-                        car.location,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                          color: CustomColors.jetBlack,
-                        ),
+                      child: LocationText(
+                        longitude: car.location.longitude,
+                        latitude: car.location.latitude,
                       ),
                     ),
                   ],

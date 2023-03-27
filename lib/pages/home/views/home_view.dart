@@ -2,9 +2,9 @@ import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
-import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/home/bloc/home_bloc.dart';
 import 'package:car_rental_for_customer/pages/home/widgets/car_option.dart';
 import 'package:car_rental_for_customer/pages/home/widgets/location_card.dart';
@@ -21,7 +21,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int topDealsIndex = 0;
   final List<String> topDeals = [
     'Tất cả',
     'Xe tự lái',
@@ -53,7 +52,13 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final user = state.mapOrNull(success: (state) => state.user);
+        final successState = state.mapOrNull(success: (state) => state);
+
+        if (successState == null) {
+          return const Scaffold(
+            body: LoadingWidget(),
+          );
+        }
 
         return Scaffold(
           appBar: AppBar(
@@ -66,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
                 const SizedBox(height: s02),
                 Text(welcomeText, style: secondaryTextStyle()),
                 const SizedBox(height: s04),
-                Text(user?.name ?? '', style: boldTextStyle()),
+                Text(successState.user.name, style: boldTextStyle()),
               ],
             ),
             leading: GestureDetector(
@@ -138,9 +143,9 @@ class _HomeViewState extends State<HomeView> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            setState(() {
-                              topDealsIndex = index;
-                            });
+                            context.read<HomeBloc>().add(
+                                  HomeEvent.topDealIndexChanged(index),
+                                );
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -149,7 +154,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             decoration: BoxDecoration(
                               border: Border.all(color: CustomColors.primary),
-                              color: topDealsIndex == index
+                              color: successState.topDealIndex == index
                                   ? cardDarkColor
                                   : white,
                               borderRadius: BorderRadius.circular(16),
@@ -157,7 +162,9 @@ class _HomeViewState extends State<HomeView> {
                             child: Text(
                               topDeals[index],
                               style: TextStyle(
-                                color: topDealsIndex == index ? white : black,
+                                color: successState.topDealIndex == index
+                                    ? white
+                                    : black,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -172,20 +179,20 @@ class _HomeViewState extends State<HomeView> {
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return CarCard(
-                          car: carMock[index],
+                          car: successState.topDeals[index],
                           onTap: (id) {
                             context.pushNamed(
                               RouteName.carDetail,
                               queryParams: {
                                 'car-id': id,
-                                'rental-car-type':
-                                    carMock[index].rentalCarType.name,
+                                'rental-car-type': successState
+                                    .topDeals[index].rentalCarType.name,
                               },
                             );
                           },
                         );
                       },
-                      itemCount: 3,
+                      itemCount: successState.topDeals.length,
                       scrollDirection: Axis.horizontal,
                     ),
                   ),
@@ -202,7 +209,7 @@ class _HomeViewState extends State<HomeView> {
                           onTap: () {
                             context.pushNamed(RouteName.carSearchResult,
                                 queryParams: {
-                                  'rentalCarType':
+                                  'rental-car-type':
                                       RentalCarType.selfDrivingCar.name,
                                   'start-date': DateTime.now().toString(),
                                   'end-date': DateTime.now()
@@ -239,7 +246,7 @@ class _HomeViewState extends State<HomeView> {
                           onTap: () {
                             context.pushNamed(RouteName.carSearchResult,
                                 queryParams: {
-                                  'rentalCarType':
+                                  'rental-car-type':
                                       RentalCarType.carWithDriver.name,
                                   'start-date': DateTime.now().toString(),
                                   'end-date': DateTime.now()

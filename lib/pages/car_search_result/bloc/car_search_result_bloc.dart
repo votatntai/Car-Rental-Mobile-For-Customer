@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/car_type.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/enums/transmission.dart';
+import 'package:car_rental_for_customer/models/pagination_result.dart';
 import 'package:car_rental_for_customer/models/scroll_pagination.dart';
-import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/models/car_search_filter.dart';
+import 'package:car_rental_for_customer/repositories/car_repository.dart';
+import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'car_search_result_bloc.freezed.dart';
@@ -16,7 +19,10 @@ part 'car_search_result_state.dart';
 
 class CarSearchResultBloc
     extends Bloc<CarSearchResultEvent, CarSearchResultState> {
-  CarSearchResultBloc() : super(const CarSearchResultState.initial()) {
+  CarSearchResultBloc({
+    required this.carRepository,
+    required this.mapsRepository,
+  }) : super(const CarSearchResultState.initial()) {
     on<_Started>(_onStarted);
     on<_PageRequested>(_onPageRequested);
     on<_CarTypeFilterChanged>(_onCarTypeFilterChanged);
@@ -32,6 +38,9 @@ class CarSearchResultBloc
   late double longitude;
   final pageSize = 10;
 
+  final CarRepository carRepository;
+  final MapsRepository mapsRepository;
+
   FutureOr<void> _onStarted(
     _Started event,
     Emitter<CarSearchResultState> emit,
@@ -45,18 +54,30 @@ class CarSearchResultBloc
     latitude = event.latitude;
     longitude = event.longitude;
 
+    // final carsResult = carRepository.cars(
+    //   pageNumber: 1,
+    //   pageSize: pageSize,
+    //   longitude: event.longitude,
+    //   latitude: event.latitude,
+    //   hasDriver: event.rentalCarType == RentalCarType.carWithDriver,
+    // );
+
+    // List<Car> cars = [];
+
+    // if (carsResult is ApiSuccess) {
+    //   cars = (carsResult as ApiSuccess<PaginationResult<Car>>).value.data;
+    // }
+
     emit(
       CarSearchResultState.success(
-        cars: carMock,
+        // cars: cars,
         address: address,
         endDate: endDate,
         startDate: startDate,
         rentalCarType: rentalCarType,
         latitude: latitude,
         longitude: longitude,
-        carSearchFilter: const CarSearchFilter(
-          carTypes: [],
-        ),
+        carSearchFilter: const CarSearchFilter(),
       ),
     );
   }
@@ -72,7 +93,26 @@ class CarSearchResultBloc
     final currentState = state as _Success;
     final page = (event.pageKey / pageSize).floor() + 1;
 
-    final cars = carMock.skip(pageSize * (page - 1)).take(pageSize);
+    final carsResult = await carRepository.cars(
+      pageNumber: page,
+      pageSize: pageSize,
+      longitude: currentState.longitude,
+      latitude: currentState.latitude,
+      hasDriver: currentState.rentalCarType == RentalCarType.carWithDriver,
+      carType: currentState.carSearchFilter.carType,
+      transmissionType: currentState.carSearchFilter.transmission,
+    );
+
+    List<Car> cars = [];
+    int totalItems = 0;
+
+    if (carsResult is ApiSuccess) {
+      cars = (carsResult as ApiSuccess<PaginationResult<Car>>).value.data;
+      totalItems = (carsResult as ApiSuccess<PaginationResult<Car>>)
+          .value
+          .pagination
+          .totalRow;
+    }
 
     final lastListingState =
         event.pageKey == 0 || currentState.scrollPagination == null
@@ -88,6 +128,7 @@ class CarSearchResultBloc
         lastListingState,
         cars,
         event.pageKey,
+        totalItems,
       ),
     ));
   }
@@ -102,10 +143,12 @@ class CarSearchResultBloc
     emit(
       currentState.copyWith(
         carSearchFilter: currentState.carSearchFilter.copyWith(
-          carTypes: event.carTypes,
+          carType: event.carType,
         ),
       ),
     );
+
+    add(const _PageRequested(pageKey: 0));
   }
 
   FutureOr<void> _onTransmissionFilterChanged(
@@ -121,6 +164,8 @@ class CarSearchResultBloc
         ),
       ),
     );
+
+    add(const _PageRequested(pageKey: 0));
   }
 
   FutureOr<void> _onIsDiscountedFilterChanged(
@@ -136,14 +181,16 @@ class CarSearchResultBloc
         ),
       ),
     );
+    add(const _PageRequested(pageKey: 0));
   }
 
   ScrollPagination<Car> _calculateScrollPagination(
     ScrollPagination<Car> lastListingState,
     Iterable<Car> cars,
     int pageKey,
+    int totalItems,
   ) {
-    final isLastPage = pageKey >= cars.length;
+    final isLastPage = pageKey + 1 >= totalItems;
 
     final nextPageKey = isLastPage ? null : pageKey + cars.length;
 

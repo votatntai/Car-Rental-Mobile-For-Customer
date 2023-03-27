@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/driver.dart';
 import 'package:car_rental_for_customer/models/order.dart';
-import 'package:car_rental_for_customer/pages/activity/order_mock.dart';
-import 'package:car_rental_for_customer/pages/order_information/driver_mock.dart';
+import 'package:car_rental_for_customer/repositories/order_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_information_event.dart';
@@ -13,9 +13,13 @@ part 'order_information_bloc.freezed.dart';
 
 class OrderInformationBloc
     extends Bloc<OrderInformationEvent, OrderInformationState> {
-  OrderInformationBloc() : super(const OrderInformationState.initial()) {
+  OrderInformationBloc({
+    required this.orderRepository,
+  }) : super(const OrderInformationState.initial()) {
     on<_Started>(_onStarted);
   }
+
+  final OrderRepository orderRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -28,16 +32,22 @@ class OrderInformationBloc
       return;
     }
 
-    final order =
-        orderMock.firstWhere((element) => element.id == event.orderId);
+    final orderResult =
+        await orderRepository.getOrderById(id: event.orderId ?? '');
+    if (orderResult is ApiError) {
+      emit(OrderInformationState.failure(
+          message: (orderResult as ApiError).error ?? ''));
+      return;
+    }
 
-    if (order.driverId != null) {
-      final driver =
-          driverMock.where((element) => element.id == order.driverId);
+    final order = (orderResult as ApiSuccess<Order>).value;
+
+    if (order.orderDetail?.driver != null) {
+      final driver = order.orderDetail?.driver;
       emit(
         OrderInformationState.success(
           order: order,
-          driver: driver.isNotEmpty ? driver.first : null,
+          driver: driver,
         ),
       );
       return;

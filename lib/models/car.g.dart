@@ -16,7 +16,7 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       images: (json['images'] as List<dynamic>)
           .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      feedback: (json['feedback'] as List<dynamic>)
+      feedBacks: (json['feedBacks'] as List<dynamic>)
           .map((e) => FeedbackModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       carFeatures: (json['carFeatures'] as List<dynamic>)
@@ -25,8 +25,10 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       carTypes: (json['carTypes'] as List<dynamic>)
           .map((e) => CarType.fromJson(e as Map<String, dynamic>))
           .toList(),
-      productionCompany: ProductionCompany.fromJson(
-          json['productionCompany'] as Map<String, dynamic>),
+      productionCompany: json['productionCompany'] == null
+          ? null
+          : ProductionCompany.fromJson(
+              json['productionCompany'] as Map<String, dynamic>),
       model: CarModel.fromJson(json['model'] as Map<String, dynamic>),
       carOwner: json['carOwner'] == null
           ? null
@@ -37,16 +39,16 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       location: CarLocation.fromJson(json['location'] as Map<String, dynamic>),
       additionalCharge: AdditionalCharge.fromJson(
           json['additionalCharge'] as Map<String, dynamic>),
-      start: (json['start'] as num).toDouble(),
+      star: (json['star'] as num).toDouble(),
       status: json['status'] as String,
-      receiveStartTime: _$JsonConverterFromJson<String, TimeOfDay>(
-          json['receiveStartTime'], const TimeOfDayConverter().fromJson),
-      receiveEndTime: _$JsonConverterFromJson<String, TimeOfDay>(
-          json['receiveEndTime'], const TimeOfDayConverter().fromJson),
-      returnStartTime: _$JsonConverterFromJson<String, TimeOfDay>(
-          json['returnStartTime'], const TimeOfDayConverter().fromJson),
-      returnEndTime: _$JsonConverterFromJson<String, TimeOfDay>(
-          json['returnEndTime'], const TimeOfDayConverter().fromJson),
+      receiveStartTime: const TimeOfDayConverter()
+          .fromJson(json['receiveStartTime'] as String),
+      receiveEndTime:
+          const TimeOfDayConverter().fromJson(json['receiveEndTime'] as String),
+      returnStartTime: const TimeOfDayConverter()
+          .fromJson(json['returnStartTime'] as String),
+      returnEndTime:
+          const TimeOfDayConverter().fromJson(json['returnEndTime'] as String),
     );
 
 Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
@@ -57,7 +59,7 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'rented': instance.rented,
       'description': instance.description,
       'images': instance.images,
-      'feedback': instance.feedback,
+      'feedBacks': instance.feedBacks,
       'carFeatures': instance.carFeatures,
       'carTypes': instance.carTypes,
       'productionCompany': instance.productionCompany,
@@ -66,26 +68,14 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'driver': instance.driver,
       'location': instance.location,
       'additionalCharge': instance.additionalCharge,
-      'start': instance.start,
+      'star': instance.star,
       'status': instance.status,
-      'receiveStartTime': _$JsonConverterToJson<String, TimeOfDay>(
-          instance.receiveStartTime, const TimeOfDayConverter().toJson),
-      'receiveEndTime': _$JsonConverterToJson<String, TimeOfDay>(
-          instance.receiveEndTime, const TimeOfDayConverter().toJson),
-      'returnStartTime': _$JsonConverterToJson<String, TimeOfDay>(
-          instance.returnStartTime, const TimeOfDayConverter().toJson),
-      'returnEndTime': _$JsonConverterToJson<String, TimeOfDay>(
-          instance.returnEndTime, const TimeOfDayConverter().toJson),
+      'receiveStartTime':
+          const TimeOfDayConverter().toJson(instance.receiveStartTime),
+      'receiveEndTime':
+          const TimeOfDayConverter().toJson(instance.receiveEndTime),
+      'returnStartTime':
+          const TimeOfDayConverter().toJson(instance.returnStartTime),
+      'returnEndTime':
+          const TimeOfDayConverter().toJson(instance.returnEndTime),
     };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);

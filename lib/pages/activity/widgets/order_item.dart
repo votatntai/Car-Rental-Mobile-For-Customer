@@ -3,6 +3,7 @@ import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/order.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -33,7 +34,7 @@ class OrderItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        order.car.name,
+                        order.orderDetail?.car.name ?? '',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -41,7 +42,9 @@ class OrderItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       CarCardTag(
-                        text: order.car.rentalCarType.getDisplayName(),
+                        text: order.orderDetail?.car.rentalCarType
+                                .getDisplayName() ??
+                            '',
                       ),
                     ],
                   ),
@@ -64,14 +67,14 @@ class OrderItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Bắt đầu: ${DateFormat('HH:mm dd/MM/yyyy').format(order.startDate)}',
+                            'Bắt đầu: ${DateFormat('HH:mm dd/MM/yyyy').format(order.startTime)}',
                             style: const TextStyle(
                               fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: s04),
                           Text(
-                            'Kết thúc: ${DateFormat('HH:mm dd/MM/yyyy').format(order.endDate)}',
+                            'Kết thúc: ${DateFormat('HH:mm dd/MM/yyyy').format(order.endTime)}',
                             style: const TextStyle(
                               fontSize: 13,
                             ),

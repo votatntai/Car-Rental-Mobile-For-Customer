@@ -8,7 +8,7 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/place.dart';
 import 'package:car_rental_for_customer/models/promotion.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
-import 'package:car_rental_for_customer/pages/car_search_result/mock.dart';
+import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,6 +23,7 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
   CarDetailBloc({
     required this.mapsRepository,
     required this.userRepository,
+    required this.carRepository,
   }) : super(const CarDetailState.initial()) {
     on<_Started>(_onStarted);
     on<_RentalCarTypeChanged>(_onRentalCarTypeChanged);
@@ -30,6 +31,7 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
 
   final MapsRepository mapsRepository;
   final UserRepository userRepository;
+  final CarRepository carRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -37,10 +39,17 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
   ) async {
     emit(const CarDetailState.loading());
 
-    final car = carMock.firstWhere((element) => element.id == event.carId);
-    final carAddressType = event.address != null && car.deliveryDistance != null
-        ? CarAddressType.customer
-        : CarAddressType.car;
+    final carResult = await carRepository.carById(event.carId);
+
+    if (carResult is ApiError) {
+      emit(const CarDetailState.failure(message: 'Xe không tồn tại'));
+      return;
+    }
+
+    final car = (carResult as ApiSuccess<Car>).value;
+
+    final carAddressType =
+        event.address != null ? CarAddressType.customer : CarAddressType.car;
 
     final startDate = event.startDate ?? DateTime.now();
     final endDate = event.endDate ??
@@ -104,7 +113,10 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
       carAddressType: carAddressType,
       deliveryAddress: getDeliveryAddress(
         carAddressType,
-        car.location,
+        await coordinateToAddress(
+          car.location.latitude,
+          car.location.longitude,
+        ),
         address,
       ),
     ));
@@ -120,7 +132,10 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
       carAddressType: event.carAddressType,
       deliveryAddress: getDeliveryAddress(
         event.carAddressType,
-        currentState.car.location,
+        await coordinateToAddress(
+          currentState.car.location.latitude,
+          currentState.car.location.longitude,
+        ),
         currentState.address,
       ),
     ));
@@ -132,5 +147,19 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
     String customerAddress,
   ) {
     return carAddressType == CarAddressType.car ? carAddress : customerAddress;
+  }
+
+  Future<String> coordinateToAddress(double latitude, double longitude) async {
+    final locateResult = await mapsRepository.coordinateToAddress(
+      lng: longitude,
+      lat: latitude,
+    );
+
+    if (locateResult is ApiSuccess) {
+      final locate = (locateResult as ApiSuccess<Place>).value;
+
+      return locate.formattedAddress;
+    }
+    return '';
   }
 }

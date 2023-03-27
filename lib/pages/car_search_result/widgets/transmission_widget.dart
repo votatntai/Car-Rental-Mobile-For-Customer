@@ -50,7 +50,7 @@ class _TransmissionWidgetState extends State<TransmissionWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: s16),
                     child: SizedBox(
                       width: double.infinity,
-                      child: DropdownButton<Transmission?>(
+                      child: DropdownButton<TransmissionEnum?>(
                         isExpanded: true,
                         value: transmission,
                         elevation: 16,
@@ -58,7 +58,7 @@ class _TransmissionWidgetState extends State<TransmissionWidget> {
                           color: Colors.black,
                           fontSize: 16,
                         ),
-                        onChanged: (Transmission? newValue) {
+                        onChanged: (TransmissionEnum? newValue) {
                           setState(() {
                             widget.bloc.add(
                               CarSearchResultEvent.transmissionFilterChanged(
@@ -68,14 +68,14 @@ class _TransmissionWidgetState extends State<TransmissionWidget> {
                           });
                         },
                         items: [
-                          const DropdownMenuItem<Transmission>(
+                          const DropdownMenuItem<TransmissionEnum>(
                             value: null,
                             child: Text('Tất cả'),
                           ),
-                          ...Transmission.values
-                              .map<DropdownMenuItem<Transmission>>(
-                                  (Transmission value) {
-                            return DropdownMenuItem<Transmission>(
+                          ...TransmissionEnum.values
+                              .map<DropdownMenuItem<TransmissionEnum>>(
+                                  (TransmissionEnum value) {
+                            return DropdownMenuItem<TransmissionEnum>(
                               value: value,
                               child: Text(value.displayName),
                             );

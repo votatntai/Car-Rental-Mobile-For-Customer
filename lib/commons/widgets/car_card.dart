@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card_tag.dart';
+import 'package:car_rental_for_customer/commons/widgets/location_text.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({
@@ -19,23 +21,32 @@ class CarCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap('1'),
+      onTap: () => onTap(car.id),
       child: SizedBox(
-        height: 200,
+        height: 250,
         width: 250,
         child: Card(
           child: Column(
             children: [
               Stack(
                 children: [
-                  const Image(
-                    height: 160,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                    image: AssetImage(
-                      Images.carExample,
-                    ),
-                  ),
+                  car.images.isNotEmpty
+                      ? CachedNetworkImage(
+                          height: 160,
+                          width: double.infinity,
+                          imageUrl: car.images[0].url,
+                          fit: BoxFit.fill,
+                          errorWidget: (context, url, error) {
+                            return const Icon(Icons.error);
+                          })
+                      : const Image(
+                          height: 160,
+                          width: double.infinity,
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                            Images.carExample,
+                          ),
+                        ),
                   Positioned(
                     top: 10,
                     right: 10,
@@ -61,46 +72,46 @@ class CarCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'VINFAST FADIL 2020',
-                          style: TextStyle(
+                        Text(
+                          car.name ?? '',
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: CustomColors.white,
                           ),
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Text(
-                              '5.0',
-                              style: TextStyle(
+                              car.star.toString(),
+                              style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w500,
                                 color: CustomColors.white,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: s02,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.star,
                               color: CustomColors.flamingo,
                               size: 12,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: s02,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.fiber_manual_record,
                               color: CustomColors.white,
                               size: 8,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: s02,
                             ),
                             Text(
-                              '100+ chuyến',
-                              style: TextStyle(
+                              '${car.rented} chuyến',
+                              style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
                                 color: CustomColors.white,
@@ -120,21 +131,19 @@ class CarCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: s08),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    CarCardTag(text: 'Xe tự lái'),
-                    SizedBox(width: s04),
-                    CarCardTag(text: 'Số tự động'),
-                    Spacer(),
+                  children: [
+                    CarCardTag(text: car.model.transmissionType),
+                    const Spacer(),
                     Text(
-                      '900K',
-                      style: TextStyle(
+                      formatCurrency(car.price),
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: CustomColors.flamingo,
                       ),
                       textAlign: TextAlign.end,
                     ),
-                    Text(
+                    const Text(
                       '/ngày',
                       style: TextStyle(
                         fontSize: 10,
@@ -153,21 +162,17 @@ class CarCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: s08),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.location_on_outlined,
                       size: 15,
                     ),
-                    SizedBox(width: 2),
+                    const SizedBox(width: 2),
                     SizedBox(
                       width: 200,
-                      child: Text(
-                        'Quận 10, Hồ Chí Minh',
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                          color: CustomColors.jetBlack,
-                        ),
+                      child: LocationText(
+                        longitude: car.location.longitude,
+                        latitude: car.location.latitude,
                       ),
                     ),
                   ],

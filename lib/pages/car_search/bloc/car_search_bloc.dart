@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
+import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/models/pagination_result.dart';
 import 'package:car_rental_for_customer/models/place.dart';
+import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +18,7 @@ part 'car_search_state.dart';
 class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
   CarSearchBloc({
     required this.mapsRepository,
+    required this.carRepository,
   }) : super(const CarSearchState()) {
     on<_Started>(_onStarted);
     on<_AddressChanged>(_onAddressChanged);
@@ -22,6 +26,7 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
   }
 
   final MapsRepository mapsRepository;
+  final CarRepository carRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -34,6 +39,22 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
         endDate: DateTime.now().add(const Duration(days: 1)),
       ),
     );
+
+    final carsResult = await carRepository.cars(
+      pageNumber: 1,
+      pageSize: 10,
+    );
+
+    if (carsResult is ApiSuccess) {
+      final cars = (carsResult as ApiSuccess<PaginationResult<Car>>).value.data;
+
+      emit(
+        state.copyWith(
+          cars: cars,
+        ),
+      );
+    }
+
     final position = await determineCurrentPosition();
 
     emit(

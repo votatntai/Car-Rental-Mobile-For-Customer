@@ -5,7 +5,6 @@ class CarSearchResultState with _$CarSearchResultState {
   const factory CarSearchResultState.initial() = _Initial;
   const factory CarSearchResultState.loading() = _Loading;
   const factory CarSearchResultState.success({
-    required List<Car> cars,
     required String address,
     required DateTime startDate,
     required DateTime endDate,

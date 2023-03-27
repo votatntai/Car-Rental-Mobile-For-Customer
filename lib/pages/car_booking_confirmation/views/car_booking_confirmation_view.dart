@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
@@ -32,17 +33,6 @@ class _CarBookingConfirmationViewState
     extends State<CarBookingConfirmationView> {
   PageController pageController = PageController(viewportFraction: 1);
   TextEditingController textarea = TextEditingController();
-
-  List carname = [
-    'Mercedes',
-    'Tesla',
-    'BMW',
-    'Honda',
-    'Toyata',
-    'Volvo',
-    'Bugatti',
-    'More'
-  ];
 
   @override
   void dispose() {
@@ -87,7 +77,10 @@ class _CarBookingConfirmationViewState
         //TODO: Calculate promotion cost
         const promotionCost = 0.0;
 
-        const carDeliveryCost = 12000.0;
+        final carDeliveryCost = successState.carDeliveryCost != null &&
+                successState.carDeliveryCost! > 0
+            ? 12000.0
+            : 0.0;
 
         final totalCost = rentCost + carDeliveryCost - promotionCost;
         final deposit = totalCost * 0.3;
@@ -156,7 +149,7 @@ class _CarBookingConfirmationViewState
                                   ),
                                   const Spacer(),
                                   Text(
-                                    '${formatTimeOfDay(successState.car.startPickUpTime)}-${formatTimeOfDay(successState.car.endPickUpTime)}',
+                                    '${formatTimeOfDay(successState.car.receiveStartTime)}-${formatTimeOfDay(successState.car.receiveEndTime)}',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
@@ -172,7 +165,7 @@ class _CarBookingConfirmationViewState
                                   ),
                                   const Spacer(),
                                   Text(
-                                    '${formatTimeOfDay(successState.car.startReturnTime)}-${formatTimeOfDay(successState.car.endReturnTime)}',
+                                    '${formatTimeOfDay(successState.car.returnStartTime)}-${formatTimeOfDay(successState.car.returnEndTime)}',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
@@ -214,8 +207,8 @@ class _CarBookingConfirmationViewState
                           ],
                         ),
                         GoogleMapWidget(
-                          address: successState.address,
-                          mapsRepository: getIt.get<MapsRepository>(),
+                          longitude: successState.car.location.longitude,
+                          latitude: successState.car.location.latitude,
                         ),
                       ],
                     ),
@@ -230,7 +223,7 @@ class _CarBookingConfirmationViewState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${successState.car.distanceLimit} km/ngày',
+                          '${successState.car.additionalCharge.maximumDistance} km/ngày',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -240,7 +233,7 @@ class _CarBookingConfirmationViewState
                           height: s04,
                         ),
                         Text(
-                          'Phí: ${formatCurrency(successState.car.overDistancePrice)}/km vượt qua giới hạn',
+                          'Phí: ${formatCurrency(successState.car.additionalCharge.distanceSurcharge)}/km vượt qua giới hạn',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
@@ -297,23 +290,24 @@ class _CarBookingConfirmationViewState
                   ),
                 ),
                 divider,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: s16),
-                  child: ContainerWithLabel(
-                    label: 'Chủ xe',
-                    child: CarOwnerWidget(
-                      car: successState.car,
-                      onTap: () {
-                        context.pushNamed(
-                          RouteName.carOwnerDetail,
-                          queryParams: {
-                            'car-owner-id': successState.car.carOwnerId,
-                          },
-                        );
-                      },
+                if (successState.car.carOwner != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: s16),
+                    child: ContainerWithLabel(
+                      label: 'Chủ xe',
+                      child: CarOwnerWidget(
+                        car: successState.car,
+                        onTap: () {
+                          context.pushNamed(
+                            RouteName.carOwnerDetail,
+                            queryParams: {
+                              'car-owner-id': successState.car.carOwner!.id,
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -684,9 +678,19 @@ class _CarBookingConfirmationViewState
           Row(
             children: [
               Text(
-                car.name,
+                car.name ?? '',
                 style: boldTextStyle(size: 18),
               ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(car.licensePlate,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColors.dimGray,
+                  )),
             ],
           ),
         ],
@@ -694,7 +698,15 @@ class _CarBookingConfirmationViewState
     );
   }
 
-  Stack carImage(BuildContext context, Car car) {
+  Widget carImage(BuildContext context, Car car) {
+    if (car.images.isEmpty) {
+      return Image.asset(
+        Images.carExample,
+        width: double.infinity,
+        fit: BoxFit.fill,
+        alignment: Alignment.topCenter,
+      );
+    }
     return Stack(
       children: [
         SizedBox(
@@ -702,16 +714,17 @@ class _CarBookingConfirmationViewState
           height: MediaQuery.of(context).size.width * 0.65,
           child: PageView.builder(
             controller: pageController,
-            itemCount: carname.length,
+            itemCount: car.images.length,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.all(s08),
               alignment: Alignment.center,
-              child: Image.asset(
-                Images.carExample,
-                width: double.infinity,
-                fit: BoxFit.fill,
-                alignment: Alignment.topCenter,
-              ),
+              child: CachedNetworkImage(
+                  width: double.infinity,
+                  imageUrl: car.images[index].url,
+                  fit: BoxFit.fill,
+                  errorWidget: (context, url, error) {
+                    return const Icon(Icons.error);
+                  }),
             ),
           ),
         ),
@@ -722,7 +735,7 @@ class _CarBookingConfirmationViewState
             alignment: Alignment.bottomCenter,
             child: SmoothPageIndicator(
               controller: pageController,
-              count: carname.length,
+              count: car.images.length,
               effect: CustomizableEffect(
                 spacing: 3,
                 activeDotDecoration: DotDecoration(

@@ -9,5 +9,6 @@ class CarSearchState with _$CarSearchState {
     DateTime? endDate,
     double? longitude,
     double? latitude,
+    List<Car>? cars,
   }) = _CarSearchState;
 }

@@ -154,7 +154,7 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                         children: [
                           ChoiceChipWidget(
                             label: 'Loại xe',
-                            selected: value.carSearchFilter.carTypes.isNotEmpty,
+                            selected: value.carSearchFilter.carType != null,
                             icon: Icons.drive_eta_outlined,
                             onTap: _onCarTypeFilterTap,
                           ),
@@ -166,13 +166,13 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                             icon: Icons.memory_outlined,
                             onTap: _onTransmissionFilterTap,
                           ),
-                          const SizedBox(width: s08),
-                          ChoiceChipWidget(
-                            label: 'Xe giảm giá',
-                            selected: value.carSearchFilter.isDiscounted,
-                            icon: Icons.percent_outlined,
-                            onTap: _onDiscountFilterTap,
-                          ),
+                          // const SizedBox(width: s08),
+                          // ChoiceChipWidget(
+                          //   label: 'Xe giảm giá',
+                          //   selected: value.carSearchFilter.isDiscounted,
+                          //   icon: Icons.percent_outlined,
+                          //   onTap: _onDiscountFilterTap,
+                          // ),
                         ],
                       ),
                     ),
