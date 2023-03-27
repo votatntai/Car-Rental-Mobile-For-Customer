@@ -207,8 +207,8 @@ class _CarBookingConfirmationViewState
                           ],
                         ),
                         GoogleMapWidget(
-                          longitude: successState.car.location.longitude,
-                          latitude: successState.car.location.latitude,
+                          longitude: successState.longitude,
+                          latitude: successState.latitude,
                         ),
                       ],
                     ),
@@ -493,12 +493,13 @@ class _CarBookingConfirmationViewState
                             padding: const EdgeInsets.symmetric(vertical: s12),
                           ),
                           onPressed: () {
-                            context.pushNamed(
-                              RouteName.orderInformation,
-                              queryParams: {
-                                'order-id': '1',
-                              },
-                            );
+                            //TODO: create order;
+                            // context.pushNamed(
+                            //   RouteName.orderInformation,
+                            //   queryParams: {
+                            //     'order-id': successState.car.id,
+                            //   },
+                            // );
                           },
                           child: const Text(
                             'Đặt xe',

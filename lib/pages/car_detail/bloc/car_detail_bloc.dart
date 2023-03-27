@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/models/location.dart';
 import 'package:car_rental_for_customer/models/place.dart';
 import 'package:car_rental_for_customer/models/promotion.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
@@ -128,6 +129,11 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
   ) async {
     if (state is! _Success) return;
     final currentState = state as _Success;
+
+    final customerLocation = await addressToCoordinate(
+      currentState.address,
+    );
+
     emit(currentState.copyWith(
       carAddressType: event.carAddressType,
       deliveryAddress: getDeliveryAddress(
@@ -137,6 +143,16 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
           currentState.car.location.longitude,
         ),
         currentState.address,
+      ),
+      latitude: getDeliveryLatitude(
+        event.carAddressType,
+        currentState.car.location.latitude,
+        customerLocation.lat,
+      ),
+      longitude: getDeliveryLongitude(
+        event.carAddressType,
+        currentState.car.location.longitude,
+        customerLocation.lng,
       ),
     ));
   }
@@ -161,5 +177,42 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
       return locate.formattedAddress;
     }
     return '';
+  }
+
+  Future<Location> addressToCoordinate(String address) async {
+    final placeResult = await mapsRepository.addressToCoordinate(
+      address: address,
+    );
+
+    if (placeResult is ApiSuccess) {
+      final place = (placeResult as ApiSuccess<Place?>).value;
+      if (place != null) {
+        return Location(
+          lat: place.geometry.location.lat,
+          lng: place.geometry.location.lng,
+        );
+      }
+    }
+    return const Location(lat: 0.0, lng: 0.0);
+  }
+
+  double getDeliveryLatitude(
+    CarAddressType carAddressType,
+    double carLatitude,
+    double customerLatitude,
+  ) {
+    return carAddressType == CarAddressType.car
+        ? carLatitude
+        : customerLatitude;
+  }
+
+  double getDeliveryLongitude(
+    CarAddressType carAddressType,
+    double carLongitude,
+    double customerLongitude,
+  ) {
+    return carAddressType == CarAddressType.car
+        ? carLongitude
+        : customerLongitude;
   }
 }

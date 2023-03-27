@@ -36,15 +36,6 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       pageSize: 10,
     );
 
-    if (transactionResult is ApiError) {
-      emit(
-        WalletState.failure(
-          message: (transactionResult as ApiError).error ?? '',
-        ),
-      );
-      return;
-    }
-
     final walletResult = await walletRepository.myWallet();
     if (walletResult is ApiError) {
       emit(
@@ -55,8 +46,9 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       return;
     }
 
-    final transactions =
-        (transactionResult as ApiSuccess<PaginationResult<Transaction>>)
+    final transactions = (transactionResult is ApiError)
+        ? <Transaction>[]
+        : (transactionResult as ApiSuccess<PaginationResult<Transaction>>)
             .value
             .data;
 

@@ -40,6 +40,8 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.latitude);
+    print(widget.longitude);
     // if (place == null) return const SizedBox();
     return Column(
       children: [

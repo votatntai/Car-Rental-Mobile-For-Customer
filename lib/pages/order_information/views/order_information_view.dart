@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
@@ -33,17 +34,6 @@ class OrderInformationView extends StatefulWidget {
 class _OrderInformationViewState extends State<OrderInformationView> {
   PageController pageController = PageController(viewportFraction: 1);
   TextEditingController textarea = TextEditingController();
-
-  List carname = [
-    'Mercedes',
-    'Tesla',
-    'BMW',
-    'Honda',
-    'Toyata',
-    'Volvo',
-    'Bugatti',
-    'More'
-  ];
 
   @override
   void dispose() {
@@ -950,7 +940,15 @@ class _OrderInformationViewState extends State<OrderInformationView> {
     );
   }
 
-  Stack carImage(BuildContext context, Car car) {
+  Widget carImage(BuildContext context, Car car) {
+    if (car.images.isEmpty) {
+      return Image.asset(
+        Images.carExample,
+        width: double.infinity,
+        fit: BoxFit.fill,
+        alignment: Alignment.topCenter,
+      );
+    }
     return Stack(
       children: [
         SizedBox(
@@ -958,16 +956,17 @@ class _OrderInformationViewState extends State<OrderInformationView> {
           height: MediaQuery.of(context).size.width * 0.65,
           child: PageView.builder(
             controller: pageController,
-            itemCount: carname.length,
+            itemCount: car.images.length,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.all(s08),
               alignment: Alignment.center,
-              child: Image.asset(
-                Images.carExample,
-                width: double.infinity,
-                fit: BoxFit.fill,
-                alignment: Alignment.topCenter,
-              ),
+              child: CachedNetworkImage(
+                  width: double.infinity,
+                  imageUrl: car.images[index].url,
+                  fit: BoxFit.fill,
+                  errorWidget: (context, url, error) {
+                    return const Icon(Icons.error);
+                  }),
             ),
           ),
         ),
@@ -978,7 +977,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
             alignment: Alignment.bottomCenter,
             child: SmoothPageIndicator(
               controller: pageController,
-              count: carname.length,
+              count: car.images.length,
               effect: CustomizableEffect(
                 spacing: 3,
                 activeDotDecoration: DotDecoration(
