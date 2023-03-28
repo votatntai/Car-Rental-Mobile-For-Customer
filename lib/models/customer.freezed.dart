@@ -23,6 +23,7 @@ mixin _$Customer {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: genderFromJson)
   Gender get gender =>
       throw _privateConstructorUsedError; // required Wallet wallet,
   String? get bankAccountNumber => throw _privateConstructorUsedError;
@@ -45,7 +46,7 @@ abstract class $CustomerCopyWith<$Res> {
       {String id,
       String name,
       String phone,
-      Gender gender,
+      @JsonKey(fromJson: genderFromJson) Gender gender,
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
@@ -122,7 +123,7 @@ abstract class _$$_CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       {String id,
       String name,
       String phone,
-      Gender gender,
+      @JsonKey(fromJson: genderFromJson) Gender gender,
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
@@ -193,7 +194,7 @@ class _$_Customer implements _Customer {
       {required this.id,
       required this.name,
       required this.phone,
-      required this.gender,
+      @JsonKey(fromJson: genderFromJson) required this.gender,
       this.bankAccountNumber,
       this.bankName,
       this.avatarUrl,
@@ -209,6 +210,7 @@ class _$_Customer implements _Customer {
   @override
   final String phone;
   @override
+  @JsonKey(fromJson: genderFromJson)
   final Gender gender;
 // required Wallet wallet,
   @override
@@ -267,7 +269,7 @@ abstract class _Customer implements Customer {
       {required final String id,
       required final String name,
       required final String phone,
-      required final Gender gender,
+      @JsonKey(fromJson: genderFromJson) required final Gender gender,
       final String? bankAccountNumber,
       final String? bankName,
       final String? avatarUrl,
@@ -282,6 +284,7 @@ abstract class _Customer implements Customer {
   @override
   String get phone;
   @override
+  @JsonKey(fromJson: genderFromJson)
   Gender get gender;
   @override // required Wallet wallet,
   String? get bankAccountNumber;

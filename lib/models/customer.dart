@@ -1,5 +1,6 @@
 import 'package:car_rental_for_customer/models/enums/gender.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:car_rental_for_customer/models/converters/gender_from_json.dart';
 
 part 'customer.freezed.dart';
 part 'customer.g.dart';
@@ -10,7 +11,7 @@ class Customer with _$Customer {
     required String id,
     required String name,
     required String phone,
-    required Gender gender,
+    @JsonKey(fromJson: genderFromJson) required Gender gender,
     // required Wallet wallet,
     String? bankAccountNumber,
     String? bankName,

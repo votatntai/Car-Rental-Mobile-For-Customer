@@ -10,7 +10,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       id: json['id'] as String,
       name: json['name'] as String,
       phone: json['phone'] as String,
-      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      gender: genderFromJson(json['gender'] as String),
       bankAccountNumber: json['bankAccountNumber'] as String?,
       bankName: json['bankName'] as String?,
       avatarUrl: json['avatarUrl'] as String?,

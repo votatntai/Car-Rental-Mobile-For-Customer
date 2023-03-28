@@ -4,7 +4,7 @@ import 'package:car_rental_for_customer/models/car_location.dart';
 import 'package:car_rental_for_customer/models/car_model.dart';
 import 'package:car_rental_for_customer/models/car_owner.dart';
 import 'package:car_rental_for_customer/models/car_type.dart';
-import 'package:car_rental_for_customer/models/converters/TimeOfDayConverter.dart';
+import 'package:car_rental_for_customer/models/converters/time_of_day_converter.dart';
 import 'package:car_rental_for_customer/models/driver.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/production_company.dart';

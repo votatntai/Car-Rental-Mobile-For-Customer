@@ -23,6 +23,7 @@ mixin _$User {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: genderFromJson)
   Gender get gender =>
       throw _privateConstructorUsedError; // required Wallet wallet,
   String? get bankAccountNumber => throw _privateConstructorUsedError;
@@ -44,7 +45,7 @@ abstract class $UserCopyWith<$Res> {
       {String id,
       String name,
       String phone,
-      Gender gender,
+      @JsonKey(fromJson: genderFromJson) Gender gender,
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
@@ -120,7 +121,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String id,
       String name,
       String phone,
-      Gender gender,
+      @JsonKey(fromJson: genderFromJson) Gender gender,
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
@@ -189,7 +190,7 @@ class _$_User implements _User {
       {required this.id,
       required this.name,
       required this.phone,
-      required this.gender,
+      @JsonKey(fromJson: genderFromJson) required this.gender,
       this.bankAccountNumber,
       this.bankName,
       this.avatarUrl,
@@ -204,6 +205,7 @@ class _$_User implements _User {
   @override
   final String phone;
   @override
+  @JsonKey(fromJson: genderFromJson)
   final Gender gender;
 // required Wallet wallet,
   @override
@@ -262,7 +264,7 @@ abstract class _User implements User {
       {required final String id,
       required final String name,
       required final String phone,
-      required final Gender gender,
+      @JsonKey(fromJson: genderFromJson) required final Gender gender,
       final String? bankAccountNumber,
       final String? bankName,
       final String? avatarUrl,
@@ -277,6 +279,7 @@ abstract class _User implements User {
   @override
   String get phone;
   @override
+  @JsonKey(fromJson: genderFromJson)
   Gender get gender;
   @override // required Wallet wallet,
   String? get bankAccountNumber;
