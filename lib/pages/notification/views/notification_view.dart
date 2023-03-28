@@ -28,12 +28,12 @@ class _NotificationViewState extends State<NotificationView> {
     });
     super.initState();
   }
-@override
+
+  @override
   void dispose() {
-  _pagingController.dispose();
+    _pagingController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
