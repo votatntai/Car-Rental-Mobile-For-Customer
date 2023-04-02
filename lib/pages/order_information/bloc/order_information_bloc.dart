@@ -42,8 +42,9 @@ class OrderInformationBloc
 
     final order = (orderResult as ApiSuccess<Order>).value;
 
-    if (order.orderDetail?.driver != null) {
-      final driver = order.orderDetail?.driver;
+    if (order.orderDetails.isNotEmpty &&
+        order.orderDetails.first.driver != null) {
+      final driver = order.orderDetails.first.driver;
       emit(
         OrderInformationState.success(
           order: order,

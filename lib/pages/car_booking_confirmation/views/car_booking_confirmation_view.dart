@@ -77,10 +77,7 @@ class _CarBookingConfirmationViewState
         //TODO: Calculate promotion cost
         const promotionCost = 0.0;
 
-        final carDeliveryCost = successState.carDeliveryCost != null &&
-                successState.carDeliveryCost! > 0
-            ? 12000.0
-            : 0.0;
+        final carDeliveryCost = successState.deliveryDistance * 20000;
 
         final totalCost = rentCost + carDeliveryCost - promotionCost;
         final deposit = totalCost * 0.3;
@@ -361,28 +358,26 @@ class _CarBookingConfirmationViewState
                             ),
                           ],
                         ),
-                        if (successState.carDeliveryCost != null &&
-                            successState.carDeliveryCost! > 0)
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: s04,
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Phí giao nhận xe:',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    formatCurrency(carDeliveryCost),
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: s04,
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  'Phí giao nhận xe:',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  formatCurrency(carDeliveryCost),
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                         const SizedBox(
                           height: s04,
                         ),

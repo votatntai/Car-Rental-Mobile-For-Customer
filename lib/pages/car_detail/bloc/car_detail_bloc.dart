@@ -109,8 +109,16 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
       address: address,
       startDate: startDate,
       endDate: endDate,
-      latitude: latitude,
-      longitude: longitude,
+      latitude: getDeliveryLatitude(
+        carAddressType,
+        car.location.latitude,
+        latitude,
+      ),
+      longitude: getDeliveryLongitude(
+        carAddressType,
+        car.location.longitude,
+        longitude,
+      ),
       carAddressType: carAddressType,
       deliveryAddress: getDeliveryAddress(
         carAddressType,
@@ -119,6 +127,12 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
           car.location.longitude,
         ),
         address,
+      ),
+      deliveryDistance: await getCarDeliveryDistance(
+        carAddressType,
+        car,
+        latitude,
+        longitude,
       ),
     ));
   }
@@ -153,6 +167,20 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
         event.carAddressType,
         currentState.car.location.longitude,
         customerLocation.lng,
+      ),
+      deliveryDistance: await getCarDeliveryDistance(
+        event.carAddressType,
+        currentState.car,
+        getDeliveryLatitude(
+          event.carAddressType,
+          currentState.car.location.latitude,
+          customerLocation.lat,
+        ),
+        getDeliveryLongitude(
+          event.carAddressType,
+          currentState.car.location.longitude,
+          customerLocation.lng,
+        ),
       ),
     ));
   }
@@ -214,5 +242,23 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
     return carAddressType == CarAddressType.car
         ? carLongitude
         : customerLongitude;
+  }
+
+  Future<double> getCarDeliveryDistance(
+    CarAddressType carAddressType,
+    Car car,
+    double latitude,
+    double longitude,
+  ) async {
+    if (carAddressType == CarAddressType.car) return 0.0;
+
+    final distanceResult = await mapsRepository.getDistance(
+      lat1: car.location.latitude,
+      lng1: car.location.longitude,
+      lat2: latitude,
+      lng2: longitude,
+    );
+
+    return distanceResult ?? 0;
   }
 }

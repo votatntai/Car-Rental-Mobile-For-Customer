@@ -21,6 +21,8 @@ class CarRepository {
     bool? hasDriver,
     CarTypeEnum? carType,
     TransmissionEnum? transmissionType,
+    DateTime? startTime,
+    DateTime? endTime,
     required int pageNumber,
     required int pageSize,
   }) async {
@@ -31,10 +33,8 @@ class CarRepository {
       };
 
       if (longitude != null && latitude != null) {
-        queryParameters['location'] = {
-          'longitude': longitude,
-          'latitude': latitude,
-        };
+        queryParameters['location.longitude'] = longitude;
+        queryParameters['location.latitude'] = latitude;
       }
 
       if (hasDriver != null) {
@@ -46,6 +46,11 @@ class CarRepository {
       }
       if (transmissionType != null) {
         queryParameters['transmissionType'] = transmissionType.name;
+      }
+
+      if (startTime != null && endTime != null) {
+        queryParameters['startTime'] = startTime.toIso8601String();
+        queryParameters['endTime'] = endTime.toIso8601String();
       }
 
       final result = await dio.get<JsonObject>(

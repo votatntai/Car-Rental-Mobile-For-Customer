@@ -207,12 +207,24 @@ class _HomeViewState extends State<HomeView> {
                         return LocationCard(
                           type: LocationCardType.values[index],
                           onTap: () {
+                            final currentDate = DateTime.now();
+
+                            final defaultStartDate = DateTime(
+                              currentDate.year,
+                              currentDate.month,
+                              currentDate.day,
+                              8,
+                              0,
+                              0,
+                              0,
+                              0,
+                            );
                             context.pushNamed(RouteName.carSearchResult,
                                 queryParams: {
                                   'rental-car-type':
                                       RentalCarType.selfDrivingCar.name,
-                                  'start-date': DateTime.now().toString(),
-                                  'end-date': DateTime.now()
+                                  'start-date': defaultStartDate.toString(),
+                                  'end-date': defaultStartDate
                                       .add(const Duration(days: 1))
                                       .toString(),
                                   'address': getLocationName(
@@ -244,12 +256,24 @@ class _HomeViewState extends State<HomeView> {
                         return LocationCard(
                           type: LocationCardType.values[index],
                           onTap: () {
+                            final currentDate = DateTime.now();
+
+                            final defaultStartDate = DateTime(
+                              currentDate.year,
+                              currentDate.month,
+                              currentDate.day,
+                              8,
+                              0,
+                              0,
+                              0,
+                              0,
+                            );
                             context.pushNamed(RouteName.carSearchResult,
                                 queryParams: {
                                   'rental-car-type':
                                       RentalCarType.carWithDriver.name,
-                                  'start-date': DateTime.now().toString(),
-                                  'end-date': DateTime.now()
+                                  'start-date': defaultStartDate.toString(),
+                                  'end-date': defaultStartDate
                                       .add(const Duration(days: 1))
                                       .toString(),
                                   'address': getLocationName(

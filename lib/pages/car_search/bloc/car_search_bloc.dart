@@ -32,11 +32,24 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     _Started event,
     Emitter<CarSearchState> emit,
   ) async {
+    final currentDate = DateTime.now();
+
+    final defaultStartDate = DateTime(
+      currentDate.year,
+      currentDate.month,
+      currentDate.day,
+      8,
+      0,
+      0,
+      0,
+      0,
+    );
+
     emit(
       state.copyWith(
         rentalCarType: event.rentalCarType,
-        startDate: DateTime.now(),
-        endDate: DateTime.now().add(const Duration(days: 1)),
+        startDate: defaultStartDate,
+        endDate: defaultStartDate.add(const Duration(days: 1)),
       ),
     );
 
@@ -60,8 +73,8 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     emit(
       state.copyWith(
         rentalCarType: event.rentalCarType,
-        startDate: event.startDate ?? DateTime.now(),
-        endDate: event.endDate ?? DateTime.now().add(const Duration(days: 1)),
+        startDate: event.startDate ?? defaultStartDate,
+        endDate: event.endDate ?? defaultStartDate.add(const Duration(days: 1)),
         longitude: event.longitude ?? position?.longitude,
         latitude: event.latitude ?? position?.latitude,
       ),

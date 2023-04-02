@@ -166,29 +166,38 @@ class _OrderInformationViewState extends State<OrderInformationView> {
           );
         }
 
-        final rentCost = calculateDays(
-              successState.order.startTime,
-              successState.order.endTime,
-            ) *
-            successState.order.rentalUnitPrice;
+        if (successState.order.orderDetails.isEmpty) {
+          return const Scaffold(
+            body: Center(
+              child: Text('Không có thông tin chuyến'),
+            ),
+          );
+        }
+
+        // final rentCost = calculateDays(
+        //       successState.order.orderDetails.first.startTime,
+        //       successState.order.orderDetails.first.endTime,
+        //     ) *
+        //     successState.order.unitPrice;
 
         final promotionCost = successState.order.promotion?.discount ?? 0;
 
-        final carDeliveryCost = successState.order.deliveryCost;
+        // final carDeliveryCost = successState.order.deliveryFee;
 
-        final totalCost = rentCost + carDeliveryCost - promotionCost;
-        final deposit = successState.order.deposit;
-        final remaining = totalCost - deposit;
+        // final totalCost = rentCost + carDeliveryCost - promotionCost;
+        // final deposit = successState.order.deposit;
+        // final remaining = totalCost - deposit;
+
+        final remaining =
+            successState.order.amount - successState.order.deposit;
         return Scaffold(
           appBar: appAppBar(context, titleText: 'Thông tin chuyến'),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (successState.order.orderDetail?.car != null)
-                  carImage(context, successState.order.orderDetail!.car),
-                if (successState.order.orderDetail?.car != null)
-                  carTitle(context, successState.order.orderDetail!.car),
+                carImage(context, successState.order.orderDetails.first.car),
+                carTitle(context, successState.order.orderDetails.first.car),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -229,7 +238,8 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                               children: [
                                 Text(
                                   DateFormat('HH:mm E, dd/MM/yyyy').format(
-                                    successState.order.startTime,
+                                    successState
+                                        .order.orderDetails.first.startTime,
                                   ),
                                   style: const TextStyle(
                                     fontSize: 12,
@@ -237,7 +247,8 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                 ),
                                 Text(
                                   DateFormat('HH:mm E, dd/MM/yyyy').format(
-                                    successState.order.endTime,
+                                    successState
+                                        .order.orderDetails.first.endTime,
                                   ),
                                   style: const TextStyle(
                                     fontSize: 12,
@@ -256,37 +267,35 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           color: CustomColors.ochre.withOpacity(0.1),
                           child: Column(
                             children: [
-                              if (successState.order.orderDetail?.car != null)
-                                Row(
-                                  children: [
-                                    const Text(
-                                      'Thời gian nhận xe',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      '${formatTimeOfDay(successState.order.orderDetail!.car.receiveStartTime)}-${formatTimeOfDay(successState.order.orderDetail!.car.receiveEndTime)}',
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                  ],
-                                ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Thời gian nhận xe',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatTimeOfDay(successState.order.orderDetails.first.car.receiveStartTime)}-${formatTimeOfDay(successState.order.orderDetails.first.car.receiveEndTime)}',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(
                                 height: s04,
                               ),
-                              if (successState.order.orderDetail?.car != null)
-                                Row(
-                                  children: [
-                                    const Text(
-                                      'Thời gian trả xe',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      '${formatTimeOfDay(successState.order.orderDetail!.car.returnStartTime)}-${formatTimeOfDay(successState.order.orderDetail!.car.returnEndTime)}',
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                  ],
-                                )
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Thời gian trả xe',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatTimeOfDay(successState.order.orderDetails.first.car.returnStartTime)}-${formatTimeOfDay(successState.order.orderDetails.first.car.returnEndTime)}',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
                         ),
@@ -313,15 +322,15 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             SizedBox(
                               width: context.width() * 0.8,
                               child: LocationText(
-                                longitude: successState.order.orderDetail
-                                        ?.deliveryLocation?.longitude ??
-                                    successState.order.orderDetail
-                                        ?.pickupLocation?.longitude ??
+                                longitude: successState.order.orderDetails.first
+                                        .deliveryLocation?.longitude ??
+                                    successState.order.orderDetails.first
+                                        .pickupLocation?.longitude ??
                                     0,
-                                latitude: successState.order.orderDetail
-                                        ?.deliveryLocation?.latitude ??
-                                    successState.order.orderDetail
-                                        ?.pickupLocation?.latitude ??
+                                latitude: successState.order.orderDetails.first
+                                        .deliveryLocation?.latitude ??
+                                    successState.order.orderDetails.first
+                                        .pickupLocation?.latitude ??
                                     0,
                                 style: const TextStyle(
                                   fontSize: 13,
@@ -341,15 +350,15 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           ],
                         ),
                         GoogleMapWidget(
-                          latitude: successState.order.orderDetail
-                                  ?.deliveryLocation?.latitude ??
-                              successState.order.orderDetail?.pickupLocation
-                                  ?.latitude ??
+                          latitude: successState.order.orderDetails.first
+                                  .deliveryLocation?.latitude ??
+                              successState.order.orderDetails.first
+                                  .pickupLocation?.latitude ??
                               0,
-                          longitude: successState.order.orderDetail
-                                  ?.deliveryLocation?.longitude ??
-                              successState.order.orderDetail?.pickupLocation
-                                  ?.longitude ??
+                          longitude: successState.order.orderDetails.first
+                                  .deliveryLocation?.longitude ??
+                              successState.order.orderDetails.first
+                                  .pickupLocation?.longitude ??
                               0,
                         ),
                       ],
@@ -382,8 +391,8 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    successState.order.orderDetail?.car.carOwner
-                                            ?.id ??
+                                    successState.order.orderDetails.first.car
+                                            .carOwner?.id ??
                                         '',
                                     style: const TextStyle(
                                       fontSize: 13,
@@ -431,7 +440,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${successState.order.orderDetail?.car.additionalCharge.maximumDistance} km/ngày',
+                          '${successState.order.orderDetails.first.car.additionalCharge.maximumDistance} km/ngày',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -441,7 +450,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           height: s04,
                         ),
                         Text(
-                          'Phí: ${formatCurrency(successState.order.orderDetail?.car.additionalCharge.distanceSurcharge ?? 0)}/km vượt qua giới hạn',
+                          'Phí: ${formatCurrency(successState.order.orderDetails.first.car.additionalCharge.distanceSurcharge ?? 0)}/km vượt qua giới hạn',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
@@ -498,25 +507,24 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                   ),
                 ),
                 divider,
-                if (successState.order.orderDetail != null)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: s16),
-                    child: ContainerWithLabel(
-                      label: 'Chủ xe',
-                      child: CarOwnerWidget(
-                        car: successState.order.orderDetail!.car,
-                        onTap: () {
-                          context.pushNamed(
-                            RouteName.carOwnerDetail,
-                            queryParams: {
-                              'car-owner-id': successState
-                                  .order.orderDetail!.car.carOwner!.id,
-                            },
-                          );
-                        },
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s16),
+                  child: ContainerWithLabel(
+                    label: 'Chủ xe',
+                    child: CarOwnerWidget(
+                      car: successState.order.orderDetails.first.car,
+                      onTap: () {
+                        context.pushNamed(
+                          RouteName.carOwnerDetail,
+                          queryParams: {
+                            'car-owner-id': successState
+                                .order.orderDetails.first.car.carOwner!.id,
+                          },
+                        );
+                      },
                     ),
                   ),
+                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -549,7 +557,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             ),
                             const Spacer(),
                             Text(
-                              '${formatCurrency(successState.order.rentalUnitPrice)}/ngày',
+                              '${formatCurrency(successState.order.unitPrice)}/ngày',
                               style: const TextStyle(fontSize: 12),
                             ),
                           ],
@@ -563,35 +571,35 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             ),
                             const Spacer(),
                             Text(
-                              '${formatCurrency(successState.order.rentalUnitPrice)} x ${calculateDays(
-                                successState.order.startTime,
-                                successState.order.endTime,
+                              '${formatCurrency(successState.order.unitPrice)} x ${calculateDays(
+                                successState.order.orderDetails.first.startTime,
+                                successState.order.orderDetails.first.endTime,
                               )} ngày',
                               style: const TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
-                        if (carDeliveryCost > 0)
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: s04,
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Phí giao nhận xe:',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    formatCurrency(carDeliveryCost),
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: s04,
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  'Phí giao nhận xe:',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  formatCurrency(
+                                      successState.order.deliveryFee),
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                         const SizedBox(
                           height: s04,
                         ),
@@ -621,7 +629,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             ),
                             const Spacer(),
                             Text(
-                              formatCurrency(totalCost),
+                              formatCurrency(successState.order.amount),
                               style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
@@ -649,7 +657,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    formatCurrency(deposit),
+                                    formatCurrency(successState.order.deposit),
                                     style: const TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,

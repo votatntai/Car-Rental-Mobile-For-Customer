@@ -10,6 +10,8 @@ _$_OrderDetail _$$_OrderDetailFromJson(Map<String, dynamic> json) =>
     _$_OrderDetail(
       id: json['id'] as String,
       car: Car.fromJson(json['car'] as Map<String, dynamic>),
+      startTime: DateTime.parse(json['startTime'] as String),
+      endTime: DateTime.parse(json['endTime'] as String),
       deliveryLocation: json['deliveryLocation'] == null
           ? null
           : CarLocation.fromJson(
@@ -29,6 +31,8 @@ Map<String, dynamic> _$$_OrderDetailToJson(_$_OrderDetail instance) =>
     <String, dynamic>{
       'id': instance.id,
       'car': instance.car,
+      'startTime': instance.startTime.toIso8601String(),
+      'endTime': instance.endTime.toIso8601String(),
       'deliveryLocation': instance.deliveryLocation,
       'pickupLocation': instance.pickupLocation,
       'deliveryTime': instance.deliveryTime.toIso8601String(),

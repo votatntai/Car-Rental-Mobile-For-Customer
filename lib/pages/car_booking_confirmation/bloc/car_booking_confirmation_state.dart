@@ -14,7 +14,7 @@ class CarBookingConfirmationState with _$CarBookingConfirmationState {
     required double latitude,
     required double longitude,
     Promotion? promotion,
-    double? carDeliveryCost,
+    required double deliveryDistance,
   }) = _Success;
 
   const factory CarBookingConfirmationState.failure({String? message}) =

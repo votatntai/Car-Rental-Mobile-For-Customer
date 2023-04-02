@@ -10,21 +10,20 @@ part 'order.g.dart';
 @freezed
 class Order with _$Order {
   const factory Order({
-    required String id,
+    required int id,
     required Customer customer,
-    OrderDetail? orderDetail,
+    required List<OrderDetail> orderDetails,
     required DateTime rentalTime,
     required double amount,
+    required double unitPrice,
+    required double deliveryFee,
+    required double deliveryDistance,
+    required double deposit,
     required bool isPaid,
     required OrderStatus status,
     String? description,
     required DateTime createdAt,
     Promotion? promotion,
-    required DateTime startTime,
-    required DateTime endTime,
-    required double rentalUnitPrice,
-    required double deliveryCost,
-    required double deposit,
   }) = _Order;
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);

@@ -13,10 +13,13 @@ import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
 import 'package:car_rental_for_customer/commons/widgets/horizontal_icon.dart';
 import 'package:car_rental_for_customer/commons/widgets/location_text.dart';
 import 'package:car_rental_for_customer/commons/widgets/vertical_icon.dart';
+import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_detail/bloc/car_detail_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
 import 'package:car_rental_for_customer/pages/car_detail/widgets/surcharge_item.dart';
+import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -76,10 +79,7 @@ class _CarDetailViewState extends State<CarDetailView> {
         //TODO: Calculate promotion cost
         const promotionCost = 0.0;
 
-        final carDeliveryCost =
-            successState.carAddressType == CarAddressType.customer
-                ? 12000.0
-                : 0.0;
+        final carDeliveryCost = successState.deliveryDistance * 20000;
 
         final totalCost = rentCost + carDeliveryCost - promotionCost;
 
@@ -100,6 +100,20 @@ class _CarDetailViewState extends State<CarDetailView> {
                     children: [
                       carImage(context, successState.car),
                       carTitle(context, successState.car),
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Loại thuê xe',
+                          child: Column(
+                            children: [
+                              Text(
+                                successState.car.rentalCarType.getDisplayName(),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                       divider,
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -530,21 +544,29 @@ class _CarDetailViewState extends State<CarDetailView> {
                         ),
                       ),
                       divider,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: s16),
-                        child: ContainerWithLabel(
-                          label: 'Mô tả',
-                          child: Text(
-                            successState.car.description ?? '',
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: CustomColors.jetBlack,
+                      if (successState.car.description != null &&
+                          successState.car.description!.isNotEmpty)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: s16),
+                              child: ContainerWithLabel(
+                                label: 'Mô tả',
+                                child: Text(
+                                  successState.car.description ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: CustomColors.jetBlack,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            divider,
+                          ],
                         ),
-                      ),
-                      divider,
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(
@@ -593,6 +615,100 @@ class _CarDetailViewState extends State<CarDetailView> {
                         ),
                       ),
                       divider,
+                      if (successState.car.carFeatures.isNotEmpty)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: s16),
+                              child: ContainerWithLabel(
+                                label: 'Tính năng',
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: successState.car.carFeatures
+                                      .map(
+                                        (e) => Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: s04,
+                                          ),
+                                          child: Text(
+                                            '- ${e.feature.name}',
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                            divider,
+                          ],
+                        ),
+                      if (successState.car.carTypes.isNotEmpty)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: s16),
+                              child: ContainerWithLabel(
+                                label: 'Loại xe',
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: successState.car.carTypes
+                                      .map(
+                                        (e) => Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: s04,
+                                          ),
+                                          child: Text(
+                                            '- ${e.type.name}',
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                            divider,
+                          ],
+                        ),
+                      if (successState.car.productionCompany != null)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: s16),
+                              child: ContainerWithLabel(
+                                label: 'Hãng sản xuất',
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom: s04,
+                                      ),
+                                      child: Text(
+                                        '- ${successState.car.productionCompany!.name}',
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            divider,
+                          ],
+                        ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(

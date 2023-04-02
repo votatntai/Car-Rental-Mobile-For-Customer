@@ -11,6 +11,8 @@ class OrderDetail with _$OrderDetail {
   factory OrderDetail({
     required String id,
     required Car car,
+    required DateTime startTime,
+    required DateTime endTime,
     CarLocation? deliveryLocation,
     CarLocation? pickupLocation,
     required DateTime deliveryTime,

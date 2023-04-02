@@ -34,7 +34,9 @@ class OrderItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        order.orderDetail?.car.name ?? '',
+                        order.orderDetails.isNotEmpty
+                            ? order.orderDetails.first.car.name ?? ''
+                            : '',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -42,9 +44,10 @@ class OrderItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       CarCardTag(
-                        text: order.orderDetail?.car.rentalCarType
-                                .getDisplayName() ??
-                            '',
+                        text: order.orderDetails.isNotEmpty
+                            ? order.orderDetails.first.car.rentalCarType
+                                .getDisplayName()
+                            : '',
                       ),
                     ],
                   ),
@@ -67,14 +70,22 @@ class OrderItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Bắt đầu: ${DateFormat('HH:mm dd/MM/yyyy').format(order.startTime)}',
+                            'Bắt đầu: ${DateFormat('HH:mm dd/MM/yyyy').format(
+                              order.orderDetails.isNotEmpty
+                                  ? order.orderDetails.first.startTime
+                                  : DateTime.now(),
+                            )}',
                             style: const TextStyle(
                               fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: s04),
                           Text(
-                            'Kết thúc: ${DateFormat('HH:mm dd/MM/yyyy').format(order.endTime)}',
+                            'Kết thúc: ${DateFormat('HH:mm dd/MM/yyyy').format(
+                              order.orderDetails.isNotEmpty
+                                  ? order.orderDetails.first.endTime
+                                  : DateTime.now(),
+                            )}',
                             style: const TextStyle(
                               fontSize: 13,
                             ),

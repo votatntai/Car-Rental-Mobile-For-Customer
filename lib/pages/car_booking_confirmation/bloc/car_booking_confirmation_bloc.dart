@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/promotion.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
+import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,12 +20,14 @@ class CarBookingConfirmationBloc
   CarBookingConfirmationBloc({
     required this.carRepository,
     required this.promotionRepository,
+    required this.mapsRepository,
   }) : super(const CarBookingConfirmationState.initial()) {
     on<_Started>(_onStarted);
   }
 
   final CarRepository carRepository;
   final PromotionRepository promotionRepository;
+  final MapsRepository mapsRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -64,8 +67,27 @@ class CarBookingConfirmationBloc
         latitude: event.latitude!,
         longitude: event.longitude!,
         promotion: promotion,
-        carDeliveryCost: event.carDeliveryCost,
+        deliveryDistance: await getCarDeliveryDistance(
+          car,
+          event.latitude!,
+          event.longitude!,
+        ),
       ));
     }
+  }
+
+  Future<double> getCarDeliveryDistance(
+    Car car,
+    double latitude,
+    double longitude,
+  ) async {
+    final distanceResult = await mapsRepository.getDistance(
+      lat1: car.location.latitude,
+      lng1: car.location.longitude,
+      lat2: latitude,
+      lng2: longitude,
+    );
+
+    return distanceResult ?? 0;
   }
 }

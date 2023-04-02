@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/order.dart';
 import 'package:car_rental_for_customer/models/pagination.dart';
 import 'package:car_rental_for_customer/models/pagination_result.dart';
+import 'package:car_rental_for_customer/repositories/models/order_create_model.dart';
 import 'package:dio/dio.dart';
 
 class OrderRepository {
@@ -70,6 +71,23 @@ class OrderRepository {
       );
     } on DioError catch (e) {
       return e.getErrorMessage();
+    }
+  }
+
+  Future<bool> createOrder(OrderCreateModel order) async {
+    try {
+      final result = await dio.post<dynamic>(
+        'orders',
+        data: order.toJson(),
+      );
+
+      if (result.statusCode == StatusCodes.status201Created) {
+        return true;
+      }
+
+      return false;
+    } on DioError catch (e) {
+      return false;
     }
   }
 }

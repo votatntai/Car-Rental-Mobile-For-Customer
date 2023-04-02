@@ -14,6 +14,7 @@ class CarDetailState with _$CarDetailState {
     required double longitude,
     required CarAddressType carAddressType,
     required String deliveryAddress,
+    required double deliveryDistance,
     Promotion? promotion,
   }) = _Success;
   const factory CarDetailState.failure({String? message}) = _Failure;

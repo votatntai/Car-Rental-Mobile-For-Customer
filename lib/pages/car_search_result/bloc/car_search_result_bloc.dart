@@ -101,6 +101,8 @@ class CarSearchResultBloc
       hasDriver: currentState.rentalCarType == RentalCarType.carWithDriver,
       carType: currentState.carSearchFilter.carType,
       transmissionType: currentState.carSearchFilter.transmission,
+      startTime: currentState.startDate,
+      endTime: currentState.endDate,
     );
 
     List<Car> cars = [];

@@ -85,4 +85,34 @@ class MapsRepository {
       return e.getErrorMessage();
     }
   }
+
+  Future<double?> getDistance({
+    required double lat1,
+    required double lng1,
+    required double lat2,
+    required double lng2,
+  }) async {
+    try {
+      final result = await dio.get<JsonObject>(
+          'https://maps.googleapis.com/maps/api/distancematrix/json',
+          queryParameters: {
+            'key': key,
+            'origins': '$lat1,$lng1',
+            'destinations': '$lat2,$lng2',
+            'language': 'vi',
+          });
+
+      if (result.data != null && result.statusCode == StatusCodes.status200OK) {
+        if (result.data!['rows'][0]['elements'][0]['status'] == 'NOT_FOUND') {
+          return null;
+        }
+        return result.data!['rows'][0]['elements'][0]['distance']['value'] /
+            1000;
+      }
+
+      return null;
+    } on DioError catch (e) {
+      return null;
+    }
+  }
 }
