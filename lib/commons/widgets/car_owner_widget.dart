@@ -36,7 +36,7 @@ class CarOwnerWidget extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Row(
-                children: [
+                children: const [
                   Text(
                     '5',
                     style: const TextStyle(

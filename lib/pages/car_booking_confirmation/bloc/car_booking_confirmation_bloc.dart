@@ -1,11 +1,18 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/app/route/app_route.dart';
+import 'package:car_rental_for_customer/app/route/route_name.dart';
+import 'package:car_rental_for_customer/commons/loading_dialog_service.dart';
+import 'package:car_rental_for_customer/commons/widgets/message_dialog.dart';
+import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/promotion.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
+import 'package:car_rental_for_customer/repositories/models/order_create_model.dart';
+import 'package:car_rental_for_customer/repositories/order_repository.dart';
 import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,13 +28,16 @@ class CarBookingConfirmationBloc
     required this.carRepository,
     required this.promotionRepository,
     required this.mapsRepository,
+    required this.orderRepository,
   }) : super(const CarBookingConfirmationState.initial()) {
     on<_Started>(_onStarted);
+    on<_OrderCreated>(_onOrderCreated);
   }
 
   final CarRepository carRepository;
   final PromotionRepository promotionRepository;
   final MapsRepository mapsRepository;
+  final OrderRepository orderRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -89,5 +99,27 @@ class CarBookingConfirmationBloc
     );
 
     return distanceResult ?? 0;
+  }
+
+  FutureOr<void> _onOrderCreated(
+    _OrderCreated event,
+    Emitter<CarBookingConfirmationState> emit,
+  ) async {
+    LoadingDialogService.load();
+
+    final orderId = await orderRepository.createOrder(event.orderCreateModel);
+
+    LoadingDialogService.dispose();
+    if (orderId == null) {
+      showMessageDialog(title: 'Lỗi', message: 'Đặt xe không thành công');
+      return;
+    }
+
+    getIt.get<AppRoute>().router.pushNamed(
+      RouteName.orderInformation,
+      queryParams: {
+        'order-id': orderId,
+      },
+    );
   }
 }

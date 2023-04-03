@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:car_rental_for_customer/commons/loading_dialog_service.dart';
+import 'package:car_rental_for_customer/commons/widgets/message_dialog.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/driver.dart';
+import 'package:car_rental_for_customer/models/enums/order_status.dart';
 import 'package:car_rental_for_customer/models/order.dart';
 import 'package:car_rental_for_customer/repositories/order_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,6 +20,7 @@ class OrderInformationBloc
     required this.orderRepository,
   }) : super(const OrderInformationState.initial()) {
     on<_Started>(_onStarted);
+    on<_OrderStatusChanged>(_onOrderStatusChanged);
   }
 
   final OrderRepository orderRepository;
@@ -57,5 +61,25 @@ class OrderInformationBloc
     emit(
       OrderInformationState.success(order: order),
     );
+  }
+
+  FutureOr<void> _onOrderStatusChanged(
+    _OrderStatusChanged event,
+    Emitter<OrderInformationState> emit,
+  ) async {
+    LoadingDialogService.load();
+
+    final orderResult = await orderRepository.updateOrderStatus(
+      id: event.orderId,
+      status: event.status,
+    );
+
+    LoadingDialogService.dispose();
+
+    if (orderResult == false) {
+      showMessageDialog(title: 'Lỗi', message: 'Cập nhật trạng thái thất bại');
+    }
+
+    add(_Started(orderId: event.orderId));
   }
 }

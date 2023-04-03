@@ -12,4 +12,8 @@ class CarBookingConfirmationEvent with _$CarBookingConfirmationEvent {
     String? promotionId,
     double? carDeliveryCost,
   }) = _Started;
+
+  const factory CarBookingConfirmationEvent.orderCreated({
+    required OrderCreateModel orderCreateModel,
+  }) = _OrderCreated;
 }

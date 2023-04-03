@@ -3,6 +3,7 @@ import 'package:car_rental_for_customer/pages/car_booking_confirmation/bloc/car_
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/views/car_booking_confirmation_view.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
+import 'package:car_rental_for_customer/repositories/order_repository.dart';
 import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +37,7 @@ class CarBookingConfirmationPage extends StatelessWidget {
         carRepository: getIt.get<CarRepository>(),
         promotionRepository: getIt.get<PromotionRepository>(),
         mapsRepository: getIt.get<MapsRepository>(),
+        orderRepository: getIt.get<OrderRepository>(),
       )..add(
           CarBookingConfirmationEvent.started(
             carId: carId,

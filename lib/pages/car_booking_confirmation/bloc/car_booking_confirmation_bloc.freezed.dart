@@ -16,14 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CarBookingConfirmationEvent {
-  String? get carId => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  DateTime? get startDate => throw _privateConstructorUsedError;
-  DateTime? get endDate => throw _privateConstructorUsedError;
-  double? get latitude => throw _privateConstructorUsedError;
-  double? get longitude => throw _privateConstructorUsedError;
-  String? get promotionId => throw _privateConstructorUsedError;
-  double? get carDeliveryCost => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -36,6 +28,7 @@ mixin _$CarBookingConfirmationEvent {
             String? promotionId,
             double? carDeliveryCost)
         started,
+    required TResult Function(OrderCreateModel orderCreateModel) orderCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +43,7 @@ mixin _$CarBookingConfirmationEvent {
             String? promotionId,
             double? carDeliveryCost)?
         started,
+    TResult? Function(OrderCreateModel orderCreateModel)? orderCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,29 +58,29 @@ mixin _$CarBookingConfirmationEvent {
             String? promotionId,
             double? carDeliveryCost)?
         started,
+    TResult Function(OrderCreateModel orderCreateModel)? orderCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OrderCreated value) orderCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OrderCreated value)? orderCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OrderCreated value)? orderCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CarBookingConfirmationEventCopyWith<CarBookingConfirmationEvent>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -96,16 +90,6 @@ abstract class $CarBookingConfirmationEventCopyWith<$Res> {
           $Res Function(CarBookingConfirmationEvent) then) =
       _$CarBookingConfirmationEventCopyWithImpl<$Res,
           CarBookingConfirmationEvent>;
-  @useResult
-  $Res call(
-      {String? carId,
-      String? address,
-      DateTime? startDate,
-      DateTime? endDate,
-      double? latitude,
-      double? longitude,
-      String? promotionId,
-      double? carDeliveryCost});
 }
 
 /// @nodoc
@@ -118,63 +102,13 @@ class _$CarBookingConfirmationEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? carId = freezed,
-    Object? address = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? latitude = freezed,
-    Object? longitude = freezed,
-    Object? promotionId = freezed,
-    Object? carDeliveryCost = freezed,
-  }) {
-    return _then(_value.copyWith(
-      carId: freezed == carId
-          ? _value.carId
-          : carId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startDate: freezed == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      latitude: freezed == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      longitude: freezed == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      promotionId: freezed == promotionId
-          ? _value.promotionId
-          : promotionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      carDeliveryCost: freezed == carDeliveryCost
-          ? _value.carDeliveryCost
-          : carDeliveryCost // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res>
-    implements $CarBookingConfirmationEventCopyWith<$Res> {
+abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {String? carId,
@@ -321,6 +255,7 @@ class _$_Started implements _Started {
             String? promotionId,
             double? carDeliveryCost)
         started,
+    required TResult Function(OrderCreateModel orderCreateModel) orderCreated,
   }) {
     return started(carId, address, startDate, endDate, latitude, longitude,
         promotionId, carDeliveryCost);
@@ -339,6 +274,7 @@ class _$_Started implements _Started {
             String? promotionId,
             double? carDeliveryCost)?
         started,
+    TResult? Function(OrderCreateModel orderCreateModel)? orderCreated,
   }) {
     return started?.call(carId, address, startDate, endDate, latitude,
         longitude, promotionId, carDeliveryCost);
@@ -357,6 +293,7 @@ class _$_Started implements _Started {
             String? promotionId,
             double? carDeliveryCost)?
         started,
+    TResult Function(OrderCreateModel orderCreateModel)? orderCreated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -370,6 +307,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OrderCreated value) orderCreated,
   }) {
     return started(this);
   }
@@ -378,6 +316,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OrderCreated value)? orderCreated,
   }) {
     return started?.call(this);
   }
@@ -386,6 +325,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OrderCreated value)? orderCreated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -406,25 +346,178 @@ abstract class _Started implements CarBookingConfirmationEvent {
       final String? promotionId,
       final double? carDeliveryCost}) = _$_Started;
 
-  @override
   String? get carId;
-  @override
   String? get address;
-  @override
   DateTime? get startDate;
-  @override
   DateTime? get endDate;
-  @override
   double? get latitude;
-  @override
   double? get longitude;
-  @override
   String? get promotionId;
-  @override
   double? get carDeliveryCost;
-  @override
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OrderCreatedCopyWith<$Res> {
+  factory _$$_OrderCreatedCopyWith(
+          _$_OrderCreated value, $Res Function(_$_OrderCreated) then) =
+      __$$_OrderCreatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({OrderCreateModel orderCreateModel});
+}
+
+/// @nodoc
+class __$$_OrderCreatedCopyWithImpl<$Res>
+    extends _$CarBookingConfirmationEventCopyWithImpl<$Res, _$_OrderCreated>
+    implements _$$_OrderCreatedCopyWith<$Res> {
+  __$$_OrderCreatedCopyWithImpl(
+      _$_OrderCreated _value, $Res Function(_$_OrderCreated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderCreateModel = null,
+  }) {
+    return _then(_$_OrderCreated(
+      orderCreateModel: null == orderCreateModel
+          ? _value.orderCreateModel
+          : orderCreateModel // ignore: cast_nullable_to_non_nullable
+              as OrderCreateModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OrderCreated implements _OrderCreated {
+  const _$_OrderCreated({required this.orderCreateModel});
+
+  @override
+  final OrderCreateModel orderCreateModel;
+
+  @override
+  String toString() {
+    return 'CarBookingConfirmationEvent.orderCreated(orderCreateModel: $orderCreateModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OrderCreated &&
+            (identical(other.orderCreateModel, orderCreateModel) ||
+                other.orderCreateModel == orderCreateModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, orderCreateModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OrderCreatedCopyWith<_$_OrderCreated> get copyWith =>
+      __$$_OrderCreatedCopyWithImpl<_$_OrderCreated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? carId,
+            String? address,
+            DateTime? startDate,
+            DateTime? endDate,
+            double? latitude,
+            double? longitude,
+            String? promotionId,
+            double? carDeliveryCost)
+        started,
+    required TResult Function(OrderCreateModel orderCreateModel) orderCreated,
+  }) {
+    return orderCreated(orderCreateModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? carId,
+            String? address,
+            DateTime? startDate,
+            DateTime? endDate,
+            double? latitude,
+            double? longitude,
+            String? promotionId,
+            double? carDeliveryCost)?
+        started,
+    TResult? Function(OrderCreateModel orderCreateModel)? orderCreated,
+  }) {
+    return orderCreated?.call(orderCreateModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? carId,
+            String? address,
+            DateTime? startDate,
+            DateTime? endDate,
+            double? latitude,
+            double? longitude,
+            String? promotionId,
+            double? carDeliveryCost)?
+        started,
+    TResult Function(OrderCreateModel orderCreateModel)? orderCreated,
+    required TResult orElse(),
+  }) {
+    if (orderCreated != null) {
+      return orderCreated(orderCreateModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_OrderCreated value) orderCreated,
+  }) {
+    return orderCreated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_OrderCreated value)? orderCreated,
+  }) {
+    return orderCreated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OrderCreated value)? orderCreated,
+    required TResult orElse(),
+  }) {
+    if (orderCreated != null) {
+      return orderCreated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OrderCreated implements CarBookingConfirmationEvent {
+  const factory _OrderCreated(
+      {required final OrderCreateModel orderCreateModel}) = _$_OrderCreated;
+
+  OrderCreateModel get orderCreateModel;
+  @JsonKey(ignore: true)
+  _$$_OrderCreatedCopyWith<_$_OrderCreated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

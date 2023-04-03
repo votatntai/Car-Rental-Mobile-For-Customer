@@ -2,6 +2,7 @@ import 'package:car_rental_for_customer/commons/constants/networks.dart';
 import 'package:car_rental_for_customer/commons/extensions.dart';
 import 'package:car_rental_for_customer/commons/type.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
+import 'package:car_rental_for_customer/models/enums/order_status.dart';
 import 'package:car_rental_for_customer/models/order.dart';
 import 'package:car_rental_for_customer/models/pagination.dart';
 import 'package:car_rental_for_customer/models/pagination_result.dart';
@@ -74,11 +75,33 @@ class OrderRepository {
     }
   }
 
-  Future<bool> createOrder(OrderCreateModel order) async {
+  Future<String?> createOrder(OrderCreateModel order) async {
     try {
       final result = await dio.post<dynamic>(
         'orders',
         data: order.toJson(),
+      );
+
+      if (result.statusCode == StatusCodes.status201Created) {
+        return result.data['id'] as String;
+      }
+
+      return null;
+    } on DioError catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> updateOrderStatus({
+    required String id,
+    required OrderStatus status,
+  }) async {
+    try {
+      final result = await dio.put<JsonObject>(
+        'orders/$id',
+        data: {
+          'status': status.name,
+        },
       );
 
       if (result.statusCode == StatusCodes.status201Created) {

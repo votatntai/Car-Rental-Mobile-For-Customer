@@ -11,9 +11,12 @@ import 'package:car_rental_for_customer/commons/widgets/container_with_label.dar
 import 'package:car_rental_for_customer/commons/widgets/google_map_widget.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/models/order_detail.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/bloc/car_booking_confirmation_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
+import 'package:car_rental_for_customer/repositories/models/order_create_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -91,6 +94,20 @@ class _CarBookingConfirmationViewState
               children: [
                 carImage(context, successState.car),
                 carTitle(context, successState.car),
+                divider,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s16),
+                  child: ContainerWithLabel(
+                    label: 'Loại thuê xe',
+                    child: Column(
+                      children: [
+                        Text(
+                          successState.car.rentalCarType.getDisplayName(),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -488,13 +505,46 @@ class _CarBookingConfirmationViewState
                             padding: const EdgeInsets.symmetric(vertical: s12),
                           ),
                           onPressed: () {
-                            //TODO: create order;
-                            // context.pushNamed(
-                            //   RouteName.orderInformation,
-                            //   queryParams: {
-                            //     'order-id': successState.car.id,
-                            //   },
-                            // );
+                            context.read<CarBookingConfirmationBloc>().add(
+                                  CarBookingConfirmationEvent.orderCreated(
+                                    orderCreateModel: OrderCreateModel(
+                                      rentalTime: 1,
+                                      promotionId: null,
+                                      isPaid: true,
+                                      unitPrice: successState.car.price,
+                                      deliveryFee: carDeliveryCost,
+                                      deliveryDistance:
+                                          successState.deliveryDistance,
+                                      deposit: deposit,
+                                      amount: totalCost,
+                                      description: textarea.text,
+                                      orderDetails: [
+                                        OrderDetailsCreateModel(
+                                          carId: successState.car.id,
+                                          hasDriver:
+                                              successState.car.rentalCarType ==
+                                                  RentalCarType.carWithDriver,
+                                          deliveryTime: successState.startDate,
+                                          pickUpTime: successState.startDate,
+                                          startTime: successState.startDate,
+                                          endTime: successState.endDate,
+                                          deliveryLocation:
+                                              DeliveryLocationCreateModel(
+                                            longitude: successState.longitude,
+                                            latitude: successState.latitude,
+                                          ),
+                                          pickUpLocation:
+                                              DeliveryLocationCreateModel(
+                                            longitude: successState
+                                                .car.location.longitude,
+                                            latitude: successState
+                                                .car.location.latitude,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
                           },
                           child: const Text(
                             'Đặt xe',

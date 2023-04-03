@@ -13,6 +13,7 @@ import 'package:car_rental_for_customer/commons/widgets/location_text.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
+import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
 import 'package:car_rental_for_customer/pages/order_information/bloc/order_information_bloc.dart';
 import 'package:car_rental_for_customer/pages/order_information/widgets/driver_widget.dart';
@@ -57,102 +58,102 @@ class _OrderInformationViewState extends State<OrderInformationView> {
     ],
   );
 
-  List<Step> steps(OrderStatus orderStatus) {
-    if (orderStatus == OrderStatus.cancelled) {
-      return [
-        Step(
-          state: StepState.error,
-          title: Text(
-            OrderStatus.cancelled.displayName,
-            style: boldTextStyle(
-              color: OrderStatus.cancelled.displayColor,
-              size: 13,
-            ),
-          ),
-          isActive: orderStatus.step >= OrderStatus.cancelled.step,
-          content: const SizedBox(),
-        ),
-      ];
-    }
+  // List<Step> steps(OrderStatus orderStatus) {
+  //   if (orderStatus == OrderStatus.cancelled) {
+  //     return [
+  //       Step(
+  //         state: StepState.error,
+  //         title: Text(
+  //           OrderStatus.cancelled.displayName,
+  //           style: boldTextStyle(
+  //             color: OrderStatus.cancelled.displayColor,
+  //             size: 13,
+  //           ),
+  //         ),
+  //         isActive: orderStatus.step >= OrderStatus.cancelled.step,
+  //         content: const SizedBox(),
+  //       ),
+  //     ];
+  //   }
 
-    return [
-      Step(
-        state: orderStatus == OrderStatus.pending
-            ? StepState.complete
-            : StepState.indexed,
-        title: Text(
-          OrderStatus.pending.displayName,
-          style: boldTextStyle(
-            color: OrderStatus.pending.displayColor,
-            size: 13,
-          ),
-        ),
-        isActive: orderStatus.step >= OrderStatus.pending.step,
-        content: const SizedBox(),
-      ),
-      if (orderStatus == OrderStatus.rejected)
-        Step(
-          state: orderStatus == OrderStatus.rejected
-              ? StepState.error
-              : StepState.indexed,
-          title: Text(
-            OrderStatus.rejected.displayName,
-            style: boldTextStyle(
-              color: OrderStatus.rejected.displayColor,
-              size: 13,
-            ),
-          ),
-          isActive: orderStatus.step >= OrderStatus.rejected.step,
-          content: const SizedBox(),
-        ),
-      if (orderStatus != OrderStatus.rejected)
-        Step(
-          state: orderStatus == OrderStatus.accepted
-              ? StepState.complete
-              : StepState.indexed,
-          title: Text(
-            OrderStatus.accepted.displayName,
-            style: boldTextStyle(
-              color: OrderStatus.accepted.displayColor,
-              size: 13,
-            ),
-          ),
-          isActive: orderStatus.step >= OrderStatus.accepted.step,
-          content: const SizedBox(),
-        ),
-      if (orderStatus != OrderStatus.rejected)
-        Step(
-          state: orderStatus == OrderStatus.started
-              ? StepState.complete
-              : StepState.indexed,
-          title: Text(
-            OrderStatus.started.displayName,
-            style: boldTextStyle(
-              color: OrderStatus.started.displayColor,
-              size: 13,
-            ),
-          ),
-          isActive: orderStatus.step >= OrderStatus.started.step,
-          content: const SizedBox(),
-        ),
-      if (orderStatus != OrderStatus.rejected)
-        Step(
-          state: orderStatus == OrderStatus.finished
-              ? StepState.complete
-              : StepState.indexed,
-          title: Text(
-            OrderStatus.finished.displayName,
-            style: boldTextStyle(
-              color: OrderStatus.finished.displayColor,
-              size: 13,
-            ),
-          ),
-          isActive: orderStatus.step >= OrderStatus.finished.step,
-          content: const SizedBox(),
-        ),
-    ];
-    {}
-  }
+  //   return [
+  //     Step(
+  //       state: orderStatus == OrderStatus.pending
+  //           ? StepState.complete
+  //           : StepState.indexed,
+  //       title: Text(
+  //         OrderStatus.pending.displayName,
+  //         style: boldTextStyle(
+  //           color: OrderStatus.pending.displayColor,
+  //           size: 13,
+  //         ),
+  //       ),
+  //       isActive: orderStatus.step >= OrderStatus.pending.step,
+  //       content: const SizedBox(),
+  //     ),
+  //     if (orderStatus == OrderStatus.rejected)
+  //       Step(
+  //         state: orderStatus == OrderStatus.rejected
+  //             ? StepState.error
+  //             : StepState.indexed,
+  //         title: Text(
+  //           OrderStatus.rejected.displayName,
+  //           style: boldTextStyle(
+  //             color: OrderStatus.rejected.displayColor,
+  //             size: 13,
+  //           ),
+  //         ),
+  //         isActive: orderStatus.step >= OrderStatus.rejected.step,
+  //         content: const SizedBox(),
+  //       ),
+  //     if (orderStatus != OrderStatus.rejected)
+  //       Step(
+  //         state: orderStatus == OrderStatus.accepted
+  //             ? StepState.complete
+  //             : StepState.indexed,
+  //         title: Text(
+  //           OrderStatus.accepted.displayName,
+  //           style: boldTextStyle(
+  //             color: OrderStatus.accepted.displayColor,
+  //             size: 13,
+  //           ),
+  //         ),
+  //         isActive: orderStatus.step >= OrderStatus.accepted.step,
+  //         content: const SizedBox(),
+  //       ),
+  //     if (orderStatus != OrderStatus.rejected)
+  //       Step(
+  //         state: orderStatus == OrderStatus.started
+  //             ? StepState.complete
+  //             : StepState.indexed,
+  //         title: Text(
+  //           OrderStatus.started.displayName,
+  //           style: boldTextStyle(
+  //             color: OrderStatus.started.displayColor,
+  //             size: 13,
+  //           ),
+  //         ),
+  //         isActive: orderStatus.step >= OrderStatus.started.step,
+  //         content: const SizedBox(),
+  //       ),
+  //     if (orderStatus != OrderStatus.rejected)
+  //       Step(
+  //         state: orderStatus == OrderStatus.finished
+  //             ? StepState.complete
+  //             : StepState.indexed,
+  //         title: Text(
+  //           OrderStatus.finished.displayName,
+  //           style: boldTextStyle(
+  //             color: OrderStatus.finished.displayColor,
+  //             size: 13,
+  //           ),
+  //         ),
+  //         isActive: orderStatus.step >= OrderStatus.finished.step,
+  //         content: const SizedBox(),
+  //       ),
+  //   ];
+  //   {}
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -174,22 +175,22 @@ class _OrderInformationViewState extends State<OrderInformationView> {
           );
         }
 
-        // final rentCost = calculateDays(
-        //       successState.order.orderDetails.first.startTime,
-        //       successState.order.orderDetails.first.endTime,
-        //     ) *
-        //     successState.order.unitPrice;
+        final rentCost = calculateDays(
+              successState.order.orderDetails.first.startTime,
+              successState.order.orderDetails.first.endTime,
+            ) *
+            successState.order.unitPrice;
 
         final promotionCost = successState.order.promotion?.discount ?? 0;
 
-        // final carDeliveryCost = successState.order.deliveryFee;
+        final carDeliveryCost = successState.order.deliveryFee;
 
-        // final totalCost = rentCost + carDeliveryCost - promotionCost;
-        // final deposit = successState.order.deposit;
-        // final remaining = totalCost - deposit;
+        final totalCost = rentCost + carDeliveryCost - promotionCost;
+        final deposit = successState.order.deposit;
+        final remaining = totalCost - deposit;
 
-        final remaining =
-            successState.order.amount - successState.order.deposit;
+        // final remaining =
+        //     successState.order.amount - successState.order.deposit;
         return Scaffold(
           appBar: appAppBar(context, titleText: 'Thông tin chuyến'),
           body: SingleChildScrollView(
@@ -199,22 +200,86 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                 carImage(context, successState.order.orderDetails.first.car),
                 carTitle(context, successState.order.orderDetails.first.car),
                 divider,
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: s16),
+                //   child: ContainerWithLabel(
+                //     label: 'Trạng thái chuyến',
+                //     child: Stepper(
+                //       controlsBuilder: (context, details) {
+                //         return Row(
+                //           children: const [
+                //             SizedBox(),
+                //           ],
+                //         );
+                //       },
+                //       steps: steps(successState.order.status),
+                //       physics: const BouncingScrollPhysics(),
+                //       type: StepperType.vertical,
+                //       currentStep: successState.order.status.step,
+                //     ),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
                   child: ContainerWithLabel(
-                    label: 'Trạng thái chuyến',
-                    child: Stepper(
-                      controlsBuilder: (context, details) {
-                        return Row(
-                          children: const [
-                            SizedBox(),
-                          ],
-                        );
-                      },
-                      steps: steps(successState.order.status),
-                      physics: const BouncingScrollPhysics(),
-                      type: StepperType.vertical,
-                      currentStep: successState.order.status.step,
+                    label: 'Trạng thái',
+                    child: Row(
+                      children: [
+                        Text(
+                          successState.order.status.displayName,
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        const Spacer(),
+                        if (successState.order.status == OrderStatus.pending)
+                          ElevatedButton(
+                            onPressed: () {
+                              showConfirmDialogCustom(
+                                context,
+                                onAccept: (c) async {
+                                  context.read<OrderInformationBloc>().add(
+                                        OrderInformationEvent
+                                            .orderStatusChanged(
+                                          orderId: successState.order.id,
+                                          status: OrderStatus.canceled,
+                                        ),
+                                      );
+                                },
+                                dialogType: DialogType.CONFIRMATION,
+                                customCenterWidget: const Center(
+                                  child: Icon(
+                                    Icons.check_circle,
+                                    color: CustomColors.flamingo,
+                                    size: 100,
+                                  ),
+                                ),
+                                primaryColor: CustomColors.flamingo,
+                                title: 'Bạn muốn xác nhận?',
+                                negativeText: 'Hủy',
+                                positiveText: 'Đồng ý',
+                              );
+                            },
+                            child: const Text('Huỷ chuyến'),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+                divider,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s16),
+                  child: ContainerWithLabel(
+                    label: 'Loại thuê xe',
+                    child: Column(
+                      children: [
+                        Text(
+                          successState.order.orderDetails.first.car.driver ==
+                                  null
+                              ? RentalCarType.selfDrivingCar.getDisplayName()
+                              : RentalCarType.carWithDriver.getDisplayName(),
+                        )
+                      ],
                     ),
                   ),
                 ),
@@ -365,49 +430,46 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                     ),
                   ),
                 ),
-                if (successState.order.status != OrderStatus.pending ||
-                    successState.order.status != OrderStatus.rejected ||
-                    successState.order.status != OrderStatus.cancelled)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      divider,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: s16),
-                        child: ContainerWithLabel(
-                          label: 'Thông tin liên hệ',
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Số điện thoại',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: CustomColors.jetBlack,
-                                    ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    divider,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: s16),
+                      child: ContainerWithLabel(
+                        label: 'Thông tin liên hệ',
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  'Số điện thoại',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: CustomColors.jetBlack,
                                   ),
-                                  const Spacer(),
-                                  Text(
-                                    successState.order.orderDetails.first.car
-                                            .carOwner?.id ??
-                                        '',
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
-                                      color: CustomColors.jetBlack,
-                                    ),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  successState.order.orderDetails.first.car
+                                          .carOwner?.id ??
+                                      '',
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: CustomColors.jetBlack,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
                 if (successState.driver != null)
                   Column(
                     children: [
@@ -450,7 +512,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           height: s04,
                         ),
                         Text(
-                          'Phí: ${formatCurrency(successState.order.orderDetails.first.car.additionalCharge.distanceSurcharge ?? 0)}/km vượt qua giới hạn',
+                          'Phí: ${formatCurrency(successState.order.orderDetails.first.car.additionalCharge.distanceSurcharge)}/km vượt qua giới hạn',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
@@ -629,7 +691,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             ),
                             const Spacer(),
                             Text(
-                              formatCurrency(successState.order.amount),
+                              formatCurrency(totalCost),
                               style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
@@ -666,9 +728,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                 ],
                               ),
                               if (successState.order.status !=
-                                      OrderStatus.cancelled &&
-                                  successState.order.status !=
-                                      OrderStatus.rejected)
+                                  OrderStatus.canceled)
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -712,11 +772,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                 ],
                               ),
-                              if (successState.order.status.step > 0 &&
-                                  successState.order.status !=
-                                      OrderStatus.rejected &&
-                                  successState.order.status !=
-                                      OrderStatus.cancelled)
+                              if (successState.order.status == OrderStatus.paid)
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -748,29 +804,6 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                 cancellationPolicy(),
                 const SizedBox(
                   height: s32,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(s08),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: s12),
-                            backgroundColor: CustomColors.tomato,
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'Huỷ chuyến',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
                 const SizedBox(
                   height: s32,
@@ -935,6 +968,9 @@ class _OrderInformationViewState extends State<OrderInformationView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(
+            height: s04,
+          ),
           Row(
             children: [
               Text(
