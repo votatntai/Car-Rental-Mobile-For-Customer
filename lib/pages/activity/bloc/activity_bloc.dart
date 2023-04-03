@@ -32,9 +32,14 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
     );
 
     if (result is ApiSuccess) {
+      List<Order> orders = [
+        ...(result as ApiSuccess<PaginationResult<Order>>).value.data
+      ];
+      orders.sort((a, b) => a.status.index.compareTo(b.status.index));
+
       emit(
         ActivityState.success(
-          orders: (result as ApiSuccess<PaginationResult<Order>>).value.data,
+          orders: orders,
         ),
       );
     } else {

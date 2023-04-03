@@ -772,7 +772,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                 ],
                               ),
-                              if (successState.order.status == OrderStatus.paid)
+                              if (successState.order.isPaid)
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
