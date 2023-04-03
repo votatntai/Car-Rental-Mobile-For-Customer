@@ -14,9 +14,9 @@ class OrderDetail with _$OrderDetail {
     required DateTime startTime,
     required DateTime endTime,
     CarLocation? deliveryLocation,
-    CarLocation? pickupLocation,
+    CarLocation? pickUpLocation,
     required DateTime deliveryTime,
-    required DateTime pickupTime,
+    required DateTime pickUpTime,
     Driver? driver,
   }) = _OrderDetail;
 

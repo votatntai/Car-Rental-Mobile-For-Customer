@@ -81,7 +81,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     int pageKey,
     int totalItems,
   ) {
-    final isLastPage = pageKey + 1 >= totalItems;
+    final isLastPage = pageKey + notifications.length >= totalItems;
 
     final nextPageKey = isLastPage ? null : pageKey + notifications.length;
 

@@ -192,7 +192,7 @@ class CarSearchResultBloc
     int pageKey,
     int totalItems,
   ) {
-    final isLastPage = pageKey + 1 >= totalItems;
+    final isLastPage = pageKey + cars.length >= totalItems;
 
     final nextPageKey = isLastPage ? null : pageKey + cars.length;
 

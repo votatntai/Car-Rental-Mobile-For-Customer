@@ -82,7 +82,7 @@ class TransactionHistoryBloc
     int pageKey,
     int totalItems,
   ) {
-    final isLastPage = pageKey + 1 >= totalItems;
+    final isLastPage = pageKey + transactions.length >= totalItems;
 
     final nextPageKey = isLastPage ? null : pageKey + transactions.length;
 

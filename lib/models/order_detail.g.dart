@@ -16,12 +16,12 @@ _$_OrderDetail _$$_OrderDetailFromJson(Map<String, dynamic> json) =>
           ? null
           : CarLocation.fromJson(
               json['deliveryLocation'] as Map<String, dynamic>),
-      pickupLocation: json['pickupLocation'] == null
+      pickUpLocation: json['pickUpLocation'] == null
           ? null
           : CarLocation.fromJson(
-              json['pickupLocation'] as Map<String, dynamic>),
+              json['pickUpLocation'] as Map<String, dynamic>),
       deliveryTime: DateTime.parse(json['deliveryTime'] as String),
-      pickupTime: DateTime.parse(json['pickupTime'] as String),
+      pickUpTime: DateTime.parse(json['pickUpTime'] as String),
       driver: json['driver'] == null
           ? null
           : Driver.fromJson(json['driver'] as Map<String, dynamic>),
@@ -34,8 +34,8 @@ Map<String, dynamic> _$$_OrderDetailToJson(_$_OrderDetail instance) =>
       'startTime': instance.startTime.toIso8601String(),
       'endTime': instance.endTime.toIso8601String(),
       'deliveryLocation': instance.deliveryLocation,
-      'pickupLocation': instance.pickupLocation,
+      'pickUpLocation': instance.pickUpLocation,
       'deliveryTime': instance.deliveryTime.toIso8601String(),
-      'pickupTime': instance.pickupTime.toIso8601String(),
+      'pickUpTime': instance.pickUpTime.toIso8601String(),
       'driver': instance.driver,
     };

@@ -7,12 +7,12 @@ part of 'order.dart';
 // **************************************************************************
 
 _$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
-      id: json['id'] as int,
+      id: json['id'] as String,
       customer: Customer.fromJson(json['customer'] as Map<String, dynamic>),
       orderDetails: (json['orderDetails'] as List<dynamic>)
           .map((e) => OrderDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
-      rentalTime: DateTime.parse(json['rentalTime'] as String),
+      rentalTime: json['rentalTime'] as int,
       amount: (json['amount'] as num).toDouble(),
       unitPrice: (json['unitPrice'] as num).toDouble(),
       deliveryFee: (json['deliveryFee'] as num).toDouble(),
@@ -21,7 +21,9 @@ _$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
       isPaid: json['isPaid'] as bool,
       status: $enumDecode(_$OrderStatusEnumMap, json['status']),
       description: json['description'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createAt: json['createAt'] == null
+          ? null
+          : DateTime.parse(json['createAt'] as String),
       promotion: json['promotion'] == null
           ? null
           : Promotion.fromJson(json['promotion'] as Map<String, dynamic>),
@@ -31,7 +33,7 @@ Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'id': instance.id,
       'customer': instance.customer,
       'orderDetails': instance.orderDetails,
-      'rentalTime': instance.rentalTime.toIso8601String(),
+      'rentalTime': instance.rentalTime,
       'amount': instance.amount,
       'unitPrice': instance.unitPrice,
       'deliveryFee': instance.deliveryFee,
@@ -40,15 +42,15 @@ Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'isPaid': instance.isPaid,
       'status': _$OrderStatusEnumMap[instance.status]!,
       'description': instance.description,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createAt': instance.createAt?.toIso8601String(),
       'promotion': instance.promotion,
     };
 
 const _$OrderStatusEnumMap = {
-  OrderStatus.pending: 'pending',
-  OrderStatus.accepted: 'accepted',
-  OrderStatus.rejected: 'rejected',
-  OrderStatus.cancelled: 'cancelled',
-  OrderStatus.started: 'started',
-  OrderStatus.finished: 'finished',
+  OrderStatus.pending: 'Pending',
+  OrderStatus.accepted: 'Accepted',
+  OrderStatus.rejected: 'Rejected',
+  OrderStatus.cancelled: 'Cancelled',
+  OrderStatus.started: 'Started',
+  OrderStatus.finished: 'Finished',
 };

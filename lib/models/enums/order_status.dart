@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 enum OrderStatus {
+  @JsonValue('Pending')
   pending,
+  @JsonValue('Accepted')
   accepted,
+  @JsonValue('Rejected')
   rejected,
+  @JsonValue('Cancelled')
   cancelled,
+  @JsonValue('Started')
   started,
+  @JsonValue('Finished')
   finished,
 }
 

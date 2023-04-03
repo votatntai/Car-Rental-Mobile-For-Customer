@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/app/dio_helper.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/user.dart';
 import 'package:car_rental_for_customer/repositories/authentication_repository.dart';
+import 'package:car_rental_for_customer/repositories/fcm_token_repository.dart';
 import 'package:car_rental_for_customer/repositories/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -71,6 +72,9 @@ class AuthenticationBloc
           );
           return;
         }
+
+        await getIt.get<FCMTokenRepository>().addFcmToken();
+
         emit(AuthenticationState(
           status: event.status,
           user: user,

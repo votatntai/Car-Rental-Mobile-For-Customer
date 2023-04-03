@@ -325,12 +325,12 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                 longitude: successState.order.orderDetails.first
                                         .deliveryLocation?.longitude ??
                                     successState.order.orderDetails.first
-                                        .pickupLocation?.longitude ??
+                                        .pickUpLocation?.longitude ??
                                     0,
                                 latitude: successState.order.orderDetails.first
                                         .deliveryLocation?.latitude ??
                                     successState.order.orderDetails.first
-                                        .pickupLocation?.latitude ??
+                                        .pickUpLocation?.latitude ??
                                     0,
                                 style: const TextStyle(
                                   fontSize: 13,
@@ -353,12 +353,12 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                           latitude: successState.order.orderDetails.first
                                   .deliveryLocation?.latitude ??
                               successState.order.orderDetails.first
-                                  .pickupLocation?.latitude ??
+                                  .pickUpLocation?.latitude ??
                               0,
                           longitude: successState.order.orderDetails.first
                                   .deliveryLocation?.longitude ??
                               successState.order.orderDetails.first
-                                  .pickupLocation?.longitude ??
+                                  .pickUpLocation?.longitude ??
                               0,
                         ),
                       ],

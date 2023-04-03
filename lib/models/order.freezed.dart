@@ -20,10 +20,10 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Order {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   Customer get customer => throw _privateConstructorUsedError;
   List<OrderDetail> get orderDetails => throw _privateConstructorUsedError;
-  DateTime get rentalTime => throw _privateConstructorUsedError;
+  int get rentalTime => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   double get unitPrice => throw _privateConstructorUsedError;
   double get deliveryFee => throw _privateConstructorUsedError;
@@ -32,7 +32,7 @@ mixin _$Order {
   bool get isPaid => throw _privateConstructorUsedError;
   OrderStatus get status => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createAt => throw _privateConstructorUsedError;
   Promotion? get promotion => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,10 +46,10 @@ abstract class $OrderCopyWith<$Res> {
       _$OrderCopyWithImpl<$Res, Order>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       Customer customer,
       List<OrderDetail> orderDetails,
-      DateTime rentalTime,
+      int rentalTime,
       double amount,
       double unitPrice,
       double deliveryFee,
@@ -58,7 +58,7 @@ abstract class $OrderCopyWith<$Res> {
       bool isPaid,
       OrderStatus status,
       String? description,
-      DateTime createdAt,
+      DateTime? createAt,
       Promotion? promotion});
 
   $CustomerCopyWith<$Res> get customer;
@@ -90,14 +90,14 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? isPaid = null,
     Object? status = null,
     Object? description = freezed,
-    Object? createdAt = null,
+    Object? createAt = freezed,
     Object? promotion = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       customer: null == customer
           ? _value.customer
           : customer // ignore: cast_nullable_to_non_nullable
@@ -109,7 +109,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       rentalTime: null == rentalTime
           ? _value.rentalTime
           : rentalTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as int,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -142,10 +142,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      createAt: freezed == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       promotion: freezed == promotion
           ? _value.promotion
           : promotion // ignore: cast_nullable_to_non_nullable
@@ -181,10 +181,10 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       Customer customer,
       List<OrderDetail> orderDetails,
-      DateTime rentalTime,
+      int rentalTime,
       double amount,
       double unitPrice,
       double deliveryFee,
@@ -193,7 +193,7 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       bool isPaid,
       OrderStatus status,
       String? description,
-      DateTime createdAt,
+      DateTime? createAt,
       Promotion? promotion});
 
   @override
@@ -223,14 +223,14 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
     Object? isPaid = null,
     Object? status = null,
     Object? description = freezed,
-    Object? createdAt = null,
+    Object? createAt = freezed,
     Object? promotion = freezed,
   }) {
     return _then(_$_Order(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       customer: null == customer
           ? _value.customer
           : customer // ignore: cast_nullable_to_non_nullable
@@ -242,7 +242,7 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
       rentalTime: null == rentalTime
           ? _value.rentalTime
           : rentalTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as int,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -275,10 +275,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      createAt: freezed == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       promotion: freezed == promotion
           ? _value.promotion
           : promotion // ignore: cast_nullable_to_non_nullable
@@ -303,7 +303,7 @@ class _$_Order implements _Order {
       required this.isPaid,
       required this.status,
       this.description,
-      required this.createdAt,
+      this.createAt,
       this.promotion})
       : _orderDetails = orderDetails;
 
@@ -311,7 +311,7 @@ class _$_Order implements _Order {
       _$$_OrderFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final Customer customer;
   final List<OrderDetail> _orderDetails;
@@ -323,7 +323,7 @@ class _$_Order implements _Order {
   }
 
   @override
-  final DateTime rentalTime;
+  final int rentalTime;
   @override
   final double amount;
   @override
@@ -341,13 +341,13 @@ class _$_Order implements _Order {
   @override
   final String? description;
   @override
-  final DateTime createdAt;
+  final DateTime? createAt;
   @override
   final Promotion? promotion;
 
   @override
   String toString() {
-    return 'Order(id: $id, customer: $customer, orderDetails: $orderDetails, rentalTime: $rentalTime, amount: $amount, unitPrice: $unitPrice, deliveryFee: $deliveryFee, deliveryDistance: $deliveryDistance, deposit: $deposit, isPaid: $isPaid, status: $status, description: $description, createdAt: $createdAt, promotion: $promotion)';
+    return 'Order(id: $id, customer: $customer, orderDetails: $orderDetails, rentalTime: $rentalTime, amount: $amount, unitPrice: $unitPrice, deliveryFee: $deliveryFee, deliveryDistance: $deliveryDistance, deposit: $deposit, isPaid: $isPaid, status: $status, description: $description, createAt: $createAt, promotion: $promotion)';
   }
 
   @override
@@ -374,8 +374,8 @@ class _$_Order implements _Order {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.createAt, createAt) ||
+                other.createAt == createAt) &&
             (identical(other.promotion, promotion) ||
                 other.promotion == promotion));
   }
@@ -396,7 +396,7 @@ class _$_Order implements _Order {
       isPaid,
       status,
       description,
-      createdAt,
+      createAt,
       promotion);
 
   @JsonKey(ignore: true)
@@ -415,10 +415,10 @@ class _$_Order implements _Order {
 
 abstract class _Order implements Order {
   const factory _Order(
-      {required final int id,
+      {required final String id,
       required final Customer customer,
       required final List<OrderDetail> orderDetails,
-      required final DateTime rentalTime,
+      required final int rentalTime,
       required final double amount,
       required final double unitPrice,
       required final double deliveryFee,
@@ -427,19 +427,19 @@ abstract class _Order implements Order {
       required final bool isPaid,
       required final OrderStatus status,
       final String? description,
-      required final DateTime createdAt,
+      final DateTime? createAt,
       final Promotion? promotion}) = _$_Order;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   Customer get customer;
   @override
   List<OrderDetail> get orderDetails;
   @override
-  DateTime get rentalTime;
+  int get rentalTime;
   @override
   double get amount;
   @override
@@ -457,7 +457,7 @@ abstract class _Order implements Order {
   @override
   String? get description;
   @override
-  DateTime get createdAt;
+  DateTime? get createAt;
   @override
   Promotion? get promotion;
   @override

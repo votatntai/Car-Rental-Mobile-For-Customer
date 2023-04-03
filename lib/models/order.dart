@@ -10,10 +10,10 @@ part 'order.g.dart';
 @freezed
 class Order with _$Order {
   const factory Order({
-    required int id,
+    required String id,
     required Customer customer,
     required List<OrderDetail> orderDetails,
-    required DateTime rentalTime,
+    required int rentalTime,
     required double amount,
     required double unitPrice,
     required double deliveryFee,
@@ -22,7 +22,7 @@ class Order with _$Order {
     required bool isPaid,
     required OrderStatus status,
     String? description,
-    required DateTime createdAt,
+    DateTime? createAt,
     Promotion? promotion,
   }) = _Order;
 
