@@ -115,7 +115,7 @@ class CarBookingConfirmationBloc
       return;
     }
 
-    getIt.get<AppRoute>().router.pushNamed(
+    getIt.get<AppRoute>().router.goNamed(
       RouteName.orderInformation,
       queryParams: {
         'order-id': orderId,

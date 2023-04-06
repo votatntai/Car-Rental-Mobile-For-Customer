@@ -14,6 +14,7 @@ import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/order_status.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/models/order.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/widgets/table_item.dart';
 import 'package:car_rental_for_customer/pages/order_information/bloc/order_information_bloc.dart';
 import 'package:car_rental_for_customer/pages/order_information/widgets/driver_widget.dart';
@@ -34,12 +35,12 @@ class OrderInformationView extends StatefulWidget {
 
 class _OrderInformationViewState extends State<OrderInformationView> {
   PageController pageController = PageController(viewportFraction: 1);
-  TextEditingController textarea = TextEditingController();
+  // TextEditingController textarea = TextEditingController();
 
   @override
   void dispose() {
     pageController.dispose();
-    textarea.dispose();
+    // textarea.dispose();
     super.dispose();
   }
 
@@ -231,37 +232,61 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             fontSize: 16,
                           ),
                         ),
-                        const Spacer(),
-                        if (successState.order.status == OrderStatus.pending)
-                          ElevatedButton(
-                            onPressed: () {
-                              showConfirmDialogCustom(
-                                context,
-                                onAccept: (c) async {
-                                  context.read<OrderInformationBloc>().add(
-                                        OrderInformationEvent
-                                            .orderStatusChanged(
-                                          orderId: successState.order.id,
-                                          status: OrderStatus.canceled,
-                                        ),
-                                      );
-                                },
-                                dialogType: DialogType.CONFIRMATION,
-                                customCenterWidget: const Center(
-                                  child: Icon(
-                                    Icons.check_circle,
-                                    color: CustomColors.flamingo,
-                                    size: 100,
+                        const SizedBox(
+                          width: s32,
+                        ),
+
+                        if (successState.order.status == OrderStatus.canceled &&
+                            successState.order.description != null &&
+                            successState.order.description!.isNotEmpty) ...[
+                          const SizedBox(
+                            width: s32,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Lý do: ${successState.order.description!}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
                                   ),
                                 ),
-                                primaryColor: CustomColors.flamingo,
-                                title: 'Bạn muốn xác nhận?',
-                                negativeText: 'Hủy',
-                                positiveText: 'Đồng ý',
-                              );
-                            },
-                            child: const Text('Huỷ chuyến'),
-                          ),
+                              ],
+                            ),
+                          )
+                        ],
+
+                        // if (successState.order.status == OrderStatus.pending)
+                        //   ElevatedButton(
+                        //     onPressed: () {
+                        //       showConfirmDialogCustom(
+                        //         context,
+                        //         onAccept: (c) async {
+                        //           context.read<OrderInformationBloc>().add(
+                        //                 OrderInformationEvent
+                        //                     .orderStatusChanged(
+                        //                   orderId: successState.order.id,
+                        //                   status: OrderStatus.canceled,
+                        //                 ),
+                        //               );
+                        //         },
+                        //         dialogType: DialogType.CONFIRMATION,
+                        //         customCenterWidget: const Center(
+                        //           child: Icon(
+                        //             Icons.check_circle,
+                        //             color: CustomColors.flamingo,
+                        //             size: 100,
+                        //           ),
+                        //         ),
+                        //         primaryColor: CustomColors.flamingo,
+                        //         title: 'Bạn muốn xác nhận?',
+                        //         negativeText: 'Hủy',
+                        //         positiveText: 'Đồng ý',
+                        //       );
+                        //     },
+                        //     child: const Text('Huỷ chuyến'),
+                        //   ),
                       ],
                     ),
                   ),
@@ -454,7 +479,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                 const Spacer(),
                                 Text(
                                   successState.order.orderDetails.first.car
-                                          .carOwner?.id ??
+                                          .carOwner?.phone ??
                                       '',
                                   style: const TextStyle(
                                     fontSize: 13,
@@ -588,22 +613,22 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                   ),
                 ),
                 divider,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: s16),
-                  child: ContainerWithLabel(
-                    label: 'Lời nhắn đến chủ xe',
-                    child: TextField(
-                      controller: textarea,
-                      keyboardType: TextInputType.multiline,
-                      readOnly: true,
-                      maxLines: 4,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ),
-                divider,
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: s16),
+                //   child: ContainerWithLabel(
+                //     label: 'Lời nhắn đến chủ xe',
+                //     child: TextField(
+                //       controller: textarea,
+                //       keyboardType: TextInputType.multiline,
+                //       readOnly: true,
+                //       maxLines: 4,
+                //       decoration: const InputDecoration(
+                //         border: OutlineInputBorder(),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
                   child: ContainerWithLabel(

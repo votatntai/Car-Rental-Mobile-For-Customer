@@ -34,14 +34,14 @@ class ActivityView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Đang hoạt động',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: s08),
+                // const Text(
+                //   'Đang hoạt động',
+                //   style: TextStyle(
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+                // const SizedBox(height: s08),
                 Expanded(
                   child: ListView.builder(
                     itemCount: successState.orders.length,
@@ -49,7 +49,7 @@ class ActivityView extends StatelessWidget {
                       return OrderItem(
                         order: successState.orders[index],
                         onTap: (order) {
-                          context.pushNamed(
+                          context.goNamed(
                             RouteName.orderInformation,
                             queryParams: {
                               'order-id': order.id,

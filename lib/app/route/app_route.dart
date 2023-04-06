@@ -61,7 +61,7 @@ class AppRoute {
             name: RouteName.home,
             pageBuilder: (context, state) => FadeTransitionPage(
               key: _shellNavigationKey,
-              child: const HomePage(),
+              child: HomePage(),
             ),
             routes: [
               GoRoute(
@@ -161,14 +161,14 @@ class AppRoute {
               name: RouteName.wallet,
               pageBuilder: (context, state) => FadeTransitionPage(
                     key: _shellNavigationKey,
-                    child: const WalletPage(),
+                    child: WalletPage(),
                   ),
               routes: [
                 GoRoute(
                   path: 'transaction-history',
                   name: RouteName.transactionHistory,
                   builder: (context, state) {
-                    return const TransactionHistoryPage();
+                    return TransactionHistoryPage();
                   },
                 ),
                 GoRoute(
@@ -187,17 +187,30 @@ class AppRoute {
             name: RouteName.notification,
             pageBuilder: (context, state) => FadeTransitionPage(
               key: _shellNavigationKey,
-              child: const NotificationPage(),
+              child: NotificationPage(),
             ),
           ),
           GoRoute(
-            path: '/activity',
-            name: RouteName.activity,
-            pageBuilder: (context, state) => FadeTransitionPage(
-              key: _shellNavigationKey,
-              child: const ActivityPage(),
-            ),
-          ),
+              path: '/activity',
+              name: RouteName.activity,
+              pageBuilder: (context, state) => FadeTransitionPage(
+                    key: _shellNavigationKey,
+                    child: ActivityPage(),
+                  ),
+              routes: [
+                GoRoute(
+                  path: 'order-information',
+                  name: RouteName.orderInformation,
+                  parentNavigatorKey: rootNavigatorKey,
+                  builder: (context, state) {
+                    final orderId = state.queryParams['order-id'];
+
+                    return OrderInformationPage(
+                      orderId: orderId,
+                    );
+                  },
+                ),
+              ]),
         ],
       ),
       GoRoute(
@@ -277,18 +290,6 @@ class AppRoute {
             longitude: longitude,
             promotionId: promotionId,
             carDeliveryCost: carDeliveryCost,
-          );
-        },
-      ),
-      GoRoute(
-        path: '/order-information',
-        name: RouteName.orderInformation,
-        parentNavigatorKey: rootNavigatorKey,
-        builder: (context, state) {
-          final orderId = state.queryParams['order-id'];
-
-          return OrderInformationPage(
-            orderId: orderId,
           );
         },
       ),

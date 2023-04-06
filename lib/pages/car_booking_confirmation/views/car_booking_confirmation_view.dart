@@ -35,12 +35,12 @@ class CarBookingConfirmationView extends StatefulWidget {
 class _CarBookingConfirmationViewState
     extends State<CarBookingConfirmationView> {
   PageController pageController = PageController(viewportFraction: 1);
-  TextEditingController textarea = TextEditingController();
+  // TextEditingController textarea = TextEditingController();
 
   @override
   void dispose() {
     pageController.dispose();
-    textarea.dispose();
+    // textarea.dispose();
     super.dispose();
   }
 
@@ -323,21 +323,21 @@ class _CarBookingConfirmationViewState
                     ),
                   ),
                 divider,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: s16),
-                  child: ContainerWithLabel(
-                    label: 'Lời nhắn đến chủ xe',
-                    child: TextField(
-                      controller: textarea,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 4,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ),
-                divider,
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: s16),
+                //   child: ContainerWithLabel(
+                //     label: 'Lời nhắn đến chủ xe',
+                //     child: TextField(
+                //       controller: textarea,
+                //       keyboardType: TextInputType.multiline,
+                //       maxLines: 4,
+                //       decoration: const InputDecoration(
+                //         border: OutlineInputBorder(),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
                   child: ContainerWithLabel(
@@ -517,7 +517,8 @@ class _CarBookingConfirmationViewState
                                           successState.deliveryDistance,
                                       deposit: deposit,
                                       amount: totalCost,
-                                      description: textarea.text,
+                                      // description: textarea.text,
+                                      description: null,
                                       orderDetails: [
                                         OrderDetailsCreateModel(
                                           carId: successState.car.id,
