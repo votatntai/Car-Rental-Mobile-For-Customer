@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 enum OrderStatus {
-  @JsonValue('Canceled')
-  canceled,
   @JsonValue('Pending')
   pending,
   @JsonValue('ManagerConfirmed')
@@ -16,14 +14,16 @@ enum OrderStatus {
   arrivedAtPickUpPoint,
   @JsonValue('ReceivedGuests')
   receivedGuests,
-  @JsonValue('ReceivedTheCar')
+  @JsonValue('Ongoing')
   ongoing,
   @JsonValue('Paid')
   paid,
   @JsonValue('ReturnedTheCar')
   returnedTheCar,
   @JsonValue('Finished')
-  finished
+  finished,
+  @JsonValue('Canceled')
+  canceled,
 }
 
 extension OrderStatusX on OrderStatus {
