@@ -28,7 +28,7 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
 
     final result = await orderRepository.myOrders(
       pageNumber: 1,
-      pageSize: 10,
+      pageSize: 1000,
     );
 
     if (result is ApiSuccess) {
