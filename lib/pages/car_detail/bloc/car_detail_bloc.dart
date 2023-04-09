@@ -8,6 +8,7 @@ import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/location.dart';
 import 'package:car_rental_for_customer/models/place.dart';
 import 'package:car_rental_for_customer/models/promotion.dart';
+import 'package:car_rental_for_customer/models/user.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
@@ -64,9 +65,10 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
     double latitude = event.latitude ?? 0.0;
     double longitude = event.longitude ?? 0.0;
 
+    final user = await userRepository.getProfile();
+
     // get from my address
     if (address.isEmpty) {
-      final user = await userRepository.getProfile();
       address = user?.address ?? '';
 
       if (user != null) {
@@ -134,6 +136,7 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
         latitude,
         longitude,
       ),
+      user: user,
     ));
   }
 
