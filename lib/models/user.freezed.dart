@@ -31,7 +31,7 @@ mixin _$User {
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   bool get isLicenseValid => throw _privateConstructorUsedError;
-  List<String>? get licenses => throw _privateConstructorUsedError;
+  List<ImageModel>? get licenses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $UserCopyWith<$Res> {
       String? avatarUrl,
       String? address,
       bool isLicenseValid,
-      List<String>? licenses});
+      List<ImageModel>? licenses});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       licenses: freezed == licenses
           ? _value.licenses
           : licenses // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ImageModel>?,
     ) as $Val);
   }
 }
@@ -141,7 +141,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? avatarUrl,
       String? address,
       bool isLicenseValid,
-      List<String>? licenses});
+      List<ImageModel>? licenses});
 }
 
 /// @nodoc
@@ -204,7 +204,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
       licenses: freezed == licenses
           ? _value._licenses
           : licenses // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ImageModel>?,
     ));
   }
 }
@@ -222,7 +222,7 @@ class _$_User implements _User {
       this.avatarUrl,
       this.address,
       this.isLicenseValid = false,
-      final List<String>? licenses})
+      final List<ImageModel>? licenses})
       : _licenses = licenses;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -248,9 +248,9 @@ class _$_User implements _User {
   @override
   @JsonKey()
   final bool isLicenseValid;
-  final List<String>? _licenses;
+  final List<ImageModel>? _licenses;
   @override
-  List<String>? get licenses {
+  List<ImageModel>? get licenses {
     final value = _licenses;
     if (value == null) return null;
     if (_licenses is EqualUnmodifiableListView) return _licenses;
@@ -324,7 +324,7 @@ abstract class _User implements User {
       final String? avatarUrl,
       final String? address,
       final bool isLicenseValid,
-      final List<String>? licenses}) = _$_User;
+      final List<ImageModel>? licenses}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -348,7 +348,7 @@ abstract class _User implements User {
   @override
   bool get isLicenseValid;
   @override
-  List<String>? get licenses;
+  List<ImageModel>? get licenses;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

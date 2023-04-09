@@ -17,7 +17,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       address: json['address'] as String?,
       isLicenseValid: json['isLicenseValid'] as bool? ?? false,
       licenses: (json['licenses'] as List<dynamic>?)
-          ?.map((e) => e as String)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

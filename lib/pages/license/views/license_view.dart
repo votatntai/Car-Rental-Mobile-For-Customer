@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
+import 'package:car_rental_for_customer/models/image.dart';
 import 'package:car_rental_for_customer/pages/license/bloc/license_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +49,10 @@ class _LicenseViewState extends State<LicenseView> {
                               images: _images,
                             ),
                           );
+
+                      setState(() {
+                        _images = [];
+                      });
                     },
                     child: const Text(
                       'Cập nhật',
@@ -90,11 +95,12 @@ class _LicenseViewState extends State<LicenseView> {
                                     ),
                                   )
                               else
-                                for (final image in user.licenses ?? <String>[])
+                                for (final license
+                                    in user.licenses ?? <ImageModel>[])
                                   Container(
                                     margin: const EdgeInsets.all(8.0),
                                     child: CachedNetworkImage(
-                                      imageUrl: image,
+                                      imageUrl: license.url,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -144,11 +150,12 @@ class _LicenseViewState extends State<LicenseView> {
                         child: GridView.count(
                           crossAxisCount: 3,
                           children: [
-                            for (final image in user.licenses ?? <String>[])
+                            for (final license
+                                in user.licenses ?? <ImageModel>[])
                               Container(
                                 margin: const EdgeInsets.all(8.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: image,
+                                  imageUrl: license.url,
                                   fit: BoxFit.cover,
                                 ),
                               ),

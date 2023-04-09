@@ -1,4 +1,5 @@
 import 'package:car_rental_for_customer/models/enums/gender.dart';
+import 'package:car_rental_for_customer/models/image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:car_rental_for_customer/models/converters/gender_from_json.dart';
 
@@ -18,7 +19,7 @@ class Customer with _$Customer {
     String? avatarUrl,
     String? address,
     @Default(false) bool isLicenseValid,
-    List<String>? licenses,
+    List<ImageModel>? licenses,
   }) = _Customer;
 
   factory Customer.fromJson(Map<String, dynamic> json) =>

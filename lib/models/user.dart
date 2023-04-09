@@ -1,4 +1,5 @@
 import 'package:car_rental_for_customer/models/enums/gender.dart';
+import 'package:car_rental_for_customer/models/image.dart';
 import 'package:car_rental_for_customer/models/wallet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,7 +21,7 @@ class User with _$User {
     String? avatarUrl,
     String? address,
     @Default(false) bool isLicenseValid,
-    List<String>? licenses,
+    List<ImageModel>? licenses,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

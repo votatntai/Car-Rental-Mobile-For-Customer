@@ -55,7 +55,6 @@ class UserRepository {
   }
 
   Future<ApiResponse<String?>> uploadLicense({
-    required String id,
     required List<XFile> images,
   }) async {
     try {
@@ -66,22 +65,22 @@ class UserRepository {
       }
 
       final formData = FormData.fromMap({
-        'licenses': licenses,
+        'files': licenses,
       });
 
-      final result = await dio.put<JsonObject>(
-        'customers/$id',
+      final result = await dio.put<dynamic>(
+        'customers/licenses',
         data: formData,
         options: Options(
           contentType: Headers.multipartFormDataContentType,
         ),
       );
 
-      if (result.data != null) {
+      if (result.statusCode == StatusCodes.status200OK) {
         return const ApiResponse.success(null);
       }
 
-      return const ApiResponse.error(error: 'unknown error');
+      return const ApiResponse.error(error: 'Lỗi không xác định');
     } on DioError catch (e) {
       return e.getErrorMessage();
     }

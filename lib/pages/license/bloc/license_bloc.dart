@@ -21,7 +21,6 @@ class LicenseBloc extends Bloc<LicenseEvent, LicenseState> {
     on<_Started>(_onStarted);
     on<_LicenseUpdated>(_onLicenseUpdated);
   }
-
   User? _user;
   final UserRepository userRepository;
 
@@ -34,7 +33,6 @@ class LicenseBloc extends Bloc<LicenseEvent, LicenseState> {
     final user = await userRepository.getProfile();
 
     if (user != null) {
-      _user = user;
       emit(LicenseState.success(user: user));
     } else {
       emit(const LicenseState.failure(message: 'Lỗi không xác định'));
@@ -48,7 +46,6 @@ class LicenseBloc extends Bloc<LicenseEvent, LicenseState> {
     LoadingDialogService.load();
 
     final result = await userRepository.uploadLicense(
-      id: _user!.id,
       images: event.images,
     );
 
