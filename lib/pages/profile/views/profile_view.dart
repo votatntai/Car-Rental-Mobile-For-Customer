@@ -1,4 +1,5 @@
 import 'package:car_rental_for_customer/app/route/route_name.dart';
+import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/di.dart';
@@ -43,7 +44,7 @@ class _ProfileViewState extends State<ProfileView> {
                 Stack(
                   children: [
                     Image.asset(
-                      'assets/userImage.jpg',
+                      Images.userImage,
                       height: 100,
                       width: 100,
                       fit: BoxFit.cover,

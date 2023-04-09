@@ -81,9 +81,15 @@ class _HomeViewState extends State<HomeView> {
             leading: GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: s08, right: s08, bottom: s08, left: s16),
-                child: Image.asset('assets/userImage.jpg', fit: BoxFit.cover)
-                    .cornerRadiusWithClipRRect(60),
+                  top: s08,
+                  right: s08,
+                  bottom: s08,
+                  left: s16,
+                ),
+                child: Image.asset(
+                  Images.userImage,
+                  fit: BoxFit.cover,
+                ).cornerRadiusWithClipRRect(60),
               ),
               onTap: () {
                 context.goNamed(RouteName.profile);

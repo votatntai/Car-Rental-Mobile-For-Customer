@@ -1,4 +1,5 @@
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
+import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/driver.dart';
@@ -40,7 +41,7 @@ class DriverWidget extends StatelessWidget {
           ),
           const Spacer(),
           Image.asset(
-            'assets/userImage.jpg',
+            Images.userImage,
             height: 60,
             width: 60,
             fit: BoxFit.cover,

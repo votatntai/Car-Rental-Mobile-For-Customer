@@ -1,4 +1,5 @@
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
+import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
@@ -109,13 +110,13 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                   //   fit: BoxFit.cover,
                                   // ).cornerRadiusWithClipRRect(60)
                                   //     : Image.asset(
-                                  //   "assets/userImage.jpg",
+                                  //   Images.userImage,
                                   //   fit: BoxFit.cover,
                                   //   height: 100,
                                   //   width: 100,
                                   // ).cornerRadiusWithClipRRect(60),
                                   child: Image.asset(
-                                    'assets/userImage.jpg',
+                                    Images.userImage,
                                     fit: BoxFit.cover,
                                     height: 100,
                                     width: 100,

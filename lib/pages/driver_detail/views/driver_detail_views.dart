@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
+import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
@@ -50,7 +51,7 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                       ),
                       child: successState.driver.avatarUrl == null
                           ? Image.asset(
-                              'assets/userImage.jpg',
+                              Images.userImage,
                               fit: BoxFit.cover,
                               height: 80,
                               width: 80,
