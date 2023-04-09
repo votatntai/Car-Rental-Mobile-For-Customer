@@ -235,7 +235,6 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                         const SizedBox(
                           width: s32,
                         ),
-
                         if (successState.order.status == OrderStatus.canceled &&
                             successState.order.description != null &&
                             successState.order.description!.isNotEmpty) ...[
@@ -256,37 +255,37 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             ),
                           )
                         ],
-
-                        // if (successState.order.status == OrderStatus.pending)
-                        //   ElevatedButton(
-                        //     onPressed: () {
-                        //       showConfirmDialogCustom(
-                        //         context,
-                        //         onAccept: (c) async {
-                        //           context.read<OrderInformationBloc>().add(
-                        //                 OrderInformationEvent
-                        //                     .orderStatusChanged(
-                        //                   orderId: successState.order.id,
-                        //                   status: OrderStatus.canceled,
-                        //                 ),
-                        //               );
-                        //         },
-                        //         dialogType: DialogType.CONFIRMATION,
-                        //         customCenterWidget: const Center(
-                        //           child: Icon(
-                        //             Icons.check_circle,
-                        //             color: CustomColors.flamingo,
-                        //             size: 100,
-                        //           ),
-                        //         ),
-                        //         primaryColor: CustomColors.flamingo,
-                        //         title: 'Bạn muốn xác nhận?',
-                        //         negativeText: 'Hủy',
-                        //         positiveText: 'Đồng ý',
-                        //       );
-                        //     },
-                        //     child: const Text('Huỷ chuyến'),
-                        //   ),
+                        if (successState.order.status ==
+                            OrderStatus.carOwnerApproved)
+                          ElevatedButton(
+                            onPressed: () {
+                              showConfirmDialogCustom(
+                                context,
+                                onAccept: (c) async {
+                                  context.read<OrderInformationBloc>().add(
+                                        OrderInformationEvent
+                                            .orderStatusChanged(
+                                          orderId: successState.order.id,
+                                          status: OrderStatus.paid,
+                                        ),
+                                      );
+                                },
+                                dialogType: DialogType.CONFIRMATION,
+                                customCenterWidget: const Center(
+                                  child: Icon(
+                                    Icons.check_circle,
+                                    color: CustomColors.flamingo,
+                                    size: 100,
+                                  ),
+                                ),
+                                primaryColor: CustomColors.flamingo,
+                                title: 'Bạn muốn thanh toán cho đơn hàng?',
+                                negativeText: 'Hủy',
+                                positiveText: 'Đồng ý',
+                              );
+                            },
+                            child: const Text('Thanh toán'),
+                          ),
                       ],
                     ),
                   ),
