@@ -76,8 +76,15 @@ class OrderInformationBloc
 
     LoadingDialogService.dispose();
 
-    if (orderResult == false) {
+    if (orderResult == false && event.status != OrderStatus.paid) {
       showMessageDialog(title: 'Lỗi', message: 'Cập nhật trạng thái thất bại');
+    }
+
+    if (orderResult == false && event.status == OrderStatus.paid) {
+      showMessageDialog(
+        title: 'Lỗi',
+        message: 'Bạn không đủ tiền để thanh toán',
+      );
     }
 
     add(_Started(orderId: event.orderId));

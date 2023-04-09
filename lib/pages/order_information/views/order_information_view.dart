@@ -186,7 +186,8 @@ class _OrderInformationViewState extends State<OrderInformationView> {
 
         final carDeliveryCost = successState.order.deliveryFee;
 
-        final totalCost = rentCost + carDeliveryCost - promotionCost;
+        // final totalCost = rentCost + carDeliveryCost - promotionCost;
+        final totalCost = successState.order.amount;
         final deposit = successState.order.deposit;
         final remaining = totalCost - deposit;
 
@@ -257,34 +258,44 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                         ],
                         if (successState.order.status ==
                             OrderStatus.carOwnerApproved)
-                          ElevatedButton(
-                            onPressed: () {
-                              showConfirmDialogCustom(
-                                context,
-                                onAccept: (c) async {
-                                  context.read<OrderInformationBloc>().add(
-                                        OrderInformationEvent
-                                            .orderStatusChanged(
-                                          orderId: successState.order.id,
-                                          status: OrderStatus.paid,
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    showConfirmDialogCustom(
+                                      context,
+                                      onAccept: (c) async {
+                                        context
+                                            .read<OrderInformationBloc>()
+                                            .add(
+                                              OrderInformationEvent
+                                                  .orderStatusChanged(
+                                                orderId: successState.order.id,
+                                                status: OrderStatus.paid,
+                                              ),
+                                            );
+                                      },
+                                      dialogType: DialogType.CONFIRMATION,
+                                      customCenterWidget: const Center(
+                                        child: Icon(
+                                          Icons.check_circle,
+                                          color: CustomColors.flamingo,
+                                          size: 100,
                                         ),
-                                      );
-                                },
-                                dialogType: DialogType.CONFIRMATION,
-                                customCenterWidget: const Center(
-                                  child: Icon(
-                                    Icons.check_circle,
-                                    color: CustomColors.flamingo,
-                                    size: 100,
-                                  ),
+                                      ),
+                                      primaryColor: CustomColors.flamingo,
+                                      title:
+                                          'Bạn muốn thanh toán cho đơn hàng?',
+                                      negativeText: 'Hủy',
+                                      positiveText: 'Đồng ý',
+                                    );
+                                  },
+                                  child: const Text('Thanh toán'),
                                 ),
-                                primaryColor: CustomColors.flamingo,
-                                title: 'Bạn muốn thanh toán cho đơn hàng?',
-                                negativeText: 'Hủy',
-                                positiveText: 'Đồng ý',
-                              );
-                            },
-                            child: const Text('Thanh toán'),
+                              ],
+                            ),
                           ),
                       ],
                     ),
@@ -796,7 +807,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                                   ),
                                 ],
                               ),
-                              if (successState.order.isPaid)
+                              if (successState.order.status == OrderStatus.paid)
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -1009,7 +1020,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
   }
 
   Widget carImage(BuildContext context, Car car) {
-    if (car.images.isEmpty) {
+    if (car.images == null || car.images!.isEmpty) {
       return Image.asset(
         Images.carExample,
         width: double.infinity,
@@ -1024,13 +1035,13 @@ class _OrderInformationViewState extends State<OrderInformationView> {
           height: MediaQuery.of(context).size.width * 0.65,
           child: PageView.builder(
             controller: pageController,
-            itemCount: car.images.length,
+            itemCount: car.images!.length,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.all(s08),
               alignment: Alignment.center,
               child: CachedNetworkImage(
                   width: double.infinity,
-                  imageUrl: car.images[index].url,
+                  imageUrl: car.images![index].url,
                   fit: BoxFit.fill,
                   errorWidget: (context, url, error) {
                     return const Icon(Icons.error);
@@ -1045,7 +1056,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
             alignment: Alignment.bottomCenter,
             child: SmoothPageIndicator(
               controller: pageController,
-              count: car.images.length,
+              count: car.images!.length,
               effect: CustomizableEffect(
                 spacing: 3,
                 activeDotDecoration: DotDecoration(

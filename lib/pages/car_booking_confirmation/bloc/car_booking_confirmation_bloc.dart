@@ -111,7 +111,7 @@ class CarBookingConfirmationBloc
 
     LoadingDialogService.dispose();
     if (orderId == null) {
-      showMessageDialog(title: 'Lỗi', message: 'Đặt xe không thành công');
+      showMessageDialog(title: 'Lỗi', message: 'Bạn không đủ tiền để đặt xe');
       return;
     }
 
