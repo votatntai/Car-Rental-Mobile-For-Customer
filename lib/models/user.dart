@@ -19,6 +19,8 @@ class User with _$User {
     String? bankName,
     String? avatarUrl,
     String? address,
+    @Default(false) bool isLicenseValid,
+    List<String>? licenses,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

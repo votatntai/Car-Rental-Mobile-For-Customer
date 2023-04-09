@@ -30,6 +30,8 @@ mixin _$User {
   String? get bankName => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
+  bool get isLicenseValid => throw _privateConstructorUsedError;
+  List<String>? get licenses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +51,9 @@ abstract class $UserCopyWith<$Res> {
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
-      String? address});
+      String? address,
+      bool isLicenseValid,
+      List<String>? licenses});
 }
 
 /// @nodoc
@@ -73,6 +77,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? bankName = freezed,
     Object? avatarUrl = freezed,
     Object? address = freezed,
+    Object? isLicenseValid = null,
+    Object? licenses = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,6 +113,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLicenseValid: null == isLicenseValid
+          ? _value.isLicenseValid
+          : isLicenseValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      licenses: freezed == licenses
+          ? _value.licenses
+          : licenses // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -125,7 +139,9 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? bankAccountNumber,
       String? bankName,
       String? avatarUrl,
-      String? address});
+      String? address,
+      bool isLicenseValid,
+      List<String>? licenses});
 }
 
 /// @nodoc
@@ -145,6 +161,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? bankName = freezed,
     Object? avatarUrl = freezed,
     Object? address = freezed,
+    Object? isLicenseValid = null,
+    Object? licenses = freezed,
   }) {
     return _then(_$_User(
       id: null == id
@@ -179,6 +197,14 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLicenseValid: null == isLicenseValid
+          ? _value.isLicenseValid
+          : isLicenseValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      licenses: freezed == licenses
+          ? _value._licenses
+          : licenses // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -194,7 +220,10 @@ class _$_User implements _User {
       this.bankAccountNumber,
       this.bankName,
       this.avatarUrl,
-      this.address});
+      this.address,
+      this.isLicenseValid = false,
+      final List<String>? licenses})
+      : _licenses = licenses;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -216,10 +245,22 @@ class _$_User implements _User {
   final String? avatarUrl;
   @override
   final String? address;
+  @override
+  @JsonKey()
+  final bool isLicenseValid;
+  final List<String>? _licenses;
+  @override
+  List<String>? get licenses {
+    final value = _licenses;
+    if (value == null) return null;
+    if (_licenses is EqualUnmodifiableListView) return _licenses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, phone: $phone, gender: $gender, bankAccountNumber: $bankAccountNumber, bankName: $bankName, avatarUrl: $avatarUrl, address: $address)';
+    return 'User(id: $id, name: $name, phone: $phone, gender: $gender, bankAccountNumber: $bankAccountNumber, bankName: $bankName, avatarUrl: $avatarUrl, address: $address, isLicenseValid: $isLicenseValid, licenses: $licenses)';
   }
 
   @override
@@ -237,13 +278,26 @@ class _$_User implements _User {
                 other.bankName == bankName) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.isLicenseValid, isLicenseValid) ||
+                other.isLicenseValid == isLicenseValid) &&
+            const DeepCollectionEquality().equals(other._licenses, _licenses));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phone, gender,
-      bankAccountNumber, bankName, avatarUrl, address);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      phone,
+      gender,
+      bankAccountNumber,
+      bankName,
+      avatarUrl,
+      address,
+      isLicenseValid,
+      const DeepCollectionEquality().hash(_licenses));
 
   @JsonKey(ignore: true)
   @override
@@ -268,7 +322,9 @@ abstract class _User implements User {
       final String? bankAccountNumber,
       final String? bankName,
       final String? avatarUrl,
-      final String? address}) = _$_User;
+      final String? address,
+      final bool isLicenseValid,
+      final List<String>? licenses}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -289,6 +345,10 @@ abstract class _User implements User {
   String? get avatarUrl;
   @override
   String? get address;
+  @override
+  bool get isLicenseValid;
+  @override
+  List<String>? get licenses;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

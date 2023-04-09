@@ -15,6 +15,10 @@ _$_Customer _$$_CustomerFromJson(Map<String, dynamic> json) => _$_Customer(
       bankName: json['bankName'] as String?,
       avatarUrl: json['avatarUrl'] as String?,
       address: json['address'] as String?,
+      isLicenseValid: json['isLicenseValid'] as bool? ?? false,
+      licenses: (json['licenses'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_CustomerToJson(_$_Customer instance) =>
@@ -27,6 +31,8 @@ Map<String, dynamic> _$$_CustomerToJson(_$_Customer instance) =>
       'bankName': instance.bankName,
       'avatarUrl': instance.avatarUrl,
       'address': instance.address,
+      'isLicenseValid': instance.isLicenseValid,
+      'licenses': instance.licenses,
     };
 
 const _$GenderEnumMap = {

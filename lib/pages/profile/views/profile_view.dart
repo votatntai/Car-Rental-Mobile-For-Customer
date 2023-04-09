@@ -92,6 +92,22 @@ class _ProfileViewState extends State<ProfileView> {
                     color: context.iconColor,
                   ),
                 ),
+                SettingItemWidget(
+                  leading: Icon(
+                    Icons.article_outlined,
+                    color: context.iconColor,
+                  ),
+                  title: 'Giấy phép',
+                  titleTextStyle: boldTextStyle(),
+                  onTap: () {
+                    context.goNamed(RouteName.license);
+                  },
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                    color: context.iconColor,
+                  ),
+                ),
                 // SettingItemWidget(
                 //   leading: Icon(
                 //     Icons.location_on_outlined,

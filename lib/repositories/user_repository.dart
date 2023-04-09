@@ -5,6 +5,7 @@ import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/enums/gender.dart';
 import 'package:car_rental_for_customer/models/user.dart';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserRepository {
   UserRepository({
@@ -42,6 +43,39 @@ class UserRepository {
         'phone': phone,
         'gender': gender?.name,
       });
+
+      if (result.data != null) {
+        return const ApiResponse.success(null);
+      }
+
+      return const ApiResponse.error(error: 'unknown error');
+    } on DioError catch (e) {
+      return e.getErrorMessage();
+    }
+  }
+
+  Future<ApiResponse<String?>> uploadLicense({
+    required String id,
+    required List<XFile> images,
+  }) async {
+    try {
+      List<MultipartFile> licenses = [];
+      for (final image in images) {
+        final file = await MultipartFile.fromFile(image.path);
+        licenses.add(file);
+      }
+
+      final formData = FormData.fromMap({
+        'licenses': licenses,
+      });
+
+      final result = await dio.put<JsonObject>(
+        'customers/$id',
+        data: formData,
+        options: Options(
+          contentType: Headers.multipartFormDataContentType,
+        ),
+      );
 
       if (result.data != null) {
         return const ApiResponse.success(null);

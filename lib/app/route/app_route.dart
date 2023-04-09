@@ -9,6 +9,7 @@ import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/car_search_result.dart';
 import 'package:car_rental_for_customer/pages/driver_detail/driver_detail.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
+import 'package:car_rental_for_customer/pages/license/views/license_page.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
 import 'package:car_rental_for_customer/pages/order_information/views/order_information_page.dart';
@@ -152,7 +153,13 @@ class AppRoute {
                 path: 'profile-detail',
                 parentNavigatorKey: rootNavigatorKey,
                 name: RouteName.profileDetail,
-                builder: (context, state) => const ProfileDetailPage(),
+                builder: (context, state) => ProfileDetailPage(),
+              ),
+              GoRoute(
+                path: 'license',
+                parentNavigatorKey: rootNavigatorKey,
+                name: RouteName.license,
+                builder: (context, state) => CustomerLicensePage(),
               ),
             ],
           ),

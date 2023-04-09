@@ -17,6 +17,8 @@ class Customer with _$Customer {
     String? bankName,
     String? avatarUrl,
     String? address,
+    @Default(false) bool isLicenseValid,
+    List<String>? licenses,
   }) = _Customer;
 
   factory Customer.fromJson(Map<String, dynamic> json) =>

@@ -11,3 +11,15 @@ extension ApiErrorX on DioError {
     }
   }
 }
+
+extension StringValueX on String {
+  bool get isURL {
+    // using regex to check if the string is a valid url
+
+    final regex = RegExp(
+      r'^[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)',
+    );
+
+    return regex.hasMatch(this);
+  }
+}
