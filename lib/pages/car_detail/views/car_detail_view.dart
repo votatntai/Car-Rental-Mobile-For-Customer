@@ -39,6 +39,8 @@ class CarDetailView extends StatefulWidget {
 class _CarDetailViewState extends State<CarDetailView> {
   PageController pageController = PageController(viewportFraction: 1);
 
+  bool hasDriver = true;
+
   @override
   void dispose() {
     pageController.dispose();
@@ -104,20 +106,37 @@ class _CarDetailViewState extends State<CarDetailView> {
                     children: [
                       carImage(context, successState.car),
                       carTitle(context, successState.car),
-                      // divider,
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: s16),
-                      //   child: ContainerWithLabel(
-                      //     label: 'Loại thuê xe',
-                      //     child: Column(
-                      //       children: [
-                      //         Text(
-                      //           successState.car.rentalCarType.getDisplayName(),
-                      //         )
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Loại thuê xe',
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                child: Text('Thuê xe có tài xế'),
+                              ),
+                              Switch(
+                                value: hasDriver,
+                                onChanged: (bool value) {
+                                  if (isLicenseValid == false &&
+                                      value == false) {
+                                    showMessageDialog(
+                                      title: 'Thông báo',
+                                      message:
+                                          'Bạn phải cập nhật giấy phép lái xe mới có thể thuê xe không tài xế',
+                                    );
+                                  } else {
+                                    setState(() {
+                                      hasDriver = value;
+                                    });
+                                  }
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                       divider,
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -619,7 +638,7 @@ class _CarDetailViewState extends State<CarDetailView> {
                         ),
                       ),
                       divider,
-                      if (successState.car.carFeatures.isNotEmpty)
+                      if (successState.car.carFeatures?.isNotEmpty == true)
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -631,27 +650,28 @@ class _CarDetailViewState extends State<CarDetailView> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: successState.car.carFeatures
-                                      .map(
-                                        (e) => Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: s04,
-                                          ),
-                                          child: Text(
-                                            '- ${e.feature.name}',
-                                            style: const TextStyle(
-                                              fontSize: 12,
+                                          ?.map(
+                                            (e) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: s04,
+                                              ),
+                                              child: Text(
+                                                '- ${e.feature.name}',
+                                                style: const TextStyle(
+                                                  fontSize: 12,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
+                                          )
+                                          .toList() ??
+                                      [],
                                 ),
                               ),
                             ),
                             divider,
                           ],
                         ),
-                      if (successState.car.carTypes.isNotEmpty)
+                      if (successState.car.carTypes?.isNotEmpty == true)
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -663,20 +683,21 @@ class _CarDetailViewState extends State<CarDetailView> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: successState.car.carTypes
-                                      .map(
-                                        (e) => Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: s04,
-                                          ),
-                                          child: Text(
-                                            '- ${e.type.name}',
-                                            style: const TextStyle(
-                                              fontSize: 12,
+                                          ?.map(
+                                            (e) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: s04,
+                                              ),
+                                              child: Text(
+                                                '- ${e.type.name}',
+                                                style: const TextStyle(
+                                                  fontSize: 12,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
+                                          )
+                                          .toList() ??
+                                      [],
                                 ),
                               ),
                             ),
@@ -836,38 +857,23 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   const EdgeInsets.symmetric(vertical: s12),
                             ),
                             onPressed: () {
-                              // TODO: rental car type
-                              if (isLicenseValid == false
-
-                                  // &&
-                                  //     successState.rentalCarType ==
-                                  //         RentalCarType.selfDrivingCar
-
-                                  ) {
-                                showMessageDialog(
-                                  title: 'Thông báo',
-                                  message:
-                                      'Bạn phải cập nhật thông tin bằng lái',
-                                );
-                              } else {
-                                context.pushNamed(
-                                  RouteName.carBookingConfirmation,
-                                  queryParams: {
-                                    'car-id': successState.car.id,
-                                    'start-date':
-                                        successState.startDate.toString(),
-                                    'end-date': successState.endDate.toString(),
-                                    'address': successState.deliveryAddress,
-                                    'latitude':
-                                        successState.latitude.toString(),
-                                    'longitude':
-                                        successState.longitude.toString(),
-                                    'promotion-id': successState.promotion?.id,
-                                    'car-delivery-cost':
-                                        carDeliveryCost.toString(),
-                                  },
-                                );
-                              }
+                              context.pushNamed(
+                                RouteName.carBookingConfirmation,
+                                queryParams: {
+                                  'car-id': successState.car.id,
+                                  'start-date':
+                                      successState.startDate.toString(),
+                                  'end-date': successState.endDate.toString(),
+                                  'address': successState.deliveryAddress,
+                                  'latitude': successState.latitude.toString(),
+                                  'longitude':
+                                      successState.longitude.toString(),
+                                  'promotion-id': successState.promotion?.id,
+                                  'car-delivery-cost':
+                                      carDeliveryCost.toString(),
+                                  'has-driver': hasDriver.toString(),
+                                },
+                              );
                             },
                             child: const Text(
                               'Đặt xe',

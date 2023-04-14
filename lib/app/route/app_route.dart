@@ -291,6 +291,8 @@ class AppRoute {
             state.queryParams['car-delivery-cost'] ?? '',
           );
 
+          final hasDriver = state.queryParams['has-driver'] == 'true';
+
           return CarBookingConfirmationPage(
             carId: carId,
             address: address,
@@ -300,6 +302,7 @@ class AppRoute {
             longitude: longitude,
             promotionId: promotionId,
             carDeliveryCost: carDeliveryCost,
+            hasDriver: hasDriver,
           );
         },
       ),

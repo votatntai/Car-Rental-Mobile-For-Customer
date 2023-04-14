@@ -82,6 +82,7 @@ class CarBookingConfirmationBloc
           event.latitude!,
           event.longitude!,
         ),
+        hasDriver: event.hasDriver,
       ));
     }
   }

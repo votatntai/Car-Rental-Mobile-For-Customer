@@ -19,6 +19,7 @@ class CarBookingConfirmationPage extends StatelessWidget {
     this.longitude,
     this.promotionId,
     this.carDeliveryCost,
+    required this.hasDriver,
   }) : super(key: key);
 
   final String? carId;
@@ -29,6 +30,7 @@ class CarBookingConfirmationPage extends StatelessWidget {
   final double? longitude;
   final String? promotionId;
   final double? carDeliveryCost;
+  final bool hasDriver;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class CarBookingConfirmationPage extends StatelessWidget {
             longitude: longitude,
             promotionId: promotionId,
             carDeliveryCost: carDeliveryCost,
+            hasDriver: hasDriver,
           ),
         ),
       child: const CarBookingConfirmationView(),

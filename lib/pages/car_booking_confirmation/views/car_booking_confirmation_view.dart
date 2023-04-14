@@ -94,20 +94,22 @@ class _CarBookingConfirmationViewState
               children: [
                 carImage(context, successState.car),
                 carTitle(context, successState.car),
-                // divider,
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: s16),
-                //   child: ContainerWithLabel(
-                //     label: 'Loại thuê xe',
-                //     child: Column(
-                //       children: [
-                //         Text(
-                //           successState.car.rentalCarType.getDisplayName(),
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // ),
+                divider,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s16),
+                  child: ContainerWithLabel(
+                    label: 'Loại thuê xe',
+                    child: Column(
+                      children: [
+                        Text(
+                          successState.hasDriver
+                              ? 'Thuê xe có tài xế'
+                              : 'Thuê xe tự lái',
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -522,8 +524,7 @@ class _CarBookingConfirmationViewState
                                       orderDetails: [
                                         OrderDetailsCreateModel(
                                           carId: successState.car.id,
-                                          // TODO: rental car type
-                                          hasDriver: true,
+                                          hasDriver: successState.hasDriver,
                                           deliveryTime: successState.startDate,
                                           pickUpTime: successState.startDate,
                                           startTime: successState.startDate,

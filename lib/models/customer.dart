@@ -19,7 +19,7 @@ class Customer with _$Customer {
     String? avatarUrl,
     String? address,
     @Default(false) bool isLicenseValid,
-    List<ImageModel>? licenses,
+    List<ImageModel>? images,
   }) = _Customer;
 
   factory Customer.fromJson(Map<String, dynamic> json) =>

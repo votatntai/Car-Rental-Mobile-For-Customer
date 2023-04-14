@@ -301,24 +301,25 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                     ),
                   ),
                 ),
-                // TODO: rental car type
-                // divider,
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: s16),
-                //   child: ContainerWithLabel(
-                //     label: 'Loại thuê xe',
-                //     child: Column(
-                //       children: [
-                //         Text(
-                //           successState.order.orderDetails.first.car.driver ==
-                //                   null
-                //               ? RentalCarType.selfDrivingCar.getDisplayName()
-                //               : RentalCarType.carWithDriver.getDisplayName(),
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // ),
+                divider,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s16),
+                  child: ContainerWithLabel(
+                    label: 'Loại thuê xe',
+                    child: Column(
+                      children: [
+                        Text(
+                          successState.order.orderDetails.isNotEmpty
+                              ? successState.order.orderDetails.first.driver !=
+                                      null
+                                  ? 'Thuê xe có tài xế'
+                                  : 'Thuê xe tự lái'
+                              : 'Thuê xe tự lái',
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 divider,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s16),

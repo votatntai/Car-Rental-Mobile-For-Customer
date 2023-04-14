@@ -21,7 +21,7 @@ class User with _$User {
     String? avatarUrl,
     String? address,
     @Default(false) bool isLicenseValid,
-    List<ImageModel>? licenses,
+    List<ImageModel>? images,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

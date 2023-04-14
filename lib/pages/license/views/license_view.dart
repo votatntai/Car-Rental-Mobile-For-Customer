@@ -96,7 +96,7 @@ class _LicenseViewState extends State<LicenseView> {
                                   )
                               else
                                 for (final license
-                                    in user.licenses ?? <ImageModel>[])
+                                    in user.images ?? <ImageModel>[])
                                   Container(
                                     margin: const EdgeInsets.all(8.0),
                                     child: CachedNetworkImage(
@@ -150,8 +150,7 @@ class _LicenseViewState extends State<LicenseView> {
                         child: GridView.count(
                           crossAxisCount: 3,
                           children: [
-                            for (final license
-                                in user.licenses ?? <ImageModel>[])
+                            for (final license in user.images ?? <ImageModel>[])
                               Container(
                                 margin: const EdgeInsets.all(8.0),
                                 child: CachedNetworkImage(

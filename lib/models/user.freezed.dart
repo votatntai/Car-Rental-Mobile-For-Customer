@@ -31,7 +31,7 @@ mixin _$User {
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   bool get isLicenseValid => throw _privateConstructorUsedError;
-  List<ImageModel>? get licenses => throw _privateConstructorUsedError;
+  List<ImageModel>? get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $UserCopyWith<$Res> {
       String? avatarUrl,
       String? address,
       bool isLicenseValid,
-      List<ImageModel>? licenses});
+      List<ImageModel>? images});
 }
 
 /// @nodoc
@@ -78,7 +78,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? avatarUrl = freezed,
     Object? address = freezed,
     Object? isLicenseValid = null,
-    Object? licenses = freezed,
+    Object? images = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -117,9 +117,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.isLicenseValid
           : isLicenseValid // ignore: cast_nullable_to_non_nullable
               as bool,
-      licenses: freezed == licenses
-          ? _value.licenses
-          : licenses // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ImageModel>?,
     ) as $Val);
   }
@@ -141,7 +141,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? avatarUrl,
       String? address,
       bool isLicenseValid,
-      List<ImageModel>? licenses});
+      List<ImageModel>? images});
 }
 
 /// @nodoc
@@ -162,7 +162,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? avatarUrl = freezed,
     Object? address = freezed,
     Object? isLicenseValid = null,
-    Object? licenses = freezed,
+    Object? images = freezed,
   }) {
     return _then(_$_User(
       id: null == id
@@ -201,9 +201,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.isLicenseValid
           : isLicenseValid // ignore: cast_nullable_to_non_nullable
               as bool,
-      licenses: freezed == licenses
-          ? _value._licenses
-          : licenses // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ImageModel>?,
     ));
   }
@@ -222,8 +222,8 @@ class _$_User implements _User {
       this.avatarUrl,
       this.address,
       this.isLicenseValid = false,
-      final List<ImageModel>? licenses})
-      : _licenses = licenses;
+      final List<ImageModel>? images})
+      : _images = images;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -248,19 +248,19 @@ class _$_User implements _User {
   @override
   @JsonKey()
   final bool isLicenseValid;
-  final List<ImageModel>? _licenses;
+  final List<ImageModel>? _images;
   @override
-  List<ImageModel>? get licenses {
-    final value = _licenses;
+  List<ImageModel>? get images {
+    final value = _images;
     if (value == null) return null;
-    if (_licenses is EqualUnmodifiableListView) return _licenses;
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, phone: $phone, gender: $gender, bankAccountNumber: $bankAccountNumber, bankName: $bankName, avatarUrl: $avatarUrl, address: $address, isLicenseValid: $isLicenseValid, licenses: $licenses)';
+    return 'User(id: $id, name: $name, phone: $phone, gender: $gender, bankAccountNumber: $bankAccountNumber, bankName: $bankName, avatarUrl: $avatarUrl, address: $address, isLicenseValid: $isLicenseValid, images: $images)';
   }
 
   @override
@@ -281,7 +281,7 @@ class _$_User implements _User {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.isLicenseValid, isLicenseValid) ||
                 other.isLicenseValid == isLicenseValid) &&
-            const DeepCollectionEquality().equals(other._licenses, _licenses));
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
@@ -297,7 +297,7 @@ class _$_User implements _User {
       avatarUrl,
       address,
       isLicenseValid,
-      const DeepCollectionEquality().hash(_licenses));
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -324,7 +324,7 @@ abstract class _User implements User {
       final String? avatarUrl,
       final String? address,
       final bool isLicenseValid,
-      final List<ImageModel>? licenses}) = _$_User;
+      final List<ImageModel>? images}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -348,7 +348,7 @@ abstract class _User implements User {
   @override
   bool get isLicenseValid;
   @override
-  List<ImageModel>? get licenses;
+  List<ImageModel>? get images;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

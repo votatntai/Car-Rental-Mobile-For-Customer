@@ -16,7 +16,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       avatarUrl: json['avatarUrl'] as String?,
       address: json['address'] as String?,
       isLicenseValid: json['isLicenseValid'] as bool? ?? false,
-      licenses: (json['licenses'] as List<dynamic>?)
+      images: (json['images'] as List<dynamic>?)
           ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'avatarUrl': instance.avatarUrl,
       'address': instance.address,
       'isLicenseValid': instance.isLicenseValid,
-      'licenses': instance.licenses,
+      'images': instance.images,
     };
 
 const _$GenderEnumMap = {

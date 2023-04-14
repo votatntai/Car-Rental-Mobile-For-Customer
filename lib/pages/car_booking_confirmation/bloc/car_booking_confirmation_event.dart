@@ -11,6 +11,7 @@ class CarBookingConfirmationEvent with _$CarBookingConfirmationEvent {
     double? longitude,
     String? promotionId,
     double? carDeliveryCost,
+    required bool hasDriver,
   }) = _Started;
 
   const factory CarBookingConfirmationEvent.orderCreated({
