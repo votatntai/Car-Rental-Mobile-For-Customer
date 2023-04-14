@@ -18,13 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CarSearchResultEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String address,
-            DateTime startDate,
-            DateTime endDate,
-            RentalCarType rentalCarType,
-            double longitude,
-            double latitude)
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -36,7 +31,7 @@ mixin _$CarSearchResultEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -48,7 +43,7 @@ mixin _$CarSearchResultEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -122,7 +117,6 @@ abstract class _$$_StartedCopyWith<$Res> {
       {String address,
       DateTime startDate,
       DateTime endDate,
-      RentalCarType rentalCarType,
       double longitude,
       double latitude});
 }
@@ -140,7 +134,6 @@ class __$$_StartedCopyWithImpl<$Res>
     Object? address = null,
     Object? startDate = null,
     Object? endDate = null,
-    Object? rentalCarType = null,
     Object? longitude = null,
     Object? latitude = null,
   }) {
@@ -157,10 +150,6 @@ class __$$_StartedCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
@@ -180,7 +169,6 @@ class _$_Started implements _Started {
       {required this.address,
       required this.startDate,
       required this.endDate,
-      required this.rentalCarType,
       required this.longitude,
       required this.latitude});
 
@@ -191,15 +179,13 @@ class _$_Started implements _Started {
   @override
   final DateTime endDate;
   @override
-  final RentalCarType rentalCarType;
-  @override
   final double longitude;
   @override
   final double latitude;
 
   @override
   String toString() {
-    return 'CarSearchResultEvent.started(address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, longitude: $longitude, latitude: $latitude)';
+    return 'CarSearchResultEvent.started(address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude)';
   }
 
   @override
@@ -211,8 +197,6 @@ class _$_Started implements _Started {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.latitude, latitude) ||
@@ -220,8 +204,8 @@ class _$_Started implements _Started {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, address, startDate, endDate,
-      rentalCarType, longitude, latitude);
+  int get hashCode => Object.hash(
+      runtimeType, address, startDate, endDate, longitude, latitude);
 
   @JsonKey(ignore: true)
   @override
@@ -232,13 +216,8 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String address,
-            DateTime startDate,
-            DateTime endDate,
-            RentalCarType rentalCarType,
-            double longitude,
-            double latitude)
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -246,15 +225,14 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
-    return started(
-        address, startDate, endDate, rentalCarType, longitude, latitude);
+    return started(address, startDate, endDate, longitude, latitude);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -262,15 +240,14 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
-    return started?.call(
-        address, startDate, endDate, rentalCarType, longitude, latitude);
+    return started?.call(address, startDate, endDate, longitude, latitude);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -279,8 +256,7 @@ class _$_Started implements _Started {
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(
-          address, startDate, endDate, rentalCarType, longitude, latitude);
+      return started(address, startDate, endDate, longitude, latitude);
     }
     return orElse();
   }
@@ -337,14 +313,12 @@ abstract class _Started implements CarSearchResultEvent {
       {required final String address,
       required final DateTime startDate,
       required final DateTime endDate,
-      required final RentalCarType rentalCarType,
       required final double longitude,
       required final double latitude}) = _$_Started;
 
   String get address;
   DateTime get startDate;
   DateTime get endDate;
-  RentalCarType get rentalCarType;
   double get longitude;
   double get latitude;
   @JsonKey(ignore: true)
@@ -417,13 +391,8 @@ class _$_PageRequested implements _PageRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String address,
-            DateTime startDate,
-            DateTime endDate,
-            RentalCarType rentalCarType,
-            double longitude,
-            double latitude)
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -438,7 +407,7 @@ class _$_PageRequested implements _PageRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -453,7 +422,7 @@ class _$_PageRequested implements _PageRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -588,13 +557,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String address,
-            DateTime startDate,
-            DateTime endDate,
-            RentalCarType rentalCarType,
-            double longitude,
-            double latitude)
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -609,7 +573,7 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -624,7 +588,7 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -764,13 +728,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String address,
-            DateTime startDate,
-            DateTime endDate,
-            RentalCarType rentalCarType,
-            double longitude,
-            double latitude)
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -785,7 +744,7 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -800,7 +759,7 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -913,13 +872,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String address,
-            DateTime startDate,
-            DateTime endDate,
-            RentalCarType rentalCarType,
-            double longitude,
-            double latitude)
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -934,7 +888,7 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -949,7 +903,7 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            RentalCarType rentalCarType, double longitude, double latitude)?
+            double longitude, double latitude)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -1024,7 +978,6 @@ mixin _$CarSearchResultState {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1041,7 +994,6 @@ mixin _$CarSearchResultState {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1058,7 +1010,6 @@ mixin _$CarSearchResultState {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1157,7 +1108,6 @@ class _$_Initial implements _Initial {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1177,7 +1127,6 @@ class _$_Initial implements _Initial {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1197,7 +1146,6 @@ class _$_Initial implements _Initial {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1297,7 +1245,6 @@ class _$_Loading implements _Loading {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1317,7 +1264,6 @@ class _$_Loading implements _Loading {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1337,7 +1283,6 @@ class _$_Loading implements _Loading {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1404,7 +1349,6 @@ abstract class _$$_SuccessCopyWith<$Res> {
       {String address,
       DateTime startDate,
       DateTime endDate,
-      RentalCarType rentalCarType,
       double latitude,
       double longitude,
       ScrollPagination<Car>? scrollPagination,
@@ -1427,7 +1371,6 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? address = null,
     Object? startDate = null,
     Object? endDate = null,
-    Object? rentalCarType = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? scrollPagination = freezed,
@@ -1446,10 +1389,6 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -1498,7 +1437,6 @@ class _$_Success implements _Success {
       {required this.address,
       required this.startDate,
       required this.endDate,
-      required this.rentalCarType,
       required this.latitude,
       required this.longitude,
       this.scrollPagination,
@@ -1511,8 +1449,6 @@ class _$_Success implements _Success {
   @override
   final DateTime endDate;
   @override
-  final RentalCarType rentalCarType;
-  @override
   final double latitude;
   @override
   final double longitude;
@@ -1523,7 +1459,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'CarSearchResultState.success(address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter)';
+    return 'CarSearchResultState.success(address: $address, startDate: $startDate, endDate: $endDate, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter)';
   }
 
   @override
@@ -1535,8 +1471,6 @@ class _$_Success implements _Success {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -1549,7 +1483,7 @@ class _$_Success implements _Success {
 
   @override
   int get hashCode => Object.hash(runtimeType, address, startDate, endDate,
-      rentalCarType, latitude, longitude, scrollPagination, carSearchFilter);
+      latitude, longitude, scrollPagination, carSearchFilter);
 
   @JsonKey(ignore: true)
   @override
@@ -1566,7 +1500,6 @@ class _$_Success implements _Success {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1574,8 +1507,8 @@ class _$_Success implements _Success {
         success,
     required TResult Function(String? message) failure,
   }) {
-    return success(address, startDate, endDate, rentalCarType, latitude,
-        longitude, scrollPagination, carSearchFilter);
+    return success(address, startDate, endDate, latitude, longitude,
+        scrollPagination, carSearchFilter);
   }
 
   @override
@@ -1587,7 +1520,6 @@ class _$_Success implements _Success {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1595,8 +1527,8 @@ class _$_Success implements _Success {
         success,
     TResult? Function(String? message)? failure,
   }) {
-    return success?.call(address, startDate, endDate, rentalCarType, latitude,
-        longitude, scrollPagination, carSearchFilter);
+    return success?.call(address, startDate, endDate, latitude, longitude,
+        scrollPagination, carSearchFilter);
   }
 
   @override
@@ -1608,7 +1540,6 @@ class _$_Success implements _Success {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1618,8 +1549,8 @@ class _$_Success implements _Success {
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(address, startDate, endDate, rentalCarType, latitude,
-          longitude, scrollPagination, carSearchFilter);
+      return success(address, startDate, endDate, latitude, longitude,
+          scrollPagination, carSearchFilter);
     }
     return orElse();
   }
@@ -1667,7 +1598,6 @@ abstract class _Success implements CarSearchResultState {
       {required final String address,
       required final DateTime startDate,
       required final DateTime endDate,
-      required final RentalCarType rentalCarType,
       required final double latitude,
       required final double longitude,
       final ScrollPagination<Car>? scrollPagination,
@@ -1676,7 +1606,6 @@ abstract class _Success implements CarSearchResultState {
   String get address;
   DateTime get startDate;
   DateTime get endDate;
-  RentalCarType get rentalCarType;
   double get latitude;
   double get longitude;
   ScrollPagination<Car>? get scrollPagination;
@@ -1755,7 +1684,6 @@ class _$_Failure implements _Failure {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1775,7 +1703,6 @@ class _$_Failure implements _Failure {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
@@ -1795,7 +1722,6 @@ class _$_Failure implements _Failure {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,

@@ -20,7 +20,6 @@ mixin _$CarDetailEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String carId,
-            RentalCarType rentalCarType,
             String? address,
             DateTime? startDate,
             DateTime? endDate,
@@ -32,28 +31,16 @@ mixin _$CarDetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String carId,
-            RentalCarType rentalCarType,
-            String? address,
-            DateTime? startDate,
-            DateTime? endDate,
-            double? latitude,
-            double? longitude)?
+    TResult? Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String carId,
-            RentalCarType rentalCarType,
-            String? address,
-            DateTime? startDate,
-            DateTime? endDate,
-            double? latitude,
-            double? longitude)?
+    TResult Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
     required TResult orElse(),
@@ -106,7 +93,6 @@ abstract class _$$_StartedCopyWith<$Res> {
   @useResult
   $Res call(
       {String carId,
-      RentalCarType rentalCarType,
       String? address,
       DateTime? startDate,
       DateTime? endDate,
@@ -125,7 +111,6 @@ class __$$_StartedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? carId = null,
-    Object? rentalCarType = null,
     Object? address = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -137,10 +122,6 @@ class __$$_StartedCopyWithImpl<$Res>
           ? _value.carId
           : carId // ignore: cast_nullable_to_non_nullable
               as String,
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -170,7 +151,6 @@ class __$$_StartedCopyWithImpl<$Res>
 class _$_Started implements _Started {
   const _$_Started(
       {required this.carId,
-      required this.rentalCarType,
       this.address,
       this.startDate,
       this.endDate,
@@ -179,8 +159,6 @@ class _$_Started implements _Started {
 
   @override
   final String carId;
-  @override
-  final RentalCarType rentalCarType;
   @override
   final String? address;
   @override
@@ -194,7 +172,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'CarDetailEvent.started(carId: $carId, rentalCarType: $rentalCarType, address: $address, startDate: $startDate, endDate: $endDate, latitude: $latitude, longitude: $longitude)';
+    return 'CarDetailEvent.started(carId: $carId, address: $address, startDate: $startDate, endDate: $endDate, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -203,8 +181,6 @@ class _$_Started implements _Started {
         (other.runtimeType == runtimeType &&
             other is _$_Started &&
             (identical(other.carId, carId) || other.carId == carId) &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
@@ -216,8 +192,8 @@ class _$_Started implements _Started {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, carId, rentalCarType, address,
-      startDate, endDate, latitude, longitude);
+  int get hashCode => Object.hash(
+      runtimeType, carId, address, startDate, endDate, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -230,7 +206,6 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String carId,
-            RentalCarType rentalCarType,
             String? address,
             DateTime? startDate,
             DateTime? endDate,
@@ -239,46 +214,32 @@ class _$_Started implements _Started {
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
   }) {
-    return started(
-        carId, rentalCarType, address, startDate, endDate, latitude, longitude);
+    return started(carId, address, startDate, endDate, latitude, longitude);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String carId,
-            RentalCarType rentalCarType,
-            String? address,
-            DateTime? startDate,
-            DateTime? endDate,
-            double? latitude,
-            double? longitude)?
+    TResult? Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
   }) {
     return started?.call(
-        carId, rentalCarType, address, startDate, endDate, latitude, longitude);
+        carId, address, startDate, endDate, latitude, longitude);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String carId,
-            RentalCarType rentalCarType,
-            String? address,
-            DateTime? startDate,
-            DateTime? endDate,
-            double? latitude,
-            double? longitude)?
+    TResult Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(carId, rentalCarType, address, startDate, endDate,
-          latitude, longitude);
+      return started(carId, address, startDate, endDate, latitude, longitude);
     }
     return orElse();
   }
@@ -318,7 +279,6 @@ class _$_Started implements _Started {
 abstract class _Started implements CarDetailEvent {
   const factory _Started(
       {required final String carId,
-      required final RentalCarType rentalCarType,
       final String? address,
       final DateTime? startDate,
       final DateTime? endDate,
@@ -326,7 +286,6 @@ abstract class _Started implements CarDetailEvent {
       final double? longitude}) = _$_Started;
 
   String get carId;
-  RentalCarType get rentalCarType;
   String? get address;
   DateTime? get startDate;
   DateTime? get endDate;
@@ -405,7 +364,6 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String carId,
-            RentalCarType rentalCarType,
             String? address,
             DateTime? startDate,
             DateTime? endDate,
@@ -420,14 +378,8 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String carId,
-            RentalCarType rentalCarType,
-            String? address,
-            DateTime? startDate,
-            DateTime? endDate,
-            double? latitude,
-            double? longitude)?
+    TResult? Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
   }) {
@@ -437,14 +389,8 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String carId,
-            RentalCarType rentalCarType,
-            String? address,
-            DateTime? startDate,
-            DateTime? endDate,
-            double? latitude,
-            double? longitude)?
+    TResult Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
     required TResult orElse(),
@@ -508,7 +454,6 @@ mixin _$CarDetailState {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -529,7 +474,6 @@ mixin _$CarDetailState {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -550,7 +494,6 @@ mixin _$CarDetailState {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -652,7 +595,6 @@ class _$_Initial implements _Initial {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -676,7 +618,6 @@ class _$_Initial implements _Initial {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -700,7 +641,6 @@ class _$_Initial implements _Initial {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -804,7 +744,6 @@ class _$_Loading implements _Loading {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -828,7 +767,6 @@ class _$_Loading implements _Loading {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -852,7 +790,6 @@ class _$_Loading implements _Loading {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -923,7 +860,6 @@ abstract class _$$_SuccessCopyWith<$Res> {
       String address,
       DateTime startDate,
       DateTime endDate,
-      RentalCarType rentalCarType,
       double latitude,
       double longitude,
       CarAddressType carAddressType,
@@ -951,7 +887,6 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? address = null,
     Object? startDate = null,
     Object? endDate = null,
-    Object? rentalCarType = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? carAddressType = null,
@@ -977,10 +912,6 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -1053,7 +984,6 @@ class _$_Success implements _Success {
       required this.address,
       required this.startDate,
       required this.endDate,
-      required this.rentalCarType,
       required this.latitude,
       required this.longitude,
       required this.carAddressType,
@@ -1071,8 +1001,6 @@ class _$_Success implements _Success {
   @override
   final DateTime endDate;
   @override
-  final RentalCarType rentalCarType;
-  @override
   final double latitude;
   @override
   final double longitude;
@@ -1089,7 +1017,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'CarDetailState.success(car: $car, address: $address, startDate: $startDate, endDate: $endDate, rentalCarType: $rentalCarType, latitude: $latitude, longitude: $longitude, carAddressType: $carAddressType, deliveryAddress: $deliveryAddress, deliveryDistance: $deliveryDistance, promotion: $promotion, user: $user)';
+    return 'CarDetailState.success(car: $car, address: $address, startDate: $startDate, endDate: $endDate, latitude: $latitude, longitude: $longitude, carAddressType: $carAddressType, deliveryAddress: $deliveryAddress, deliveryDistance: $deliveryDistance, promotion: $promotion, user: $user)';
   }
 
   @override
@@ -1102,8 +1030,6 @@ class _$_Success implements _Success {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -1126,7 +1052,6 @@ class _$_Success implements _Success {
       address,
       startDate,
       endDate,
-      rentalCarType,
       latitude,
       longitude,
       carAddressType,
@@ -1151,7 +1076,6 @@ class _$_Success implements _Success {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -1162,19 +1086,8 @@ class _$_Success implements _Success {
         success,
     required TResult Function(String? message) failure,
   }) {
-    return success(
-        car,
-        address,
-        startDate,
-        endDate,
-        rentalCarType,
-        latitude,
-        longitude,
-        carAddressType,
-        deliveryAddress,
-        deliveryDistance,
-        promotion,
-        user);
+    return success(car, address, startDate, endDate, latitude, longitude,
+        carAddressType, deliveryAddress, deliveryDistance, promotion, user);
   }
 
   @override
@@ -1187,7 +1100,6 @@ class _$_Success implements _Success {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -1198,19 +1110,8 @@ class _$_Success implements _Success {
         success,
     TResult? Function(String? message)? failure,
   }) {
-    return success?.call(
-        car,
-        address,
-        startDate,
-        endDate,
-        rentalCarType,
-        latitude,
-        longitude,
-        carAddressType,
-        deliveryAddress,
-        deliveryDistance,
-        promotion,
-        user);
+    return success?.call(car, address, startDate, endDate, latitude, longitude,
+        carAddressType, deliveryAddress, deliveryDistance, promotion, user);
   }
 
   @override
@@ -1223,7 +1124,6 @@ class _$_Success implements _Success {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -1236,19 +1136,8 @@ class _$_Success implements _Success {
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(
-          car,
-          address,
-          startDate,
-          endDate,
-          rentalCarType,
-          latitude,
-          longitude,
-          carAddressType,
-          deliveryAddress,
-          deliveryDistance,
-          promotion,
-          user);
+      return success(car, address, startDate, endDate, latitude, longitude,
+          carAddressType, deliveryAddress, deliveryDistance, promotion, user);
     }
     return orElse();
   }
@@ -1297,7 +1186,6 @@ abstract class _Success implements CarDetailState {
       required final String address,
       required final DateTime startDate,
       required final DateTime endDate,
-      required final RentalCarType rentalCarType,
       required final double latitude,
       required final double longitude,
       required final CarAddressType carAddressType,
@@ -1310,7 +1198,6 @@ abstract class _Success implements CarDetailState {
   String get address;
   DateTime get startDate;
   DateTime get endDate;
-  RentalCarType get rentalCarType;
   double get latitude;
   double get longitude;
   CarAddressType get carAddressType;
@@ -1393,7 +1280,6 @@ class _$_Failure implements _Failure {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -1417,7 +1303,6 @@ class _$_Failure implements _Failure {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,
@@ -1441,7 +1326,6 @@ class _$_Failure implements _Failure {
             String address,
             DateTime startDate,
             DateTime endDate,
-            RentalCarType rentalCarType,
             double latitude,
             double longitude,
             CarAddressType carAddressType,

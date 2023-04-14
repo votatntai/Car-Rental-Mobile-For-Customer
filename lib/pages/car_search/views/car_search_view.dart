@@ -1,6 +1,7 @@
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
+import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/car_card.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
@@ -20,18 +21,16 @@ class CarSearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CarSearchBloc, CarSearchState>(
       builder: (context, state) {
-        if (state.rentalCarType == null) {
+        if (state.startDate == null || state.endDate == null) {
           return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
+            body: LoadingWidget(),
           );
         }
 
         return Scaffold(
           appBar: appAppBar(
             context,
-            titleText: state.rentalCarType!.getDisplayName(),
+            titleText: 'Tìm kiếm xe',
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -106,8 +105,6 @@ class CarSearchView extends StatelessWidget {
                                       context.goNamed(
                                         RouteName.carSearchResult,
                                         queryParams: {
-                                          'rental-car-type':
-                                              state.rentalCarType!.name,
                                           'address': state.address ?? '',
                                           'start-date':
                                               state.startDate!.toString(),
@@ -161,8 +158,6 @@ class CarSearchView extends StatelessWidget {
                                   RouteName.carDetail,
                                   queryParams: {
                                     'car-id': id,
-                                    'rental-car-type':
-                                        state.rentalCarType?.name,
                                     'address': state.address,
                                     'start-date': state.startDate?.toString(),
                                     'end-date': state.endDate?.toString(),

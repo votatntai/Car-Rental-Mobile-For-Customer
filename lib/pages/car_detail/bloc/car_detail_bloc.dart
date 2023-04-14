@@ -107,7 +107,6 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
 
     emit(CarDetailState.success(
       car: car,
-      rentalCarType: event.rentalCarType,
       address: address,
       startDate: startDate,
       endDate: endDate,

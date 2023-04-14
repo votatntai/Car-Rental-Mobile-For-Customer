@@ -20,13 +20,14 @@ class TransactionRepository {
     required int pageSize,
   }) async {
     try {
-      final response = await dio.get<JsonObject>(
-        '/transactions',
-        queryParameters: {
-          'pageNumber': pageNumber - 1,
-          'pageSize': pageSize,
-        },
-      );
+      final response = await dio.get<JsonObject>('/transactions',
+          queryParameters: {
+            'pageNumber': pageNumber - 1,
+            'pageSize': pageSize,
+          },
+          options: Options(
+            contentType: Headers.textPlainContentType,
+          ));
 
       if (response.data != null &&
           response.statusCode == StatusCodes.status200OK) {

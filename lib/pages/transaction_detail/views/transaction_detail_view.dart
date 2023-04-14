@@ -121,7 +121,8 @@ class TransactionDetailView extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      DateFormat('dd/MM/yyyy HH:mm').format(transaction.date),
+                      DateFormat('dd/MM/yyyy HH:mm')
+                          .format(transaction.createAt),
                       style: const TextStyle(
                         fontSize: 13,
                         color: Colors.black,

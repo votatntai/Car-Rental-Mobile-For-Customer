@@ -9,7 +9,6 @@ class CarDetailState with _$CarDetailState {
     required String address,
     required DateTime startDate,
     required DateTime endDate,
-    required RentalCarType rentalCarType,
     required double latitude,
     required double longitude,
     required CarAddressType carAddressType,

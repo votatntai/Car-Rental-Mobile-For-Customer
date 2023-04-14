@@ -188,7 +188,6 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                               RouteName.carDetail,
                               queryParams: {
                                 'car-id': id,
-                                'rental-car-type': value.rentalCarType.name,
                                 'address': value.address,
                                 'start-date': value.startDate.toString(),
                                 'end-date': value.endDate.toString(),

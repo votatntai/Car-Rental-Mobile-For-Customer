@@ -43,12 +43,12 @@ class OrderItem extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      CarCardTag(
-                        text: order.orderDetails.isNotEmpty
-                            ? order.orderDetails.first.car.rentalCarType
-                                .getDisplayName()
-                            : '',
-                      ),
+                      // CarCardTag(
+                      //   text: order.orderDetails.isNotEmpty
+                      //       ? order.orderDetails.first.car.rentalCarType
+                      //           .getDisplayName()
+                      //       : '',
+                      // ),
                     ],
                   ),
                   const SizedBox(height: s08),

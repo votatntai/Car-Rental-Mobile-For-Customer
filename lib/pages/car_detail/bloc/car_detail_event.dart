@@ -4,7 +4,6 @@ part of 'car_detail_bloc.dart';
 class CarDetailEvent with _$CarDetailEvent {
   const factory CarDetailEvent.started({
     required String carId,
-    required RentalCarType rentalCarType,
     String? address,
     DateTime? startDate,
     DateTime? endDate,

@@ -33,7 +33,6 @@ class CarSearchResultBloc
   late String address;
   late DateTime startDate;
   late DateTime endDate;
-  late RentalCarType rentalCarType;
   late double latitude;
   late double longitude;
   final pageSize = 10;
@@ -50,7 +49,6 @@ class CarSearchResultBloc
     address = event.address;
     startDate = event.startDate;
     endDate = event.endDate;
-    rentalCarType = event.rentalCarType;
     latitude = event.latitude;
     longitude = event.longitude;
 
@@ -74,7 +72,6 @@ class CarSearchResultBloc
         address: address,
         endDate: endDate,
         startDate: startDate,
-        rentalCarType: rentalCarType,
         latitude: latitude,
         longitude: longitude,
         carSearchFilter: const CarSearchFilter(),
@@ -98,7 +95,7 @@ class CarSearchResultBloc
       pageSize: pageSize,
       longitude: currentState.longitude,
       latitude: currentState.latitude,
-      hasDriver: currentState.rentalCarType == RentalCarType.carWithDriver,
+      hasDriver: true,
       carType: currentState.carSearchFilter.carType,
       transmissionType: currentState.carSearchFilter.transmission,
       startTime: currentState.startDate,

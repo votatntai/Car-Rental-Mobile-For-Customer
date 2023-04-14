@@ -6,7 +6,6 @@ class CarSearchResultEvent with _$CarSearchResultEvent {
     required String address,
     required DateTime startDate,
     required DateTime endDate,
-    required RentalCarType rentalCarType,
     required double longitude,
     required double latitude,
   }) = _Started;

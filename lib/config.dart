@@ -15,6 +15,7 @@ import 'package:car_rental_for_customer/repositories/fcm_token_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:car_rental_for_customer/repositories/notification_repository.dart';
 import 'package:car_rental_for_customer/repositories/order_repository.dart';
+import 'package:car_rental_for_customer/repositories/payment_repository.dart';
 import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:car_rental_for_customer/repositories/repositories.dart';
 import 'package:car_rental_for_customer/repositories/transaction_repository.dart';
@@ -81,7 +82,8 @@ Future<void> configDI() async {
       WalletRepository(dio: dio),
     )
     ..registerSingleton<CarRepository>(CarRepository(dio: dio))
-    ..registerSingleton<FCMTokenRepository>(FCMTokenRepository(dio: dio));
+    ..registerSingleton<FCMTokenRepository>(FCMTokenRepository(dio: dio))
+    ..registerSingleton<PaymentRepository>(PaymentRepository(dio: dio));
 }
 
 void configureTimeago() {

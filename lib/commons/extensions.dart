@@ -22,4 +22,19 @@ extension StringValueX on String {
 
     return regex.hasMatch(this);
   }
+
+  bool get isNumber {
+    final RegExp regex = RegExp(r'^\d+(\.\d+)?$');
+    return regex.hasMatch(this);
+  }
+
+  bool get isSignedNumber {
+    final RegExp regex = RegExp(r'^[+]?\d+$');
+    return regex.hasMatch(this);
+  }
+
+  bool get isCarLicensePlate {
+    final RegExp regex = RegExp(r'^[0-9]{2}[A-Z0-9]{2}.[0-9]{4,5}$');
+    return regex.hasMatch(this);
+  }
 }

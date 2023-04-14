@@ -48,8 +48,8 @@ class Car with _$Car {
 
   factory Car.fromJson(Map<String, dynamic> json) => _$CarFromJson(json);
 
-  RentalCarType get rentalCarType {
-    if (driver == null) return RentalCarType.selfDrivingCar;
-    return RentalCarType.carWithDriver;
-  }
+  // RentalCarType get rentalCarType {
+  //   if (driver == null) return RentalCarType.selfDrivingCar;
+  //   return RentalCarType.carWithDriver;
+  // }
 }

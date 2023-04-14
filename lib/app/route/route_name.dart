@@ -19,4 +19,6 @@ mixin RouteName {
   static const carOwnerDetail = 'car-owner-detail';
   static const driverDetail = 'driver-detail';
   static const license = 'license';
+  static const recharge = 'recharge';
+  static const paymentWebview = 'payment-webview';
 }

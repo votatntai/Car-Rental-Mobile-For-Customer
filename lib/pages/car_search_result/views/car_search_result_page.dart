@@ -13,7 +13,6 @@ class CarSearchResultPage extends StatelessWidget {
     required this.startDate,
     required this.endDate,
     required this.address,
-    required this.rentalCarType,
     required this.longitude,
     required this.latitude,
   }) : super(key: key);
@@ -21,7 +20,6 @@ class CarSearchResultPage extends StatelessWidget {
   final DateTime startDate;
   final DateTime endDate;
   final String address;
-  final RentalCarType rentalCarType;
   final double longitude;
   final double latitude;
 
@@ -36,7 +34,6 @@ class CarSearchResultPage extends StatelessWidget {
             address: address,
             startDate: startDate,
             endDate: endDate,
-            rentalCarType: rentalCarType,
             longitude: longitude,
             latitude: latitude,
           ),

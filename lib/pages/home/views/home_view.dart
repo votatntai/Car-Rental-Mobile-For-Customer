@@ -65,6 +65,7 @@ class _HomeViewState extends State<HomeView> {
         final isLicenseValid = successState.user.isLicenseValid;
 
         return Scaffold(
+          backgroundColor: CustomColors.white,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 50,
@@ -116,81 +117,132 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: s08),
-                  Row(
-                    children: [
-                      CarOption(
-                        carImage: Images.selfDrivingCar,
-                        text: 'Xe tự lái',
-                        onTap: () {
-                          if (isLicenseValid) {
-                            context.goNamed(RouteName.carSearch, queryParams: {
-                              'rental-car-type':
-                                  RentalCarType.selfDrivingCar.name,
-                            });
-                          } else {
-                            showMessageDialog(
-                              title: 'Thông báo',
-                              message: 'Bạn phải cập nhật thông tin bằng lái',
-                            );
-                          }
-                        },
+                  // Row(
+                  //   children: [
+                  //     CarOption(
+                  //       carImage: Images.selfDrivingCar,
+                  //       text: 'Xe tự lái',
+                  //       onTap: () {
+                  //         if (isLicenseValid) {
+                  //           context.goNamed(RouteName.carSearch, queryParams: {
+                  //             'rental-car-type':
+                  //                 RentalCarType.selfDrivingCar.name,
+                  //           });
+                  //         } else {
+                  //           showMessageDialog(
+                  //             title: 'Thông báo',
+                  //             message: 'Bạn phải cập nhật thông tin bằng lái',
+                  //           );
+                  //         }
+                  //       },
+                  //     ),
+                  //     const SizedBox(width: s16),
+                  //     CarOption(
+                  //       carImage: Images.carWithDriver,
+                  //       text: 'Xe có tài xế',
+                  //       onTap: () {
+                  //         context.goNamed(RouteName.carSearch, queryParams: {
+                  //           'rental-car-type': RentalCarType.carWithDriver.name,
+                  //         });
+                  //       },
+                  //     ),
+                  //   ],
+                  // ),
+                  const SizedBox(height: s08),
+                  GestureDetector(
+                    onTap: () {
+                      context.goNamed(RouteName.carSearch);
+                    },
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.zero,
+                        hintText: 'Tìm xe',
+                        hintStyle: secondaryTextStyle(),
+                        fillColor: CustomColors.gainsboro,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: radius(defaultRadius),
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 0.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: radius(defaultRadius),
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 0.0,
+                          ),
+                        ),
+                        prefixIcon: IconButton(
+                          icon: const Icon(
+                            Icons.search,
+                            size: 20,
+                            color: CustomColors.silver,
+                          ),
+                          onPressed: () {},
+                        ),
+                        suffixIcon: IconButton(
+                          icon: const Icon(
+                            Icons.filter_alt_outlined,
+                            size: 20,
+                            color: CustomColors.silver,
+                          ),
+                          onPressed: () {},
+                        ),
                       ),
-                      const SizedBox(width: s16),
-                      CarOption(
-                        carImage: Images.carWithDriver,
-                        text: 'Xe có tài xế',
-                        onTap: () {
-                          context.goNamed(RouteName.carSearch, queryParams: {
-                            'rental-car-type': RentalCarType.carWithDriver.name,
-                          });
-                        },
+                      child: Text(
+                        'Tim xe',
+                        style: secondaryTextStyle(),
                       ),
-                    ],
+                    ).paddingSymmetric(horizontal: 8),
                   ),
+
                   ListTile(
                     title: Text('Xe nổi bật', style: boldTextStyle(size: 16)),
                   ),
-                  SizedBox(
-                    height: 30,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(left: s08),
-                      shrinkWrap: true,
-                      itemCount: 3,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.read<HomeBloc>().add(
-                                  HomeEvent.topDealIndexChanged(index),
-                                );
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: s16,
-                              vertical: s04,
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: CustomColors.primary),
-                              color: successState.topDealIndex == index
-                                  ? cardDarkColor
-                                  : white,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Text(
-                              topDeals[index],
-                              style: TextStyle(
-                                color: successState.topDealIndex == index
-                                    ? white
-                                    : black,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ).paddingRight(8),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: s08),
+                  // SizedBox(
+                  //   height: 30,
+                  //   child: ListView.builder(
+                  //     padding: const EdgeInsets.only(left: s08),
+                  //     shrinkWrap: true,
+                  //     itemCount: 3,
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemBuilder: (context, index) {
+                  //       return GestureDetector(
+                  //         onTap: () {
+                  //           context.read<HomeBloc>().add(
+                  //                 HomeEvent.topDealIndexChanged(index),
+                  //               );
+                  //         },
+                  //         child: Container(
+                  //           padding: const EdgeInsets.symmetric(
+                  //             horizontal: s16,
+                  //             vertical: s04,
+                  //           ),
+                  //           decoration: BoxDecoration(
+                  //             border: Border.all(color: CustomColors.primary),
+                  //             color: successState.topDealIndex == index
+                  //                 ? cardDarkColor
+                  //                 : white,
+                  //             borderRadius: BorderRadius.circular(16),
+                  //           ),
+                  //           child: Text(
+                  //             topDeals[index],
+                  //             style: TextStyle(
+                  //               color: successState.topDealIndex == index
+                  //                   ? white
+                  //                   : black,
+                  //             ),
+                  //             textAlign: TextAlign.center,
+                  //           ),
+                  //         ).paddingRight(8),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
+                  // const SizedBox(height: s08),
                   SizedBox(
                     height: 250,
                     child: ListView.builder(
@@ -202,8 +254,8 @@ class _HomeViewState extends State<HomeView> {
                               RouteName.carDetail,
                               queryParams: {
                                 'car-id': id,
-                                'rental-car-type': successState
-                                    .topDeals[index].rentalCarType.name,
+                                // 'rental-car-type': successState
+                                //     .topDeals[index].rentalCarType.name,
                               },
                             );
                           },
@@ -214,7 +266,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   ListTile(
-                    title: Text('Địa điểm nổi bật - Xe tự lái',
+                    title: Text('Địa điểm nổi bật',
                         style: boldTextStyle(size: 16)),
                   ),
                   SizedBox(
@@ -238,8 +290,8 @@ class _HomeViewState extends State<HomeView> {
                             );
                             context.pushNamed(RouteName.carSearchResult,
                                 queryParams: {
-                                  'rental-car-type':
-                                      RentalCarType.selfDrivingCar.name,
+                                  // 'rental-car-type':
+                                  //     RentalCarType.selfDrivingCar.name,
                                   'start-date': defaultStartDate.toString(),
                                   'end-date': defaultStartDate
                                       .add(const Duration(days: 1))
@@ -260,55 +312,55 @@ class _HomeViewState extends State<HomeView> {
                       scrollDirection: Axis.horizontal,
                     ),
                   ),
-                  ListTile(
-                    title: Text(
-                      'Địa điểm nổi bật - Xe có tài xế',
-                      style: boldTextStyle(size: 16),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 130,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return LocationCard(
-                          type: LocationCardType.values[index],
-                          onTap: () {
-                            final currentDate = DateTime.now();
+                  // ListTile(
+                  //   title: Text(
+                  //     'Địa điểm nổi bật - Xe có tài xế',
+                  //     style: boldTextStyle(size: 16),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 130,
+                  //   child: ListView.builder(
+                  //     itemBuilder: (context, index) {
+                  //       return LocationCard(
+                  //         type: LocationCardType.values[index],
+                  //         onTap: () {
+                  //           final currentDate = DateTime.now();
 
-                            final defaultStartDate = DateTime(
-                              currentDate.year,
-                              currentDate.month,
-                              currentDate.day,
-                              8,
-                              0,
-                              0,
-                              0,
-                              0,
-                            );
-                            context.pushNamed(RouteName.carSearchResult,
-                                queryParams: {
-                                  'rental-car-type':
-                                      RentalCarType.carWithDriver.name,
-                                  'start-date': defaultStartDate.toString(),
-                                  'end-date': defaultStartDate
-                                      .add(const Duration(days: 1))
-                                      .toString(),
-                                  'address': getLocationName(
-                                      LocationCardType.values[index]),
-                                  'latitude': getLocationLatitude(
-                                          LocationCardType.values[index])
-                                      .toString(),
-                                  'longitude': getLocationLongitude(
-                                          LocationCardType.values[index])
-                                      .toString(),
-                                });
-                          },
-                        );
-                      },
-                      itemCount: LocationCardType.values.length,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                  ),
+                  //           final defaultStartDate = DateTime(
+                  //             currentDate.year,
+                  //             currentDate.month,
+                  //             currentDate.day,
+                  //             8,
+                  //             0,
+                  //             0,
+                  //             0,
+                  //             0,
+                  //           );
+                  //           context.pushNamed(RouteName.carSearchResult,
+                  //               queryParams: {
+                  //                 'rental-car-type':
+                  //                     RentalCarType.carWithDriver.name,
+                  //                 'start-date': defaultStartDate.toString(),
+                  //                 'end-date': defaultStartDate
+                  //                     .add(const Duration(days: 1))
+                  //                     .toString(),
+                  //                 'address': getLocationName(
+                  //                     LocationCardType.values[index]),
+                  //                 'latitude': getLocationLatitude(
+                  //                         LocationCardType.values[index])
+                  //                     .toString(),
+                  //                 'longitude': getLocationLongitude(
+                  //                         LocationCardType.values[index])
+                  //                     .toString(),
+                  //               });
+                  //         },
+                  //       );
+                  //     },
+                  //     itemCount: LocationCardType.values.length,
+                  //     scrollDirection: Axis.horizontal,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

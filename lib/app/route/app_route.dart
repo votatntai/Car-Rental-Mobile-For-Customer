@@ -13,8 +13,10 @@ import 'package:car_rental_for_customer/pages/license/views/license_page.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
 import 'package:car_rental_for_customer/pages/notification/notification.dart';
 import 'package:car_rental_for_customer/pages/order_information/views/order_information_page.dart';
+import 'package:car_rental_for_customer/pages/payment_webview/payment_webview.dart';
 import 'package:car_rental_for_customer/pages/profile/profile.dart';
 import 'package:car_rental_for_customer/pages/profile_detail/profile_detail.dart';
+import 'package:car_rental_for_customer/pages/recharge/views/recharge_page.dart';
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
 import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
 import 'package:car_rental_for_customer/pages/splash/splash_page.dart';
@@ -69,12 +71,6 @@ class AppRoute {
                   path: 'car-search',
                   name: RouteName.carSearch,
                   builder: (context, state) {
-                    final rentalCarType = RentalCarType.values.firstWhere(
-                      (element) =>
-                          element.name == state.queryParams['rental-car-type'],
-                      orElse: () => RentalCarType.selfDrivingCar,
-                    );
-
                     final longitude = double.tryParse(
                       state.queryParams['longitude'] ?? '',
                     );
@@ -90,7 +86,6 @@ class AppRoute {
                     final address = state.queryParams['address'] ?? '';
 
                     return CarSearchPage(
-                      rentalCarType: rentalCarType,
                       longitude: longitude,
                       latitude: latitude,
                       startDate: startDate,
@@ -103,12 +98,6 @@ class AppRoute {
                       path: 'car-search-result',
                       name: RouteName.carSearchResult,
                       builder: (context, state) {
-                        final rentalCarType = RentalCarType.values.firstWhere(
-                          (element) =>
-                              element.name ==
-                              state.queryParams['rental-car-type'],
-                          orElse: () => RentalCarType.selfDrivingCar,
-                        );
                         final startDate = DateTime.tryParse(
                           state.queryParams['start-date'] ?? '',
                         );
@@ -128,7 +117,6 @@ class AppRoute {
 
                         return CarSearchResultPage(
                           address: address,
-                          rentalCarType: rentalCarType,
                           endDate: endDate!,
                           startDate: startDate!,
                           latitude: latitude!,
@@ -188,6 +176,26 @@ class AppRoute {
                     );
                   },
                 ),
+                GoRoute(
+                    path: 'recharge',
+                    name: RouteName.recharge,
+                    builder: (context, state) {
+                      return RechargePage();
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'payment-webview',
+                        name: RouteName.paymentWebview,
+                        parentNavigatorKey: rootNavigatorKey,
+                        builder: (context, state) {
+                          final url = state.queryParams['url'] ?? '';
+
+                          return PaymentWebviewPage(
+                            url: url,
+                          );
+                        },
+                      ),
+                    ]),
               ]),
           GoRoute(
             path: '/notification',
@@ -227,10 +235,6 @@ class AppRoute {
         builder: (context, state) {
           final String carId = state.queryParams['car-id'] ?? '';
 
-          final rentalCarType = RentalCarType.values.firstWhere(
-            (element) => element.name == state.queryParams['rental-car-type'],
-            orElse: () => RentalCarType.selfDrivingCar,
-          );
           final startDate = DateTime.tryParse(
             state.queryParams['start-date'] ?? '',
           );
@@ -249,7 +253,6 @@ class AppRoute {
           );
           return CarDetailPage(
             carId: carId,
-            rentalCarType: rentalCarType,
             address: address,
             endDate: endDate,
             startDate: startDate,

@@ -18,13 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CarSearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)
+    required TResult Function(double? longitude, double? latitude,
+            DateTime? startDate, DateTime? endDate, String? address)
         started,
     required TResult Function(String address, double longitude, double latitude)
         addressChanged,
@@ -34,13 +29,8 @@ mixin _$CarSearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult? Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult? Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -49,13 +39,8 @@ mixin _$CarSearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -112,8 +97,7 @@ abstract class _$$_StartedCopyWith<$Res> {
       __$$_StartedCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {RentalCarType rentalCarType,
-      double? longitude,
+      {double? longitude,
       double? latitude,
       DateTime? startDate,
       DateTime? endDate,
@@ -130,7 +114,6 @@ class __$$_StartedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? rentalCarType = null,
     Object? longitude = freezed,
     Object? latitude = freezed,
     Object? startDate = freezed,
@@ -138,10 +121,6 @@ class __$$_StartedCopyWithImpl<$Res>
     Object? address = freezed,
   }) {
     return _then(_$_Started(
-      rentalCarType: null == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
@@ -170,15 +149,12 @@ class __$$_StartedCopyWithImpl<$Res>
 
 class _$_Started implements _Started {
   const _$_Started(
-      {required this.rentalCarType,
-      this.longitude,
+      {this.longitude,
       this.latitude,
       this.startDate,
       this.endDate,
       this.address});
 
-  @override
-  final RentalCarType rentalCarType;
   @override
   final double? longitude;
   @override
@@ -192,7 +168,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'CarSearchEvent.started(rentalCarType: $rentalCarType, longitude: $longitude, latitude: $latitude, startDate: $startDate, endDate: $endDate, address: $address)';
+    return 'CarSearchEvent.started(longitude: $longitude, latitude: $latitude, startDate: $startDate, endDate: $endDate, address: $address)';
   }
 
   @override
@@ -200,8 +176,6 @@ class _$_Started implements _Started {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Started &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.latitude, latitude) ||
@@ -213,8 +187,8 @@ class _$_Started implements _Started {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rentalCarType, longitude,
-      latitude, startDate, endDate, address);
+  int get hashCode => Object.hash(
+      runtimeType, longitude, latitude, startDate, endDate, address);
 
   @JsonKey(ignore: true)
   @override
@@ -225,52 +199,35 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)
+    required TResult Function(double? longitude, double? latitude,
+            DateTime? startDate, DateTime? endDate, String? address)
         started,
     required TResult Function(String address, double longitude, double latitude)
         addressChanged,
     required TResult Function(DateTime startDate, DateTime endDate)
         dateRangeChanged,
   }) {
-    return started(
-        rentalCarType, longitude, latitude, startDate, endDate, address);
+    return started(longitude, latitude, startDate, endDate, address);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult? Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult? Function(String address, double longitude, double latitude)?
         addressChanged,
     TResult? Function(DateTime startDate, DateTime endDate)? dateRangeChanged,
   }) {
-    return started?.call(
-        rentalCarType, longitude, latitude, startDate, endDate, address);
+    return started?.call(longitude, latitude, startDate, endDate, address);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -278,8 +235,7 @@ class _$_Started implements _Started {
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(
-          rentalCarType, longitude, latitude, startDate, endDate, address);
+      return started(longitude, latitude, startDate, endDate, address);
     }
     return orElse();
   }
@@ -321,14 +277,12 @@ class _$_Started implements _Started {
 
 abstract class _Started implements CarSearchEvent {
   const factory _Started(
-      {required final RentalCarType rentalCarType,
-      final double? longitude,
+      {final double? longitude,
       final double? latitude,
       final DateTime? startDate,
       final DateTime? endDate,
       final String? address}) = _$_Started;
 
-  RentalCarType get rentalCarType;
   double? get longitude;
   double? get latitude;
   DateTime? get startDate;
@@ -422,13 +376,8 @@ class _$_AddressChanged implements _AddressChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)
+    required TResult Function(double? longitude, double? latitude,
+            DateTime? startDate, DateTime? endDate, String? address)
         started,
     required TResult Function(String address, double longitude, double latitude)
         addressChanged,
@@ -441,13 +390,8 @@ class _$_AddressChanged implements _AddressChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult? Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult? Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -459,13 +403,8 @@ class _$_AddressChanged implements _AddressChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -600,13 +539,8 @@ class _$_DateRangeChanged implements _DateRangeChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)
+    required TResult Function(double? longitude, double? latitude,
+            DateTime? startDate, DateTime? endDate, String? address)
         started,
     required TResult Function(String address, double longitude, double latitude)
         addressChanged,
@@ -619,13 +553,8 @@ class _$_DateRangeChanged implements _DateRangeChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult? Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult? Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -637,13 +566,8 @@ class _$_DateRangeChanged implements _DateRangeChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            RentalCarType rentalCarType,
-            double? longitude,
-            double? latitude,
-            DateTime? startDate,
-            DateTime? endDate,
-            String? address)?
+    TResult Function(double? longitude, double? latitude, DateTime? startDate,
+            DateTime? endDate, String? address)?
         started,
     TResult Function(String address, double longitude, double latitude)?
         addressChanged,
@@ -705,7 +629,6 @@ abstract class _DateRangeChanged implements CarSearchEvent {
 
 /// @nodoc
 mixin _$CarSearchState {
-  RentalCarType? get rentalCarType => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
@@ -725,8 +648,7 @@ abstract class $CarSearchStateCopyWith<$Res> {
       _$CarSearchStateCopyWithImpl<$Res, CarSearchState>;
   @useResult
   $Res call(
-      {RentalCarType? rentalCarType,
-      String? address,
+      {String? address,
       DateTime? startDate,
       DateTime? endDate,
       double? longitude,
@@ -747,7 +669,6 @@ class _$CarSearchStateCopyWithImpl<$Res, $Val extends CarSearchState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? rentalCarType = freezed,
     Object? address = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -756,10 +677,6 @@ class _$CarSearchStateCopyWithImpl<$Res, $Val extends CarSearchState>
     Object? cars = freezed,
   }) {
     return _then(_value.copyWith(
-      rentalCarType: freezed == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -797,8 +714,7 @@ abstract class _$$_CarSearchStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {RentalCarType? rentalCarType,
-      String? address,
+      {String? address,
       DateTime? startDate,
       DateTime? endDate,
       double? longitude,
@@ -817,7 +733,6 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? rentalCarType = freezed,
     Object? address = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
@@ -826,10 +741,6 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
     Object? cars = freezed,
   }) {
     return _then(_$_CarSearchState(
-      rentalCarType: freezed == rentalCarType
-          ? _value.rentalCarType
-          : rentalCarType // ignore: cast_nullable_to_non_nullable
-              as RentalCarType?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -862,8 +773,7 @@ class __$$_CarSearchStateCopyWithImpl<$Res>
 
 class _$_CarSearchState implements _CarSearchState {
   const _$_CarSearchState(
-      {this.rentalCarType,
-      this.address,
+      {this.address,
       this.startDate,
       this.endDate,
       this.longitude,
@@ -871,8 +781,6 @@ class _$_CarSearchState implements _CarSearchState {
       final List<Car>? cars})
       : _cars = cars;
 
-  @override
-  final RentalCarType? rentalCarType;
   @override
   final String? address;
   @override
@@ -895,7 +803,7 @@ class _$_CarSearchState implements _CarSearchState {
 
   @override
   String toString() {
-    return 'CarSearchState(rentalCarType: $rentalCarType, address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude, cars: $cars)';
+    return 'CarSearchState(address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude, cars: $cars)';
   }
 
   @override
@@ -903,8 +811,6 @@ class _$_CarSearchState implements _CarSearchState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CarSearchState &&
-            (identical(other.rentalCarType, rentalCarType) ||
-                other.rentalCarType == rentalCarType) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
@@ -917,15 +823,8 @@ class _$_CarSearchState implements _CarSearchState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      rentalCarType,
-      address,
-      startDate,
-      endDate,
-      longitude,
-      latitude,
-      const DeepCollectionEquality().hash(_cars));
+  int get hashCode => Object.hash(runtimeType, address, startDate, endDate,
+      longitude, latitude, const DeepCollectionEquality().hash(_cars));
 
   @JsonKey(ignore: true)
   @override
@@ -936,16 +835,13 @@ class _$_CarSearchState implements _CarSearchState {
 
 abstract class _CarSearchState implements CarSearchState {
   const factory _CarSearchState(
-      {final RentalCarType? rentalCarType,
-      final String? address,
+      {final String? address,
       final DateTime? startDate,
       final DateTime? endDate,
       final double? longitude,
       final double? latitude,
       final List<Car>? cars}) = _$_CarSearchState;
 
-  @override
-  RentalCarType? get rentalCarType;
   @override
   String? get address;
   @override

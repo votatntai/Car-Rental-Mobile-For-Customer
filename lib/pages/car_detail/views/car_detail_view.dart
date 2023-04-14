@@ -104,20 +104,20 @@ class _CarDetailViewState extends State<CarDetailView> {
                     children: [
                       carImage(context, successState.car),
                       carTitle(context, successState.car),
-                      divider,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: s16),
-                        child: ContainerWithLabel(
-                          label: 'Loại thuê xe',
-                          child: Column(
-                            children: [
-                              Text(
-                                successState.car.rentalCarType.getDisplayName(),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                      // divider,
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(horizontal: s16),
+                      //   child: ContainerWithLabel(
+                      //     label: 'Loại thuê xe',
+                      //     child: Column(
+                      //       children: [
+                      //         Text(
+                      //           successState.car.rentalCarType.getDisplayName(),
+                      //         )
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       divider,
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: s16),
@@ -836,9 +836,14 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   const EdgeInsets.symmetric(vertical: s12),
                             ),
                             onPressed: () {
-                              if (isLicenseValid == false &&
-                                  successState.rentalCarType ==
-                                      RentalCarType.selfDrivingCar) {
+                              // TODO: rental car type
+                              if (isLicenseValid == false
+
+                                  // &&
+                                  //     successState.rentalCarType ==
+                                  //         RentalCarType.selfDrivingCar
+
+                                  ) {
                                 showMessageDialog(
                                   title: 'Thông báo',
                                   message:

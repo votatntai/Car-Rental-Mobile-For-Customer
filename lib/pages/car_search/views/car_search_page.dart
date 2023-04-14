@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CarSearchPage extends StatelessWidget {
   const CarSearchPage({
     Key? key,
-    required this.rentalCarType,
     this.longitude,
     this.latitude,
     this.startDate,
@@ -18,7 +17,6 @@ class CarSearchPage extends StatelessWidget {
     this.address,
   }) : super(key: key);
 
-  final RentalCarType rentalCarType;
   final double? longitude;
   final double? latitude;
   final DateTime? startDate;
@@ -32,9 +30,7 @@ class CarSearchPage extends StatelessWidget {
         mapsRepository: getIt.get<MapsRepository>(),
         carRepository: getIt.get<CarRepository>(),
       )..add(
-          CarSearchEvent.started(
-            rentalCarType: rentalCarType,
-          ),
+          CarSearchEvent.started(),
         ),
       child: const CarSearchView(),
     );

@@ -64,53 +64,21 @@ class WalletView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: s32),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              children: const [
-                                Icon(
-                                  Icons.add_card_outlined,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Nạp tiền',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: const [
-                                Icon(
-                                  Icons.account_balance_wallet_outlined,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Rút tiền',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                context.goNamed(RouteName.transactionHistory);
-                              },
-                              child: Column(
+                        GestureDetector(
+                          onTap: () {
+                            context.goNamed(RouteName.recharge);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
                                 children: const [
                                   Icon(
-                                    Icons.history_outlined,
+                                    Icons.add_card_outlined,
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    'Lịch sử',
+                                    'Nạp tiền',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
@@ -119,8 +87,45 @@ class WalletView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
+                              // Column(
+                              //   children: const [
+                              //     Icon(
+                              //       Icons.account_balance_wallet_outlined,
+                              //       color: Colors.white,
+                              //     ),
+                              //     Text(
+                              //       'Rút tiền',
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontSize: 12,
+                              //         fontWeight: FontWeight.w500,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                              GestureDetector(
+                                onTap: () {
+                                  context.goNamed(RouteName.transactionHistory);
+                                },
+                                child: Column(
+                                  children: const [
+                                    Icon(
+                                      Icons.history_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      'Lịch sử',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

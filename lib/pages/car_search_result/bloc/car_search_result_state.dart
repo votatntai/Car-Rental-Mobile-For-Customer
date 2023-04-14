@@ -8,7 +8,6 @@ class CarSearchResultState with _$CarSearchResultState {
     required String address,
     required DateTime startDate,
     required DateTime endDate,
-    required RentalCarType rentalCarType,
     required double latitude,
     required double longitude,
     ScrollPagination<Car>? scrollPagination,

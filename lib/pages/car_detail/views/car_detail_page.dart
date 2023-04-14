@@ -12,7 +12,6 @@ class CarDetailPage extends StatelessWidget {
   const CarDetailPage({
     Key? key,
     required this.carId,
-    required this.rentalCarType,
     this.address,
     this.startDate,
     this.endDate,
@@ -21,7 +20,6 @@ class CarDetailPage extends StatelessWidget {
   }) : super(key: key);
 
   final String carId;
-  final RentalCarType rentalCarType;
   final String? address;
   final DateTime? startDate;
   final DateTime? endDate;
@@ -37,7 +35,6 @@ class CarDetailPage extends StatelessWidget {
         carRepository: getIt.get<CarRepository>(),
       )..add(
           CarDetailEvent.started(
-            rentalCarType: rentalCarType,
             carId: carId,
             address: address,
             startDate: startDate,
