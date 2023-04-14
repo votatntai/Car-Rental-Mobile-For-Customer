@@ -19,14 +19,20 @@ class OrderRepository {
   Future<ApiResponse<PaginationResult<Order>>> myOrders({
     required int pageNumber,
     required int pageSize,
+    OrderStatus? orderStatus,
   }) async {
     try {
+      Map<String, dynamic> query = {
+        'pageNumber': pageNumber - 1,
+        'pageSize': pageSize,
+      };
+      if (orderStatus != null) {
+        query['status'] = orderStatus.name;
+      }
+
       final result = await dio.get<JsonObject>(
         'orders',
-        queryParameters: {
-          'pageNumber': pageNumber - 1,
-          'pageSize': pageSize,
-        },
+        queryParameters: query,
       );
 
       if (result.data != null && result.statusCode == StatusCodes.status200OK) {
