@@ -18,8 +18,10 @@ import 'package:car_rental_for_customer/commons/widgets/vertical_icon.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
+import 'package:car_rental_for_customer/models/feedback.dart';
 import 'package:car_rental_for_customer/pages/car_detail/bloc/car_detail_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
+import 'package:car_rental_for_customer/pages/car_detail/widgets/feedback_item.dart';
 import 'package:car_rental_for_customer/pages/car_detail/widgets/surcharge_item.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +90,9 @@ class _CarDetailViewState extends State<CarDetailView> {
         final totalCost = rentCost + carDeliveryCost - promotionCost;
 
         final isLicenseValid = successState.user?.isLicenseValid ?? false;
+
+        List<FeedbackModel> feedbacks = [...successState.car.feedBacks ?? []];
+        feedbacks.sort((a, b) => b.createAt.compareTo(a.createAt));
 
         return Scaffold(
           appBar: appAppBar(
@@ -836,6 +841,19 @@ class _CarDetailViewState extends State<CarDetailView> {
                             ),
                           ),
                         ),
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Đánh giá từ khách thuê xe',
+                          child: Column(
+                            children: feedbacks
+                                .map((e) => FeedbackItem(feedback: e))
+                                .take(3)
+                                .toList(),
+                          ),
+                        ),
+                      ),
                       const SizedBox(
                         height: s64,
                       )

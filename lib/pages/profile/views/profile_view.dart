@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -43,12 +44,20 @@ class _ProfileViewState extends State<ProfileView> {
                 const SizedBox(height: s16),
                 Stack(
                   children: [
-                    Image.asset(
-                      Images.userImage,
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
-                    ).cornerRadiusWithClipRRect(60),
+                    if (user?.avatarUrl == null)
+                      Image.asset(
+                        Images.userImage,
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ).cornerRadiusWithClipRRect(60)
+                    else
+                      CachedNetworkImage(
+                        imageUrl: user?.avatarUrl ?? '',
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ).cornerRadiusWithClipRRect(60),
                     Positioned(
                       right: 0,
                       bottom: 0,

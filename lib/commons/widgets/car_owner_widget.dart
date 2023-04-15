@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -26,8 +27,8 @@ class CarOwnerWidget extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {},
-                child: const Text(
-                  'Nguyễn Văn A',
+                child: Text(
+                  car.carOwner?.name ?? '',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -59,12 +60,20 @@ class CarOwnerWidget extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Image.asset(
-            Images.userImage,
-            height: 60,
-            width: 60,
-            fit: BoxFit.cover,
-          ).cornerRadiusWithClipRRect(60),
+          if (car.carOwner?.avatarUrl != null)
+            CachedNetworkImage(
+              imageUrl: car.carOwner?.avatarUrl ?? '',
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ).cornerRadiusWithClipRRect(60)
+          else
+            Image.asset(
+              Images.userImage,
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ).cornerRadiusWithClipRRect(60),
         ],
       ),
     );

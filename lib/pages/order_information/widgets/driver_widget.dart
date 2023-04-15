@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -40,12 +41,20 @@ class DriverWidget extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Image.asset(
-            Images.userImage,
-            height: 60,
-            width: 60,
-            fit: BoxFit.cover,
-          ).cornerRadiusWithClipRRect(60),
+          if (driver.avatarUrl != null)
+            CachedNetworkImage(
+              imageUrl: driver.avatarUrl ?? '',
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ).cornerRadiusWithClipRRect(60)
+          else
+            Image.asset(
+              Images.userImage,
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ).cornerRadiusWithClipRRect(60),
         ],
       ),
     );

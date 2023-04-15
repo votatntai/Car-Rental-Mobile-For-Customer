@@ -10,8 +10,10 @@ import 'package:car_rental_for_customer/firebase_options.dart';
 import 'package:car_rental_for_customer/models/car_owner.dart';
 import 'package:car_rental_for_customer/repositories/car_owner_repository.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
+import 'package:car_rental_for_customer/repositories/customer_repository.dart';
 import 'package:car_rental_for_customer/repositories/driver_repository.dart';
 import 'package:car_rental_for_customer/repositories/fcm_token_repository.dart';
+import 'package:car_rental_for_customer/repositories/feedback_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:car_rental_for_customer/repositories/notification_repository.dart';
 import 'package:car_rental_for_customer/repositories/order_repository.dart';
@@ -83,7 +85,9 @@ Future<void> configDI() async {
     )
     ..registerSingleton<CarRepository>(CarRepository(dio: dio))
     ..registerSingleton<FCMTokenRepository>(FCMTokenRepository(dio: dio))
-    ..registerSingleton<PaymentRepository>(PaymentRepository(dio: dio));
+    ..registerSingleton<PaymentRepository>(PaymentRepository(dio: dio))
+    ..registerSingleton<FeedbackRepository>(FeedbackRepository(dio: dio))
+    ..registerSingleton<CustomerRepository>(CustomerRepository(dio: dio));
 }
 
 void configureTimeago() {

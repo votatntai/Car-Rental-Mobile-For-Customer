@@ -1,5 +1,6 @@
 import 'package:car_rental_for_customer/app/route/observers.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
+import 'package:car_rental_for_customer/models/enums/feedback_type.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/views/car_booking_confirmation_page.dart';
@@ -8,6 +9,7 @@ import 'package:car_rental_for_customer/pages/car_owner_detail/car_owner_detail.
 import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/car_search_result.dart';
 import 'package:car_rental_for_customer/pages/driver_detail/driver_detail.dart';
+import 'package:car_rental_for_customer/pages/feedback/views/feedback_page.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/license/views/license_page.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
@@ -327,6 +329,34 @@ class AppRoute {
 
           return DriverDetailPage(
             driverId: driverId,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/feedback',
+        name: RouteName.feedback,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final orderId = state.queryParams['order-id'];
+          final driverId = state.queryParams['driver-id'];
+          final carId = state.queryParams['car-id'];
+          final customerId = state.queryParams['customer-id'];
+          final feedbackTypes = FeedbackType.values.where((element) {
+            return element.name == state.queryParams['feedback-type'];
+          });
+
+          FeedbackType feedbackType = FeedbackType.driver;
+
+          if (feedbackTypes.isNotEmpty) {
+            feedbackType = feedbackTypes.first;
+          }
+
+          return FeedbackPage(
+            orderId: orderId,
+            driverId: driverId,
+            carId: carId,
+            feedbackType: feedbackType,
+            customerId: customerId,
           );
         },
       ),
