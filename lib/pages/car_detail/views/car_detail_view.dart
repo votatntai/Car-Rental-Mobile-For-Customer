@@ -846,6 +846,24 @@ class _CarDetailViewState extends State<CarDetailView> {
                         padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(
                           label: 'Đánh giá từ khách thuê xe',
+                          trailing: TextButton(
+                            onPressed: () {
+                              context.pushNamed(
+                                RouteName.feedbackList,
+                                queryParams: {
+                                  'car-id': successState.car.id,
+                                },
+                              );
+                            },
+                            child: const Text(
+                              'Xem thêm',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: CustomColors.jetBlack,
+                              ),
+                            ),
+                          ),
                           child: Column(
                             children: feedbacks
                                 .map((e) => FeedbackItem(feedback: e))

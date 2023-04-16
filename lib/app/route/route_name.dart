@@ -22,4 +22,5 @@ mixin RouteName {
   static const recharge = 'recharge';
   static const paymentWebview = 'payment-webview';
   static const feedback = 'feedback';
+  static const feedbackList = 'feedback-list';
 }

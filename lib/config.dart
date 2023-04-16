@@ -60,7 +60,11 @@ Future<void> configDI() async {
     ..registerSingleton<AuthenticationRepository>(authenticationRepository)
     ..registerSingleton<UserRepository>(UserRepository(dio: dio))
     ..registerSingleton<MapsRepository>(
-      MapsRepository(key: mapsApiKey, options: dioOptions),
+      MapsRepository(
+        key: mapsApiKey,
+        options: dioOptions,
+        prefs: sharedPreferences,
+      ),
     )
     ..registerSingleton<CarOwnerRepository>(
       CarOwnerRepository(dio: dio),

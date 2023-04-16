@@ -25,15 +25,12 @@ class CarOwnerWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  car.carOwner?.name ?? '',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: CustomColors.jetBlack,
-                  ),
+              Text(
+                car.carOwner?.name ?? '',
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: CustomColors.jetBlack,
                 ),
               ),
               const SizedBox(height: 4),
@@ -41,16 +38,16 @@ class CarOwnerWidget extends StatelessWidget {
                 children: const [
                   Text(
                     '5',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
                       color: CustomColors.dimGray,
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: s02,
                   ),
-                  const Icon(
+                  Icon(
                     Icons.star,
                     color: CustomColors.flamingo,
                     size: 12,

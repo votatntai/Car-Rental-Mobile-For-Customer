@@ -10,6 +10,7 @@ import 'package:car_rental_for_customer/pages/car_search/car_search.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/car_search_result.dart';
 import 'package:car_rental_for_customer/pages/driver_detail/driver_detail.dart';
 import 'package:car_rental_for_customer/pages/feedback/views/feedback_page.dart';
+import 'package:car_rental_for_customer/pages/feedback_list/views/feedback_list_page.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/license/views/license_page.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
@@ -357,6 +358,20 @@ class AppRoute {
             carId: carId,
             feedbackType: feedbackType,
             customerId: customerId,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/feedback-list',
+        name: RouteName.feedbackList,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          final carId = state.queryParams['car-id'];
+          final driverId = state.queryParams['driver-id'];
+
+          return FeedbackListPage(
+            carId: carId,
+            driverId: driverId,
           );
         },
       ),

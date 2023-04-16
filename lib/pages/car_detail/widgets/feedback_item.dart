@@ -99,18 +99,15 @@ class _FeedbackItemState extends State<FeedbackItem> {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    RatingBar.builder(
-                      itemSize: 25,
-                      initialRating: widget.feedback.star?.toDouble() ?? 0,
-                      minRating: 0,
-                      direction: Axis.horizontal,
-                      itemCount: 5,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 1),
-                      itemBuilder: (context, _) => const Icon(
+                    RatingBarIndicator(
+                      rating: widget.feedback.star?.toDouble() ?? 0,
+                      itemBuilder: (context, index) => const Icon(
                         Icons.star,
                         color: Colors.amber,
                       ),
-                      onRatingUpdate: (rating) {},
+                      itemCount: 5,
+                      itemSize: 15,
+                      direction: Axis.horizontal,
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -119,7 +116,7 @@ class _FeedbackItemState extends State<FeedbackItem> {
                         fontSize: 12,
                         color: CustomColors.jetBlack,
                       ),
-                      maxLines: 5,
+                      maxLines: 3,
                     ),
                   ],
                 ),
