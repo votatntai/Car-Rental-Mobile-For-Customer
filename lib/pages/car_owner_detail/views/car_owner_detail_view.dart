@@ -31,6 +31,9 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
             body: LoadingWidget(),
           );
         }
+
+        final carOwner = successState.carOwner;
+
         return Scaffold(
           appBar: appAppBar(
             context,
@@ -82,6 +85,7 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                 ),
                 const SizedBox(height: s16),
                 Table(
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                   children: [
                     TableRow(
                       children: [
@@ -100,21 +104,9 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: const [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.green,
-                            ),
-                            SizedBox(
-                              width: s08,
-                              height: s32,
-                            ),
-                            Text(
-                              'Đã xác thực',
-                              style: TextStyle(fontSize: s12),
-                            )
-                          ],
+                        Text(
+                          carOwner.phone,
+                          style: const TextStyle(fontSize: s12),
                         ),
                         const SizedBox(),
                       ],
@@ -128,7 +120,7 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                               height: s32,
                             ),
                             Text(
-                              'Email',
+                              'Địa chỉ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
@@ -136,21 +128,9 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: const [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.green,
-                            ),
-                            SizedBox(
-                              width: s08,
-                              height: s32,
-                            ),
-                            Text(
-                              'Đã xác thực',
-                              style: TextStyle(fontSize: s12),
-                            )
-                          ],
+                        Text(
+                          carOwner.address ?? '',
+                          style: TextStyle(fontSize: s12),
                         ),
                         const SizedBox(),
                       ],
@@ -164,7 +144,7 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                               height: s32,
                             ),
                             Text(
-                              'GPLX',
+                              'Giới tính',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
@@ -172,21 +152,9 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: const [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.green,
-                            ),
-                            SizedBox(
-                              width: s08,
-                              height: s32,
-                            ),
-                            Text(
-                              'Đã xác thực',
-                              style: TextStyle(fontSize: s12),
-                            )
-                          ],
+                        Text(
+                          carOwner.gender,
+                          style: const TextStyle(fontSize: s12),
                         ),
                         const SizedBox(),
                       ],
@@ -198,44 +166,43 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                   thickness: 3,
                 ),
                 const SizedBox(height: s08),
-                Row(
-                  children: [
-                    const SizedBox(width: s08),
-                    Text(
-                      'Xe của ${successState.carOwner.name}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                if (successState.cars.isNotEmpty)
+                  Row(
+                    children: [
+                      const SizedBox(width: s08),
+                      Text(
+                        'Xe của ${successState.carOwner.name}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 const SizedBox(height: s08),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: s08),
                   child: Column(
-                    // children: carMock
-                    //     .map(
-                    //       (e) => CarItem(
-                    //         onTap: (id) {
-                    //           context.pushNamed(
-                    //             RouteName.carDetail,
-                    //             queryParams: {
-                    //               'car-id': id,
-                    //               'rental-car-type': e.rentalCarType.name,
-                    //               // 'address': value.address,
-                    //               // 'start-date': value.startDate.toString(),
-                    //               // 'end-date': value.endDate.toString(),
-                    //               // 'longitude': value.longitude.toString(),
-                    //               // 'latitude': value.latitude.toString(),
-                    //             },
-                    //           );
-                    //         },
-                    //         car: e,
-                    //       ),
-                    //     )
-                    //     .toList(),
-                    children: [],
+                    children: successState.cars
+                        .map(
+                          (e) => CarItem(
+                            onTap: (id) {
+                              context.pushNamed(
+                                RouteName.carDetail,
+                                queryParams: {
+                                  'car-id': id,
+                                  // 'address': value.address,
+                                  // 'start-date': value.startDate.toString(),
+                                  // 'end-date': value.endDate.toString(),
+                                  // 'longitude': value.longitude.toString(),
+                                  // 'latitude': value.latitude.toString(),
+                                },
+                              );
+                            },
+                            car: e,
+                          ),
+                        )
+                        .toList(),
                   ),
                 )
               ],

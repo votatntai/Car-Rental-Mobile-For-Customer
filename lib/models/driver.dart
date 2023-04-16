@@ -11,6 +11,7 @@ class Driver with _$Driver {
     required String? address,
     required String phone,
     required String gender,
+    double? star,
     String? avatarUrl,
   }) = _Driver;
 

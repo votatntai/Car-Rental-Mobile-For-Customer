@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
+import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/car_owner.dart';
 import 'package:car_rental_for_customer/repositories/car_owner_repository.dart';
+import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'car_owner_detail_event.dart';
@@ -14,11 +16,13 @@ class CarOwnerDetailBloc
     extends Bloc<CarOwnerDetailEvent, CarOwnerDetailState> {
   CarOwnerDetailBloc({
     required this.carOwnerRepository,
+    required this.carRepository,
   }) : super(const CarOwnerDetailState.initial()) {
     on<_Started>(_onStarted);
   }
 
   final CarOwnerRepository carOwnerRepository;
+  final CarRepository carRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -29,12 +33,28 @@ class CarOwnerDetailBloc
     final carOwnerResult =
         await carOwnerRepository.carOwnerById(event.carOwnerId);
 
-    if (carOwnerResult is ApiSuccess) {
-      final carOwner = (carOwnerResult as ApiSuccess<CarOwner>).value;
-      emit(CarOwnerDetailState.success(carOwner: carOwner));
+    if (carOwnerResult is ApiError) {
+      emit(const CarOwnerDetailState.failure(message: 'Lỗi không xác định'));
+
       return;
     }
 
-    emit(const CarOwnerDetailState.failure(message: 'Lỗi không xác định'));
+    final carOwner = (carOwnerResult as ApiSuccess<CarOwner>).value;
+    emit(CarOwnerDetailState.success(
+      carOwner: carOwner,
+      cars: [],
+    ));
+
+    final carResult = await carRepository.carByCarOwner(
+      carOwnerId: carOwner.id,
+    );
+
+    if (carResult is ApiSuccess) {
+      final cars = (carResult as ApiSuccess<List<Car>>).value;
+      emit(CarOwnerDetailState.success(
+        carOwner: carOwner,
+        cars: cars,
+      ));
+    }
   }
 }

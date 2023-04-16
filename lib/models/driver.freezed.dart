@@ -25,6 +25,7 @@ mixin _$Driver {
   String? get address => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
+  double? get star => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $DriverCopyWith<$Res> {
       String? address,
       String phone,
       String gender,
+      double? star,
       String? avatarUrl});
 }
 
@@ -64,6 +66,7 @@ class _$DriverCopyWithImpl<$Res, $Val extends Driver>
     Object? address = freezed,
     Object? phone = null,
     Object? gender = null,
+    Object? star = freezed,
     Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +90,10 @@ class _$DriverCopyWithImpl<$Res, $Val extends Driver>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
+      star: freezed == star
+          ? _value.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as double?,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -107,6 +114,7 @@ abstract class _$$_DriverCopyWith<$Res> implements $DriverCopyWith<$Res> {
       String? address,
       String phone,
       String gender,
+      double? star,
       String? avatarUrl});
 }
 
@@ -125,6 +133,7 @@ class __$$_DriverCopyWithImpl<$Res>
     Object? address = freezed,
     Object? phone = null,
     Object? gender = null,
+    Object? star = freezed,
     Object? avatarUrl = freezed,
   }) {
     return _then(_$_Driver(
@@ -148,6 +157,10 @@ class __$$_DriverCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
+      star: freezed == star
+          ? _value.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as double?,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -165,6 +178,7 @@ class _$_Driver implements _Driver {
       required this.address,
       required this.phone,
       required this.gender,
+      this.star,
       this.avatarUrl});
 
   factory _$_Driver.fromJson(Map<String, dynamic> json) =>
@@ -181,11 +195,13 @@ class _$_Driver implements _Driver {
   @override
   final String gender;
   @override
+  final double? star;
+  @override
   final String? avatarUrl;
 
   @override
   String toString() {
-    return 'Driver(id: $id, name: $name, address: $address, phone: $phone, gender: $gender, avatarUrl: $avatarUrl)';
+    return 'Driver(id: $id, name: $name, address: $address, phone: $phone, gender: $gender, star: $star, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -198,14 +214,15 @@ class _$_Driver implements _Driver {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.star, star) || other.star == star) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, address, phone, gender, avatarUrl);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, address, phone, gender, star, avatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -228,6 +245,7 @@ abstract class _Driver implements Driver {
       required final String? address,
       required final String phone,
       required final String gender,
+      final double? star,
       final String? avatarUrl}) = _$_Driver;
 
   factory _Driver.fromJson(Map<String, dynamic> json) = _$_Driver.fromJson;
@@ -242,6 +260,8 @@ abstract class _Driver implements Driver {
   String get phone;
   @override
   String get gender;
+  @override
+  double? get star;
   @override
   String? get avatarUrl;
   @override

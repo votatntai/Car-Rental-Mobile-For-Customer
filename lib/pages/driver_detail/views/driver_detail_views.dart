@@ -4,6 +4,7 @@ import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
+import 'package:car_rental_for_customer/pages/car_detail/widgets/feedback_item.dart';
 import 'package:car_rental_for_customer/pages/driver_detail/bloc/driver_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,6 +80,7 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                 ),
                 const SizedBox(height: s16),
                 Table(
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                   children: [
                     TableRow(
                       children: [
@@ -97,21 +99,9 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: const [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: CustomColors.flamingo,
-                            ),
-                            SizedBox(
-                              width: s08,
-                              height: s32,
-                            ),
-                            Text(
-                              'Đã xác thực',
-                              style: TextStyle(fontSize: s12),
-                            )
-                          ],
+                        Text(
+                          successState.driver.phone,
+                          style: const TextStyle(fontSize: s12),
                         ),
                         const SizedBox(),
                       ],
@@ -125,7 +115,7 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                               height: s32,
                             ),
                             Text(
-                              'Email',
+                              'Địa chỉ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
@@ -133,21 +123,33 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                             ),
                           ],
                         ),
+                        Text(
+                          successState.driver.address ?? '',
+                          style: TextStyle(fontSize: s12),
+                        ),
+                        const SizedBox(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
                         Row(
                           children: const [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: CustomColors.flamingo,
-                            ),
                             SizedBox(
-                              width: s08,
+                              width: s16,
                               height: s32,
                             ),
                             Text(
-                              'Đã xác thực',
-                              style: TextStyle(fontSize: s12),
-                            )
+                              'Giới tính',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                            ),
                           ],
+                        ),
+                        Text(
+                          successState.driver.gender,
+                          style: const TextStyle(fontSize: s12),
                         ),
                         const SizedBox(),
                       ],
@@ -169,52 +171,9 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: const [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: CustomColors.flamingo,
-                            ),
-                            SizedBox(
-                              width: s08,
-                              height: s32,
-                            ),
-                            Text(
-                              'Đã xác thực',
-                              style: TextStyle(fontSize: s12),
-                            )
-                          ],
-                        ),
-                        const SizedBox(),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Row(
-                          children: const [
-                            SizedBox(
-                              width: s16,
-                              height: s32,
-                            ),
-                            Text(
-                              'Số chuyến',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: const [
-                            SizedBox(
-                              height: s32,
-                            ),
-                            Text(
-                              '100',
-                              style: TextStyle(fontSize: 12),
-                            )
-                          ],
+                        const Text(
+                          'Đã xác thực',
+                          style: TextStyle(fontSize: s12),
                         ),
                         const SizedBox(),
                       ],
@@ -237,21 +196,21 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                           ],
                         ),
                         Row(
-                          children: const [
-                            SizedBox(
+                          children: [
+                            const SizedBox(
                               height: s32,
                             ),
                             Text(
-                              '4.5',
-                              style: TextStyle(
+                              successState.driver.star?.toString() ?? '0',
+                              style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: s02,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.star,
                               color: CustomColors.flamingo,
                               size: 12,
@@ -268,6 +227,29 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                   thickness: 3,
                 ),
                 const SizedBox(height: s08),
+                const SizedBox(height: s08),
+                if (successState.feedbacks.isNotEmpty)
+                  Row(
+                    children: const [
+                      SizedBox(width: s08),
+                      Text(
+                        'Đánh giá',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                const SizedBox(height: s08),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: s08),
+                  child: Column(
+                    children: successState.feedbacks
+                        .map((e) => FeedbackItem(feedback: e))
+                        .toList(),
+                  ),
+                )
               ],
             ),
           ),

@@ -74,12 +74,25 @@ class FeedbackRepository {
         },
       );
 
-      if (response.data != null &&
-          response.statusCode == StatusCodes.status200OK) {
+      try {
+        if (response.data != null &&
+            response.statusCode == StatusCodes.status200OK) {
+          return ApiSuccess(
+            PaginationResult<FeedbackModel>.fromJson(
+              response.data!,
+              (json) => FeedbackModel.fromJson(json as JsonObject),
+            ),
+          );
+        }
+      } catch (e) {
         return ApiSuccess(
-          PaginationResult<FeedbackModel>.fromJson(
-            response.data!,
-            (json) => FeedbackModel.fromJson(json as JsonObject),
+          PaginationResult<FeedbackModel>(
+            data: [],
+            pagination: Pagination(
+              pageNumber: 0,
+              pageSize: 0,
+              totalRow: 0,
+            ),
           ),
         );
       }
@@ -113,12 +126,25 @@ class FeedbackRepository {
         },
       );
 
-      if (response.data != null &&
-          response.statusCode == StatusCodes.status200OK) {
+      try {
+        if (response.data != null &&
+            response.statusCode == StatusCodes.status200OK) {
+          return ApiSuccess(
+            PaginationResult<FeedbackModel>.fromJson(
+              response.data!,
+              (json) => FeedbackModel.fromJson(json as JsonObject),
+            ),
+          );
+        }
+      } catch (e) {
         return ApiSuccess(
-          PaginationResult<FeedbackModel>.fromJson(
-            response.data!,
-            (json) => FeedbackModel.fromJson(json as JsonObject),
+          PaginationResult<FeedbackModel>(
+            data: [],
+            pagination: Pagination(
+              pageNumber: 0,
+              pageSize: 0,
+              totalRow: 0,
+            ),
           ),
         );
       }

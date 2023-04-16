@@ -225,7 +225,8 @@ mixin _$DriverDetailState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Driver driver) success,
+    required TResult Function(Driver driver, List<FeedbackModel> feedbacks)
+        success,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -233,7 +234,7 @@ mixin _$DriverDetailState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Driver driver)? success,
+    TResult? Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -241,7 +242,7 @@ mixin _$DriverDetailState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Driver driver)? success,
+    TResult Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -330,7 +331,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Driver driver) success,
+    required TResult Function(Driver driver, List<FeedbackModel> feedbacks)
+        success,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -341,7 +343,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Driver driver)? success,
+    TResult? Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -352,7 +354,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Driver driver)? success,
+    TResult Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -443,7 +445,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Driver driver) success,
+    required TResult Function(Driver driver, List<FeedbackModel> feedbacks)
+        success,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -454,7 +457,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Driver driver)? success,
+    TResult? Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -465,7 +468,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Driver driver)? success,
+    TResult Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -523,7 +526,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({Driver driver});
+  $Res call({Driver driver, List<FeedbackModel> feedbacks});
 
   $DriverCopyWith<$Res> get driver;
 }
@@ -539,12 +542,17 @@ class __$$_SuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? driver = null,
+    Object? feedbacks = null,
   }) {
     return _then(_$_Success(
       driver: null == driver
           ? _value.driver
           : driver // ignore: cast_nullable_to_non_nullable
               as Driver,
+      feedbacks: null == feedbacks
+          ? _value._feedbacks
+          : feedbacks // ignore: cast_nullable_to_non_nullable
+              as List<FeedbackModel>,
     ));
   }
 
@@ -560,14 +568,23 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.driver});
+  const _$_Success(
+      {required this.driver, required final List<FeedbackModel> feedbacks})
+      : _feedbacks = feedbacks;
 
   @override
   final Driver driver;
+  final List<FeedbackModel> _feedbacks;
+  @override
+  List<FeedbackModel> get feedbacks {
+    if (_feedbacks is EqualUnmodifiableListView) return _feedbacks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_feedbacks);
+  }
 
   @override
   String toString() {
-    return 'DriverDetailState.success(driver: $driver)';
+    return 'DriverDetailState.success(driver: $driver, feedbacks: $feedbacks)';
   }
 
   @override
@@ -575,11 +592,14 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            (identical(other.driver, driver) || other.driver == driver));
+            (identical(other.driver, driver) || other.driver == driver) &&
+            const DeepCollectionEquality()
+                .equals(other._feedbacks, _feedbacks));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, driver);
+  int get hashCode => Object.hash(
+      runtimeType, driver, const DeepCollectionEquality().hash(_feedbacks));
 
   @JsonKey(ignore: true)
   @override
@@ -592,10 +612,11 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Driver driver) success,
+    required TResult Function(Driver driver, List<FeedbackModel> feedbacks)
+        success,
     required TResult Function(String message) failure,
   }) {
-    return success(driver);
+    return success(driver, feedbacks);
   }
 
   @override
@@ -603,10 +624,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Driver driver)? success,
+    TResult? Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(driver);
+    return success?.call(driver, feedbacks);
   }
 
   @override
@@ -614,12 +635,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Driver driver)? success,
+    TResult Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(driver);
+      return success(driver, feedbacks);
     }
     return orElse();
   }
@@ -663,9 +684,12 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements DriverDetailState {
-  const factory _Success({required final Driver driver}) = _$_Success;
+  const factory _Success(
+      {required final Driver driver,
+      required final List<FeedbackModel> feedbacks}) = _$_Success;
 
   Driver get driver;
+  List<FeedbackModel> get feedbacks;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -736,7 +760,8 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Driver driver) success,
+    required TResult Function(Driver driver, List<FeedbackModel> feedbacks)
+        success,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -747,7 +772,7 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Driver driver)? success,
+    TResult? Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -758,7 +783,7 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Driver driver)? success,
+    TResult Function(Driver driver, List<FeedbackModel> feedbacks)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
