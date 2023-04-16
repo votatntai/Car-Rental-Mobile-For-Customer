@@ -117,14 +117,14 @@ class LocationCard extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                const Text(
-                  '800+ xe',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                // const Text(
+                //   '800+ xe',
+                //   style: TextStyle(
+                //     fontSize: 12,
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.white,
+                //   ),
+                // ),
               ],
             ),
           ),

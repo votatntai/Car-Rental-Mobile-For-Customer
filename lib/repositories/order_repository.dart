@@ -101,12 +101,14 @@ class OrderRepository {
   Future<bool> updateOrderStatus({
     required String id,
     required OrderStatus status,
+    String? description,
   }) async {
     try {
       final result = await dio.put<JsonObject>(
         'orders/status/$id',
         data: {
           'status': status.name,
+          'description': description,
         },
       );
 

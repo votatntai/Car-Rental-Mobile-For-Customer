@@ -548,7 +548,7 @@ class _CarBookingConfirmationViewState
                                 );
                           },
                           child: const Text(
-                            'Đặt xe',
+                            'Xác nhận thanh toán',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -577,137 +577,145 @@ class _CarBookingConfirmationViewState
         label: 'Chính sách hủy chuyến',
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Table(
-              border: TableBorder.all(
-                color: CustomColors.silver,
-              ),
-              children: const [
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        'Thời gian hủy',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        'Phí hủy',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        'Tiền cọc hoàn trả',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        'Trong vòng 1 giờ sau đặt cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '0% tiền cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '100% tiền cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        '> 7 ngày trước ngày đi',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '30% tiển cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '70% tiền cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        '<= 7 ngày trước ngày đi',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '100% tiển cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '0% tiển cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: s08,
-            ),
-            const Text(
-              'Tiền cọc sẽ được hoàn trả trong vòng 3 ngày làm việc',
+          children: const [
+            // Table(
+            //   border: TableBorder.all(
+            //     color: CustomColors.silver,
+            //   ),
+            //   children: const [
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             'Thời gian hủy',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             'Phí hủy',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             'Tiền cọc hoàn trả',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             'Trong vòng 1 giờ sau đặt cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '0% tiền cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '100% tiền cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             '> 7 ngày trước ngày đi',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '30% tiển cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '70% tiền cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             '<= 7 ngày trước ngày đi',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '100% tiển cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '0% tiển cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: s08,
+            // ),
+            // const Text(
+            //   'Tiền cọc sẽ được hoàn trả trong vòng 3 ngày làm việc',
+            //   style: TextStyle(
+            //     fontSize: 12,
+            //     color: CustomColors.dimGray,
+            //   ),
+            // ),
+
+            Text(
+              'Tiền cọc sẽ không được hoàn trả nếu bạn huỷ chuyến',
               style: TextStyle(
-                fontSize: 12,
-                color: CustomColors.dimGray,
+                fontSize: 14,
+                color: CustomColors.tomato,
               ),
             ),
           ],

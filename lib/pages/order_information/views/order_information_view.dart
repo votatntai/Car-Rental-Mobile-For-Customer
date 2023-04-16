@@ -842,6 +842,33 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                 const SizedBox(
                   height: s32,
                 ),
+
+                if (successState.order.status == OrderStatus.pending ||
+                    successState.order.status == OrderStatus.managerConfirmed ||
+                    successState.order.status == OrderStatus.carOwnerApproved)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (builderContext) {
+                                    return confirmDialog(
+                                      context,
+                                      successState.order.id,
+                                    );
+                                  });
+                            },
+                            child: const Text('Hủy chuyến'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                 const SizedBox(
                   height: s32,
                 ),
@@ -860,142 +887,207 @@ class _OrderInformationViewState extends State<OrderInformationView> {
         label: 'Chính sách hủy chuyến',
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Table(
-              border: TableBorder.all(
-                color: CustomColors.silver,
-              ),
-              children: const [
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        'Thời gian hủy',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        'Phí hủy',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        'Tiền cọc hoàn trả',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        'Trong vòng 1 giờ sau đặt cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '0% tiền cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '100% tiền cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        '> 7 ngày trước ngày đi',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '30% tiển cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '70% tiền cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    TableItem(
-                      child: Text(
-                        '<= 7 ngày trước ngày đi',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '100% tiển cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TableItem(
-                      child: Text(
-                        '0% tiển cọc',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: s08,
-            ),
-            const Text(
-              'Tiền cọc sẽ được hoàn trả trong vòng 3 ngày làm việc',
+          children: const [
+            // Table(
+            //   border: TableBorder.all(
+            //     color: CustomColors.silver,
+            //   ),
+            //   children: const [
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             'Thời gian hủy',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             'Phí hủy',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             'Tiền cọc hoàn trả',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             'Trong vòng 1 giờ sau đặt cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '0% tiền cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '100% tiền cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             '> 7 ngày trước ngày đi',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '30% tiển cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '70% tiền cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     TableRow(
+            //       children: [
+            //         TableItem(
+            //           child: Text(
+            //             '<= 7 ngày trước ngày đi',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '100% tiển cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //         TableItem(
+            //           child: Text(
+            //             '0% tiển cọc',
+            //             style: TextStyle(
+            //               fontSize: 12,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: s08,
+            // ),
+            // const Text(
+            //   'Tiền cọc sẽ được hoàn trả trong vòng 3 ngày làm việc',
+            //   style: TextStyle(
+            //     fontSize: 12,
+            //     color: CustomColors.dimGray,
+            //   ),
+            // ),
+            Text(
+              'Tiền cọc sẽ không được hoàn trả nếu bạn huỷ chuyến',
               style: TextStyle(
-                fontSize: 12,
-                color: CustomColors.dimGray,
+                fontSize: 14,
+                color: CustomColors.tomato,
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  StatefulBuilder confirmDialog(
+    BuildContext rootContext,
+    String orderId,
+  ) {
+    String reason = '';
+
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return AlertDialog(
+          title: const Text('Xác nhận'),
+          content: SizedBox(
+            height: 150,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Lý do hủy chuyến:'),
+                const SizedBox(height: 8),
+                TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      reason = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Hủy'),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+
+                rootContext.read<OrderInformationBloc>().add(
+                      OrderInformationEvent.cancelOrder(
+                        orderId: orderId,
+                        reason: reason,
+                      ),
+                    );
+              },
+              child: const Text('Đồng ý'),
+            ),
+          ],
+        );
+      },
     );
   }
 

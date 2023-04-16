@@ -21,6 +21,7 @@ class OrderInformationBloc
   }) : super(const OrderInformationState.initial()) {
     on<_Started>(_onStarted);
     on<_OrderStatusChanged>(_onOrderStatusChanged);
+    on<_CancelOrder>(_onCancelOrder);
   }
 
   final OrderRepository orderRepository;
@@ -88,5 +89,30 @@ class OrderInformationBloc
     }
 
     add(_Started(orderId: event.orderId));
+  }
+
+  FutureOr<void> _onCancelOrder(
+    _CancelOrder event,
+    Emitter<OrderInformationState> emit,
+  ) async {
+    if (state is! _Success) return;
+
+    final currentState = state as _Success;
+
+    LoadingDialogService.load();
+
+    final orderResult = await orderRepository.updateOrderStatus(
+      id: event.orderId,
+      status: OrderStatus.canceled,
+      description: event.reason,
+    );
+
+    LoadingDialogService.dispose();
+
+    if (orderResult == false) {
+      showMessageDialog(title: 'Lỗi', message: 'Cập nhật trạng thái thất bại');
+    }
+
+    add(_Started(orderId: currentState.order.id));
   }
 }
