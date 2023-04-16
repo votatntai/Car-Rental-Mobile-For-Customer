@@ -28,7 +28,7 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final allowReview = order.orderDetails.isNotEmpty &&
         order.orderDetails.first.car.feedBacks?.any(
-              (element) => element.customerId == customerId,
+              (element) => element.orderId == order.id,
             ) ==
             false &&
         (order.status == OrderStatus.returnedTheCar ||

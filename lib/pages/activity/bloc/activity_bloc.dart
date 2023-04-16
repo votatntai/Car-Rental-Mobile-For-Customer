@@ -37,7 +37,8 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
       List<Order> orders = [
         ...(result as ApiSuccess<PaginationResult<Order>>).value.data
       ];
-      orders.sort((a, b) => a.status.index.compareTo(b.status.index));
+      orders.sort(
+          (a, b) => b.createAt?.compareTo(a.createAt ?? DateTime.now()) ?? 0);
 
       emit(
         ActivityState.success(
@@ -72,7 +73,8 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
       //       .toList();
       // }
 
-      orders.sort((a, b) => a.status.index.compareTo(b.status.index));
+      orders.sort(
+          (a, b) => b.createAt?.compareTo(a.createAt ?? DateTime.now()) ?? 0);
 
       emit(
         ActivityState.success(

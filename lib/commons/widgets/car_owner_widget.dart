@@ -22,41 +22,34 @@ class CarOwnerWidget extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                car.carOwner?.name ?? '',
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: CustomColors.jetBlack,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  car.carOwner?.name ?? '',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColors.jetBlack,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Row(
-                children: const [
-                  Text(
-                    '5',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: CustomColors.dimGray,
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Text(
+                      car.carOwner?.phone ?? '',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: CustomColors.dimGray,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: s02,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: CustomColors.flamingo,
-                    size: 12,
-                  ),
-                ],
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
-          const Spacer(),
           if (car.carOwner?.avatarUrl != null)
             CachedNetworkImage(
               imageUrl: car.carOwner?.avatarUrl ?? '',

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -19,6 +20,7 @@ import 'package:car_rental_for_customer/repositories/feedback_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -279,7 +281,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                                     RatingBar.builder(
                                       itemSize: 25,
                                       initialRating:
-                                          carFeedback.star?.toDouble() ?? 0,
+                                          driverFeedback.star?.toDouble() ?? 0,
                                       minRating: 0,
                                       direction: Axis.horizontal,
                                       itemCount: 5,
@@ -294,7 +296,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                                               FeedbackEvent
                                                   .driverFeedbackChanged(
                                                 driverFeedback:
-                                                    driverFeedback!.copyWith(
+                                                    driverFeedback.copyWith(
                                                   star: rating.toInt(),
                                                 ),
                                               ),
@@ -330,7 +332,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                                     context.read<FeedbackBloc>().add(
                                           FeedbackEvent.driverFeedbackChanged(
                                             driverFeedback:
-                                                carFeedback.copyWith(
+                                                driverFeedback.copyWith(
                                               content: value,
                                             ),
                                           ),
@@ -381,7 +383,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                                   title: 'Thành công',
                                   message: 'Cảm ơn bạn đã đánh giá',
                                 ).then((value) {
-                                  Navigator.of(context).pop();
+                                  context.goNamed(RouteName.activity);
                                 });
                               } else {
                                 showMessageDialog(

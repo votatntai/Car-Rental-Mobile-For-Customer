@@ -20,7 +20,7 @@ class FeedbackRepository {
           'orderId': feedback.orderId ?? '',
           'carId': feedback.carId ?? '',
           'driverId': feedback.driverId ?? '',
-          'star': feedback.star.toString() ?? 0,
+          'star': feedback.star,
           'content': feedback.content ?? '',
         },
       );
@@ -44,7 +44,7 @@ class FeedbackRepository {
           'orderId': feedback.orderId ?? '',
           'carId': feedback.carId ?? '',
           'driverId': feedback.driverId ?? '',
-          'star': feedback.star?.toString() ?? 0,
+          'star': feedback.star,
           'content': feedback.content ?? '',
         },
       );

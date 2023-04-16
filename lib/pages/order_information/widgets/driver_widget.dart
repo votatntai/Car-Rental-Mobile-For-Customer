@@ -23,12 +23,11 @@ class DriverWidget extends StatelessWidget {
       onTap: () => onTap(driver),
       child: Row(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () {},
-                child: Text(
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   driver.name,
                   style: const TextStyle(
                     fontSize: 13,
@@ -36,9 +35,21 @@ class DriverWidget extends StatelessWidget {
                     color: CustomColors.jetBlack,
                   ),
                 ),
-              ),
-              const SizedBox(height: 4),
-            ],
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Text(
+                      driver.phone,
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: CustomColors.dimGray,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
           const Spacer(),
           if (driver.avatarUrl != null)
