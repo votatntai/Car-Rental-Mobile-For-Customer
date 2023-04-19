@@ -53,9 +53,20 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
     final carAddressType =
         event.address != null ? CarAddressType.customer : CarAddressType.car;
 
-    final startDate = event.startDate ?? DateTime.now();
+    final currentDate = DateTime.now();
+    final startDate = event.startDate ??
+        DateTime(
+          currentDate.year,
+          currentDate.month,
+          currentDate.day + 1,
+          8,
+          0,
+          0,
+          0,
+          0,
+        );
     final endDate = event.endDate ??
-        DateTime.now().add(
+        startDate.add(
           const Duration(
             days: 1,
           ),

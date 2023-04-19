@@ -10,6 +10,7 @@ import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
 import 'package:car_rental_for_customer/commons/widgets/message_dialog.dart';
+import 'package:car_rental_for_customer/commons/widgets/place_autocomplete.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/api_response.dart';
 import 'package:car_rental_for_customer/models/enums/gender.dart';
@@ -17,6 +18,7 @@ import 'package:car_rental_for_customer/repositories/authentication_repository.d
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:car_rental_for_customer/commons/widgets/place_autocomplete_view.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -34,7 +36,6 @@ class _SignUpViewState extends State<SignUpView> {
   TextEditingController? _dateOfBirthController;
   TextEditingController? _phoneNumberController;
   TextEditingController? _confirmPasswordController;
-  TextEditingController? _addressController;
 
   FocusNode focusEmail = FocusNode();
   FocusNode focusPassword = FocusNode();
@@ -42,11 +43,11 @@ class _SignUpViewState extends State<SignUpView> {
   FocusNode focusDateOfBirth = FocusNode();
   FocusNode focusPhoneNumber = FocusNode();
   FocusNode focusConfirmPassword = FocusNode();
-  FocusNode focusAddress = FocusNode();
 
   bool isIconTrue = true;
   DateTime? selectedDate;
   Gender _gender = Gender.male;
+  String address = '';
 
   @override
   void initState() {
@@ -56,7 +57,6 @@ class _SignUpViewState extends State<SignUpView> {
     _dateOfBirthController = TextEditingController();
     _phoneNumberController = TextEditingController();
     _confirmPasswordController = TextEditingController();
-    _addressController = TextEditingController();
 
     super.initState();
   }
@@ -69,7 +69,6 @@ class _SignUpViewState extends State<SignUpView> {
     _dateOfBirthController?.dispose();
     _phoneNumberController?.dispose();
     _confirmPasswordController?.dispose();
-    _addressController?.dispose();
 
     focusDateOfBirth.dispose();
     focusEmail.dispose();
@@ -77,7 +76,6 @@ class _SignUpViewState extends State<SignUpView> {
     focusPassword.dispose();
     focusPhoneNumber.dispose();
     focusConfirmPassword.dispose();
-    focusAddress.dispose();
 
     super.dispose();
   }
@@ -260,7 +258,7 @@ class _SignUpViewState extends State<SignUpView> {
                   },
                   onFieldSubmitted: (v) {
                     focusPhoneNumber.unfocus();
-                    FocusScope.of(context).requestFocus(focusAddress);
+                    // FocusScope.of(context).requestFocus(focusAddress);
                   },
                   keyboardType: TextInputType.number,
                   decoration: inputDecoration(
@@ -271,20 +269,10 @@ class _SignUpViewState extends State<SignUpView> {
                 ),
 
                 const SizedBox(height: s16),
-                TextFormField(
-                  controller: _addressController,
-                  focusNode: focusAddress,
-                  validator: (value) {
-                    return null;
+                PlaceAutocomplete(
+                  onSelected: (option) {
+                    address = option;
                   },
-                  onFieldSubmitted: (v) {
-                    focusAddress.unfocus();
-                  },
-                  decoration: inputDecoration(
-                    context,
-                    hintText: 'Địa chỉ',
-                    prefixIcon: Icons.person,
-                  ),
                 ),
                 const SizedBox(height: s16),
                 Container(
@@ -389,7 +377,7 @@ class _SignUpViewState extends State<SignUpView> {
             name: _nameController?.text ?? '',
             phone: _phoneNumberController?.text ?? '',
             gender: _gender,
-            address: _addressController?.text ?? '',
+            address: address,
           );
 
       LoadingDialogService.dispose();

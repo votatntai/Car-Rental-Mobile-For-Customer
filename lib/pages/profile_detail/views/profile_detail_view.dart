@@ -3,6 +3,7 @@ import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
+import 'package:car_rental_for_customer/commons/widgets/place_autocomplete.dart';
 import 'package:car_rental_for_customer/models/enums/gender.dart';
 import 'package:car_rental_for_customer/pages/profile_detail/bloc/profile_detail_bloc.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +22,12 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
 
   final FocusNode _nameFocus = FocusNode();
   final FocusNode _phoneNumberFocus = FocusNode();
-  final FocusNode _addressFocus = FocusNode();
 
   Gender _gender = Gender.male;
+  String _address = '';
 
   @override
   void initState() {
@@ -38,18 +38,15 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
   void dispose() {
     _nameController.dispose();
     _phoneNumberController.dispose();
-    _addressController.dispose();
 
     _nameFocus.dispose();
     _phoneNumberFocus.dispose();
-    _addressFocus.dispose();
     super.dispose();
   }
 
   void unfocus() {
     _nameFocus.unfocus();
     _phoneNumberFocus.unfocus();
-    _addressFocus.unfocus();
   }
 
   @override
@@ -69,8 +66,8 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
             listener: (context, state) {
               _nameController.text = state.user?.name ?? '';
               _phoneNumberController.text = state.user?.phone ?? '';
-              _addressController.text = state.user?.address ?? '';
               _gender = state.user?.gender ?? Gender.male;
+              _address = state.user?.address ?? '';
             },
             builder: (context, state) {
               var user = state.user;
@@ -192,27 +189,23 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               },
                               onFieldSubmitted: (v) {
                                 _phoneNumberFocus.unfocus();
-                                FocusScope.of(context)
-                                    .requestFocus(_addressFocus);
                               },
                               keyboardType: TextInputType.number,
                               decoration: inputDecoration(
                                 context,
-                                hintText: 'Số ring thoại',
+                                hintText: 'Số điện thoại',
                               ),
                             ),
                             const SizedBox(height: s16),
-                            TextFormField(
-                              controller: _addressController,
-                              focusNode: _addressFocus,
-                              onFieldSubmitted: (v) {
-                                _addressFocus.unfocus();
-                              },
-                              keyboardType: TextInputType.text,
+                            PlaceAutocomplete(
                               decoration: inputDecoration(
                                 context,
                                 hintText: 'Địa chỉ',
                               ),
+                              onSelected: (option) {
+                                _address = option;
+                              },
+                              defaultText: _address,
                             ),
                             const SizedBox(height: s16),
                             Container(
@@ -259,7 +252,7 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                                 unfocus();
                                 var name = _nameController.text;
                                 var phone = _phoneNumberController.text;
-                                var address = _addressController.text;
+                                var address = _address;
                                 var gender = _gender;
 
                                 context.read<ProfileDetailBloc>().add(

@@ -166,7 +166,8 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: startDate.isBefore(endDate)
+                    onPressed: startDate.isBefore(endDate) &&
+                            startDate.isAfter(DateTime.now())
                         ? () {
                             Navigator.pop(context, {
                               'startDate': startDate,

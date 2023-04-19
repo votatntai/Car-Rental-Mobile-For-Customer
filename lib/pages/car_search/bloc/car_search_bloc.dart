@@ -37,7 +37,7 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
     final defaultStartDate = DateTime(
       currentDate.year,
       currentDate.month,
-      currentDate.day,
+      currentDate.day + 1,
       8,
       0,
       0,

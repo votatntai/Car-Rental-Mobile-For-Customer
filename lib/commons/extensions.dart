@@ -5,9 +5,10 @@ extension ApiErrorX on DioError {
   ApiResponse<T> getErrorMessage<T>() {
     try {
       return ApiResponse.error(
-          error: response?.data['title'] ?? 'Unknown error');
+        error: response?.data['title'] ?? 'Unknown error',
+      );
     } catch (e) {
-      return ApiResponse.error(error: e.toString());
+      return ApiResponse.error(error: toString());
     }
   }
 }
