@@ -5,7 +5,7 @@ part 'car_location.g.dart';
 
 @freezed
 class CarLocation with _$CarLocation {
-  factory CarLocation({
+  const factory CarLocation({
     required String id,
     required double longitude,
     required double latitude,
