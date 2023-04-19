@@ -201,7 +201,8 @@ class _DriverDetailViewState extends State<DriverDetailView> {
                               height: s32,
                             ),
                             Text(
-                              successState.driver.star?.toString() ?? '0',
+                              successState.driver.star?.toStringAsFixed(1) ??
+                                  '0',
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
