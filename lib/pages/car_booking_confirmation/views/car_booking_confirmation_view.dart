@@ -77,8 +77,8 @@ class _CarBookingConfirmationViewState
             ) *
             successState.car.price;
 
-        //TODO: Calculate promotion cost
-        const promotionCost = 0.0;
+        final promotionCost =
+            rentCost * ((successState.promotion?.discount ?? 0) / 100);
 
         final carDeliveryCost = successState.deliveryDistance * 20000;
 
@@ -407,7 +407,6 @@ class _CarBookingConfirmationViewState
                               style: TextStyle(fontSize: 12),
                             ),
                             const Spacer(),
-                            //TODO: add promotion
                             Text(
                               '-${formatCurrency(promotionCost)}',
                               style: const TextStyle(fontSize: 12),
@@ -511,7 +510,7 @@ class _CarBookingConfirmationViewState
                                   CarBookingConfirmationEvent.orderCreated(
                                     orderCreateModel: OrderCreateModel(
                                       rentalTime: 1,
-                                      promotionId: null,
+                                      promotionId: successState.promotion?.id,
                                       isPaid: true,
                                       unitPrice: successState.car.price,
                                       deliveryFee: carDeliveryCost,

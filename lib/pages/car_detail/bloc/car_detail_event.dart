@@ -14,4 +14,8 @@ class CarDetailEvent with _$CarDetailEvent {
   const factory CarDetailEvent.addressTypeChanged({
     required CarAddressType carAddressType,
   }) = _RentalCarTypeChanged;
+
+  const factory CarDetailEvent.promotionChanged({
+    required Promotion promotion,
+  }) = _PromotionChanged;
 }

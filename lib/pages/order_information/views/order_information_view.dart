@@ -182,7 +182,8 @@ class _OrderInformationViewState extends State<OrderInformationView> {
             ) *
             successState.order.unitPrice;
 
-        final promotionCost = successState.order.promotion?.discount ?? 0;
+        final promotionCost =
+            rentCost * ((successState.order.promotion?.discount ?? 0) / 100);
 
         final carDeliveryCost = successState.order.deliveryFee;
 

@@ -23,4 +23,5 @@ mixin RouteName {
   static const paymentWebview = 'payment-webview';
   static const feedback = 'feedback';
   static const feedbackList = 'feedback-list';
+  static const promotionList = 'promotion-list';
 }

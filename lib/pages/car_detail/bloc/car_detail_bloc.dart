@@ -29,6 +29,7 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
   }) : super(const CarDetailState.initial()) {
     on<_Started>(_onStarted);
     on<_RentalCarTypeChanged>(_onRentalCarTypeChanged);
+    on<_PromotionChanged>(_onPromotionChanged);
   }
 
   final MapsRepository mapsRepository;
@@ -273,5 +274,17 @@ class CarDetailBloc extends Bloc<CarDetailEvent, CarDetailState> {
     );
 
     return distanceResult ?? 0;
+  }
+
+  FutureOr<void> _onPromotionChanged(
+    _PromotionChanged event,
+    Emitter<CarDetailState> emit,
+  ) async {
+    if (state is! _Success) return;
+    final currentState = state as _Success;
+
+    emit(currentState.copyWith(
+      promotion: event.promotion,
+    ));
   }
 }

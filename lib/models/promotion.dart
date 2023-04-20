@@ -7,9 +7,11 @@ part 'promotion.g.dart';
 class Promotion with _$Promotion {
   const factory Promotion({
     required String id,
-    required String name,
+    @Default('') String name,
     String? description,
-    required double discount,
+    @Default(0) double discount,
+    DateTime? createAt,
+    DateTime? expiryAt,
   }) = _Promotion;
 
   factory Promotion.fromJson(Map<String, dynamic> json) =>

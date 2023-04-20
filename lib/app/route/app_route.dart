@@ -19,6 +19,7 @@ import 'package:car_rental_for_customer/pages/order_information/views/order_info
 import 'package:car_rental_for_customer/pages/payment_webview/payment_webview.dart';
 import 'package:car_rental_for_customer/pages/profile/profile.dart';
 import 'package:car_rental_for_customer/pages/profile_detail/profile_detail.dart';
+import 'package:car_rental_for_customer/pages/promotion_list/views/promotion_list_page.dart';
 import 'package:car_rental_for_customer/pages/recharge/views/recharge_page.dart';
 import 'package:car_rental_for_customer/pages/scaffold_with_nav_bar/scaffold_with_nav_bar.dart';
 import 'package:car_rental_for_customer/pages/sign_up/sign_up.dart';
@@ -262,6 +263,14 @@ class AppRoute {
             latitude: latitude,
             longitude: longitude,
           );
+        },
+      ),
+      GoRoute(
+        path: '/promotion-list',
+        name: RouteName.promotionList,
+        parentNavigatorKey: rootNavigatorKey,
+        builder: (context, state) {
+          return PromotionListPage();
         },
       ),
       GoRoute(

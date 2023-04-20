@@ -27,6 +27,7 @@ mixin _$CarDetailEvent {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
+    required TResult Function(Promotion promotion) promotionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +36,7 @@ mixin _$CarDetailEvent {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult? Function(Promotion promotion)? promotionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +45,7 @@ mixin _$CarDetailEvent {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult Function(Promotion promotion)? promotionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,18 +53,21 @@ mixin _$CarDetailEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_RentalCarTypeChanged value) addressTypeChanged,
+    required TResult Function(_PromotionChanged value) promotionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult? Function(_PromotionChanged value)? promotionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult Function(_PromotionChanged value)? promotionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -213,6 +219,7 @@ class _$_Started implements _Started {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
+    required TResult Function(Promotion promotion) promotionChanged,
   }) {
     return started(carId, address, startDate, endDate, latitude, longitude);
   }
@@ -224,6 +231,7 @@ class _$_Started implements _Started {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult? Function(Promotion promotion)? promotionChanged,
   }) {
     return started?.call(
         carId, address, startDate, endDate, latitude, longitude);
@@ -236,6 +244,7 @@ class _$_Started implements _Started {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult Function(Promotion promotion)? promotionChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -249,6 +258,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_RentalCarTypeChanged value) addressTypeChanged,
+    required TResult Function(_PromotionChanged value) promotionChanged,
   }) {
     return started(this);
   }
@@ -258,6 +268,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult? Function(_PromotionChanged value)? promotionChanged,
   }) {
     return started?.call(this);
   }
@@ -267,6 +278,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult Function(_PromotionChanged value)? promotionChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -371,6 +383,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
+    required TResult Function(Promotion promotion) promotionChanged,
   }) {
     return addressTypeChanged(carAddressType);
   }
@@ -382,6 +395,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult? Function(Promotion promotion)? promotionChanged,
   }) {
     return addressTypeChanged?.call(carAddressType);
   }
@@ -393,6 +407,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult Function(Promotion promotion)? promotionChanged,
     required TResult orElse(),
   }) {
     if (addressTypeChanged != null) {
@@ -406,6 +421,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_RentalCarTypeChanged value) addressTypeChanged,
+    required TResult Function(_PromotionChanged value) promotionChanged,
   }) {
     return addressTypeChanged(this);
   }
@@ -415,6 +431,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult? Function(_PromotionChanged value)? promotionChanged,
   }) {
     return addressTypeChanged?.call(this);
   }
@@ -424,6 +441,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult Function(_PromotionChanged value)? promotionChanged,
     required TResult orElse(),
   }) {
     if (addressTypeChanged != null) {
@@ -440,6 +458,168 @@ abstract class _RentalCarTypeChanged implements CarDetailEvent {
   CarAddressType get carAddressType;
   @JsonKey(ignore: true)
   _$$_RentalCarTypeChangedCopyWith<_$_RentalCarTypeChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PromotionChangedCopyWith<$Res> {
+  factory _$$_PromotionChangedCopyWith(
+          _$_PromotionChanged value, $Res Function(_$_PromotionChanged) then) =
+      __$$_PromotionChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Promotion promotion});
+
+  $PromotionCopyWith<$Res> get promotion;
+}
+
+/// @nodoc
+class __$$_PromotionChangedCopyWithImpl<$Res>
+    extends _$CarDetailEventCopyWithImpl<$Res, _$_PromotionChanged>
+    implements _$$_PromotionChangedCopyWith<$Res> {
+  __$$_PromotionChangedCopyWithImpl(
+      _$_PromotionChanged _value, $Res Function(_$_PromotionChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? promotion = null,
+  }) {
+    return _then(_$_PromotionChanged(
+      promotion: null == promotion
+          ? _value.promotion
+          : promotion // ignore: cast_nullable_to_non_nullable
+              as Promotion,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PromotionCopyWith<$Res> get promotion {
+    return $PromotionCopyWith<$Res>(_value.promotion, (value) {
+      return _then(_value.copyWith(promotion: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_PromotionChanged implements _PromotionChanged {
+  const _$_PromotionChanged({required this.promotion});
+
+  @override
+  final Promotion promotion;
+
+  @override
+  String toString() {
+    return 'CarDetailEvent.promotionChanged(promotion: $promotion)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PromotionChanged &&
+            (identical(other.promotion, promotion) ||
+                other.promotion == promotion));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, promotion);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PromotionChangedCopyWith<_$_PromotionChanged> get copyWith =>
+      __$$_PromotionChangedCopyWithImpl<_$_PromotionChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String carId,
+            String? address,
+            DateTime? startDate,
+            DateTime? endDate,
+            double? latitude,
+            double? longitude)
+        started,
+    required TResult Function(CarAddressType carAddressType) addressTypeChanged,
+    required TResult Function(Promotion promotion) promotionChanged,
+  }) {
+    return promotionChanged(promotion);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
+        started,
+    TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult? Function(Promotion promotion)? promotionChanged,
+  }) {
+    return promotionChanged?.call(promotion);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String carId, String? address, DateTime? startDate,
+            DateTime? endDate, double? latitude, double? longitude)?
+        started,
+    TResult Function(CarAddressType carAddressType)? addressTypeChanged,
+    TResult Function(Promotion promotion)? promotionChanged,
+    required TResult orElse(),
+  }) {
+    if (promotionChanged != null) {
+      return promotionChanged(promotion);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_RentalCarTypeChanged value) addressTypeChanged,
+    required TResult Function(_PromotionChanged value) promotionChanged,
+  }) {
+    return promotionChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult? Function(_PromotionChanged value)? promotionChanged,
+  }) {
+    return promotionChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_RentalCarTypeChanged value)? addressTypeChanged,
+    TResult Function(_PromotionChanged value)? promotionChanged,
+    required TResult orElse(),
+  }) {
+    if (promotionChanged != null) {
+      return promotionChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PromotionChanged implements CarDetailEvent {
+  const factory _PromotionChanged({required final Promotion promotion}) =
+      _$_PromotionChanged;
+
+  Promotion get promotion;
+  @JsonKey(ignore: true)
+  _$$_PromotionChangedCopyWith<_$_PromotionChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

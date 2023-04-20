@@ -19,10 +19,12 @@ import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/feedback.dart';
+import 'package:car_rental_for_customer/models/promotion.dart';
 import 'package:car_rental_for_customer/pages/car_detail/bloc/car_detail_bloc.dart';
 import 'package:car_rental_for_customer/pages/car_detail/enums/car_address_type.dart';
 import 'package:car_rental_for_customer/pages/car_detail/widgets/feedback_item.dart';
 import 'package:car_rental_for_customer/pages/car_detail/widgets/surcharge_item.dart';
+import 'package:car_rental_for_customer/pages/promotion_list/views/promotion_list_page.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,10 +84,10 @@ class _CarDetailViewState extends State<CarDetailView> {
             ) *
             successState.car.price;
 
-        //TODO: Calculate promotion cost
-        const promotionCost = 0.0;
-
         final carDeliveryCost = successState.deliveryDistance * 20000;
+
+        final promotionCost =
+            rentCost * ((successState.promotion?.discount ?? 0) / 100);
 
         final totalCost = rentCost + carDeliveryCost - promotionCost;
 
@@ -508,18 +510,100 @@ class _CarDetailViewState extends State<CarDetailView> {
                               const SizedBox(
                                 height: s04,
                               ),
+                              const Divider(),
                               Row(
                                 children: [
                                   const Text(
                                     'Khuyễn mãi:',
                                     style: TextStyle(fontSize: 12),
                                   ),
-                                  const Spacer(),
-                                  //TODO: add promotion
-                                  Text(
-                                    '-${formatCurrency(promotionCost)}',
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
+                                  if (successState.promotion != null)
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return PromotionListPage();
+                                            },
+                                          ).then((value) {
+                                            if (value != null) {
+                                              context.read<CarDetailBloc>().add(
+                                                    CarDetailEvent
+                                                        .promotionChanged(
+                                                      promotion:
+                                                          value as Promotion,
+                                                    ),
+                                                  );
+                                            }
+                                          });
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              '-${formatCurrency(promotionCost)}',
+                                              style:
+                                                  const TextStyle(fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  if (successState.promotion == null)
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return PromotionListPage();
+                                            },
+                                          ).then((value) {
+                                            if (value != null) {
+                                              context.read<CarDetailBloc>().add(
+                                                    CarDetailEvent
+                                                        .promotionChanged(
+                                                      promotion:
+                                                          value as Promotion,
+                                                    ),
+                                                  );
+                                            }
+                                          });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const Spacer(),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 3,
+                                                vertical: 1,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: CustomColors.silver,
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              child: const Text(
+                                                'Nhập mã khuyễn mãi',
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: s04,
+                                            ),
+                                            const Icon(
+                                              Icons.arrow_forward_ios,
+                                              size: 12,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                 ],
                               ),
                               const Divider(),

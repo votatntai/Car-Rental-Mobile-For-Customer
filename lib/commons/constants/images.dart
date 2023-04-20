@@ -35,4 +35,6 @@ mixin Images {
   static const card2 = 'assets/card2.jpeg';
 
   static const userImage = 'assets/user_image.webp';
+
+  static const coupon = 'assets/coupon.png';
 }

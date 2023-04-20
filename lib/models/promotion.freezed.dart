@@ -24,6 +24,8 @@ mixin _$Promotion {
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   double get discount => throw _privateConstructorUsedError;
+  DateTime? get createAt => throw _privateConstructorUsedError;
+  DateTime? get expiryAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,13 @@ abstract class $PromotionCopyWith<$Res> {
   factory $PromotionCopyWith(Promotion value, $Res Function(Promotion) then) =
       _$PromotionCopyWithImpl<$Res, Promotion>;
   @useResult
-  $Res call({String id, String name, String? description, double discount});
+  $Res call(
+      {String id,
+      String name,
+      String? description,
+      double discount,
+      DateTime? createAt,
+      DateTime? expiryAt});
 }
 
 /// @nodoc
@@ -56,6 +64,8 @@ class _$PromotionCopyWithImpl<$Res, $Val extends Promotion>
     Object? name = null,
     Object? description = freezed,
     Object? discount = null,
+    Object? createAt = freezed,
+    Object? expiryAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,6 +84,14 @@ class _$PromotionCopyWithImpl<$Res, $Val extends Promotion>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as double,
+      createAt: freezed == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      expiryAt: freezed == expiryAt
+          ? _value.expiryAt
+          : expiryAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -85,7 +103,13 @@ abstract class _$$_PromotionCopyWith<$Res> implements $PromotionCopyWith<$Res> {
       __$$_PromotionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String? description, double discount});
+  $Res call(
+      {String id,
+      String name,
+      String? description,
+      double discount,
+      DateTime? createAt,
+      DateTime? expiryAt});
 }
 
 /// @nodoc
@@ -103,6 +127,8 @@ class __$$_PromotionCopyWithImpl<$Res>
     Object? name = null,
     Object? description = freezed,
     Object? discount = null,
+    Object? createAt = freezed,
+    Object? expiryAt = freezed,
   }) {
     return _then(_$_Promotion(
       id: null == id
@@ -121,6 +147,14 @@ class __$$_PromotionCopyWithImpl<$Res>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as double,
+      createAt: freezed == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      expiryAt: freezed == expiryAt
+          ? _value.expiryAt
+          : expiryAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -130,9 +164,11 @@ class __$$_PromotionCopyWithImpl<$Res>
 class _$_Promotion implements _Promotion {
   const _$_Promotion(
       {required this.id,
-      required this.name,
+      this.name = '',
       this.description,
-      required this.discount});
+      this.discount = 0,
+      this.createAt,
+      this.expiryAt});
 
   factory _$_Promotion.fromJson(Map<String, dynamic> json) =>
       _$$_PromotionFromJson(json);
@@ -140,15 +176,21 @@ class _$_Promotion implements _Promotion {
   @override
   final String id;
   @override
+  @JsonKey()
   final String name;
   @override
   final String? description;
   @override
+  @JsonKey()
   final double discount;
+  @override
+  final DateTime? createAt;
+  @override
+  final DateTime? expiryAt;
 
   @override
   String toString() {
-    return 'Promotion(id: $id, name: $name, description: $description, discount: $discount)';
+    return 'Promotion(id: $id, name: $name, description: $description, discount: $discount, createAt: $createAt, expiryAt: $expiryAt)';
   }
 
   @override
@@ -161,12 +203,17 @@ class _$_Promotion implements _Promotion {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.discount, discount) ||
-                other.discount == discount));
+                other.discount == discount) &&
+            (identical(other.createAt, createAt) ||
+                other.createAt == createAt) &&
+            (identical(other.expiryAt, expiryAt) ||
+                other.expiryAt == expiryAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, discount);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, description, discount, createAt, expiryAt);
 
   @JsonKey(ignore: true)
   @override
@@ -185,9 +232,11 @@ class _$_Promotion implements _Promotion {
 abstract class _Promotion implements Promotion {
   const factory _Promotion(
       {required final String id,
-      required final String name,
+      final String name,
       final String? description,
-      required final double discount}) = _$_Promotion;
+      final double discount,
+      final DateTime? createAt,
+      final DateTime? expiryAt}) = _$_Promotion;
 
   factory _Promotion.fromJson(Map<String, dynamic> json) =
       _$_Promotion.fromJson;
@@ -200,6 +249,10 @@ abstract class _Promotion implements Promotion {
   String? get description;
   @override
   double get discount;
+  @override
+  DateTime? get createAt;
+  @override
+  DateTime? get expiryAt;
   @override
   @JsonKey(ignore: true)
   _$$_PromotionCopyWith<_$_Promotion> get copyWith =>
