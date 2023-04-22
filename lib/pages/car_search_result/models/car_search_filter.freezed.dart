@@ -19,6 +19,8 @@ mixin _$CarSearchFilter {
   CarTypeEnum? get carType => throw _privateConstructorUsedError;
   TransmissionEnum? get transmission => throw _privateConstructorUsedError;
   bool get isDiscounted => throw _privateConstructorUsedError;
+  ProductionCompany? get productionCompany =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CarSearchFilterCopyWith<CarSearchFilter> get copyWith =>
@@ -34,7 +36,10 @@ abstract class $CarSearchFilterCopyWith<$Res> {
   $Res call(
       {CarTypeEnum? carType,
       TransmissionEnum? transmission,
-      bool isDiscounted});
+      bool isDiscounted,
+      ProductionCompany? productionCompany});
+
+  $ProductionCompanyCopyWith<$Res>? get productionCompany;
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$CarSearchFilterCopyWithImpl<$Res, $Val extends CarSearchFilter>
     Object? carType = freezed,
     Object? transmission = freezed,
     Object? isDiscounted = null,
+    Object? productionCompany = freezed,
   }) {
     return _then(_value.copyWith(
       carType: freezed == carType
@@ -67,7 +73,23 @@ class _$CarSearchFilterCopyWithImpl<$Res, $Val extends CarSearchFilter>
           ? _value.isDiscounted
           : isDiscounted // ignore: cast_nullable_to_non_nullable
               as bool,
+      productionCompany: freezed == productionCompany
+          ? _value.productionCompany
+          : productionCompany // ignore: cast_nullable_to_non_nullable
+              as ProductionCompany?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCompanyCopyWith<$Res>? get productionCompany {
+    if (_value.productionCompany == null) {
+      return null;
+    }
+
+    return $ProductionCompanyCopyWith<$Res>(_value.productionCompany!, (value) {
+      return _then(_value.copyWith(productionCompany: value) as $Val);
+    });
   }
 }
 
@@ -82,7 +104,11 @@ abstract class _$$_CarSearchFilterCopyWith<$Res>
   $Res call(
       {CarTypeEnum? carType,
       TransmissionEnum? transmission,
-      bool isDiscounted});
+      bool isDiscounted,
+      ProductionCompany? productionCompany});
+
+  @override
+  $ProductionCompanyCopyWith<$Res>? get productionCompany;
 }
 
 /// @nodoc
@@ -99,6 +125,7 @@ class __$$_CarSearchFilterCopyWithImpl<$Res>
     Object? carType = freezed,
     Object? transmission = freezed,
     Object? isDiscounted = null,
+    Object? productionCompany = freezed,
   }) {
     return _then(_$_CarSearchFilter(
       carType: freezed == carType
@@ -113,6 +140,10 @@ class __$$_CarSearchFilterCopyWithImpl<$Res>
           ? _value.isDiscounted
           : isDiscounted // ignore: cast_nullable_to_non_nullable
               as bool,
+      productionCompany: freezed == productionCompany
+          ? _value.productionCompany
+          : productionCompany // ignore: cast_nullable_to_non_nullable
+              as ProductionCompany?,
     ));
   }
 }
@@ -121,7 +152,10 @@ class __$$_CarSearchFilterCopyWithImpl<$Res>
 
 class _$_CarSearchFilter implements _CarSearchFilter {
   const _$_CarSearchFilter(
-      {this.carType, this.transmission, this.isDiscounted = false});
+      {this.carType,
+      this.transmission,
+      this.isDiscounted = false,
+      this.productionCompany});
 
   @override
   final CarTypeEnum? carType;
@@ -130,10 +164,12 @@ class _$_CarSearchFilter implements _CarSearchFilter {
   @override
   @JsonKey()
   final bool isDiscounted;
+  @override
+  final ProductionCompany? productionCompany;
 
   @override
   String toString() {
-    return 'CarSearchFilter(carType: $carType, transmission: $transmission, isDiscounted: $isDiscounted)';
+    return 'CarSearchFilter(carType: $carType, transmission: $transmission, isDiscounted: $isDiscounted, productionCompany: $productionCompany)';
   }
 
   @override
@@ -145,12 +181,14 @@ class _$_CarSearchFilter implements _CarSearchFilter {
             (identical(other.transmission, transmission) ||
                 other.transmission == transmission) &&
             (identical(other.isDiscounted, isDiscounted) ||
-                other.isDiscounted == isDiscounted));
+                other.isDiscounted == isDiscounted) &&
+            (identical(other.productionCompany, productionCompany) ||
+                other.productionCompany == productionCompany));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, carType, transmission, isDiscounted);
+  int get hashCode => Object.hash(
+      runtimeType, carType, transmission, isDiscounted, productionCompany);
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +201,8 @@ abstract class _CarSearchFilter implements CarSearchFilter {
   const factory _CarSearchFilter(
       {final CarTypeEnum? carType,
       final TransmissionEnum? transmission,
-      final bool isDiscounted}) = _$_CarSearchFilter;
+      final bool isDiscounted,
+      final ProductionCompany? productionCompany}) = _$_CarSearchFilter;
 
   @override
   CarTypeEnum? get carType;
@@ -171,6 +210,8 @@ abstract class _CarSearchFilter implements CarSearchFilter {
   TransmissionEnum? get transmission;
   @override
   bool get isDiscounted;
+  @override
+  ProductionCompany? get productionCompany;
   @override
   @JsonKey(ignore: true)
   _$$_CarSearchFilterCopyWith<_$_CarSearchFilter> get copyWith =>

@@ -25,4 +25,8 @@ class CarSearchResultEvent with _$CarSearchResultEvent {
 
   const factory CarSearchResultEvent.isDiscountedFilterChanged() =
       _IsDiscountedFilterChanged;
+
+  const factory CarSearchResultEvent.productionCompanyFilterChanged({
+    ProductionCompany? productionCompany,
+  }) = _ProductionCompanyFilterChanged;
 }

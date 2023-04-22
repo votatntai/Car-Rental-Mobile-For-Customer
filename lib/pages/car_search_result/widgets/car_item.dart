@@ -30,11 +30,11 @@ class CarItem extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  car.images?.isNotEmpty == true
+                  car.imageUrl != null
                       ? CachedNetworkImage(
                           height: 220,
                           width: double.infinity,
-                          imageUrl: car.images![0].url,
+                          imageUrl: car.imageUrl!,
                           fit: BoxFit.fill,
                           errorWidget: (context, url, error) {
                             return const Icon(Icons.error);

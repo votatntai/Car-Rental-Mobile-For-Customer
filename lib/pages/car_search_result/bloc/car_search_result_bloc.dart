@@ -7,10 +7,12 @@ import 'package:car_rental_for_customer/models/enums/car_type.dart';
 import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/models/enums/transmission.dart';
 import 'package:car_rental_for_customer/models/pagination_result.dart';
+import 'package:car_rental_for_customer/models/production_company.dart';
 import 'package:car_rental_for_customer/models/scroll_pagination.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/models/car_search_filter.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
+import 'package:car_rental_for_customer/repositories/production_conpany_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'car_search_result_bloc.freezed.dart';
@@ -22,12 +24,14 @@ class CarSearchResultBloc
   CarSearchResultBloc({
     required this.carRepository,
     required this.mapsRepository,
+    required this.productionCompanyRepository,
   }) : super(const CarSearchResultState.initial()) {
     on<_Started>(_onStarted);
     on<_PageRequested>(_onPageRequested);
     on<_CarTypeFilterChanged>(_onCarTypeFilterChanged);
     on<_TransmissionFilterChanged>(_onTransmissionFilterChanged);
     on<_IsDiscountedFilterChanged>(_onIsDiscountedFilterChanged);
+    on<_ProductionCompanyFilterChanged>(_onProductionCompanyFilterChanged);
   }
 
   late String address;
@@ -40,6 +44,7 @@ class CarSearchResultBloc
 
   final CarRepository carRepository;
   final MapsRepository mapsRepository;
+  final ProductionCompanyRepository productionCompanyRepository;
 
   FutureOr<void> _onStarted(
     _Started event,
@@ -68,6 +73,17 @@ class CarSearchResultBloc
     //   cars = (carsResult as ApiSuccess<PaginationResult<Car>>).value.data;
     // }
 
+    List<ProductionCompany> allProductionCompanies = [];
+
+    final productionCompaniesResult =
+        await productionCompanyRepository.allCompanies();
+
+    if (productionCompaniesResult is ApiSuccess) {
+      allProductionCompanies =
+          (productionCompaniesResult as ApiSuccess<List<ProductionCompany>>)
+              .value;
+    }
+
     emit(
       CarSearchResultState.success(
         // cars: cars,
@@ -77,6 +93,7 @@ class CarSearchResultBloc
         latitude: latitude,
         longitude: longitude,
         carSearchFilter: const CarSearchFilter(),
+        allProductionCompanies: allProductionCompanies,
       ),
     );
   }
@@ -103,6 +120,7 @@ class CarSearchResultBloc
       startTime: currentState.startDate,
       endTime: currentState.endDate,
       distance: distance,
+      productionCompany: currentState.carSearchFilter.productionCompany,
     );
 
     List<Car> cars = [];
@@ -183,6 +201,23 @@ class CarSearchResultBloc
         ),
       ),
     );
+    add(const _PageRequested(pageKey: 0));
+  }
+
+  FutureOr<void> _onProductionCompanyFilterChanged(
+    _ProductionCompanyFilterChanged event,
+    Emitter<CarSearchResultState> emit,
+  ) async {
+    if (state is! _Success) return;
+    final currentState = state as _Success;
+    emit(
+      currentState.copyWith(
+        carSearchFilter: currentState.carSearchFilter.copyWith(
+          productionCompany: event.productionCompany,
+        ),
+      ),
+    );
+
     add(const _PageRequested(pageKey: 0));
   }
 

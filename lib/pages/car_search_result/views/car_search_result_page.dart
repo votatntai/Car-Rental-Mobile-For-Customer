@@ -4,6 +4,7 @@ import 'package:car_rental_for_customer/pages/car_search_result/bloc/car_search_
 import 'package:car_rental_for_customer/pages/car_search_result/views/car_search_result_view.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/maps_repository.dart';
+import 'package:car_rental_for_customer/repositories/production_conpany_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,6 +32,7 @@ class CarSearchResultPage extends StatelessWidget {
       value: CarSearchResultBloc(
         carRepository: getIt.get<CarRepository>(),
         mapsRepository: getIt.get<MapsRepository>(),
+        productionCompanyRepository: getIt.get<ProductionCompanyRepository>(),
       )..add(
           CarSearchResultEvent.started(
             address: address,

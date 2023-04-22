@@ -9,6 +9,7 @@ import 'package:car_rental_for_customer/pages/car_search_result/bloc/car_search_
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_item.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/car_type_widget.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/choice_chip_widget.dart';
+import 'package:car_rental_for_customer/pages/car_search_result/widgets/production_company_widget.dart';
 import 'package:car_rental_for_customer/pages/car_search_result/widgets/transmission_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,6 +62,17 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
       context: context,
       builder: (BuildContext context) {
         return TransmissionWidget(bloc: bloc);
+      },
+    );
+  }
+
+  void _onProductionCompanyFilterTap() {
+    final bloc = BlocProvider.of<CarSearchResultBloc>(context);
+
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ProductionCompanyWidget(bloc: bloc);
       },
     );
   }
@@ -153,19 +165,26 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           ChoiceChipWidget(
-                            label: 'Loại xe',
-                            selected: value.carSearchFilter.carType != null,
-                            icon: Icons.drive_eta_outlined,
-                            onTap: _onCarTypeFilterTap,
-                          ),
-                          const SizedBox(width: s08),
-                          ChoiceChipWidget(
-                            label: 'Truyền động',
+                            label: 'Hãng xe',
                             selected:
-                                value.carSearchFilter.transmission != null,
+                                value.carSearchFilter.productionCompany != null,
                             icon: Icons.memory_outlined,
-                            onTap: _onTransmissionFilterTap,
+                            onTap: _onProductionCompanyFilterTap,
                           ),
+                          // ChoiceChipWidget(
+                          //   label: 'Loại xe',
+                          //   selected: value.carSearchFilter.carType != null,
+                          //   icon: Icons.drive_eta_outlined,
+                          //   onTap: _onCarTypeFilterTap,
+                          // ),
+                          // const SizedBox(width: s08),
+                          // ChoiceChipWidget(
+                          //   label: 'Truyền động',
+                          //   selected:
+                          //       value.carSearchFilter.transmission != null,
+                          //   icon: Icons.memory_outlined,
+                          //   onTap: _onTransmissionFilterTap,
+                          // ),
                           // const SizedBox(width: s08),
                           // ChoiceChipWidget(
                           //   label: 'Xe giảm giá',

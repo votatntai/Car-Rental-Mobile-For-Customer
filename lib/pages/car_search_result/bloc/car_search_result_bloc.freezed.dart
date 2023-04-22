@@ -26,6 +26,8 @@ mixin _$CarSearchResultEvent {
     required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,8 @@ mixin _$CarSearchResultEvent {
     TResult? Function(TransmissionEnum? transmission)?
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +53,8 @@ mixin _$CarSearchResultEvent {
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
     TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +67,8 @@ mixin _$CarSearchResultEvent {
         transmissionFilterChanged,
     required TResult Function(_IsDiscountedFilterChanged value)
         isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +80,8 @@ mixin _$CarSearchResultEvent {
         transmissionFilterChanged,
     TResult? Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -83,6 +93,8 @@ mixin _$CarSearchResultEvent {
         transmissionFilterChanged,
     TResult Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -235,6 +247,8 @@ class _$_Started implements _Started {
     required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
   }) {
     return started(address, startDate, endDate, longitude, latitude, distance);
   }
@@ -250,6 +264,8 @@ class _$_Started implements _Started {
     TResult? Function(TransmissionEnum? transmission)?
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
   }) {
     return started?.call(
         address, startDate, endDate, longitude, latitude, distance);
@@ -265,6 +281,8 @@ class _$_Started implements _Started {
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
     TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -284,6 +302,8 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     required TResult Function(_IsDiscountedFilterChanged value)
         isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
   }) {
     return started(this);
   }
@@ -298,6 +318,8 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     TResult? Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
   }) {
     return started?.call(this);
   }
@@ -312,6 +334,8 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     TResult Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -414,6 +438,8 @@ class _$_PageRequested implements _PageRequested {
     required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
   }) {
     return pageRequested(pageKey);
   }
@@ -429,6 +455,8 @@ class _$_PageRequested implements _PageRequested {
     TResult? Function(TransmissionEnum? transmission)?
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
   }) {
     return pageRequested?.call(pageKey);
   }
@@ -443,6 +471,8 @@ class _$_PageRequested implements _PageRequested {
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
     TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (pageRequested != null) {
@@ -461,6 +491,8 @@ class _$_PageRequested implements _PageRequested {
         transmissionFilterChanged,
     required TResult Function(_IsDiscountedFilterChanged value)
         isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
   }) {
     return pageRequested(this);
   }
@@ -475,6 +507,8 @@ class _$_PageRequested implements _PageRequested {
         transmissionFilterChanged,
     TResult? Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
   }) {
     return pageRequested?.call(this);
   }
@@ -489,6 +523,8 @@ class _$_PageRequested implements _PageRequested {
         transmissionFilterChanged,
     TResult Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (pageRequested != null) {
@@ -580,6 +616,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
   }) {
     return carTypeFilterChanged(carType);
   }
@@ -595,6 +633,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     TResult? Function(TransmissionEnum? transmission)?
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
   }) {
     return carTypeFilterChanged?.call(carType);
   }
@@ -609,6 +649,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
     TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (carTypeFilterChanged != null) {
@@ -627,6 +669,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
         transmissionFilterChanged,
     required TResult Function(_IsDiscountedFilterChanged value)
         isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
   }) {
     return carTypeFilterChanged(this);
   }
@@ -641,6 +685,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
         transmissionFilterChanged,
     TResult? Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
   }) {
     return carTypeFilterChanged?.call(this);
   }
@@ -655,6 +701,8 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
         transmissionFilterChanged,
     TResult Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (carTypeFilterChanged != null) {
@@ -751,6 +799,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
     required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
   }) {
     return transmissionFilterChanged(transmission);
   }
@@ -766,6 +816,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
     TResult? Function(TransmissionEnum? transmission)?
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
   }) {
     return transmissionFilterChanged?.call(transmission);
   }
@@ -780,6 +832,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
     TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (transmissionFilterChanged != null) {
@@ -798,6 +852,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
         transmissionFilterChanged,
     required TResult Function(_IsDiscountedFilterChanged value)
         isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
   }) {
     return transmissionFilterChanged(this);
   }
@@ -812,6 +868,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
         transmissionFilterChanged,
     TResult? Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
   }) {
     return transmissionFilterChanged?.call(this);
   }
@@ -826,6 +884,8 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
         transmissionFilterChanged,
     TResult Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (transmissionFilterChanged != null) {
@@ -895,6 +955,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
     required TResult Function(TransmissionEnum? transmission)
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
   }) {
     return isDiscountedFilterChanged();
   }
@@ -910,6 +972,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
     TResult? Function(TransmissionEnum? transmission)?
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
   }) {
     return isDiscountedFilterChanged?.call();
   }
@@ -924,6 +988,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
     TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
     TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (isDiscountedFilterChanged != null) {
@@ -942,6 +1008,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
         transmissionFilterChanged,
     required TResult Function(_IsDiscountedFilterChanged value)
         isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
   }) {
     return isDiscountedFilterChanged(this);
   }
@@ -956,6 +1024,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
         transmissionFilterChanged,
     TResult? Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
   }) {
     return isDiscountedFilterChanged?.call(this);
   }
@@ -970,6 +1040,8 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
         transmissionFilterChanged,
     TResult Function(_IsDiscountedFilterChanged value)?
         isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
     required TResult orElse(),
   }) {
     if (isDiscountedFilterChanged != null) {
@@ -981,6 +1053,205 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
 
 abstract class _IsDiscountedFilterChanged implements CarSearchResultEvent {
   const factory _IsDiscountedFilterChanged() = _$_IsDiscountedFilterChanged;
+}
+
+/// @nodoc
+abstract class _$$_ProductionCompanyFilterChangedCopyWith<$Res> {
+  factory _$$_ProductionCompanyFilterChangedCopyWith(
+          _$_ProductionCompanyFilterChanged value,
+          $Res Function(_$_ProductionCompanyFilterChanged) then) =
+      __$$_ProductionCompanyFilterChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProductionCompany? productionCompany});
+
+  $ProductionCompanyCopyWith<$Res>? get productionCompany;
+}
+
+/// @nodoc
+class __$$_ProductionCompanyFilterChangedCopyWithImpl<$Res>
+    extends _$CarSearchResultEventCopyWithImpl<$Res,
+        _$_ProductionCompanyFilterChanged>
+    implements _$$_ProductionCompanyFilterChangedCopyWith<$Res> {
+  __$$_ProductionCompanyFilterChangedCopyWithImpl(
+      _$_ProductionCompanyFilterChanged _value,
+      $Res Function(_$_ProductionCompanyFilterChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productionCompany = freezed,
+  }) {
+    return _then(_$_ProductionCompanyFilterChanged(
+      productionCompany: freezed == productionCompany
+          ? _value.productionCompany
+          : productionCompany // ignore: cast_nullable_to_non_nullable
+              as ProductionCompany?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductionCompanyCopyWith<$Res>? get productionCompany {
+    if (_value.productionCompany == null) {
+      return null;
+    }
+
+    return $ProductionCompanyCopyWith<$Res>(_value.productionCompany!, (value) {
+      return _then(_value.copyWith(productionCompany: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_ProductionCompanyFilterChanged
+    implements _ProductionCompanyFilterChanged {
+  const _$_ProductionCompanyFilterChanged({this.productionCompany});
+
+  @override
+  final ProductionCompany? productionCompany;
+
+  @override
+  String toString() {
+    return 'CarSearchResultEvent.productionCompanyFilterChanged(productionCompany: $productionCompany)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProductionCompanyFilterChanged &&
+            (identical(other.productionCompany, productionCompany) ||
+                other.productionCompany == productionCompany));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, productionCompany);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProductionCompanyFilterChangedCopyWith<_$_ProductionCompanyFilterChanged>
+      get copyWith => __$$_ProductionCompanyFilterChangedCopyWithImpl<
+          _$_ProductionCompanyFilterChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String address, DateTime startDate,
+            DateTime endDate, double longitude, double latitude, int? distance)
+        started,
+    required TResult Function(int pageKey) pageRequested,
+    required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
+    required TResult Function(TransmissionEnum? transmission)
+        transmissionFilterChanged,
+    required TResult Function() isDiscountedFilterChanged,
+    required TResult Function(ProductionCompany? productionCompany)
+        productionCompanyFilterChanged,
+  }) {
+    return productionCompanyFilterChanged(productionCompany);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String address, DateTime startDate, DateTime endDate,
+            double longitude, double latitude, int? distance)?
+        started,
+    TResult? Function(int pageKey)? pageRequested,
+    TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult? Function(TransmissionEnum? transmission)?
+        transmissionFilterChanged,
+    TResult? Function()? isDiscountedFilterChanged,
+    TResult? Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
+  }) {
+    return productionCompanyFilterChanged?.call(productionCompany);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String address, DateTime startDate, DateTime endDate,
+            double longitude, double latitude, int? distance)?
+        started,
+    TResult Function(int pageKey)? pageRequested,
+    TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
+    TResult Function(TransmissionEnum? transmission)? transmissionFilterChanged,
+    TResult Function()? isDiscountedFilterChanged,
+    TResult Function(ProductionCompany? productionCompany)?
+        productionCompanyFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (productionCompanyFilterChanged != null) {
+      return productionCompanyFilterChanged(productionCompany);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PageRequested value) pageRequested,
+    required TResult Function(_CarTypeFilterChanged value) carTypeFilterChanged,
+    required TResult Function(_TransmissionFilterChanged value)
+        transmissionFilterChanged,
+    required TResult Function(_IsDiscountedFilterChanged value)
+        isDiscountedFilterChanged,
+    required TResult Function(_ProductionCompanyFilterChanged value)
+        productionCompanyFilterChanged,
+  }) {
+    return productionCompanyFilterChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PageRequested value)? pageRequested,
+    TResult? Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult? Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult? Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
+    TResult? Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
+  }) {
+    return productionCompanyFilterChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PageRequested value)? pageRequested,
+    TResult Function(_CarTypeFilterChanged value)? carTypeFilterChanged,
+    TResult Function(_TransmissionFilterChanged value)?
+        transmissionFilterChanged,
+    TResult Function(_IsDiscountedFilterChanged value)?
+        isDiscountedFilterChanged,
+    TResult Function(_ProductionCompanyFilterChanged value)?
+        productionCompanyFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (productionCompanyFilterChanged != null) {
+      return productionCompanyFilterChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProductionCompanyFilterChanged implements CarSearchResultEvent {
+  const factory _ProductionCompanyFilterChanged(
+          {final ProductionCompany? productionCompany}) =
+      _$_ProductionCompanyFilterChanged;
+
+  ProductionCompany? get productionCompany;
+  @JsonKey(ignore: true)
+  _$$_ProductionCompanyFilterChangedCopyWith<_$_ProductionCompanyFilterChanged>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -996,7 +1267,8 @@ mixin _$CarSearchResultState {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)
         success,
     required TResult Function(String? message) failure,
   }) =>
@@ -1012,7 +1284,8 @@ mixin _$CarSearchResultState {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult? Function(String? message)? failure,
   }) =>
@@ -1028,7 +1301,8 @@ mixin _$CarSearchResultState {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
@@ -1126,7 +1400,8 @@ class _$_Initial implements _Initial {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)
         success,
     required TResult Function(String? message) failure,
   }) {
@@ -1145,7 +1420,8 @@ class _$_Initial implements _Initial {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult? Function(String? message)? failure,
   }) {
@@ -1164,7 +1440,8 @@ class _$_Initial implements _Initial {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
@@ -1263,7 +1540,8 @@ class _$_Loading implements _Loading {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)
         success,
     required TResult Function(String? message) failure,
   }) {
@@ -1282,7 +1560,8 @@ class _$_Loading implements _Loading {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult? Function(String? message)? failure,
   }) {
@@ -1301,7 +1580,8 @@ class _$_Loading implements _Loading {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
@@ -1367,7 +1647,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
       double latitude,
       double longitude,
       ScrollPagination<Car>? scrollPagination,
-      CarSearchFilter carSearchFilter});
+      CarSearchFilter carSearchFilter,
+      List<ProductionCompany> allProductionCompanies});
 
   $ScrollPaginationCopyWith<Car, $Res>? get scrollPagination;
   $CarSearchFilterCopyWith<$Res> get carSearchFilter;
@@ -1390,6 +1671,7 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? longitude = null,
     Object? scrollPagination = freezed,
     Object? carSearchFilter = null,
+    Object? allProductionCompanies = null,
   }) {
     return _then(_$_Success(
       address: null == address
@@ -1420,6 +1702,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.carSearchFilter
           : carSearchFilter // ignore: cast_nullable_to_non_nullable
               as CarSearchFilter,
+      allProductionCompanies: null == allProductionCompanies
+          ? _value._allProductionCompanies
+          : allProductionCompanies // ignore: cast_nullable_to_non_nullable
+              as List<ProductionCompany>,
     ));
   }
 
@@ -1455,7 +1741,9 @@ class _$_Success implements _Success {
       required this.latitude,
       required this.longitude,
       this.scrollPagination,
-      required this.carSearchFilter});
+      required this.carSearchFilter,
+      required final List<ProductionCompany> allProductionCompanies})
+      : _allProductionCompanies = allProductionCompanies;
 
   @override
   final String address;
@@ -1471,10 +1759,18 @@ class _$_Success implements _Success {
   final ScrollPagination<Car>? scrollPagination;
   @override
   final CarSearchFilter carSearchFilter;
+  final List<ProductionCompany> _allProductionCompanies;
+  @override
+  List<ProductionCompany> get allProductionCompanies {
+    if (_allProductionCompanies is EqualUnmodifiableListView)
+      return _allProductionCompanies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allProductionCompanies);
+  }
 
   @override
   String toString() {
-    return 'CarSearchResultState.success(address: $address, startDate: $startDate, endDate: $endDate, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter)';
+    return 'CarSearchResultState.success(address: $address, startDate: $startDate, endDate: $endDate, latitude: $latitude, longitude: $longitude, scrollPagination: $scrollPagination, carSearchFilter: $carSearchFilter, allProductionCompanies: $allProductionCompanies)';
   }
 
   @override
@@ -1493,12 +1789,22 @@ class _$_Success implements _Success {
             (identical(other.scrollPagination, scrollPagination) ||
                 other.scrollPagination == scrollPagination) &&
             (identical(other.carSearchFilter, carSearchFilter) ||
-                other.carSearchFilter == carSearchFilter));
+                other.carSearchFilter == carSearchFilter) &&
+            const DeepCollectionEquality().equals(
+                other._allProductionCompanies, _allProductionCompanies));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, address, startDate, endDate,
-      latitude, longitude, scrollPagination, carSearchFilter);
+  int get hashCode => Object.hash(
+      runtimeType,
+      address,
+      startDate,
+      endDate,
+      latitude,
+      longitude,
+      scrollPagination,
+      carSearchFilter,
+      const DeepCollectionEquality().hash(_allProductionCompanies));
 
   @JsonKey(ignore: true)
   @override
@@ -1518,12 +1824,13 @@ class _$_Success implements _Success {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)
         success,
     required TResult Function(String? message) failure,
   }) {
     return success(address, startDate, endDate, latitude, longitude,
-        scrollPagination, carSearchFilter);
+        scrollPagination, carSearchFilter, allProductionCompanies);
   }
 
   @override
@@ -1538,12 +1845,13 @@ class _$_Success implements _Success {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult? Function(String? message)? failure,
   }) {
     return success?.call(address, startDate, endDate, latitude, longitude,
-        scrollPagination, carSearchFilter);
+        scrollPagination, carSearchFilter, allProductionCompanies);
   }
 
   @override
@@ -1558,14 +1866,15 @@ class _$_Success implements _Success {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
       return success(address, startDate, endDate, latitude, longitude,
-          scrollPagination, carSearchFilter);
+          scrollPagination, carSearchFilter, allProductionCompanies);
     }
     return orElse();
   }
@@ -1610,13 +1919,15 @@ class _$_Success implements _Success {
 
 abstract class _Success implements CarSearchResultState {
   const factory _Success(
-      {required final String address,
-      required final DateTime startDate,
-      required final DateTime endDate,
-      required final double latitude,
-      required final double longitude,
-      final ScrollPagination<Car>? scrollPagination,
-      required final CarSearchFilter carSearchFilter}) = _$_Success;
+          {required final String address,
+          required final DateTime startDate,
+          required final DateTime endDate,
+          required final double latitude,
+          required final double longitude,
+          final ScrollPagination<Car>? scrollPagination,
+          required final CarSearchFilter carSearchFilter,
+          required final List<ProductionCompany> allProductionCompanies}) =
+      _$_Success;
 
   String get address;
   DateTime get startDate;
@@ -1625,6 +1936,7 @@ abstract class _Success implements CarSearchResultState {
   double get longitude;
   ScrollPagination<Car>? get scrollPagination;
   CarSearchFilter get carSearchFilter;
+  List<ProductionCompany> get allProductionCompanies;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1702,7 +2014,8 @@ class _$_Failure implements _Failure {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)
         success,
     required TResult Function(String? message) failure,
   }) {
@@ -1721,7 +2034,8 @@ class _$_Failure implements _Failure {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult? Function(String? message)? failure,
   }) {
@@ -1740,7 +2054,8 @@ class _$_Failure implements _Failure {
             double latitude,
             double longitude,
             ScrollPagination<Car>? scrollPagination,
-            CarSearchFilter carSearchFilter)?
+            CarSearchFilter carSearchFilter,
+            List<ProductionCompany> allProductionCompanies)?
         success,
     TResult Function(String? message)? failure,
     required TResult orElse(),

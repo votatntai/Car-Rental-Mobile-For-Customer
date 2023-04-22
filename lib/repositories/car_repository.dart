@@ -6,6 +6,7 @@ import 'package:car_rental_for_customer/models/car.dart';
 import 'package:car_rental_for_customer/models/enums/car_type.dart';
 import 'package:car_rental_for_customer/models/enums/transmission.dart';
 import 'package:car_rental_for_customer/models/pagination_result.dart';
+import 'package:car_rental_for_customer/models/production_company.dart';
 import 'package:dio/dio.dart';
 
 class CarRepository {
@@ -24,6 +25,7 @@ class CarRepository {
     DateTime? startTime,
     DateTime? endTime,
     int? distance,
+    ProductionCompany? productionCompany,
     required int pageNumber,
     required int pageSize,
   }) async {
@@ -33,6 +35,10 @@ class CarRepository {
         'pageSize': pageSize,
         'isAvailable': true,
       };
+
+      if (productionCompany != null) {
+        queryParameters['productionCompanyId'] = productionCompany.id;
+      }
 
       queryParameters['distance'] = distance ?? 5;
 

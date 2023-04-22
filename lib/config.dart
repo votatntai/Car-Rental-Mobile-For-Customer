@@ -8,6 +8,7 @@ import 'package:car_rental_for_customer/commons/constants/networks.dart';
 import 'package:car_rental_for_customer/di.dart';
 import 'package:car_rental_for_customer/firebase_options.dart';
 import 'package:car_rental_for_customer/models/car_owner.dart';
+import 'package:car_rental_for_customer/models/production_company.dart';
 import 'package:car_rental_for_customer/repositories/car_owner_repository.dart';
 import 'package:car_rental_for_customer/repositories/car_repository.dart';
 import 'package:car_rental_for_customer/repositories/customer_repository.dart';
@@ -18,6 +19,7 @@ import 'package:car_rental_for_customer/repositories/maps_repository.dart';
 import 'package:car_rental_for_customer/repositories/notification_repository.dart';
 import 'package:car_rental_for_customer/repositories/order_repository.dart';
 import 'package:car_rental_for_customer/repositories/payment_repository.dart';
+import 'package:car_rental_for_customer/repositories/production_conpany_repository.dart';
 import 'package:car_rental_for_customer/repositories/promotion_repository.dart';
 import 'package:car_rental_for_customer/repositories/repositories.dart';
 import 'package:car_rental_for_customer/repositories/transaction_repository.dart';
@@ -91,7 +93,9 @@ Future<void> configDI() async {
     ..registerSingleton<FCMTokenRepository>(FCMTokenRepository(dio: dio))
     ..registerSingleton<PaymentRepository>(PaymentRepository(dio: dio))
     ..registerSingleton<FeedbackRepository>(FeedbackRepository(dio: dio))
-    ..registerSingleton<CustomerRepository>(CustomerRepository(dio: dio));
+    ..registerSingleton<CustomerRepository>(CustomerRepository(dio: dio))
+    ..registerSingleton<ProductionCompanyRepository>(
+        ProductionCompanyRepository(dio: dio));
 }
 
 void configureTimeago() {
