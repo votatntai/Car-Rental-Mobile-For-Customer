@@ -606,25 +606,31 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                     ),
                   ),
                 ),
-                divider,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: s16),
-                  child: ContainerWithLabel(
-                    label: 'Chủ xe',
-                    child: CarOwnerWidget(
-                      car: successState.order.orderDetails.first.car,
-                      onTap: () {
-                        context.pushNamed(
-                          RouteName.carOwnerDetail,
-                          queryParams: {
-                            'car-owner-id': successState
-                                .order.orderDetails.first.car.carOwner!.id,
-                          },
-                        );
-                      },
-                    ),
+                if (successState.order.orderDetails.first.car.carOwner != null)
+                  Column(
+                    children: [
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Chủ xe',
+                          child: CarOwnerWidget(
+                            car: successState.order.orderDetails.first.car,
+                            onTap: () {
+                              context.pushNamed(
+                                RouteName.carOwnerDetail,
+                                queryParams: {
+                                  'car-owner-id': successState.order
+                                      .orderDetails.first.car.carOwner!.id,
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+
                 divider,
                 // Padding(
                 //   padding: const EdgeInsets.symmetric(horizontal: s16),
