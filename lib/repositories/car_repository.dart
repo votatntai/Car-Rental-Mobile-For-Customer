@@ -96,7 +96,7 @@ class CarRepository {
   }) async {
     try {
       final result = await dio.get<JsonObject>(
-        'cars',
+        'cars/for-car-owners/$carOwnerId',
         queryParameters: {
           'pageNumber': 0,
           'pageSize': 1000,
@@ -109,9 +109,11 @@ class CarRepository {
           (object) => Car.fromJson(object as JsonObject),
         );
 
-        final cars = paginationResult.data
-            .where((element) => element.carOwner?.id == carOwnerId)
-            .toList();
+        // final cars = paginationResult.data
+        //     .where((element) => element.carOwner?.id == carOwnerId)
+        //     .toList();
+
+        final cars = paginationResult.data;
 
         return ApiSuccess(cars);
       }

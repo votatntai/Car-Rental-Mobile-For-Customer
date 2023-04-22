@@ -82,7 +82,7 @@ class AuthenticationRepository {
           'password': password.toLowerCase().trim(),
           'name': name,
           'phone': phone,
-          'gender': gender.name,
+          'gender': gender.getDisplayName(),
           'address': address,
         },
       );

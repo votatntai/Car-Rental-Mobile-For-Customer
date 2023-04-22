@@ -41,7 +41,7 @@ class UserRepository {
         'name': name,
         'address': address,
         'phone': phone,
-        'gender': gender?.name,
+        'gender': gender?.getDisplayName(),
       });
 
       if (result.data != null) {
