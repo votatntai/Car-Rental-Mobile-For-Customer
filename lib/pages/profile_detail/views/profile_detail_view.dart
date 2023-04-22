@@ -1,6 +1,7 @@
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
+import 'package:car_rental_for_customer/commons/extensions.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
 import 'package:car_rental_for_customer/commons/widgets/input_decoration.dart';
 import 'package:car_rental_for_customer/commons/widgets/place_autocomplete.dart';
@@ -182,8 +183,9 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               controller: _phoneNumberController,
                               focusNode: _phoneNumberFocus,
                               validator: (value) {
-                                if (int.tryParse(value!) == null) {
-                                  return 'Xin vui lòng nhập số điện thoại';
+                                if (value == null ||
+                                    value.isPhoneNumber == false) {
+                                  return 'Xin nhập số điện thoại';
                                 }
                                 return null;
                               },
@@ -250,19 +252,21 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                             GestureDetector(
                               onTap: () {
                                 unfocus();
-                                var name = _nameController.text;
-                                var phone = _phoneNumberController.text;
-                                var address = _address;
-                                var gender = _gender;
+                                if (_formKey.currentState!.validate()) {
+                                  var name = _nameController.text;
+                                  var phone = _phoneNumberController.text;
+                                  var address = _address;
+                                  var gender = _gender;
 
-                                context.read<ProfileDetailBloc>().add(
-                                      ProfileDetailEvent.saved(
-                                        name: name,
-                                        phone: phone,
-                                        address: address,
-                                        gender: gender,
-                                      ),
-                                    );
+                                  context.read<ProfileDetailBloc>().add(
+                                        ProfileDetailEvent.saved(
+                                          name: name,
+                                          phone: phone,
+                                          address: address,
+                                          gender: gender,
+                                        ),
+                                      );
+                                }
                               },
                               child: Container(
                                 alignment: Alignment.center,

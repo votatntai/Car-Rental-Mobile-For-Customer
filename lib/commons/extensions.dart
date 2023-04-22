@@ -29,6 +29,11 @@ extension StringValueX on String {
     return regex.hasMatch(this);
   }
 
+  bool get isPhoneNumber {
+    final RegExp regex = RegExp(r'^(84|0[3|5|7|8|9])+([0-9]{8})\b');
+    return regex.hasMatch(this);
+  }
+
   bool get isSignedNumber {
     final RegExp regex = RegExp(r'^[+]?\d+$');
     return regex.hasMatch(this);
