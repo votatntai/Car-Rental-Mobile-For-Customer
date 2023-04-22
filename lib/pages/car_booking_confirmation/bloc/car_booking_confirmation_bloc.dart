@@ -58,15 +58,18 @@ class CarBookingConfirmationBloc
     }
 
     final carResult = await carRepository.carById(event.carId!);
-    final promotionResult =
-        await promotionRepository.promotionById(event.promotionId ?? '');
 
     if (carResult is ApiSuccess) {
       final car = (carResult as ApiSuccess<Car>).value;
       Promotion? promotion;
 
-      if (promotionResult is ApiSuccess) {
-        promotion = (promotionResult as ApiSuccess<Promotion>).value;
+      if (event.promotionId != null && event.promotionId?.isNotEmpty == true) {
+        final promotionResult =
+            await promotionRepository.promotionById(event.promotionId!);
+
+        if (promotionResult is ApiSuccess) {
+          promotion = (promotionResult as ApiSuccess<Promotion>).value;
+        }
       }
 
       emit(CarBookingConfirmationState.success(
