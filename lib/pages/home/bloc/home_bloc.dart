@@ -43,7 +43,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       topDeals: [],
     ));
 
-    final carResult = await carRepository.cars(
+    final carResult = await carRepository.carSearch(
       pageNumber: 1,
       pageSize: 10,
     );
@@ -68,18 +68,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ApiResponse<PaginationResult<Car>>? carResult;
 
     if (event.index == 0) {
-      carResult = await carRepository.cars(
+      carResult = await carRepository.carSearch(
         pageNumber: 1,
         pageSize: 10,
       );
     } else if (event.index == 1) {
-      carResult = await carRepository.cars(
+      carResult = await carRepository.carSearch(
         pageNumber: 1,
         pageSize: 10,
         hasDriver: false,
       );
     } else if (event.index == 2) {
-      carResult = await carRepository.cars(
+      carResult = await carRepository.carSearch(
         pageNumber: 1,
         pageSize: 10,
         hasDriver: true,

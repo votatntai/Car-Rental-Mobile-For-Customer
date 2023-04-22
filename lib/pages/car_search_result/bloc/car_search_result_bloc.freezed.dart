@@ -19,7 +19,7 @@ mixin _$CarSearchResultEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String address, DateTime startDate,
-            DateTime endDate, double longitude, double latitude)
+            DateTime endDate, double longitude, double latitude, int? distance)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -31,7 +31,7 @@ mixin _$CarSearchResultEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -43,7 +43,7 @@ mixin _$CarSearchResultEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -118,7 +118,8 @@ abstract class _$$_StartedCopyWith<$Res> {
       DateTime startDate,
       DateTime endDate,
       double longitude,
-      double latitude});
+      double latitude,
+      int? distance});
 }
 
 /// @nodoc
@@ -136,6 +137,7 @@ class __$$_StartedCopyWithImpl<$Res>
     Object? endDate = null,
     Object? longitude = null,
     Object? latitude = null,
+    Object? distance = freezed,
   }) {
     return _then(_$_Started(
       address: null == address
@@ -158,6 +160,10 @@ class __$$_StartedCopyWithImpl<$Res>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
+      distance: freezed == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -170,7 +176,8 @@ class _$_Started implements _Started {
       required this.startDate,
       required this.endDate,
       required this.longitude,
-      required this.latitude});
+      required this.latitude,
+      this.distance});
 
   @override
   final String address;
@@ -182,10 +189,12 @@ class _$_Started implements _Started {
   final double longitude;
   @override
   final double latitude;
+  @override
+  final int? distance;
 
   @override
   String toString() {
-    return 'CarSearchResultEvent.started(address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude)';
+    return 'CarSearchResultEvent.started(address: $address, startDate: $startDate, endDate: $endDate, longitude: $longitude, latitude: $latitude, distance: $distance)';
   }
 
   @override
@@ -200,12 +209,14 @@ class _$_Started implements _Started {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.latitude, latitude) ||
-                other.latitude == latitude));
+                other.latitude == latitude) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, address, startDate, endDate, longitude, latitude);
+      runtimeType, address, startDate, endDate, longitude, latitude, distance);
 
   @JsonKey(ignore: true)
   @override
@@ -217,7 +228,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String address, DateTime startDate,
-            DateTime endDate, double longitude, double latitude)
+            DateTime endDate, double longitude, double latitude, int? distance)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -225,14 +236,14 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     required TResult Function() isDiscountedFilterChanged,
   }) {
-    return started(address, startDate, endDate, longitude, latitude);
+    return started(address, startDate, endDate, longitude, latitude, distance);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -240,14 +251,15 @@ class _$_Started implements _Started {
         transmissionFilterChanged,
     TResult? Function()? isDiscountedFilterChanged,
   }) {
-    return started?.call(address, startDate, endDate, longitude, latitude);
+    return started?.call(
+        address, startDate, endDate, longitude, latitude, distance);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -256,7 +268,8 @@ class _$_Started implements _Started {
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(address, startDate, endDate, longitude, latitude);
+      return started(
+          address, startDate, endDate, longitude, latitude, distance);
     }
     return orElse();
   }
@@ -314,13 +327,15 @@ abstract class _Started implements CarSearchResultEvent {
       required final DateTime startDate,
       required final DateTime endDate,
       required final double longitude,
-      required final double latitude}) = _$_Started;
+      required final double latitude,
+      final int? distance}) = _$_Started;
 
   String get address;
   DateTime get startDate;
   DateTime get endDate;
   double get longitude;
   double get latitude;
+  int? get distance;
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
@@ -392,7 +407,7 @@ class _$_PageRequested implements _PageRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String address, DateTime startDate,
-            DateTime endDate, double longitude, double latitude)
+            DateTime endDate, double longitude, double latitude, int? distance)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -407,7 +422,7 @@ class _$_PageRequested implements _PageRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -422,7 +437,7 @@ class _$_PageRequested implements _PageRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -558,7 +573,7 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String address, DateTime startDate,
-            DateTime endDate, double longitude, double latitude)
+            DateTime endDate, double longitude, double latitude, int? distance)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -573,7 +588,7 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -588,7 +603,7 @@ class _$_CarTypeFilterChanged implements _CarTypeFilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -729,7 +744,7 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String address, DateTime startDate,
-            DateTime endDate, double longitude, double latitude)
+            DateTime endDate, double longitude, double latitude, int? distance)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -744,7 +759,7 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -759,7 +774,7 @@ class _$_TransmissionFilterChanged implements _TransmissionFilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -873,7 +888,7 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String address, DateTime startDate,
-            DateTime endDate, double longitude, double latitude)
+            DateTime endDate, double longitude, double latitude, int? distance)
         started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function(CarTypeEnum? carType) carTypeFilterChanged,
@@ -888,7 +903,7 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function(CarTypeEnum? carType)? carTypeFilterChanged,
@@ -903,7 +918,7 @@ class _$_IsDiscountedFilterChanged implements _IsDiscountedFilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, DateTime startDate, DateTime endDate,
-            double longitude, double latitude)?
+            double longitude, double latitude, int? distance)?
         started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function(CarTypeEnum? carType)? carTypeFilterChanged,

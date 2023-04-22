@@ -281,7 +281,7 @@ class _HomeViewState extends State<HomeView> {
                             final defaultStartDate = DateTime(
                               currentDate.year,
                               currentDate.month,
-                              currentDate.day,
+                              currentDate.day + 1,
                               8,
                               0,
                               0,
@@ -304,6 +304,7 @@ class _HomeViewState extends State<HomeView> {
                                   'longitude': getLocationLongitude(
                                           LocationCardType.values[index])
                                       .toString(),
+                                  'distance': 50.toString(),
                                 });
                           },
                         );

@@ -15,7 +15,7 @@ class CarRepository {
 
   final Dio dio;
 
-  Future<ApiResponse<PaginationResult<Car>>> cars({
+  Future<ApiResponse<PaginationResult<Car>>> carSearch({
     double? longitude,
     double? latitude,
     bool? hasDriver,
@@ -23,6 +23,7 @@ class CarRepository {
     TransmissionEnum? transmissionType,
     DateTime? startTime,
     DateTime? endTime,
+    int? distance,
     required int pageNumber,
     required int pageSize,
   }) async {
@@ -30,7 +31,10 @@ class CarRepository {
       final queryParameters = <String, dynamic>{
         'pageNumber': pageNumber - 1,
         'pageSize': pageSize,
+        'isAvailable': true,
       };
+
+      queryParameters['distance'] = distance ?? 5;
 
       if (longitude != null && latitude != null) {
         queryParameters['location.longitude'] = longitude;
@@ -48,10 +52,24 @@ class CarRepository {
         queryParameters['transmissionType'] = transmissionType.name;
       }
 
-      if (startTime != null && endTime != null) {
-        queryParameters['startTime'] = startTime.toIso8601String();
-        queryParameters['endTime'] = endTime.toIso8601String();
-      }
+      final currentDate = DateTime.now();
+      final defaultStartDate = DateTime(
+        currentDate.year,
+        currentDate.month,
+        currentDate.day + 1,
+        8,
+        0,
+        0,
+        0,
+        0,
+      );
+
+      queryParameters['startTime'] =
+          startTime?.toIso8601String() ?? defaultStartDate.toIso8601String();
+      queryParameters['endTime'] = endTime?.toIso8601String() ??
+          defaultStartDate.add(const Duration(days: 1)).toIso8601String();
+
+      if (startTime != null && endTime != null) {}
 
       final result = await dio.get<JsonObject>(
         'cars',

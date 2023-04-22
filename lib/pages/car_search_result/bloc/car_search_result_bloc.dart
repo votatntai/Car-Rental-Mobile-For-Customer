@@ -35,6 +35,7 @@ class CarSearchResultBloc
   late DateTime endDate;
   late double latitude;
   late double longitude;
+  int? distance;
   final pageSize = 10;
 
   final CarRepository carRepository;
@@ -51,6 +52,7 @@ class CarSearchResultBloc
     endDate = event.endDate;
     latitude = event.latitude;
     longitude = event.longitude;
+    distance = event.distance;
 
     // final carsResult = carRepository.cars(
     //   pageNumber: 1,
@@ -90,7 +92,7 @@ class CarSearchResultBloc
     final currentState = state as _Success;
     final page = (event.pageKey / pageSize).floor() + 1;
 
-    final carsResult = await carRepository.cars(
+    final carsResult = await carRepository.carSearch(
       pageNumber: page,
       pageSize: pageSize,
       longitude: currentState.longitude,
@@ -100,6 +102,7 @@ class CarSearchResultBloc
       transmissionType: currentState.carSearchFilter.transmission,
       startTime: currentState.startDate,
       endTime: currentState.endDate,
+      distance: distance,
     );
 
     List<Car> cars = [];

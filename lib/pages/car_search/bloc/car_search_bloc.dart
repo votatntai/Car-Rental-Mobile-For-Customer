@@ -52,7 +52,7 @@ class CarSearchBloc extends Bloc<CarSearchEvent, CarSearchState> {
       ),
     );
 
-    final carsResult = await carRepository.cars(
+    final carsResult = await carRepository.carSearch(
       pageNumber: 1,
       pageSize: 10,
     );

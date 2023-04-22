@@ -119,12 +119,17 @@ class AppRoute {
                           state.queryParams['longitude'] ?? '',
                         );
 
+                        final distance = int.tryParse(
+                          state.queryParams['distance'] ?? '',
+                        );
+
                         return CarSearchResultPage(
                           address: address,
                           endDate: endDate!,
                           startDate: startDate!,
                           latitude: latitude!,
                           longitude: longitude!,
+                          distance: distance,
                         );
                       },
                     )

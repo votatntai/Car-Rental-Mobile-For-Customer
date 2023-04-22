@@ -15,6 +15,7 @@ class CarSearchResultPage extends StatelessWidget {
     required this.address,
     required this.longitude,
     required this.latitude,
+    required this.distance,
   }) : super(key: key);
 
   final DateTime startDate;
@@ -22,6 +23,7 @@ class CarSearchResultPage extends StatelessWidget {
   final String address;
   final double longitude;
   final double latitude;
+  final int? distance;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class CarSearchResultPage extends StatelessWidget {
             endDate: endDate,
             longitude: longitude,
             latitude: latitude,
+            distance: distance,
           ),
         ),
       child: const CarSearchResultView(),

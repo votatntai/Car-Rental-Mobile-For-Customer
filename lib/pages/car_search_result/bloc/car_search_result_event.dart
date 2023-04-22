@@ -8,6 +8,7 @@ class CarSearchResultEvent with _$CarSearchResultEvent {
     required DateTime endDate,
     required double longitude,
     required double latitude,
+    int? distance,
   }) = _Started;
 
   const factory CarSearchResultEvent.pageRequested({
