@@ -29,6 +29,7 @@ class PromotionRepository {
       final queryParameters = <String, dynamic>{
         'pageNumber': pageNumber - 1,
         'pageSize': pageSize,
+        'isAvailable': true,
       };
 
       if (name != null) {
