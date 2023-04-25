@@ -244,7 +244,7 @@ class _HomeViewState extends State<HomeView> {
                   // ),
                   // const SizedBox(height: s08),
                   SizedBox(
-                    height: 270,
+                    height: 260,
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return CarCard(

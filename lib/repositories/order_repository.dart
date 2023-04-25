@@ -95,6 +95,17 @@ class OrderRepository {
       return const ApiResponse.error(
           error: 'Xảy ra lỗi trong quá trình đặt xe');
     } on DioError catch (e) {
+      if (e.response?.statusCode == StatusCodes.status409Conflict) {
+        return const ApiResponse.error(
+          error: 'Xe đã được đặt',
+        );
+      }
+      if (e.response?.statusCode == StatusCodes.status402PaymentRequired) {
+        return const ApiResponse.error(
+          error: 'Bạn không đủ tiền để đặt xe',
+        );
+      }
+
       return const ApiResponse.error(
         error: 'Xảy ra lỗi trong quá trình đặt xe',
       );

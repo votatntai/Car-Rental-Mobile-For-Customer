@@ -147,7 +147,7 @@ class CarSearchView extends StatelessWidget {
                         height: s04,
                       ),
                       SizedBox(
-                        height: 270,
+                        height: 260,
                         width: double.infinity,
                         child: ListView.builder(
                           itemBuilder: (context, index) {
