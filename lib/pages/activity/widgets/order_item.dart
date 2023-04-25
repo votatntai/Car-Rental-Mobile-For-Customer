@@ -74,12 +74,12 @@ class OrderItem extends StatelessWidget {
                       ClipRRect(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(5)),
-                        child: car?.images?.isNotEmpty == true
+                        child: car?.imageUrl != null
                             ? CachedNetworkImage(
                                 height: 80,
                                 width: 100,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: car!.images![0].url,
+                                imageUrl: car!.imageUrl!,
                                 errorWidget: (context, url, error) {
                                   return const Icon(Icons.error);
                                 })

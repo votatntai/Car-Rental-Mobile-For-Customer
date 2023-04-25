@@ -479,7 +479,7 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: s16),
                         child: ContainerWithLabel(
-                          label: 'Thông tin liên hệ',
+                          label: 'Thông tin liên hệ chủ xe',
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
