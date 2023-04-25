@@ -111,14 +111,19 @@ class CarBookingConfirmationBloc
   ) async {
     LoadingDialogService.load();
 
-    final orderId = await orderRepository.createOrder(event.orderCreateModel);
+    final result = await orderRepository.createOrder(event.orderCreateModel);
 
     LoadingDialogService.dispose();
-    if (orderId == null) {
+    if (result is ApiError) {
+      String message = (result as ApiError).error ?? '';
       showMessageDialog(
-          title: 'Lỗi', message: 'Xảy ra lỗi trong quá trình đặt xe');
+        title: 'Lỗi',
+        message: message,
+      );
       return;
     }
+
+    final orderId = (result as ApiSuccess<String>).value;
 
     getIt.get<AppRoute>().router.goNamed(
       RouteName.orderInformation,

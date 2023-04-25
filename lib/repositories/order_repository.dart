@@ -81,7 +81,7 @@ class OrderRepository {
     }
   }
 
-  Future<String?> createOrder(OrderCreateModel order) async {
+  Future<ApiResponse<String>> createOrder(OrderCreateModel order) async {
     try {
       final result = await dio.post<dynamic>(
         'orders',
@@ -89,12 +89,15 @@ class OrderRepository {
       );
 
       if (result.statusCode == StatusCodes.status201Created) {
-        return result.data['id'] as String;
+        return ApiResponse.success(result.data['id'] as String);
       }
 
-      return null;
+      return const ApiResponse.error(
+          error: 'Xảy ra lỗi trong quá trình đặt xe');
     } on DioError catch (e) {
-      return null;
+      return const ApiResponse.error(
+        error: 'Xảy ra lỗi trong quá trình đặt xe',
+      );
     }
   }
 

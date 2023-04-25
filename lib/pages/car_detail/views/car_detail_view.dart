@@ -513,96 +513,89 @@ class _CarDetailViewState extends State<CarDetailView> {
                               const Divider(),
                               Row(
                                 children: [
-                                  const Text(
-                                    'Khuyễn mãi:',
-                                    style: TextStyle(fontSize: 12),
+                                  const Expanded(
+                                    child: Text(
+                                      'Khuyễn mãi:',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return PromotionListPage();
+                                        },
+                                      ).then((value) {
+                                        if (value != null) {
+                                          context.read<CarDetailBloc>().add(
+                                                CarDetailEvent.promotionChanged(
+                                                  promotion: value as Promotion,
+                                                ),
+                                              );
+                                        }
+                                      });
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 3,
+                                            vertical: 1,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: CustomColors.silver,
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          child: const Text(
+                                            'Nhập mã khuyễn mãi',
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: s04,
+                                        ),
+                                        if (successState.promotion != null)
+                                          const SizedBox(
+                                            width: s04,
+                                          ),
+                                        if (successState.promotion == null)
+                                          const Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 12,
+                                          ),
+                                      ],
+                                    ),
                                   ),
                                   if (successState.promotion != null)
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return PromotionListPage();
-                                            },
-                                          ).then((value) {
-                                            if (value != null) {
-                                              context.read<CarDetailBloc>().add(
-                                                    CarDetailEvent
-                                                        .promotionChanged(
-                                                      promotion:
-                                                          value as Promotion,
-                                                    ),
-                                                  );
-                                            }
-                                          });
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              '-${formatCurrency(promotionCost)}',
-                                              style:
-                                                  const TextStyle(fontSize: 12),
-                                            ),
-                                          ],
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '-${formatCurrency(promotionCost)}',
+                                          style: const TextStyle(fontSize: 12),
                                         ),
-                                      ),
-                                    ),
-                                  if (successState.promotion == null)
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return PromotionListPage();
-                                            },
-                                          ).then((value) {
-                                            if (value != null) {
-                                              context.read<CarDetailBloc>().add(
-                                                    CarDetailEvent
-                                                        .promotionChanged(
-                                                      promotion:
-                                                          value as Promotion,
-                                                    ),
-                                                  );
-                                            }
-                                          });
-                                        },
-                                        child: Row(
-                                          children: [
-                                            const Spacer(),
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 3,
-                                                vertical: 1,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color: CustomColors.silver,
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                              ),
-                                              child: const Text(
-                                                'Nhập mã khuyễn mãi',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: s04,
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_forward_ios,
-                                              size: 12,
-                                            ),
-                                          ],
+                                        const SizedBox(
+                                          width: s04,
                                         ),
-                                      ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context.read<CarDetailBloc>().add(
+                                                  const CarDetailEvent
+                                                      .promotionChanged(
+                                                    promotion: null,
+                                                  ),
+                                                );
+                                          },
+                                          child: const Icon(
+                                            Icons.cancel_outlined,
+                                            size: 16,
+                                            color: CustomColors.red,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                 ],
                               ),

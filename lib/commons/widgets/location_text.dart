@@ -53,6 +53,7 @@ class LocationText extends StatelessWidget {
           return Text(
             '${text ?? ''}${snapshot.data ?? ''}',
             style: style ?? defaultStyle,
+            maxLines: 3,
           );
         }
         return Text(

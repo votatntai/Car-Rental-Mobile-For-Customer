@@ -27,7 +27,7 @@ mixin _$CarDetailEvent {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
-    required TResult Function(Promotion promotion) promotionChanged,
+    required TResult Function(Promotion? promotion) promotionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,7 +36,7 @@ mixin _$CarDetailEvent {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult? Function(Promotion promotion)? promotionChanged,
+    TResult? Function(Promotion? promotion)? promotionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,7 +45,7 @@ mixin _$CarDetailEvent {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult Function(Promotion promotion)? promotionChanged,
+    TResult Function(Promotion? promotion)? promotionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -219,7 +219,7 @@ class _$_Started implements _Started {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
-    required TResult Function(Promotion promotion) promotionChanged,
+    required TResult Function(Promotion? promotion) promotionChanged,
   }) {
     return started(carId, address, startDate, endDate, latitude, longitude);
   }
@@ -231,7 +231,7 @@ class _$_Started implements _Started {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult? Function(Promotion promotion)? promotionChanged,
+    TResult? Function(Promotion? promotion)? promotionChanged,
   }) {
     return started?.call(
         carId, address, startDate, endDate, latitude, longitude);
@@ -244,7 +244,7 @@ class _$_Started implements _Started {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult Function(Promotion promotion)? promotionChanged,
+    TResult Function(Promotion? promotion)? promotionChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -383,7 +383,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
-    required TResult Function(Promotion promotion) promotionChanged,
+    required TResult Function(Promotion? promotion) promotionChanged,
   }) {
     return addressTypeChanged(carAddressType);
   }
@@ -395,7 +395,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult? Function(Promotion promotion)? promotionChanged,
+    TResult? Function(Promotion? promotion)? promotionChanged,
   }) {
     return addressTypeChanged?.call(carAddressType);
   }
@@ -407,7 +407,7 @@ class _$_RentalCarTypeChanged implements _RentalCarTypeChanged {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult Function(Promotion promotion)? promotionChanged,
+    TResult Function(Promotion? promotion)? promotionChanged,
     required TResult orElse(),
   }) {
     if (addressTypeChanged != null) {
@@ -467,9 +467,9 @@ abstract class _$$_PromotionChangedCopyWith<$Res> {
           _$_PromotionChanged value, $Res Function(_$_PromotionChanged) then) =
       __$$_PromotionChangedCopyWithImpl<$Res>;
   @useResult
-  $Res call({Promotion promotion});
+  $Res call({Promotion? promotion});
 
-  $PromotionCopyWith<$Res> get promotion;
+  $PromotionCopyWith<$Res>? get promotion;
 }
 
 /// @nodoc
@@ -483,20 +483,24 @@ class __$$_PromotionChangedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? promotion = null,
+    Object? promotion = freezed,
   }) {
     return _then(_$_PromotionChanged(
-      promotion: null == promotion
+      promotion: freezed == promotion
           ? _value.promotion
           : promotion // ignore: cast_nullable_to_non_nullable
-              as Promotion,
+              as Promotion?,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PromotionCopyWith<$Res> get promotion {
-    return $PromotionCopyWith<$Res>(_value.promotion, (value) {
+  $PromotionCopyWith<$Res>? get promotion {
+    if (_value.promotion == null) {
+      return null;
+    }
+
+    return $PromotionCopyWith<$Res>(_value.promotion!, (value) {
       return _then(_value.copyWith(promotion: value));
     });
   }
@@ -505,10 +509,10 @@ class __$$_PromotionChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PromotionChanged implements _PromotionChanged {
-  const _$_PromotionChanged({required this.promotion});
+  const _$_PromotionChanged({this.promotion});
 
   @override
-  final Promotion promotion;
+  final Promotion? promotion;
 
   @override
   String toString() {
@@ -545,7 +549,7 @@ class _$_PromotionChanged implements _PromotionChanged {
             double? longitude)
         started,
     required TResult Function(CarAddressType carAddressType) addressTypeChanged,
-    required TResult Function(Promotion promotion) promotionChanged,
+    required TResult Function(Promotion? promotion) promotionChanged,
   }) {
     return promotionChanged(promotion);
   }
@@ -557,7 +561,7 @@ class _$_PromotionChanged implements _PromotionChanged {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult? Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult? Function(Promotion promotion)? promotionChanged,
+    TResult? Function(Promotion? promotion)? promotionChanged,
   }) {
     return promotionChanged?.call(promotion);
   }
@@ -569,7 +573,7 @@ class _$_PromotionChanged implements _PromotionChanged {
             DateTime? endDate, double? latitude, double? longitude)?
         started,
     TResult Function(CarAddressType carAddressType)? addressTypeChanged,
-    TResult Function(Promotion promotion)? promotionChanged,
+    TResult Function(Promotion? promotion)? promotionChanged,
     required TResult orElse(),
   }) {
     if (promotionChanged != null) {
@@ -614,10 +618,10 @@ class _$_PromotionChanged implements _PromotionChanged {
 }
 
 abstract class _PromotionChanged implements CarDetailEvent {
-  const factory _PromotionChanged({required final Promotion promotion}) =
+  const factory _PromotionChanged({final Promotion? promotion}) =
       _$_PromotionChanged;
 
-  Promotion get promotion;
+  Promotion? get promotion;
   @JsonKey(ignore: true)
   _$$_PromotionChangedCopyWith<_$_PromotionChanged> get copyWith =>
       throw _privateConstructorUsedError;

@@ -16,6 +16,6 @@ class CarDetailEvent with _$CarDetailEvent {
   }) = _RentalCarTypeChanged;
 
   const factory CarDetailEvent.promotionChanged({
-    required Promotion promotion,
+    Promotion? promotion,
   }) = _PromotionChanged;
 }
