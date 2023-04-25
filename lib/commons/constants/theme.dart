@@ -12,5 +12,5 @@ ThemeData lightTheme = ThemeData(
       statusBarColor: CustomColors.white,
     ),
   ),
-  fontFamily: GoogleFonts.openSans().fontFamily,
+  fontFamily: GoogleFonts.sourceSansPro().fontFamily,
 );
