@@ -87,30 +87,30 @@ class _CarOwnerDetailViewState extends State<CarOwnerDetailView> {
                 Table(
                   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                   children: [
-                    TableRow(
-                      children: [
-                        Row(
-                          children: const [
-                            SizedBox(
-                              width: s16,
-                              height: s32,
-                            ),
-                            Text(
-                              'Điện thoại',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          carOwner.phone,
-                          style: const TextStyle(fontSize: s12),
-                        ),
-                        const SizedBox(),
-                      ],
-                    ),
+                    // TableRow(
+                    //   children: [
+                    //     Row(
+                    //       children: const [
+                    //         SizedBox(
+                    //           width: s16,
+                    //           height: s32,
+                    //         ),
+                    //         Text(
+                    //           'Điện thoại',
+                    //           style: TextStyle(
+                    //             fontWeight: FontWeight.bold,
+                    //             fontSize: 12,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     Text(
+                    //       carOwner.phone,
+                    //       style: const TextStyle(fontSize: s12),
+                    //     ),
+                    //     const SizedBox(),
+                    //   ],
+                    // ),
                     TableRow(
                       children: [
                         Row(

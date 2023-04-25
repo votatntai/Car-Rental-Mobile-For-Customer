@@ -468,46 +468,50 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    divider,
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: s16),
-                      child: ContainerWithLabel(
-                        label: 'Thông tin liên hệ',
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const Text(
-                                  'Số điện thoại',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: CustomColors.jetBlack,
+                if (successState.order.status != OrderStatus.pending &&
+                    successState.order.status != OrderStatus.managerConfirmed &&
+                    successState.order.status != OrderStatus.carOwnerApproved &&
+                    successState.order.status != OrderStatus.canceled)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      divider,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: s16),
+                        child: ContainerWithLabel(
+                          label: 'Thông tin liên hệ',
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Số điện thoại',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: CustomColors.jetBlack,
+                                    ),
                                   ),
-                                ),
-                                const Spacer(),
-                                Text(
-                                  successState.order.orderDetails.first.car
-                                          .carOwner?.phone ??
-                                      '',
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    color: CustomColors.jetBlack,
+                                  const Spacer(),
+                                  Text(
+                                    successState.order.orderDetails.first.car
+                                            .carOwner?.phone ??
+                                        '',
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                      color: CustomColors.jetBlack,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 if (successState.driver != null)
                   Column(
                     children: [

@@ -35,18 +35,18 @@ class CarOwnerWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Text(
-                      car.carOwner?.phone ?? '',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        color: CustomColors.dimGray,
-                      ),
-                    ),
-                  ],
-                )
+                // Row(
+                //   children: [
+                //     Text(
+                //       car.carOwner?.phone ?? '',
+                //       style: const TextStyle(
+                //         fontSize: 11,
+                //         fontWeight: FontWeight.w500,
+                //         color: CustomColors.dimGray,
+                //       ),
+                //     ),
+                //   ],
+                // )
               ],
             ),
           ),
