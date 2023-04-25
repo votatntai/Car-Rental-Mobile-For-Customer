@@ -1,3 +1,4 @@
+import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/utils.dart';
 import 'package:flutter/material.dart';
@@ -79,14 +80,13 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
       appBar: AppBar(
         title: const Text(
           'Chọn thời gian',
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: CustomColors.appBarColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
           onPressed: () {
             Navigator.pop(context, {
               'startDate': widget.startDate,

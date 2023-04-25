@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 
 mixin CustomColors {
   static const primaryMaterialColor = MaterialColor(
-    0xFF4f46e5,
+    0xFF10172a,
     <int, Color>{
-      50: Color(0xFFE8E7FC),
-      100: Color(0xFFC5C3F9),
-      200: Color(0xFFA0A0F5),
-      300: Color(0xFF7B7AF2),
-      400: Color(0xFF5B59EE),
-      500: Color(0xFF4F46E5),
-      600: Color(0xFF4840D5),
-      700: Color(0xFF4039C4),
-      800: Color(0xFF382EB1),
-      900: Color(0xFF2A1E89),
+      50: Color(0xFFE0E2E4),
+      100: Color(0xFFB3B7BB),
+      200: Color(0xFF80868F),
+      300: Color(0xFF4D5563),
+      400: Color(0xFF262E3D),
+      500: Color(0xFF10172a),
+      600: Color(0xFF0E1424),
+      700: Color(0xFF0C111E),
+      800: Color(0xFF0A0E18),
+      900: Color(0xFF070A10),
     },
   );
-  static const primary = Color(0xFF4f46e5);
+  static const primary = Color(0xFF10172a);
+  static const appBarColor = Color(0xFF10172a);
   static const red = Color(0xFFD43860);
   static const gold = Color(0xFFFFCA51);
   static const background = Color(0xFFFFFFFF);

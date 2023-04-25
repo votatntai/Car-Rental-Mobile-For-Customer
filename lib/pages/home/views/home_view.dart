@@ -69,14 +69,27 @@ class _HomeViewState extends State<HomeView> {
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 50,
-            backgroundColor: white,
+            backgroundColor: CustomColors.appBarColor,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: s02),
-                Text(welcomeText, style: secondaryTextStyle()),
-                const SizedBox(height: s04),
-                Text(successState.user.name, style: boldTextStyle()),
+                Text(
+                  welcomeText,
+                  style: const TextStyle(
+                    fontSize: 13,
+                  ),
+                ),
+                const SizedBox(
+                  height: s02,
+                ),
+                Text(
+                  successState.user.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
             leading: GestureDetector(
@@ -98,10 +111,9 @@ class _HomeViewState extends State<HomeView> {
             ),
             actions: [
               IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.notifications_none_rounded,
                   size: 22,
-                  color: context.iconColor,
                 ),
                 onPressed: () {
                   context.goNamed(RouteName.notification);

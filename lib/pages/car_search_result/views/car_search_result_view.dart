@@ -108,7 +108,7 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
             appBar: AppBar(
               elevation: 0,
               toolbarHeight: 50,
-              backgroundColor: white,
+              backgroundColor: CustomColors.appBarColor,
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -118,7 +118,6 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: CustomColors.jetBlack,
                     ),
                   ),
                   const SizedBox(height: s04),
@@ -131,13 +130,12 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: CustomColors.jetBlack,
                     ),
                   ),
                 ],
               ),
               leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: context.iconColor),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -145,9 +143,8 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
               actions: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search,
-                    color: context.iconColor,
                   ),
                 ),
               ],
