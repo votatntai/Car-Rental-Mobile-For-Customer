@@ -88,12 +88,14 @@ class OrderRepository {
         data: order.toJson(),
       );
 
-      if (result.statusCode == StatusCodes.status201Created) {
+      if (result.statusCode == StatusCodes.status200OK ||
+          result.statusCode == StatusCodes.status201Created) {
         return ApiResponse.success(result.data['id'] as String);
       }
 
       return const ApiResponse.error(
-          error: 'Xảy ra lỗi trong quá trình đặt xe');
+        error: 'Xảy ra lỗi trong quá trình đặt xe',
+      );
     } on DioError catch (e) {
       if (e.response?.statusCode == StatusCodes.status409Conflict) {
         return const ApiResponse.error(
