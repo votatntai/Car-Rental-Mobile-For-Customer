@@ -201,6 +201,18 @@ class _CarSearchResultViewState extends State<CarSearchResultView> {
                       scrollDirection: Axis.vertical,
                       builderDelegate: PagedChildBuilderDelegate<Car>(
                         animateTransitions: true,
+                        noItemsFoundIndicatorBuilder: (context) {
+                          return Column(
+                            children: const [
+                              Text(
+                                'Không tìm thấy xe',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                         itemBuilder: (context, item, index) => CarItem(
                           onTap: (id) {
                             context.pushNamed(

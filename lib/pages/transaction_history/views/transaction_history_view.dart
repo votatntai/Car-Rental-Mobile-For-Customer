@@ -68,6 +68,18 @@ class _TransactionHistoryViewState extends State<TransactionHistoryView> {
                     scrollDirection: Axis.vertical,
                     builderDelegate: PagedChildBuilderDelegate<Transaction>(
                       animateTransitions: true,
+                      noItemsFoundIndicatorBuilder: (context) {
+                        return Column(
+                          children: const [
+                            Text(
+                              'Không có giao dịch nào',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                       itemBuilder: (context, item, index) => TransactionItem(
                         transaction: item,
                         onTap: (transaction) {

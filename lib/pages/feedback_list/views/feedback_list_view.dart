@@ -61,6 +61,18 @@ class _FeedbackListViewState extends State<FeedbackListView> {
                   scrollDirection: Axis.vertical,
                   builderDelegate: PagedChildBuilderDelegate<FeedbackModel>(
                     animateTransitions: true,
+                    noItemsFoundIndicatorBuilder: (context) {
+                      return Column(
+                        children: const [
+                          Text(
+                            'Không có đánh giá nào',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                     itemBuilder: (context, item, index) =>
                         FeedbackItem(feedback: item),
                   ),

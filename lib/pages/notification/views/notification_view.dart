@@ -64,6 +64,18 @@ class _NotificationViewState extends State<NotificationView> {
                   builderDelegate: PagedChildBuilderDelegate<
                       notification_model.Notification>(
                     animateTransitions: true,
+                    noItemsFoundIndicatorBuilder: (context) {
+                      return Column(
+                        children: const [
+                          Text(
+                            'Không có thông báo nào',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                     itemBuilder: (context, item, index) =>
                         NotificationItem(notification: item),
                   ),
