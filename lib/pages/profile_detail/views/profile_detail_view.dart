@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/images.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
@@ -9,6 +11,7 @@ import 'package:car_rental_for_customer/models/enums/gender.dart';
 import 'package:car_rental_for_customer/pages/profile_detail/bloc/profile_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class ProfileDetailView extends StatefulWidget {
@@ -29,6 +32,17 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
 
   Gender _gender = Gender.male;
   String _address = '';
+
+  XFile? _image;
+
+  Future<void> pickAvatar() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _image = image;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -88,54 +102,29 @@ class _ProfileDetailViewState extends State<ProfileDetailView> {
                               clipBehavior: Clip.none,
                               children: [
                                 GestureDetector(
-                                  onTap: () async {
-                                    // if (UserImage != null) {
-                                    //   imagePath = UserImage;
-                                    // }
-                                    // try {
-                                    //   await pr_ob.pickImage();
-                                    //   imagePath = pr_ob.pickedFile!.path;
-                                    // } catch (e) {
-                                    //   print(e);
-                                    // }
-                                    //TODO: pick image
+                                  onTap: () {
+                                    pickAvatar();
                                   },
-                                  // child: (pr_ob.pickedFile != null)
-                                  //     ? Image.file(
-                                  //   File(pr_ob.pickedFile!.path),
-                                  //   width: 100,
-                                  //   height: 100,
-                                  //   fit: BoxFit.cover,
-                                  // ).cornerRadiusWithClipRRect(60)
-                                  //     : Image.asset(
-                                  //   Images.userImage,
-                                  //   fit: BoxFit.cover,
-                                  //   height: 100,
-                                  //   width: 100,
-                                  // ).cornerRadiusWithClipRRect(60),
-                                  child: Image.asset(
-                                    Images.userImage,
-                                    fit: BoxFit.cover,
-                                    height: 100,
-                                    width: 100,
-                                  ).cornerRadiusWithClipRRect(60),
+                                  child: _image != null
+                                      ? Image.file(
+                                          File(_image!.path),
+                                          fit: BoxFit.cover,
+                                          height: 100,
+                                          width: 100,
+                                        ).cornerRadiusWithClipRRect(60)
+                                      : Image.asset(
+                                          Images.userImage,
+                                          fit: BoxFit.cover,
+                                          height: 100,
+                                          width: 100,
+                                        ).cornerRadiusWithClipRRect(60),
                                 ),
                                 Positioned(
                                   right: 0,
                                   bottom: 8,
                                   child: GestureDetector(
-                                    onTap: () async {
-                                      // if (UserImage != null) {
-                                      //   imagePath = UserImage;
-                                      // }
-                                      // try {
-                                      //   await pr_ob.pickImage();
-                                      //   imagePath = pr_ob.pickedFile!.path;
-                                      // } catch (e) {
-                                      //   print(e);
-                                      // }
-
-                                      //TODO: pick image
+                                    onTap: () {
+                                      pickAvatar();
                                     },
                                     child: Container(
                                       alignment: Alignment.center,

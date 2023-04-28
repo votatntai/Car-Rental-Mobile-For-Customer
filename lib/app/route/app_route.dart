@@ -1,7 +1,6 @@
 import 'package:car_rental_for_customer/app/route/observers.dart';
 import 'package:car_rental_for_customer/app/route/route_name.dart';
 import 'package:car_rental_for_customer/models/enums/feedback_type.dart';
-import 'package:car_rental_for_customer/models/enums/rental_car_type.dart';
 import 'package:car_rental_for_customer/pages/activity/activity.dart';
 import 'package:car_rental_for_customer/pages/car_booking_confirmation/views/car_booking_confirmation_page.dart';
 import 'package:car_rental_for_customer/pages/car_detail/car_detail.dart';
@@ -11,6 +10,7 @@ import 'package:car_rental_for_customer/pages/car_search_result/car_search_resul
 import 'package:car_rental_for_customer/pages/driver_detail/driver_detail.dart';
 import 'package:car_rental_for_customer/pages/feedback/views/feedback_page.dart';
 import 'package:car_rental_for_customer/pages/feedback_list/views/feedback_list_page.dart';
+import 'package:car_rental_for_customer/pages/forgot_password/views/forgot_password_page.dart';
 import 'package:car_rental_for_customer/pages/home/home.dart';
 import 'package:car_rental_for_customer/pages/license/views/license_page.dart';
 import 'package:car_rental_for_customer/pages/login/login.dart';
@@ -56,6 +56,11 @@ class AppRoute {
             path: 'sign-up',
             name: RouteName.signUp,
             builder: (context, state) => const SignUpPage(),
+          ),
+          GoRoute(
+            path: 'forgot-password',
+            name: RouteName.forgotPassword,
+            builder: (context, state) => const ForgotPasswordPage(),
           ),
         ],
       ),

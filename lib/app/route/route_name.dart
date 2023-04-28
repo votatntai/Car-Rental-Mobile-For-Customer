@@ -1,3 +1,5 @@
+import 'package:car_rental_for_customer/pages/forgot_password/forgot_password.dart';
+
 mixin RouteName {
   static const login = 'login';
   static const signUp = 'sign-up';
@@ -24,4 +26,5 @@ mixin RouteName {
   static const feedback = 'feedback';
   static const feedbackList = 'feedback-list';
   static const promotionList = 'promotion-list';
+  static const forgotPassword = 'forgot-password';
 }
