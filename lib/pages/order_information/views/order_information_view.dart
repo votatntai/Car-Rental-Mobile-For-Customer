@@ -230,8 +230,9 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                       children: [
                         Text(
                           successState.order.status.displayName,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
+                            color: successState.order.status.displayColor,
                           ),
                         ),
                         const SizedBox(

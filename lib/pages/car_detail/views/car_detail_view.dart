@@ -294,22 +294,22 @@ class _CarDetailViewState extends State<CarDetailView> {
                                 color: CustomColors.ochre.withOpacity(0.1),
                                 child: Column(
                                   children: [
-                                    Row(
-                                      children: const [
-                                        Text(
-                                          'Giao nhận xe tận nới trong',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          '${10} km',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: s04,
-                                    ),
+                                    // Row(
+                                    //   children: const [
+                                    //     Text(
+                                    //       'Giao nhận xe tận nới trong',
+                                    //       style: TextStyle(fontSize: 12),
+                                    //     ),
+                                    //     Spacer(),
+                                    //     Text(
+                                    //       '${10} km',
+                                    //       style: TextStyle(fontSize: 12),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // const SizedBox(
+                                    //   height: s04,
+                                    // ),
                                     Row(
                                       children: [
                                         const Text(
@@ -803,9 +803,11 @@ class _CarDetailViewState extends State<CarDetailView> {
                                         bottom: s04,
                                       ),
                                       child: Text(
-                                        '- ${successState.car.productionCompany!.name}',
+                                        successState
+                                            .car.productionCompany!.name,
                                         style: const TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
