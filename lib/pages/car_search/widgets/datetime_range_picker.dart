@@ -35,7 +35,28 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
       fontSize: 16,
     );
 
-    Future<DateTime?> pickDatetime({
+    bool timeIsValid() {
+      final currentDate = DateTime.now();
+      // 2 hour
+      if (startDate
+          .isBefore(currentDate.add(const Duration(hours: 1, minutes: 59)))) {
+        return false;
+      }
+
+      // 6 hour
+      if (endDate
+          .isBefore(startDate.add(const Duration(hours: 5, minutes: 59)))) {
+        return false;
+      }
+
+      if (startDate.add(const Duration(days: 7)).isBefore(endDate)) {
+        return false;
+      }
+
+      return true;
+    }
+
+    Future<DateTime?> pickDateTime({
       required BuildContext context,
       DateTime? firstDate,
       DateTime? lastDate,
@@ -47,7 +68,7 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
         lastDate: lastDate ??
             firstDate?.add(
               const Duration(
-                days: 365,
+                days: 7,
               ),
             ) ??
             DateTime.now().add(
@@ -119,7 +140,7 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
                 ),
               ),
               onTap: () {
-                pickDatetime(
+                pickDateTime(
                   context: context,
                   // lastDate: endDate,
                 ).then((value) {
@@ -151,7 +172,7 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
                 ),
               ),
               onTap: () {
-                pickDatetime(context: context, firstDate: startDate)
+                pickDateTime(context: context, firstDate: startDate)
                     .then((value) {
                   if (value != null) {
                     setState(() {
@@ -166,8 +187,7 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: startDate.isBefore(endDate) &&
-                            startDate.isAfter(DateTime.now())
+                    onPressed: timeIsValid()
                         ? () {
                             Navigator.pop(context, {
                               'startDate': startDate,
