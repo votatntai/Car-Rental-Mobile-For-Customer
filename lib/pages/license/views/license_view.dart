@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:car_rental_for_customer/commons/constants/colors.dart';
 import 'package:car_rental_for_customer/commons/constants/sizes.dart';
 import 'package:car_rental_for_customer/commons/widgets/LoadingWidget.dart';
 import 'package:car_rental_for_customer/commons/widgets/app_app_bar.dart';
@@ -58,8 +57,7 @@ class _LicenseViewState extends State<LicenseView> {
                       'Cập nhật',
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: CustomColors.jetBlack,
+                        color: Colors.white,
                       ),
                     ),
                   ),

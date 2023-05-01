@@ -119,6 +119,7 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
       body: Padding(
         padding: const EdgeInsets.all(s08),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: s16),
             InkWell(
@@ -182,17 +183,28 @@ class _DateTimeRangePickerState extends State<DateTimeRangePicker> {
                 });
               },
             ),
-            const SizedBox(height: s32),
+            const SizedBox(height: s16),
+            const Text(
+              'Thời gian thuê tối thiểu là 6 giờ',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: s24),
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
                     onPressed: timeIsValid()
                         ? () {
-                            Navigator.pop(context, {
-                              'startDate': startDate,
-                              'endDate': endDate,
-                            });
+                            Navigator.pop(
+                              context,
+                              {
+                                'startDate': startDate,
+                                'endDate': endDate,
+                              },
+                            );
                           }
                         : null,
                     child: const Text('Lưu'),

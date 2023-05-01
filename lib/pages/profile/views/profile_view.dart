@@ -148,17 +148,17 @@ class _ProfileViewState extends State<ProfileView> {
                     color: context.iconColor,
                   ),
                 ),
-                SettingItemWidget(
-                  leading:
-                      Icon(Icons.payment_rounded, color: context.iconColor),
-                  title: 'Thanh toán',
-                  titleTextStyle: boldTextStyle(),
-                  onTap: () {
-                    //TODO: navigate to payment screen
-                  },
-                  trailing: Icon(Icons.arrow_forward_ios_rounded,
-                      size: 18, color: context.iconColor),
-                ),
+                // SettingItemWidget(
+                //   leading:
+                //       Icon(Icons.payment_rounded, color: context.iconColor),
+                //   title: 'Thanh toán',
+                //   titleTextStyle: boldTextStyle(),
+                //   onTap: () {
+                //     //TODO: navigate to payment screen
+                //   },
+                //   trailing: Icon(Icons.arrow_forward_ios_rounded,
+                //       size: 18, color: context.iconColor),
+                // ),
                 SettingItemWidget(
                   leading: Icon(Icons.login, color: context.iconColor),
                   title: 'Đăng xuất',
