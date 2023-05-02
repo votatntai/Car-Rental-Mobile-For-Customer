@@ -95,6 +95,12 @@ class _PaymentWebviewViewState extends State<PaymentWebviewView> {
                     ),
                     initialOptions: options,
                     pullToRefreshController: pullToRefreshController,
+                    onReceivedServerTrustAuthRequest:
+                        (controller, challenge) async {
+                      return ServerTrustAuthResponse(
+                        action: ServerTrustAuthResponseAction.PROCEED,
+                      );
+                    },
                     onLoadStart: (controller, url) {
                       final urlStr = url?.toString() ?? '';
 
