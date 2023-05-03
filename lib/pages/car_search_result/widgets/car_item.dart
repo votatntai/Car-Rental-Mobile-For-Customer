@@ -73,7 +73,7 @@ class CarItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          car.name ?? '',
+                          '${car.productionCompany?.name} ${car.name}',
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
