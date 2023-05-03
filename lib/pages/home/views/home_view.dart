@@ -169,7 +169,7 @@ class _HomeViewState extends State<HomeView> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.zero,
-                        hintText: 'Tìm xe',
+                        // hintText: 'Tìm xe',
                         hintStyle: secondaryTextStyle(),
                         fillColor: CustomColors.gainsboro,
                         filled: true,
@@ -195,17 +195,17 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           onPressed: () {},
                         ),
-                        suffixIcon: IconButton(
-                          icon: const Icon(
-                            Icons.filter_alt_outlined,
-                            size: 20,
-                            color: CustomColors.silver,
-                          ),
-                          onPressed: () {},
-                        ),
+                        // suffixIcon: IconButton(
+                        //   icon: const Icon(
+                        //     Icons.filter_alt_outlined,
+                        //     size: 20,
+                        //     color: CustomColors.silver,
+                        //   ),
+                        //   onPressed: () {},
+                        // ),
                       ),
                       child: Text(
-                        'Tim xe',
+                        'Tìm xe',
                         style: secondaryTextStyle(),
                       ),
                     ).paddingSymmetric(horizontal: 8),

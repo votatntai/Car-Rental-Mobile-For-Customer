@@ -5,9 +5,9 @@ enum LocationCardType {
   hoChiMinh,
   haNoi,
   daNang,
-  binhDuong,
-  canTho,
-  daLat,
+  // binhDuong,
+  // canTho,
+  // daLat,
 }
 
 String getLocationName(LocationCardType type) {
@@ -18,12 +18,12 @@ String getLocationName(LocationCardType type) {
       return 'Hà Nội';
     case LocationCardType.daNang:
       return 'Đà Nẵng';
-    case LocationCardType.binhDuong:
-      return 'Bình Dương';
-    case LocationCardType.canTho:
-      return 'Cần Thơ';
-    case LocationCardType.daLat:
-      return 'Đà Lạt';
+    // case LocationCardType.binhDuong:
+    //   return 'Bình Dương';
+    // case LocationCardType.canTho:
+    //   return 'Cần Thơ';
+    // case LocationCardType.daLat:
+    //   return 'Đà Lạt';
   }
 }
 
@@ -35,12 +35,12 @@ double getLocationLatitude(LocationCardType type) {
       return 21.0277644;
     case LocationCardType.daNang:
       return 16.0544563;
-    case LocationCardType.binhDuong:
-      return 11.3254024;
-    case LocationCardType.canTho:
-      return 10.0451618;
-    case LocationCardType.daLat:
-      return 11.9404192;
+    // case LocationCardType.binhDuong:
+    //   return 11.3254024;
+    // case LocationCardType.canTho:
+    //   return 10.0451618;
+    // case LocationCardType.daLat:
+    //   return 11.9404192;
   }
 }
 
@@ -52,12 +52,12 @@ double getLocationLongitude(LocationCardType type) {
       return 105.8341598;
     case LocationCardType.daNang:
       return 108.0717219;
-    case LocationCardType.binhDuong:
-      return 106.477017;
-    case LocationCardType.canTho:
-      return 105.7468535;
-    case LocationCardType.daLat:
-      return 108.4583132;
+    // case LocationCardType.binhDuong:
+    //   return 106.477017;
+    // case LocationCardType.canTho:
+    //   return 105.7468535;
+    // case LocationCardType.daLat:
+    //   return 108.4583132;
   }
 }
 
@@ -76,12 +76,12 @@ class LocationCard extends StatelessWidget {
         return 'assets/ha_noi.jpg';
       case LocationCardType.daNang:
         return 'assets/da_nang.jpg';
-      case LocationCardType.binhDuong:
-        return 'assets/binh_duong.jpg';
-      case LocationCardType.canTho:
-        return 'assets/can_tho.jpg';
-      case LocationCardType.daLat:
-        return 'assets/da_lat.jpg';
+      // case LocationCardType.binhDuong:
+      //   return 'assets/binh_duong.jpg';
+      // case LocationCardType.canTho:
+      //   return 'assets/can_tho.jpg';
+      // case LocationCardType.daLat:
+      //   return 'assets/da_lat.jpg';
     }
   }
 
