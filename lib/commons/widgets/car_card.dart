@@ -47,25 +47,25 @@ class CarCard extends StatelessWidget {
                             Images.carExample,
                           ),
                         ),
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: Container(
-                      padding: const EdgeInsets.all(s04),
-                      decoration: BoxDecoration(
-                        color: CustomColors.flamingo,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Text(
-                        'ETC',
-                        style: TextStyle(
-                          fontSize: 8,
-                          fontWeight: FontWeight.w500,
-                          color: CustomColors.white,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: 10,
+                  //   right: 10,
+                  //   child: Container(
+                  //     padding: const EdgeInsets.all(s04),
+                  //     decoration: BoxDecoration(
+                  //       color: CustomColors.flamingo,
+                  //       borderRadius: BorderRadius.circular(5),
+                  //     ),
+                  //     child: const Text(
+                  //       'ETC',
+                  //       style: TextStyle(
+                  //         fontSize: 8,
+                  //         fontWeight: FontWeight.w500,
+                  //         color: CustomColors.white,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Positioned(
                     bottom: 10,
                     left: 10,

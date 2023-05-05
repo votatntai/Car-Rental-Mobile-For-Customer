@@ -78,18 +78,24 @@ class _CarDetailViewState extends State<CarDetailView> {
           );
         }
 
-        final rentCost = calculateDays(
-              successState.startDate,
-              successState.endDate,
-            ) *
-            successState.car.price;
+        final days = calculateDays(
+          successState.startDate,
+          successState.endDate,
+        );
+        final overNightCostUnit = hasDriver ? 300000 : 0;
+
+        final driverCostUnit = hasDriver ? 200000 : 0;
+        final overNightCost = hasDriver ? (overNightCostUnit * (days - 1)) : 0;
+
+        final rentCost = days * (successState.car.price + driverCostUnit);
 
         final carDeliveryCost = successState.deliveryDistance * 20000;
 
         final promotionCost =
             rentCost * ((successState.promotion?.discount ?? 0) / 100);
 
-        final totalCost = rentCost + carDeliveryCost - promotionCost;
+        final totalCost =
+            rentCost + overNightCost + carDeliveryCost - promotionCost;
 
         final isLicenseValid = successState.user?.isLicenseValid ?? false;
 
@@ -468,16 +474,58 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   ),
                                 ],
                               ),
+                              if (hasDriver)
+                                Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: s04,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Phí cho tài xế: ',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          '${formatCurrency(driverCostUnit.toDouble())}/ngày',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              if (hasDriver)
+                                Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: s04,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Phí qua đêm cho tài xế: ',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          '${formatCurrency(overNightCostUnit.toDouble())}/đêm',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               const Divider(),
                               Row(
                                 children: [
                                   const Text(
-                                    'Tổng phí thuê xe:',
+                                    'Phí thuê xe:',
                                     style: TextStyle(fontSize: 12),
                                   ),
                                   const Spacer(),
                                   Text(
-                                    '${formatCurrency(successState.car.price)} x ${calculateDays(
+                                    '${formatCurrency(successState.car.price + driverCostUnit)} x ${calculateDays(
                                       successState.startDate,
                                       successState.endDate,
                                     )} ngày',
@@ -485,6 +533,27 @@ class _CarDetailViewState extends State<CarDetailView> {
                                   ),
                                 ],
                               ),
+                              if (hasDriver)
+                                Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: s04,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Phí qua đêm:',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          '${formatCurrency(overNightCostUnit.toDouble())} x ${days - 1} ngày',
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               if (successState.carAddressType ==
                                   CarAddressType.customer)
                                 Column(

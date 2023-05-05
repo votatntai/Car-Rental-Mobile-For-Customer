@@ -71,18 +71,26 @@ class _CarBookingConfirmationViewState
           );
         }
 
-        final rentCost = calculateDays(
-              successState.startDate,
-              successState.endDate,
-            ) *
-            successState.car.price;
+        final days = calculateDays(
+          successState.startDate,
+          successState.endDate,
+        );
+
+        final overNightCostUnit = successState.hasDriver ? 300000 : 0;
+
+        final driverCostUnit = successState.hasDriver ? 200000 : 0;
+        final overNightCost =
+            successState.hasDriver ? (overNightCostUnit * (days - 1)) : 0;
+
+        final rentCost = days * (successState.car.price + driverCostUnit);
+
+        final carDeliveryCost = successState.deliveryDistance * 20000;
 
         final promotionCost =
             rentCost * ((successState.promotion?.discount ?? 0) / 100);
 
-        final carDeliveryCost = successState.deliveryDistance * 20000;
-
-        final totalCost = rentCost + carDeliveryCost - promotionCost;
+        final totalCost =
+            rentCost + overNightCost + carDeliveryCost - promotionCost;
         final deposit = totalCost * 0.3;
         final remaining = totalCost - deposit;
 
@@ -360,16 +368,58 @@ class _CarBookingConfirmationViewState
                             ),
                           ],
                         ),
+                        if (successState.hasDriver)
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: s04,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Phí cho tài xế: ',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatCurrency(driverCostUnit.toDouble())}/ngày',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        if (successState.hasDriver)
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: s04,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Phí qua đêm cho tài xế: ',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatCurrency(overNightCostUnit.toDouble())}/đêm',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         const Divider(),
                         Row(
                           children: [
                             const Text(
-                              'Tổng phí thuê xe:',
+                              'Phí thuê xe:',
                               style: TextStyle(fontSize: 12),
                             ),
                             const Spacer(),
                             Text(
-                              '${formatCurrency(successState.car.price)} x ${calculateDays(
+                              '${formatCurrency(successState.car.price + driverCostUnit)} x ${calculateDays(
                                 successState.startDate,
                                 successState.endDate,
                               )} ngày',
@@ -377,6 +427,27 @@ class _CarBookingConfirmationViewState
                             ),
                           ],
                         ),
+                        if (successState.hasDriver)
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: s04,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Phí qua đêm:',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatCurrency(overNightCostUnit.toDouble())} x ${days - 1} đêm',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         Column(
                           children: [
                             const SizedBox(

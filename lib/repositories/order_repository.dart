@@ -99,7 +99,7 @@ class OrderRepository {
     } on DioError catch (e) {
       if (e.response?.statusCode == StatusCodes.status409Conflict) {
         return const ApiResponse.error(
-          error: 'Xe đã được đặt',
+          error: 'Bạn có đơn hàng đang chờ duyệt',
         );
       }
       if (e.response?.statusCode == StatusCodes.status402PaymentRequired) {

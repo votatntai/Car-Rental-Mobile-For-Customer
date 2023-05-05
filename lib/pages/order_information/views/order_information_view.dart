@@ -176,18 +176,30 @@ class _OrderInformationViewState extends State<OrderInformationView> {
           );
         }
 
-        final rentCost = calculateDays(
-              successState.order.orderDetails.first.startTime,
-              successState.order.orderDetails.first.endTime,
-            ) *
-            successState.order.unitPrice;
+        var hasDriver = false;
+        if (successState.order.orderDetails.isNotEmpty &&
+            successState.order.orderDetails.first.driver != null) {
+          hasDriver = true;
+        }
+
+        final days = calculateDays(
+          successState.order.orderDetails.first.startTime,
+          successState.order.orderDetails.first.endTime,
+        );
+
+        final overNightCostUnit = hasDriver ? 300000 : 0;
+
+        final driverCostUnit = hasDriver ? 200000 : 0;
+        final overNightCost = hasDriver ? (overNightCostUnit * (days - 1)) : 0;
+
+        final rentCost = days * (successState.order.unitPrice + driverCostUnit);
 
         final promotionCost =
             rentCost * ((successState.order.promotion?.discount ?? 0) / 100);
 
         final carDeliveryCost = successState.order.deliveryFee;
 
-        // final totalCost = rentCost + carDeliveryCost - promotionCost;
+        // final totalCost = rentCost + overNightCost + carDeliveryCost - promotionCost;
         final totalCost = successState.order.amount;
         final deposit = successState.order.deposit;
         final remaining = totalCost - deposit;
@@ -673,23 +685,83 @@ class _OrderInformationViewState extends State<OrderInformationView> {
                             ),
                           ],
                         ),
+                        if (hasDriver)
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: s04,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Phí cho tài xế: ',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatCurrency(driverCostUnit.toDouble())}/ngày',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        if (hasDriver)
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: s04,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Phí qua đêm cho tài xế: ',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatCurrency(overNightCostUnit.toDouble())}/đêm',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         const Divider(),
                         Row(
                           children: [
                             const Text(
-                              'Tổng phí thuê xe:',
+                              'Phí thuê xe:',
                               style: TextStyle(fontSize: 12),
                             ),
                             const Spacer(),
                             Text(
-                              '${formatCurrency(successState.order.unitPrice)} x ${calculateDays(
-                                successState.order.orderDetails.first.startTime,
-                                successState.order.orderDetails.first.endTime,
-                              )} ngày',
+                              '${formatCurrency(successState.order.unitPrice + driverCostUnit)} x $days ngày',
                               style: const TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
+                        if (hasDriver)
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: s04,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Phí qua đêm:',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    '${formatCurrency(overNightCostUnit.toDouble())} x ${days - 1} đêm',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         Column(
                           children: [
                             const SizedBox(
